@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import React from "react";
-import "../styles/globals.css";
+
+import "tailwindcss/tailwind.css";
 
 /* <link rel="stylesheet" href="https://use.typekit.net/fmg4grs.css"/> */
 
