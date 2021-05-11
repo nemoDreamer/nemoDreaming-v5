@@ -11,6 +11,7 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "plugin:import/typescript",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
   ],
@@ -29,6 +30,8 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint"],
   rules: {
+    // IMPORTS
+    // --------------------------------------------------
     "sort-imports": [
       "error",
       {
@@ -85,4 +88,14 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: "*.{ts,tsx}",
+      rules: {
+        // REACT
+        // --------------------------------------------------
+        "react/prop-types": "off", // <- keeps interfering w/ TypeScript
+      },
+    },
+  ],
 };
