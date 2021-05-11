@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +8,8 @@ export const name = "Your Name";
 export const siteTitle = "Next.js Sample Website";
 export const description =
   "Learn how to build a personal website using Next.js";
+
+const getHeaderHeight = (isHome: boolean) => (isHome ? "168px" : "100px");
 
 const Layout: React.FC<{
   isHome?: boolean;
@@ -27,17 +30,30 @@ const Layout: React.FC<{
       <meta name="twitter:card" content="summary_large_image" />
     </Head>
 
-    <header className={`${isHome ? "h-48" : "h-32"} bg-gray-500`} id="header">
-      <div className="w-1/2 h-full mx-auto flex flex-col items-start justify-center bg-gray-600">
-        <div className="h-10 w-20 flex flex-row items-center justify-center bg-black text-gray-50">
+    <header className="bg-gray-500 shadow-xl" style={{ zIndex: 2 }}>
+      <motion.div
+        layoutId="header"
+        layout
+        transition={{ type: "spring", bounce: 0, duration: 0.5 }}
+        initial={{ height: getHeaderHeight(!isHome) }}
+        animate={{ height: getHeaderHeight(isHome) }}
+        className="w-1/2 h-full mx-auto flex flex-col items-start justify-center bg-gray-600"
+      >
+        <motion.div
+          layoutId="logo"
+          layout
+          className="h-10 w-20 flex flex-row items-center justify-center bg-black text-gray-50"
+        >
           Logo
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </header>
 
-    <main className="flex-1 p-4">
+    <main className="p-4 bg-gray-100 shadow-xl" style={{ zIndex: 1 }}>
       <div className="w-1/2 mx-auto">{children}</div>
     </main>
+
+    <div className="flex-1"> </div>
 
     <footer className="flex flex-row items-center justify-center p-4 bg-gray-100">
       {!isHome && (
