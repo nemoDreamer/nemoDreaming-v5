@@ -97,5 +97,11 @@ module.exports = {
         "react/prop-types": "off", // <- keeps interfering w/ TypeScript
       },
     },
+    {
+      files: "*.{js,jsx}",
+      rules: {
+        "@typescript-eslint/no-var-requires": "off",
+      },
+    },
   ],
 };

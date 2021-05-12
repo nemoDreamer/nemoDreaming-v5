@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 
+import styles from "./layout.module.scss";
+
 export const name = "Your Name";
 export const siteTitle = "Next.js Sample Website";
 export const description =
@@ -30,14 +32,14 @@ const Layout: React.FC<{
       <meta name="twitter:card" content="summary_large_image" />
     </Head>
 
-    <header className="bg-gray-500 shadow-xl" style={{ zIndex: 2 }}>
+    <header className="bg-teal-500 shadow-xl" style={{ zIndex: 2 }}>
       <motion.div
         layoutId="header"
         layout
         transition={{ type: "spring", bounce: 0, duration: 0.5 }}
         initial={{ height: getHeaderHeight(!isHome) }}
         animate={{ height: getHeaderHeight(isHome) }}
-        className="w-1/2 h-full mx-auto flex flex-col items-start justify-center bg-gray-600"
+        className="w-1/2 h-full mx-auto flex flex-col items-start justify-center"
       >
         <motion.div
           layoutId="logo"
@@ -49,7 +51,10 @@ const Layout: React.FC<{
       </motion.div>
     </header>
 
-    <main className="p-4 bg-gray-100 shadow-xl" style={{ zIndex: 1 }}>
+    <main
+      className={`${styles.main} p-4 bg-teal-500 text-teal-200 shadow-xl`}
+      style={{ zIndex: 1 }}
+    >
       <div className="w-1/2 mx-auto">{children}</div>
     </main>
 
