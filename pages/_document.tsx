@@ -5,24 +5,22 @@ import Document, {
   Main,
   NextScript,
 } from "next/document";
-import React, {
-  JSXElementConstructor,
-  ReactElement,
-  ReactFragment,
-} from "react";
+import * as React from "react";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext): Promise<{
     html: string;
-    head?: JSX.Element[];
+    head?: (JSX.Element | null)[] | undefined;
     styles?:
-      | ReactElement<
+      | React.ReactFragment
+      | React.ReactElement<
           Record<string, unknown>,
-          string | JSXElementConstructor<Record<string, unknown>>
+          string | React.JSXElementConstructor<Record<string, unknown>>
         >[]
-      | ReactFragment;
+      | undefined;
   }> {
     const initialProps = await Document.getInitialProps(ctx);
+
     return { ...initialProps };
   }
 

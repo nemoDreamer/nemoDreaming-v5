@@ -12,10 +12,14 @@ const Container: React.FC<{
   children,
 }) => (
   <div
-    className={classNames("w-1/2 h-full flex flex-col", className, {
-      "ml-auto": !disableLeftMargin,
-      "mr-auto": !disableRightMargin,
-    })}
+    className={classNames(
+      "w-5/6 md:w-3/4 lg:w-1/2 max-w-2xl h-full flex flex-col",
+      className,
+      {
+        "ml-auto": !disableLeftMargin,
+        "mr-auto": !disableRightMargin,
+      }
+    )}
   >
     {children}
   </div>
