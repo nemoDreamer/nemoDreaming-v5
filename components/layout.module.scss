@@ -1,14 +1,27 @@
 .main {
   h1 {
-    @apply text-2xl text-white font-bold mb-4;
+    @apply text-2xl font-bold mb-4;
+  }
+
+  .sub-header {
+    h1 {
+      @apply text-white;
+    }
   }
 
   p {
     @apply mb-4;
+
+    // NOTE: workaround to `p + p` sibling selector not working in CSS Modules
+    // TODO: see if need to activate something in PostCSS?
+    &:last-child {
+      @apply mb-0;
+    }
   }
 
   code {
     @apply text-xs leading-none px-2 pt-0.5 pb-1;
     // NOTE: uses teal, so colors defined in `tailwind.config.js`
+    // TODO: need exception for body...
   }
 }

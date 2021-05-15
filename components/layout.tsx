@@ -4,18 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 
+import Container from "./Container";
+import Prompt from "./Terminal/Prompt";
 import styles from "./layout.module.scss";
 
-export const name = "Your Name";
-export const siteTitle = "Next.js Sample Website";
+export const name = "nemoDreaming";
+export const siteTitle = "nemoDreaming | Philip Blyth";
 export const description =
-  "Learn how to build a personal website using Next.js";
+  "Interactive Media Design & Development Portfolio of Philip Blyth. Projects spanning Web, Print, Graphic, Motion, Photography & Illustration.";
 
-const getHeaderHeight = (isHome: boolean) => (isHome ? "168px" : "100px");
+const getHeaderHeight = (isHome: boolean) => (isHome ? "252px" : "150px");
 
 const Layout: React.FC<{
   isHome?: boolean;
-}> = ({ children, isHome = false }) => (
+  subHeader?: React.ReactNode;
+}> = ({ children, isHome = false, subHeader }) => (
   <div className="flex flex-col min-h-screen">
     <Head>
       <link rel="icon" href="/favicon.ico" />
@@ -32,30 +35,45 @@ const Layout: React.FC<{
       <meta name="twitter:card" content="summary_large_image" />
     </Head>
 
-    <header className="bg-teal-500 shadow-xl" style={{ zIndex: 2 }}>
-      <motion.div
-        layoutId="header"
-        layout
-        transition={{ type: "spring", bounce: 0, duration: 0.5 }}
-        initial={{ height: getHeaderHeight(!isHome) }}
-        animate={{ height: getHeaderHeight(isHome) }}
-        className="w-1/2 h-full mx-auto flex flex-col items-start justify-center"
-      >
-        <motion.div
-          layoutId="logo"
-          layout
-          className="h-10 w-20 flex flex-row items-center justify-center bg-black text-gray-50"
-        >
-          Logo
-        </motion.div>
-      </motion.div>
-    </header>
-
-    <main
-      className={`${styles.main} p-4 bg-teal-500 text-teal-200 shadow-xl`}
-      style={{ zIndex: 1 }}
+    <motion.header
+      layoutId="header"
+      transition={{ type: "spring", bounce: 0.125, duration: 0.5 }}
+      initial={{ height: getHeaderHeight(!isHome) }}
+      animate={{ height: getHeaderHeight(isHome) }}
+      className="bg-teal-500 shadow-xl flex flex-row"
+      style={{ zIndex: 2 }}
     >
-      <div className="w-1/2 mx-auto">{children}</div>
+      <div className="flex flex-1 flex-col justify-end">
+        <div
+          className="mb-3"
+          style={{
+            backgroundColor: "#00403d",
+            height: 20,
+          }}
+        >
+          &nbsp;
+        </div>
+      </div>
+      <Container disableLeftMargin disableRightMargin>
+        <div className="flex flex-1 items-center justify-center">
+          <div className="h-10 w-20 flex flex-row items-center justify-center bg-black text-gray-50">
+            Logo
+          </div>
+        </div>
+        <div className="mb-3">
+          <Prompt filePath="about/README.md" />
+        </div>
+      </Container>
+      <div className="flex flex-1">&nbsp;</div>
+    </motion.header>
+
+    <main className={styles.main} style={{ zIndex: 1 }}>
+      {subHeader && (
+        <div className={"sub-header bg-teal-500 text-teal-200 shadow-xl"}>
+          <Container className="py-4">{subHeader}</Container>
+        </div>
+      )}
+      <Container className="py-4">{children}</Container>
     </main>
 
     <div className="flex-1"> </div>
