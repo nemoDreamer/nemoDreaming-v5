@@ -34,15 +34,15 @@ const About = (): JSX.Element => (
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius rem tempore
       ex, error debitis cum ratione dicta alias, dignissimos corrupti facilis
       voluptates recusandae voluptatibus reiciendis! Ad culpa expedita, nostrum
-      aut sequi placeat. Corrupti dolorem temporibus libero ea laudantium id
-      natus nesciunt illum eveniet iure ducimus non dolor, rem dolore at quo
-      odio laborum quisquam eum explicabo labore nulla accusamus. Ipsum,
-      aperiam! Doloribus suscipit amet cum! Maiores possimus sit qui maxime
-      voluptates commodi soluta labore illo illum deleniti, inventore ipsam rem
-      earum veniam! Deleniti consequatur et minus molestiae voluptatibus
-      consequuntur ipsum, libero distinctio vitae aliquid reiciendis velit nam
-      labore quos laudantium commodi enim asperiores veniam suscipit doloribus
-      id quas saepe.
+      aut sequi placeat. Corrupti dolorem{" "}
+      <code>temporibus libero ea laudantium</code> id natus nesciunt illum
+      eveniet iure ducimus non dolor, rem dolore at quo odio laborum quisquam
+      eum explicabo labore nulla accusamus. Ipsum, aperiam! Doloribus suscipit
+      amet cum! Maiores possimus sit qui maxime voluptates commodi soluta labore
+      illo illum deleniti, inventore ipsam rem earum veniam! Deleniti
+      consequatur et minus molestiae voluptatibus consequuntur ipsum, libero
+      distinctio vitae aliquid reiciendis velit nam labore quos laudantium
+      commodi enim asperiores veniam suscipit doloribus id quas saepe.
     </p>
 
     <p>

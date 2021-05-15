@@ -13,15 +13,15 @@ module.exports = {
       },
       colors: {
         teal: {
-          100: "#cce6e6",
-          200: "#99cccc",
-          300: "#66b3b3",
-          400: "#339999",
-          500: "#008080",
-          600: "#006666",
-          700: "#004d4d",
-          800: "#003333",
-          900: "#001a1a",
+          100: "#cce2e1",
+          200: "#99c5c3",
+          300: "#66a7a4",
+          400: "#338a86",
+          500: "#006d68",
+          600: "#005753",
+          700: "#00413e",
+          800: "#002c2a",
+          900: "#001615",
         },
       },
     },
@@ -29,16 +29,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [
-    plugin(function ({ addBase, theme }) {
-      addBase({
-        main: {
-          code: {
-            color: theme("colors.white"),
-            backgroundColor: theme("colors.teal.600"),
-          },
-        },
-      });
-    }),
-  ],
+  plugins: [],
 };

@@ -2,12 +2,13 @@ import * as React from "react";
 
 import Segment from "./Segment";
 
+// TODO: make variations? Bake into tailwind.config?
 const segmentColors = [
-  { bg: "#00403d" },
-  { fg: "#002201", bg: "#f3e2bf" },
-  { fg: "#c5e8e6", bg: "#002321" },
-  { fg: "#003b01", bg: "#ffe600" },
-  { fg: "#67c3bf" },
+  { fg: "#d7efee", bg: "#00403d" },
+  { fg: "#002e01", bg: "#f3e2bf" },
+  { fg: "#edf8f7", bg: "#002321" },
+  { fg: "#005101", bg: "#ffe600" },
+  { fg: "#b7e2e1" },
 ];
 
 const Prompt: React.FC<{

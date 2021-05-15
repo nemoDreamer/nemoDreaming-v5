@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
@@ -69,7 +70,12 @@ const Layout: React.FC<{
 
     <main className={styles.main} style={{ zIndex: 1 }}>
       {subHeader && (
-        <div className={"sub-header bg-teal-500 text-teal-200 shadow-xl"}>
+        <div
+          className={classNames(
+            styles.subHeader,
+            "bg-teal-500 text-teal-200 shadow-xl"
+          )}
+        >
           <Container className="py-4">{subHeader}</Container>
         </div>
       )}

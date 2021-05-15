@@ -3,12 +3,6 @@
     @apply text-2xl font-bold mb-4;
   }
 
-  .sub-header {
-    h1 {
-      @apply text-white;
-    }
-  }
-
   p {
     @apply mb-4;
 
@@ -20,8 +14,17 @@
   }
 
   code {
-    @apply text-xs leading-none px-2 pt-0.5 pb-1;
-    // NOTE: uses teal, so colors defined in `tailwind.config.js`
-    // TODO: need exception for body...
+    @apply text-sm leading-none px-2 pt-0.5 pb-1 rounded-sm text-gray-700 bg-gray-200;
+  }
+}
+
+.subHeader {
+  h1 {
+    @apply text-white;
+  }
+
+  code {
+    color: theme("colors.white");
+    background-color: theme("colors.teal.600");
   }
 }
