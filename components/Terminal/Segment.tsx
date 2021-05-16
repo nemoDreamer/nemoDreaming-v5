@@ -7,14 +7,22 @@ const height = 20;
 const fontSize = height / 1.5;
 
 const Segment: React.FC<{
+  className?: string;
   label: string;
   fg?: string;
   bg?: string;
   zIndex: number;
   isLast?: boolean;
-}> = ({ label, fg = "#fff", bg = undefined, zIndex, isLast = false }) => (
+}> = ({
+  className,
+  label,
+  fg = "#fff",
+  bg = undefined,
+  zIndex,
+  isLast = false,
+}) => (
   <span
-    className={classNames("relative", {
+    className={classNames(className, "relative", {
       "block sm:inline-block": isLast,
     })}
     style={{

@@ -3,12 +3,12 @@ import * as React from "react";
 import Segment from "./Segment";
 
 // TODO: make variations? Bake into tailwind.config?
-const segmentColors = [
-  { fg: "#d7efee", bg: "#00403d" },
-  { fg: "#002e01", bg: "#f3e2bf" },
-  { fg: "#edf8f7", bg: "#002321" },
-  { fg: "#005101", bg: "#ffe600" },
-  { fg: "#b7e2e1" },
+const segmentConfigs = [
+  /* root:     */ { fg: "#f1f7f7", bg: "#002d2b" },
+  /* version:  */ { fg: "#002c02", bg: "#f3d6a6", font: "font-extralight" },
+  /* user:     */ { fg: "#f9fcfb", bg: "#001918" },
+  /* branch:   */ { fg: "#004f02", bg: "#ffdc00", font: "font-bold" },
+  /* filePath: */ { fg: "#b1d2d1" /* bg: none */, font: "italic" },
 ];
 
 const Prompt: React.FC<{
@@ -28,11 +28,12 @@ const Prompt: React.FC<{
   return (
     <>
       {segments.map((label, index) => {
-        const { fg, bg } = segmentColors[index];
+        const { fg, bg, font } = segmentConfigs[index];
         const isLast = index === length - 1;
 
         return (
           <Segment
+            className={font}
             key={`segment-${index}`}
             label={label}
             fg={fg}
