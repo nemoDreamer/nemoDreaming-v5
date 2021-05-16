@@ -13,11 +13,11 @@ const Container: React.FC<{
 }) => (
   <div
     className={classNames(
-      "w-5/6 md:w-3/4 lg:w-1/2 max-w-2xl h-full flex flex-col",
+      "container mx-auto px-10 md:max-w-2xl h-full flex flex-col",
       className,
       {
-        "ml-auto": !disableLeftMargin,
-        "mr-auto": !disableRightMargin,
+        "ml-0": disableLeftMargin,
+        "mr-0": disableRightMargin,
       }
     )}
   >

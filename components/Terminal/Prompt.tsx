@@ -29,6 +29,7 @@ const Prompt: React.FC<{
     <>
       {segments.map((label, index) => {
         const { fg, bg } = segmentColors[index];
+        const isLast = index === length - 1;
 
         return (
           <Segment
@@ -36,8 +37,8 @@ const Prompt: React.FC<{
             label={label}
             fg={fg}
             bg={bg}
-            hideCaret={index === length - 1}
             zIndex={length - index}
+            isLast={isLast}
           />
         );
       })}

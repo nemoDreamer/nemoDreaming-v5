@@ -24,7 +24,6 @@
   }
 
   code {
-    color: theme("colors.white");
-    background-color: theme("colors.teal.600");
+    @apply text-white bg-teal-600;
   }
 }

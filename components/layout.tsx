@@ -44,17 +44,20 @@ const Layout: React.FC<{
       className="bg-teal-500 shadow-xl flex flex-row"
       style={{ zIndex: 2 }}
     >
+      {/* left */}
       <div className="flex flex-1 flex-col justify-end">
         <div
-          className="mb-3"
+          className="mb-9 sm:mb-3 -mr-8"
           style={{
-            backgroundColor: "#00403d",
+            backgroundColor: "#00403d", // <- TODO: get from colors
             height: 20,
           }}
         >
           &nbsp;
         </div>
       </div>
+
+      {/* center */}
       <Container disableLeftMargin disableRightMargin>
         <div className="flex flex-1 items-center justify-center">
           <div className="h-10 w-20 flex flex-row items-center justify-center bg-black text-gray-50">
@@ -65,6 +68,8 @@ const Layout: React.FC<{
           <Prompt filePath="about/README.md" />
         </div>
       </Container>
+
+      {/* right */}
       <div className="flex flex-1">&nbsp;</div>
     </motion.header>
 
