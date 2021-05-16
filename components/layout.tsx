@@ -95,15 +95,19 @@ const Layout: React.FC<{
 
     <div className="flex-1"> </div>
 
-    <footer className="flex flex-row items-center justify-center p-4 bg-gray-100">
+    <footer className="p-4 flex flex-col md:flex-row items-center justify-center md:space-x-1 bg-gray-100">
       {!isHome && (
-        <>
+        <span className="font-extralight">
           <Link href="/">
             <a>← Back to home</a>
           </Link>
-          <span className="mx-2">{" | "}</span>
-        </>
+          <span>{" | "}</span>
+        </span>
       )}
+
+      <span>
+        Designed by <span className="font-bold">Philip Blyth</span> |
+      </span>
 
       <a
         className="flex items-center"
@@ -111,7 +115,7 @@ const Layout: React.FC<{
         target="_blank"
         rel="noopener noreferrer"
       >
-        Powered by{" "}
+        Powered by Next.js &
         <span className="inline-block h-4 ml-1">
           <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
         </span>
