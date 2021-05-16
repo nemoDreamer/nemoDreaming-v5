@@ -59,10 +59,16 @@ const Layout: React.FC<{
 
       {/* center */}
       <Container disableLeftMargin disableRightMargin>
-        <div className="flex flex-1 items-center justify-center">
-          <div className="h-10 w-20 flex flex-row items-center justify-center bg-black text-gray-50">
-            Logo
-          </div>
+        <div
+          // NOTE: negative margins to not make the image's shaddow "count"
+          className={"flex flex-1 items-center justify-center -mt-10 -mb-10"}
+        >
+          <Image
+            src="/logo.png"
+            width={816}
+            height={249}
+            className="flex flex-row items-center justify-center"
+          />
         </div>
         <div className="mb-3">
           <Prompt filePath="about/README.md" />
