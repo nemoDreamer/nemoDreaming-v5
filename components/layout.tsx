@@ -82,7 +82,7 @@ const Layout: React.FC<{
 
     <div className="flex-1"> </div>
 
-    <footer className="p-4 flex flex-col md:flex-row items-center justify-center md:space-x-1 bg-gray-100">
+    <footer className="flex flex-col md:flex-row items-center justify-center md:space-x-1 p-4 bg-gray-100 text-xs">
       {!isHome && (
         <span className="font-extralight">
           <Link href="/">
@@ -103,8 +103,8 @@ const Layout: React.FC<{
         rel="noopener noreferrer"
       >
         Powered by Next.js &
-        <span className="inline-block h-4 ml-1">
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+        <span className="inline-block h-3.5 ml-1">
+          <Image src="/vercel.svg" alt="Vercel Logo" width={45} height={10} />
         </span>
       </a>
     </footer>
