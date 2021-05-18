@@ -1,16 +1,14 @@
 import Head from "next/head";
-import Link from "next/link";
 import React from "react";
 
+import ArrowLink from "../components/ArrowLink";
 import Layout, { siteTitle } from "../components/layout";
 
 const subHeader = (
   <>
-    <h1 className="text-2xl font-bold">Home</h1>
+    <h1>Home</h1>
     <p>
-      <Link href="/about">
-        <a>&rarr; About</a>
-      </Link>
+      <ArrowLink href="/about">About</ArrowLink>
     </p>
   </>
 );

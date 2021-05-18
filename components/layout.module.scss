@@ -19,8 +19,14 @@
 }
 
 .subHeader {
+  @apply font-mono; // text-sm;
+
   h1 {
-    @apply text-white;
+    @apply text-base text-white;
+  }
+
+  h1::before {
+    content: "> ";
   }
 
   code {

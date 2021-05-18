@@ -1,25 +1,23 @@
 import Head from "next/head";
-import Link from "next/link";
 import React from "react";
 
+import ArrowLink from "../../components/ArrowLink";
 import Layout, { siteTitle } from "../../components/layout";
 
 const subHeader = (
   <React.Fragment>
-    <h1 className="text-2xl font-bold">About</h1>
+    <h1>About</h1>
     <p>
-      <Link href="/">
-        <a>&larr; Back</a>
-      </Link>
+      I am an innovative and creative professional with{" "}
+      <code>22 years of experience</code> in design and development. Skilled in
+      front~ to back-end development using a variety of modern stacks, I also
+      hold a Bachelor of Arts in{" "}
+      <em>Visual Communication and Interactive Media Design</em>.
     </p>
     <p>
-      Lorem ipsum, dolor{" "}
-      <code>
-        sit amet <em>consectetur</em>
-      </code>{" "}
-      adipisicing elit. Explicabo architecto fugiat magnam ab, cum unde, eos
-      nostrum dolorum ipsa error possimus saepe tempore voluptas perferendis.
-      Quia ipsum veniam quasi quisquam!
+      <ArrowLink href="/" isBack>
+        Back
+      </ArrowLink>
     </p>
   </React.Fragment>
 );
@@ -36,30 +34,16 @@ const About = (): JSX.Element => (
     </Head>
 
     <p>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius rem tempore
-      ex, error debitis cum ratione dicta alias, dignissimos corrupti facilis
-      voluptates recusandae voluptatibus reiciendis! Ad culpa expedita, nostrum
-      aut sequi placeat. Corrupti dolorem{" "}
-      <code>temporibus libero ea laudantium</code> id natus nesciunt illum
-      eveniet iure ducimus non dolor, rem dolore at quo odio laborum quisquam
-      eum explicabo labore nulla accusamus. Ipsum, aperiam! Doloribus suscipit
-      amet cum! Maiores possimus sit qui maxime voluptates commodi soluta labore
-      illo illum deleniti, inventore ipsam rem earum veniam! Deleniti
-      consequatur et minus molestiae voluptatibus consequuntur ipsum, libero
-      distinctio vitae aliquid reiciendis velit nam labore quos laudantium
-      commodi enim asperiores veniam suscipit doloribus id quas saepe.
+      My passion for tinkering with new technologies has kept me up-to-date and
+      on my toes, and my time as a senior software developer and a group lead
+      and manager has seen me able to drive technical change in a corporate
+      setting, incorporating those shiny new toys as flexible, future-proof
+      building blocks for major web applications.
     </p>
-
     <p>
-      Rem nulla ullam corporis sint minima excepturi consectetur fugit id, quo
-      porro eos maiores nostrum laboriosam aperiam quas quaerat earum hic! Aut
-      tenetur vitae delectus modi temporibus officiis minus pariatur autem, qui
-      magni deleniti quo! Porro sunt ullam incidunt hic aliquid iusto commodi
-      ipsam. Provident atque recusandae, accusantium, optio aspernatur enim
-      quibusdam quis fugit doloribus ab voluptatibus saepe id laboriosam vitae
-      unde ea a corrupti odio, quaerat voluptatem veniam quod! Aspernatur quam a
-      rem similique. Error sit ipsa dolores. Quo sint alias, sit nobis error
-      assumenda similique placeat amet! Atque, soluta.
+      Natively fluent in English, French and German, with working proficiency in
+      Dutch, I am excited to work inside of a distributed team and make use of
+      my comprehensive background in remote work.
     </p>
   </Layout>
 );
