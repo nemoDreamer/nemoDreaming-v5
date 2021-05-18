@@ -11,12 +11,14 @@ export const segmentConfigs = [
   /* filePath: */ { fg: "#b1d2d1" /* bg: none */, font: "italic" },
 ];
 
-const Prompt: React.FC<{
+export type PromptProps = {
   version?: string;
   user?: string;
   branch?: string;
   filePath?: string;
-}> = ({
+};
+
+const Prompt: React.FC<PromptProps> = ({
   version = "v5.0.1",
   user = "philip.blyth",
   branch = "main",

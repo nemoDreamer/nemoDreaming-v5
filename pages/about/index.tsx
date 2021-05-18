@@ -8,7 +8,7 @@ const subHeader = (
   <React.Fragment>
     <h1 className="text-2xl font-bold">About</h1>
     <p>
-      <Link href="../">
+      <Link href="/">
         <a>&larr; Back</a>
       </Link>
     </p>
@@ -25,7 +25,12 @@ const subHeader = (
 );
 
 const About = (): JSX.Element => (
-  <Layout subHeader={subHeader}>
+  <Layout
+    subHeader={subHeader}
+    prompt={{
+      filePath: "about/README.md",
+    }}
+  >
     <Head>
       <title>{siteTitle} | About</title>
     </Head>

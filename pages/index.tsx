@@ -8,7 +8,7 @@ const subHeader = (
   <>
     <h1 className="text-2xl font-bold">Home</h1>
     <p>
-      <Link href="./about">
+      <Link href="/about">
         <a>&rarr; About</a>
       </Link>
     </p>
@@ -16,7 +16,13 @@ const subHeader = (
 );
 
 const Home = (): JSX.Element => (
-  <Layout isHome subHeader={subHeader}>
+  <Layout
+    isHome
+    subHeader={subHeader}
+    prompt={{
+      filePath: "index.tsx",
+    }}
+  >
     <Head>
       <title>{siteTitle}</title>
     </Head>

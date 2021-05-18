@@ -6,7 +6,7 @@ import Link from "next/link";
 import * as React from "react";
 
 import Container from "./Container";
-import Prompt from "./Terminal/Prompt";
+import Prompt, { PromptProps } from "./Terminal/Prompt";
 import styles from "./layout.module.scss";
 
 export const name = "nemoDreaming";
@@ -19,7 +19,8 @@ const getHeaderHeight = (isHome: boolean) => (isHome ? "252px" : "150px");
 const Layout: React.FC<{
   isHome?: boolean;
   subHeader?: React.ReactNode;
-}> = ({ children, isHome = false, subHeader }) => (
+  prompt?: PromptProps;
+}> = ({ children, isHome = false, subHeader, prompt }) => (
   <div className="flex flex-col min-h-screen">
     <Head>
       <link rel="icon" href="/favicon.ico" />
@@ -57,7 +58,7 @@ const Layout: React.FC<{
           />
         </div>
         <div className="mb-3">
-          <Prompt filePath="about/README.md" />
+          <Prompt {...prompt} />
         </div>
       </Container>
     </motion.header>
