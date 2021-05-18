@@ -3,7 +3,7 @@ import * as React from "react";
 import Segment from "./Segment";
 
 // TODO: make variations? Bake into tailwind.config?
-const segmentConfigs = [
+export const segmentConfigs = [
   /* root:     */ { fg: "#f1f7f7", bg: "#002d2b" },
   /* version:  */ { fg: "#002c02", bg: "#f3d6a6", font: "font-extralight" },
   /* user:     */ { fg: "#f9fcfb", bg: "#001918" },
@@ -26,10 +26,9 @@ const Prompt: React.FC<{
   const length = segments.length;
 
   return (
-    <>
+    <div className="flex flex-row items-center justify-start flex-wrap">
       {segments.map((label, index) => {
         const { fg, bg, font } = segmentConfigs[index];
-        const isLast = index === length - 1;
 
         return (
           <Segment
@@ -38,12 +37,13 @@ const Prompt: React.FC<{
             label={label}
             fg={fg}
             bg={bg}
-            zIndex={length - index}
-            isLast={isLast}
+            // placement:
+            index={index}
+            length={length}
           />
         );
       })}
-    </>
+    </div>
   );
 };
 

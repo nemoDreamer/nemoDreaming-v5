@@ -44,21 +44,7 @@ const Layout: React.FC<{
       className="bg-teal-500 shadow-xl flex flex-row"
       style={{ zIndex: 2 }}
     >
-      {/* left */}
-      <div className="flex flex-1 flex-col justify-end">
-        <div
-          className="mb-9 sm:mb-3 -mr-8"
-          style={{
-            backgroundColor: "#00403d", // <- TODO: get from colors
-            height: 20,
-          }}
-        >
-          &nbsp;
-        </div>
-      </div>
-
-      {/* center */}
-      <Container disableLeftMargin disableRightMargin>
+      <Container>
         <div
           // NOTE: negative margins to not make the image's shaddow "count"
           className={"flex flex-1 items-center justify-center -mt-10 -mb-10"}
@@ -74,9 +60,6 @@ const Layout: React.FC<{
           <Prompt filePath="about/README.md" />
         </div>
       </Container>
-
-      {/* right */}
-      <div className="flex flex-1">&nbsp;</div>
     </motion.header>
 
     <main className={styles.main} style={{ zIndex: 1 }}>
@@ -87,10 +70,14 @@ const Layout: React.FC<{
             "bg-teal-500 text-teal-200 shadow-xl"
           )}
         >
-          <Container className="py-4">{subHeader}</Container>
+          <Container className="py-4">
+            <div className="px-2">{subHeader}</div>
+          </Container>
         </div>
       )}
-      <Container className="py-4">{children}</Container>
+      <Container className="py-4">
+        <div className="px-2">{children}</div>
+      </Container>
     </main>
 
     <div className="flex-1"> </div>

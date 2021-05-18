@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import * as React from "react";
 
 import Caret from "./Caret";
@@ -11,47 +10,50 @@ const Segment: React.FC<{
   label: string;
   fg?: string;
   bg?: string;
-  zIndex: number;
-  isLast?: boolean;
-}> = ({
-  className,
-  label,
-  fg = "#fff",
-  bg = undefined,
-  zIndex,
-  isLast = false,
-}) => (
-  <span
-    className={classNames(className, "relative", {
-      "block sm:inline-block": isLast,
-    })}
-    style={{
-      zIndex,
-      marginLeft: -height / 2,
-    }}
-  >
-    {label && (
-      <span
-        className="inline-block relative font-mono whitespace-nowrap"
-        style={{
-          height,
-          bottom: -1,
+  index: number;
+  length: number;
+}> = ({ className, label, fg = "#fff", bg = undefined, index, length }) => {
+  const isFirst = index === 0;
+  const isLast = index === length - 1;
 
-          paddingLeft: height,
-          paddingRight: height / 2,
+  return (
+    <span
+      className={`flex flex-row items-center ${className}`}
+      style={{
+        zIndex: length - index,
+        marginLeft: -height / 2,
+      }}
+    >
+      {(isFirst || label) && (
+        <span
+          className="font-mono whitespace-nowrap"
+          style={{
+            height,
+            bottom: -1,
 
-          fontSize: `${fontSize}px`,
-          lineHeight: `${height}px`,
+            fontSize: `${fontSize}px`,
+            lineHeight: `${height}px`,
 
-          color: fg,
-          backgroundColor: bg,
-        }}
-      >
-        {label}
-      </span>
-    )}
-    {isLast || <Caret height={height} fill={bg} />}
-  </span>
-);
+            color: fg,
+            backgroundColor: bg,
+
+            ...(isFirst
+              ? {
+                  width: "9999px",
+                  marginLeft: "-9999px",
+                }
+              : {
+                  paddingLeft: height,
+                  paddingRight: height / 2,
+                }),
+          }}
+        >
+          {label || <span>&nbsp;</span>}
+        </span>
+      )}
+      {isLast || <Caret height={height} fill={bg} />}
+    </span>
+  );
+};
 
 export default Segment;
