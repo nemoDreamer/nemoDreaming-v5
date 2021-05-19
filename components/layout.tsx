@@ -55,6 +55,7 @@ const Layout: React.FC<{
             width={816}
             height={249}
             className="flex flex-row items-center justify-center"
+            priority
           />
         </div>
         <div className="mb-3">
