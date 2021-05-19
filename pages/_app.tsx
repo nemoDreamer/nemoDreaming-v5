@@ -8,15 +8,10 @@ import "tailwindcss/tailwind.css";
 
 const App = ({
   Component,
-  pageProps: { pageTitle, subHeader, prompt, isHome, ...pageProps },
+  pageProps: { pageTitle, prompt, isHome, ...pageProps },
 }: AppProps): JSX.Element => (
   <AnimateSharedLayout>
-    <Layout
-      pageTitle={pageTitle}
-      subHeader={subHeader}
-      prompt={prompt}
-      isHome={isHome}
-    >
+    <Layout pageTitle={pageTitle} prompt={prompt} isHome={isHome}>
       <Component {...pageProps} />
     </Layout>
   </AnimateSharedLayout>
