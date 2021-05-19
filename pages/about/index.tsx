@@ -8,16 +8,16 @@ const subHeader = (
   <React.Fragment>
     <h1>About</h1>
     <p>
+      <ArrowLink href="/" isBack>
+        Back
+      </ArrowLink>
+    </p>
+    <p>
       I am an innovative and creative professional with{" "}
       <code>22 years of experience</code> in design and development. Skilled in
       front~ to back-end development using a variety of modern stacks, I also
       hold a Bachelor of Arts in{" "}
       <em>Visual Communication and Interactive Media Design</em>.
-    </p>
-    <p>
-      <ArrowLink href="/" isBack>
-        Back
-      </ArrowLink>
     </p>
   </React.Fragment>
 );

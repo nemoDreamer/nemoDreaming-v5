@@ -14,7 +14,19 @@ export const siteTitle = "nemoDreaming | Philip Blyth";
 export const description =
   "Interactive Media Design & Development Portfolio of Philip Blyth. Projects spanning Web, Print, Graphic, Motion, Photography & Illustration.";
 
-const getHeaderHeight = (isHome: boolean) => (isHome ? "252px" : "150px");
+const baseFontSize = 16;
+
+const toRem = (px: number) => px / baseFontSize;
+const toPx = (rem: number) => rem * baseFontSize;
+
+const logoHeight = Math.round(518 / (1666 / 640));
+const headerHeight = {
+  min: toPx(toRem(logoHeight) + 3 - /* negative top~ and bottom-margins: */ 6),
+  max: toPx(toRem(logoHeight) + 3),
+};
+
+const getHeaderHeight = (isHome: boolean) =>
+  isHome ? `${headerHeight.max}px` : `${headerHeight.min}px`;
 
 const Layout: React.FC<{
   isHome?: boolean;
@@ -39,52 +51,42 @@ const Layout: React.FC<{
 
     <motion.header
       layoutId="header"
-      transition={{ type: "spring", bounce: 0.125, duration: 0.5 }}
+      transition={{ type: "spring", bounce: 0, duration: 0.5 }}
       initial={{ height: getHeaderHeight(!isHome) }}
       animate={{ height: getHeaderHeight(isHome) }}
-      className="bg-teal-500 shadow-xl flex flex-row"
-      style={{ zIndex: 2 }}
+      className="bg-teal-500 shadow-xl flex z-20"
     >
-      <Container>
+      <Container className="py-2 px-4">
         <div
           // NOTE: negative margins to not make the image's shaddow "count"
-          className={"flex flex-1 items-center justify-center -mt-10 -mb-10"}
+          className={"flex flex-1 items-center justify-center -mt-14 -mb-10"}
         >
           <Image
             src="/logo.png"
-            width={816}
-            height={249}
-            className="flex flex-row items-center justify-center"
+            width={640}
+            height={199}
+            className="flex items-center justify-center"
             priority
           />
         </div>
-        <div className="mb-3">
-          <Prompt {...prompt} />
-        </div>
+        <Prompt {...prompt} />
       </Container>
     </motion.header>
 
-    <main className={styles.main} style={{ zIndex: 1 }}>
+    <main className={classNames(styles.base, "flex-1 z-10")}>
       {subHeader && (
-        <div
-          className={classNames(
-            styles.subHeader,
-            "bg-teal-500 text-teal-200 shadow-xl"
-          )}
-        >
-          <Container className="py-4">
-            <div className="px-2">{subHeader}</div>
+        <section className={"bg-teal-500 text-teal-200 shadow-xl"}>
+          <Container className={classNames(styles.subHeader, "py-4 px-4")}>
+            {subHeader}
           </Container>
-        </div>
+        </section>
       )}
-      <Container className="py-4">
-        <div className="px-2">{children}</div>
+      <Container className={classNames(styles.children, "py-4 px-4")}>
+        {children}
       </Container>
     </main>
 
-    <div className="flex-1"> </div>
-
-    <footer className="flex flex-col md:flex-row items-center justify-center md:space-x-1 p-4 bg-gray-100 text-xs">
+    <footer className="flex flex-col md:flex-row items-center justify-center md:space-x-1 p-4 text-gray-500 bg-gray-100 text-xs">
       {!isHome && (
         <span className="font-extralight">
           <Link href="/">
@@ -95,7 +97,8 @@ const Layout: React.FC<{
       )}
 
       <span>
-        Designed by <span className="font-bold">Philip Blyth</span> |
+        Design & Code by <span className="font-bold">Philip Blyth</span>
+        <span>{" | "}</span>
       </span>
 
       <a

@@ -1,6 +1,15 @@
-.main {
+// "reset"-type styles for content outside of JSX control
+.base {
   h1 {
-    @apply text-2xl font-bold mb-4;
+    @apply font-bold mb-4;
+  }
+
+  h1::before {
+    content: "# ";
+  }
+
+  h2::before {
+    content: "## ";
   }
 
   p {
@@ -19,17 +28,19 @@
 }
 
 .subHeader {
-  @apply font-mono; // text-sm;
+  @apply font-mono;
 
   h1 {
     @apply text-base text-white;
   }
 
-  h1::before {
-    content: "> ";
-  }
-
   code {
     @apply text-white bg-teal-600;
+  }
+}
+
+.children {
+  h1 {
+    @apply text-2xl;
   }
 }
