@@ -1,5 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
+const blinkFade = 10; // in %
+
 module.exports = {
   // mode: "jit",
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
@@ -21,6 +23,16 @@ module.exports = {
           700: "#003d3a",
           800: "#002927",
           900: "#001413",
+        },
+      },
+      animation: {
+        blink: "blink 1s linear infinite",
+      },
+      keyframes: {
+        blink: {
+          "0%": { opacity: 0 },
+          [`${blinkFade}%, 50%`]: { opacity: 1 },
+          [`${50 + blinkFade}%, 100%`]: { opacity: 0 },
         },
       },
     },
