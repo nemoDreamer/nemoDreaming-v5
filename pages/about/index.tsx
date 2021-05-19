@@ -1,11 +1,11 @@
-import Head from "next/head";
+import type { GetStaticProps } from "next";
 import React from "react";
 
 import ArrowLink from "../../components/ArrowLink";
-import Layout, { siteTitle } from "../../components/layout";
+import Main from "../../components/Layout/Main";
 
 const subHeader = (
-  <React.Fragment>
+  <>
     <h1>About</h1>
     <p>
       <ArrowLink href="/" isBack>
@@ -19,20 +19,11 @@ const subHeader = (
       hold a Bachelor of Arts in{" "}
       <em>Visual Communication and Interactive Media Design</em>.
     </p>
-  </React.Fragment>
+  </>
 );
 
 const About = (): JSX.Element => (
-  <Layout
-    subHeader={subHeader}
-    prompt={{
-      filePath: "about/README.md",
-    }}
-  >
-    <Head>
-      <title>{siteTitle} | About</title>
-    </Head>
-
+  <Main subHeader={subHeader}>
     <p>
       My passion for tinkering with new technologies has kept me up-to-date and
       on my toes, and my time as a senior software developer and a group lead
@@ -45,7 +36,16 @@ const About = (): JSX.Element => (
       Dutch, I am excited to work inside of a distributed team and make use of
       my comprehensive background in remote work.
     </p>
-  </Layout>
+  </Main>
 );
+
+export const getStaticProps: GetStaticProps = async () => ({
+  props: {
+    pageTitle: "About",
+    prompt: {
+      filePath: "about/README.md",
+    },
+  },
+});
 
 export default About;

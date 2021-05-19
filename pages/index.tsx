@@ -1,8 +1,8 @@
-import Head from "next/head";
+import { GetStaticProps } from "next";
 import React from "react";
 
 import ArrowLink from "../components/ArrowLink";
-import Layout, { siteTitle } from "../components/layout";
+import Main from "../components/Layout/Main";
 
 const subHeader = (
   <>
@@ -13,18 +13,15 @@ const subHeader = (
   </>
 );
 
-const Home = (): JSX.Element => (
-  <Layout
-    isHome
-    subHeader={subHeader}
-    prompt={{
+const Home = (): JSX.Element => <Main subHeader={subHeader}></Main>;
+
+export const getStaticProps: GetStaticProps = async () => ({
+  props: {
+    isHome: true,
+    prompt: {
       filePath: "index.tsx",
-    }}
-  >
-    <Head>
-      <title>{siteTitle}</title>
-    </Head>
-  </Layout>
-);
+    },
+  },
+});
 
 export default Home;
