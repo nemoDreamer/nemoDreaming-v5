@@ -4,6 +4,7 @@ import * as React from "react";
 
 import Container from "../Container";
 
+import Menu from "./Menu";
 import Prompt, { PromptProps } from "./Terminal/Prompt";
 
 const baseFontSize = 16;
@@ -12,9 +13,11 @@ const toRem = (px: number) => px / baseFontSize;
 const toPx = (rem: number) => rem * baseFontSize;
 
 const logoHeight = Math.round(518 / (1666 / 640));
+const extraLines = 4.5;
+const negativeMargins = 6;
 const headerHeight = {
-  min: toPx(toRem(logoHeight) + 3 - /* negative top~ and bottom-margins: */ 6),
-  max: toPx(toRem(logoHeight) + 3),
+  min: toPx(toRem(logoHeight) + extraLines - negativeMargins),
+  max: toPx(toRem(logoHeight) + extraLines),
 };
 
 const transition = { type: "spring", bounce: 0, duration: 0.5 };
@@ -40,7 +43,9 @@ const Header: React.FC<{
       <Container className="py-2 px-4">
         <div
           // NOTE: negative margins to not make the image's shaddow "count"
-          className={"flex flex-1 items-center justify-center -mt-14 -mb-10"}
+          className={
+            "flex flex-1 items-center justify-center -mt-14 -mb-10 z-0"
+          }
         >
           <Image
             src="/logo.png"
@@ -50,7 +55,10 @@ const Header: React.FC<{
             priority
           />
         </div>
-        <Prompt {...prompt} />
+        <div className="z-10">
+          <Menu />
+          <Prompt {...prompt} />
+        </div>
       </Container>
     </motion.header>
   );

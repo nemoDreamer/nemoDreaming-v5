@@ -1,18 +1,10 @@
 import { GetStaticProps } from "next";
 import React from "react";
 
-import ArrowLink from "../components/ArrowLink";
 import Cursor from "../components/Cursor";
 import Main from "../components/Layout/Main";
 
-const subHeader = (
-  <>
-    <h1>Home</h1>
-    <p>
-      <ArrowLink href="/about">About</ArrowLink>
-    </p>
-  </>
-);
+const subHeader = <h1>Home</h1>;
 
 const Home = (): JSX.Element => (
   <Main subHeader={subHeader}>
