@@ -38,7 +38,10 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      margin: ["group-hover", "last"],
+      padding: ["group-hover", "last"],
+    },
   },
   plugins: [],
 };

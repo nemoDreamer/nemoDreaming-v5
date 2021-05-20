@@ -17,13 +17,7 @@
   h2,
   h3,
   h4 {
-    @apply mb-4;
-
-    // NOTE: workaround to `p + p` sibling selector not working in CSS Modules
-    // TODO: see if need to activate something in PostCSS?
-    &:last-child {
-      @apply mb-0;
-    }
+    @apply mb-4 last:mb-0;
   }
 
   code {
