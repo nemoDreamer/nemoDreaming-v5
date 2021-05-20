@@ -4,6 +4,7 @@ import * as React from "react";
 import ArrowLink from "../../components/ArrowLink";
 import Main from "../../components/Layout/Main";
 import { PostData, getAllPosts } from "../../lib/pages";
+import formatDate from "../../utils/formatDate";
 
 export const DIRECTORY = "work";
 
@@ -28,7 +29,7 @@ const AllWork: React.FC<{
         <ArrowLink href={`/work/${slug}`}>
           <span className="underline group-hover:no-underline">{title}</span>
           <span className="ml-2 text-xs italic text-gray-500 group-hover:text-gray-300">
-            {date}
+            {formatDate(date)}
           </span>
         </ArrowLink>
       </div>
