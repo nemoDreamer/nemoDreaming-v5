@@ -5,6 +5,7 @@ import React from "react";
 import Layout from "../components/Layout/Layout";
 
 import "tailwindcss/tailwind.css";
+import "../styles/global.scss";
 
 const App = ({
   Component,

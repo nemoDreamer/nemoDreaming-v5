@@ -1,38 +1,3 @@
-// "reset"-type styles for content outside of JSX control
-.base {
-  h1 {
-    @apply font-bold mb-4;
-  }
-
-  h1::before {
-    content: "# ";
-  }
-
-  h2::before {
-    content: "## ";
-  }
-
-  p,
-  ul,
-  h2,
-  h3,
-  h4 {
-    @apply mb-4 last:mb-0;
-  }
-
-  code {
-    @apply text-sm leading-none px-2 pt-0.5 pb-1 rounded-sm text-gray-700 bg-gray-200;
-  }
-
-  ul {
-    @apply pl-4 list-disc list-outside;
-
-    li {
-      @apply ml-4;
-    }
-  }
-}
-
 .subHeader {
   @apply font-mono;
 
