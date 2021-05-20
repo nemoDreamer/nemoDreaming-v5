@@ -1,4 +1,7 @@
+import path from "path";
+
 import { GetStaticPaths, GetStaticProps } from "next";
+import Image from "next/image";
 import * as React from "react";
 
 import ArrowLink from "../../components/ArrowLink";
@@ -11,13 +14,14 @@ import { DIRECTORY } from ".";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const workPost = await getPost(DIRECTORY, params?.slug as string);
+
   return {
     props: {
       workPost,
       siteTitle: workPost.title,
       prompt: {
         branch: "dev",
-        filePath: `work/${params && params?.slug ? `${params.slug}.md` : ""}`,
+        filePath: `work/${workPost.slug ? `${workPost.slug}.md` : ""}`,
       },
     },
   };
@@ -28,6 +32,17 @@ export const getStaticPaths: GetStaticPaths = async () => ({
   fallback: false,
 });
 
+const rowMax = 5;
+const thumbnailSize = Math.floor(
+  (640 - 8 * 2 * rowMax - (rowMax - 1) * 16) / rowMax
+);
+
+const rotations = [1, 2, 3, 6];
+const getRandomRotation = () =>
+  `${Math.random() < 0.5 ? "-" : ""}rotate-${
+    rotations[Math.round(Math.random() * (rotations.length - 1))]
+  }`;
+
 const subHeader = (
   <ArrowLink href="/work" isBack>
     Back
@@ -36,7 +51,17 @@ const subHeader = (
 
 const Work: React.FC<{
   workPost: PostData;
-}> = ({ workPost: { title, date, contentHtml, category, technologies } }) => (
+}> = ({
+  workPost: {
+    title,
+    date,
+    contentHtml,
+    category,
+    technologies,
+    folder,
+    images,
+  },
+}) => (
   <Main subHeader={subHeader}>
     <h1>{title}</h1>
     <div className="mb-4 text-sm text-gray-500 flex flex-row items-baseline space-x-4">
@@ -59,6 +84,25 @@ const Work: React.FC<{
       )}
     </div>
     <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+    {images && images.length && (
+      <div className="flex flex-row flex-wrap gap-4 items-start justify-start mt-4">
+        {images.map((image) => (
+          <div
+            key={`image-${image}`}
+            className={`box-content border-solid border-8 border-white shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 hover:${getRandomRotation()}`}
+            style={{ width: thumbnailSize, height: thumbnailSize }}
+          >
+            <Image
+              className="inline-block"
+              src={folder ? path.join(folder, image) : image}
+              width={thumbnailSize}
+              height={thumbnailSize}
+              objectFit="cover"
+            />
+          </div>
+        ))}
+      </div>
+    )}
   </Main>
 );
 

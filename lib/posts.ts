@@ -14,6 +14,9 @@ export type PostData = GrayMatterFile<string>["data"] & {
   url?: string;
   category?: string;
   technologies?: string[];
+  folder?: string;
+  thumbnail?: string;
+  images?: string[];
 };
 
 const getPath = (...parts: string[]) =>

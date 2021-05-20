@@ -8,6 +8,20 @@ technologies:
   - XHTML
   - CSS
   - jQuery
+folder: /work/songness
+thumbnail: page-splash-crop.jpg
+images:
+  - page-account.jpg
+  - page-songs.jpg
+  - page-splash-crop.jpg
+  - page-splash.jpg
+  - banner-all-music.jpg
+  - banner-new-free.jpg
+  - banner-splash.jpg
+  - banner-thankyou.jpg
+  - illustration-exponential-sharing.jpg
+  - illustration-push-vs-pull.jpg
+  - illustration-stacks.jpg
 ---
 
 - UI/UX design
