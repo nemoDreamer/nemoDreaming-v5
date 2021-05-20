@@ -1,0 +1,6 @@
+{
+    "recommendations": [
+        "mrmlnc.vscode-remark",
+        "dbaeumer.vscode-eslint"
+    ]
+}

@@ -12,7 +12,11 @@
     content: "## ";
   }
 
-  p {
+  p,
+  ul,
+  h2,
+  h3,
+  h4 {
     @apply mb-4;
 
     // NOTE: workaround to `p + p` sibling selector not working in CSS Modules
@@ -24,6 +28,14 @@
 
   code {
     @apply text-sm leading-none px-2 pt-0.5 pb-1 rounded-sm text-gray-700 bg-gray-200;
+  }
+
+  ul {
+    @apply pl-4 list-disc list-outside;
+
+    li {
+      @apply ml-4;
+    }
   }
 }
 

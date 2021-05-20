@@ -66,6 +66,7 @@ JSON.parse(fs.readFileSync(path.join(DUMPS_DIR, "wp_posts.json")))
         "---",
         "",
         turndown.turndown(content),
+        "", // <- EOF new-line
       ].join("\n");
 
       const fileName = path.join(PAGES_DIR, `${slug}.md`);

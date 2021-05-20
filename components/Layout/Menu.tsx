@@ -4,8 +4,8 @@ import * as React from "react";
 
 const items = [
   { route: "/", label: "Home" },
+  { route: "/work", label: "Work" },
   { route: "/about", label: "About" },
-  { route: "/blog", label: "Blog" },
 ];
 
 const Menu: React.FC = () => (
@@ -17,19 +17,19 @@ const Menu: React.FC = () => (
       const isCurrent = route === pathname;
 
       return (
-        <>
+        <React.Fragment key={`item-${label}`}>
           {isCurrent ? (
             <span className="text-teal-100">
               $(<span className="text-teal-200">{label}</span>)
             </span>
           ) : (
-            <Link key={`item-${label}`} href={route}>
+            <Link href={route}>
               <a className="underline text-teal-100">{label}</a>
             </Link>
           )}
 
           {!isLast && <span className="text-teal-400">{" / "}</span>}
-        </>
+        </React.Fragment>
       );
     })}
   </div>
