@@ -3,14 +3,19 @@ import * as React from "react";
 
 import ArrowLink from "../../components/ArrowLink";
 import Main from "../../components/Layout/Main";
-import { PostData, getAllPosts } from "../../lib/pages";
+import { PostData, getAllPosts } from "../../lib/posts";
 import formatDate from "../../utils/formatDate";
 
 export const DIRECTORY = "work";
 
 export const getStaticProps: GetStaticProps = async () => ({
   props: {
+    siteTitle: "Work",
     workPosts: await getAllPosts(DIRECTORY),
+    prompt: {
+      branch: "dev",
+      filePath: "work/index.tsx",
+    },
   },
 });
 

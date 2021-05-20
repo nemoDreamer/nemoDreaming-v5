@@ -13,6 +13,7 @@ export type PostData = GrayMatterFile<string>["data"] & {
   contentHtml: string;
   url?: string;
   category?: string;
+  technologies?: string[];
 };
 
 const getPath = (...parts: string[]) =>

@@ -3,7 +3,8 @@ import * as React from "react";
 
 import ArrowLink from "../../components/ArrowLink";
 import Main from "../../components/Layout/Main";
-import { PostData, getAllPostSlugs, getPost } from "../../lib/pages";
+import Separator from "../../components/Separator";
+import { PostData, getAllPostSlugs, getPost } from "../../lib/posts";
 import formatDate from "../../utils/formatDate";
 
 import { DIRECTORY } from ".";
@@ -14,6 +15,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       workPost,
       siteTitle: workPost.title,
+      prompt: {
+        branch: "dev",
+        filePath: `work/${params && params?.slug ? `${params.slug}.md` : ""}`,
+      },
     },
   };
 };
@@ -23,19 +28,35 @@ export const getStaticPaths: GetStaticPaths = async () => ({
   fallback: false,
 });
 
-const Separator = () => <span className="text-gray-300">|</span>;
+const subHeader = (
+  <ArrowLink href="/work" isBack>
+    Back
+  </ArrowLink>
+);
 
 const Work: React.FC<{
   workPost: PostData;
-}> = ({ workPost: { title, date, contentHtml } }) => (
-  <Main>
+}> = ({ workPost: { title, date, contentHtml, category, technologies } }) => (
+  <Main subHeader={subHeader}>
     <h1>{title}</h1>
     <div className="mb-4 text-sm text-gray-500 flex flex-row items-baseline space-x-4">
-      <ArrowLink href="/work" isBack>
-        Back
-      </ArrowLink>
-      <Separator />
       <span className="date">{formatDate(date)}</span>
+      {category && (
+        <>
+          <Separator />
+          <span className="category rounded-sm bg-yellow-300 text-yellow-900 px-1.5 py-0.5">
+            {category}
+          </span>
+        </>
+      )}
+      {technologies && (
+        <>
+          <Separator />
+          <span className="technologies">
+            {technologies.sort().join(" / ")}
+          </span>
+        </>
+      )}
     </div>
     <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
   </Main>
