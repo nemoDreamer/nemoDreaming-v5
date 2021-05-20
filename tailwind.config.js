@@ -4,7 +4,22 @@ const blinkFade = 10; // in %
 
 module.exports = {
   // mode: "jit",
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  purge: {
+    content: ["./pages/**/*.{jsx,tsx}", "./components/**/*.{jsx,tsx}"],
+    options: {
+      safelist: [
+        // FIXME: these kept getting removed, even though they were explicitly named in the HTML output...:
+        "hover:rotate-1",
+        "hover:rotate-2",
+        "hover:rotate-3",
+        "hover:rotate-6",
+        "hover:-rotate-1",
+        "hover:-rotate-2",
+        "hover:-rotate-3",
+        "hover:-rotate-6",
+      ],
+    },
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {

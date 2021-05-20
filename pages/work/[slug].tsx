@@ -37,11 +37,12 @@ const thumbnailSize = Math.floor(
   (640 - 8 * 2 * rowMax - (rowMax - 1) * 16) / rowMax
 );
 
+const getRandom = (arr: unknown[]) =>
+  arr[Math.round(Math.random() * (arr.length - 1))];
+
 const rotations = [1, 2, 3, 6];
-const getRandomRotation = () =>
-  `${Math.random() < 0.5 ? "-" : ""}rotate-${
-    rotations[Math.round(Math.random() * (rotations.length - 1))]
-  }`;
+const getRotation = () =>
+  `${Math.random() < 0.5 ? "-" : ""}rotate-${getRandom(rotations)}`;
 
 const subHeader = (
   <ArrowLink href="/work" isBack>
@@ -83,26 +84,26 @@ const Work: React.FC<{
         </>
       )}
     </div>
-    <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
-    {images && images.length && (
-      <div className="flex flex-row flex-wrap gap-4 items-start justify-start mt-4">
-        {images.map((image) => (
-          <div
-            key={`image-${image}`}
-            className={`box-content border-solid border-8 border-white shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 hover:${getRandomRotation()}`}
-            style={{ width: thumbnailSize, height: thumbnailSize }}
-          >
-            <Image
-              className="inline-block"
-              src={folder ? path.join(folder, image) : image}
-              width={thumbnailSize}
-              height={thumbnailSize}
-              objectFit="cover"
-            />
-          </div>
-        ))}
-      </div>
-    )}
+
+    {contentHtml && <div dangerouslySetInnerHTML={{ __html: contentHtml }} />}
+
+    <div className="flex flex-row flex-wrap gap-4 items-start justify-start mt-4">
+      {images.map((image) => (
+        <div
+          key={`image-${image}`}
+          className={`box-content border-solid border-8 border-white shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 hover:${getRotation()}`}
+          style={{ width: thumbnailSize, height: thumbnailSize }}
+        >
+          <Image
+            className="inline-block"
+            src={folder ? path.join(folder, image) : image}
+            width={thumbnailSize}
+            height={thumbnailSize}
+            objectFit="cover"
+          />
+        </div>
+      ))}
+    </div>
   </Main>
 );
 
