@@ -35,3 +35,6 @@ yarn-error.log*
 
 # linters
 .eslintcache
+
+# DB dumps, etc...
+_dumps
