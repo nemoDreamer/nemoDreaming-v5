@@ -37,7 +37,7 @@
   //       https://github.com/limitlessloop/flex-gap-polyfill, which didn't
   //       stick with TailwindCSS.
   // TODO: turn into a mixin if we need more gaps
-  .gap-4 {
+  .flex-gap-4 {
     --gap-4-size: 1rem;
     --fgp-gap: var(--has-fgp, var(--gap-4-size));
     --fgp-gap-row: var(--gap-4-size);
@@ -64,6 +64,26 @@
       );
       margin-top: var(--fgp-margin-top);
       margin-left: var(--fgp-margin-left);
+    }
+  }
+
+  // Responsive Square
+  // NOTE: _has_ to have a child `.content`!
+  // see https://spin.atomicobject.com/2015/07/14/css-responsive-square/
+  .square {
+    position: relative;
+    width: 100%;
+
+    &::after {
+      content: " ";
+      display: block;
+      padding-bottom: 100%;
+    }
+
+    .content {
+      position: absolute;
+      width: 100%;
+      height: 100%;
     }
   }
 }
