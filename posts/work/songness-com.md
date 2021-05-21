@@ -1,11 +1,11 @@
 ---
 title: Songness.com
-date: 11/15/2009, 9:41:25 PM
+date: 09/28/2010, 9:41:25 PM
 url: http://www.songness.com
 category: interactive
 technologies:
   - Adobe Photoshop
-  - XHTML
+  - HTML
   - CSS
   - jQuery
 folder: /work/songness
