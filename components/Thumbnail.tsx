@@ -35,7 +35,6 @@ const Thumbnail: React.FC<{
               boxSizing: "border-box",
               width: "100%",
               height: "100%",
-              maxHeight: 320,
               position: "relative",
             }
           : { boxSizing: "content-box", width, height }

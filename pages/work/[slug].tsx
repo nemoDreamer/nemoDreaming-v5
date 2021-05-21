@@ -76,8 +76,8 @@ const Work: React.FC<{
       )}
     </div>
 
-    <div className="grid grid-cols-3 gap-4 md:grid-cols-7 mb-4">
-      <div className="md:col-span-2 md:w-64 md:h-64 md:-ml-24">
+    <div className="mb-8 xs:grid xs:gap-4 xs:grid-cols-3 md:grid-cols-7">
+      <div className="mb-4 xs:mb-0 md:col-span-2 md:-ml-24 md:w-64">
         <div className="square">
           <div className="content">
             <Thumbnail image={images[0]} folder={folder} shouldFill />
@@ -85,12 +85,12 @@ const Work: React.FC<{
         </div>
       </div>
       <div
-        className="col-span-2 md:col-span-5"
+        className="mb-4 mx-3 xs:mx-0 xs:mb-0 xs:col-span-2 md:col-span-5"
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />
     </div>
 
-    <div className="flex flex-row flex-wrap gap-4 items-start justify-start">
+    <div className="flex flex-row flex-wrap flex-gap-4 items-start justify-center xs:justify-start">
       {images.slice(1).map((image) => (
         <Thumbnail
           key={`image-${image}`}
