@@ -19,14 +19,7 @@ const Layout: React.FC<{
     <Head>
       <link rel="icon" href="/favicon.ico" />
       <meta name="description" content={description} />
-      <meta
-        property="og:image"
-        content={`https://og-image.vercel.app/${encodeURIComponent(
-          siteTitle
-        )}.png?theme=light&md=0&fontSize=75px&images=${encodeURIComponent(
-          "https://assets.vercel.com/image/upload/front/assets/design/nextjs-black-logo.svg"
-        )}`}
-      />
+      <meta property="og:image" content="/og-image.png" />
       <meta
         name="og:title"
         content={pageTitle ? `${siteTitle} | ${pageTitle}` : siteTitle}
