@@ -3,7 +3,7 @@ import * as React from "react";
 
 import Container from "../Container";
 
-import styles from "./Main.module.scss";
+import styles from "./Main.module.css";
 
 const Main: React.FC<{
   subHeader?: React.ReactNode;

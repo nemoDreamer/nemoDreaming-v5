@@ -1,0 +1,20 @@
+/*
+FIXME: change back to SCSS once this is addressed:
+https://github.com/limitlessloop/flex-gap-polyfill/pull/40
+*/
+
+.subHeader {
+  @apply font-mono;
+}
+
+.subHeader h1 {
+  @apply text-base text-white;
+}
+
+.subHeader code {
+  @apply text-white bg-teal-600;
+}
+
+.children h1 {
+  @apply text-2xl;
+}

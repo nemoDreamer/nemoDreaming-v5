@@ -4,5 +4,8 @@ module.exports = {
     "postcss-preset-env": {
       // NOTE: includes `autoprefixer`
     },
+    "flex-gap-polyfill": {
+      tailwindCSS: true,
+    },
   },
 };

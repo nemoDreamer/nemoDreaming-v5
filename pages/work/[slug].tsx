@@ -90,7 +90,7 @@ const Work: React.FC<{
       />
     </div>
 
-    <div className="flex flex-row flex-wrap flex-gap-4 items-start justify-center xs:justify-start">
+    <div className="flex flex-row flex-wrap gap-4 items-start justify-center xs:justify-start">
       {images.slice(1).map((image) => (
         <Thumbnail
           key={`image-${image}`}

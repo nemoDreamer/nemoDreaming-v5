@@ -33,39 +33,11 @@
 }
 
 @layer utilities {
-  // NOTE: manual flex gap polyfill for mobile browsers, copied from
-  //       https://github.com/limitlessloop/flex-gap-polyfill, which didn't
-  //       stick with TailwindCSS.
-  // TODO: turn into a mixin if we need more gaps
-  .flex-gap-4 {
-    --gap-4-size: 1rem;
-    --fgp-gap: var(--has-fgp, var(--gap-4-size));
-    --fgp-gap-row: var(--gap-4-size);
-    --fgp-gap-column: var(--gap-4-size);
-    --fgp-margin-top: calc(
-      var(--fgp-parent-gap-row, 0px) - var(--fgp-gap-row) +
-        var(--orig-margin-top, 0px)
-    );
-    --fgp-margin-left: calc(
-      var(--fgp-parent-gap-column, 0px) - var(--fgp-gap-column) +
-        var(--orig-margin-left, 0px)
-    );
-    display: flex;
-    gap: var(--fgp-gap, 0px);
-    margin-top: var(--fgp-margin-top, var(--orig-margin-top));
-    margin-left: var(--fgp-margin-left, var(--orig-margin-left));
-
-    & > * {
-      --fgp-parent-gap-row: var(--gap-4-size);
-      --fgp-parent-gap-column: var(--gap-4-size);
-      --fgp-margin-top: calc(var(--fgp-gap-row) + var(--orig-margin-top, 0px));
-      --fgp-margin-left: calc(
-        var(--fgp-gap-column) + var(--orig-margin-left, 0px)
-      );
-      margin-top: var(--fgp-margin-top);
-      margin-left: var(--fgp-margin-left);
-    }
-  }
+  // // NOTE: see https://github.com/limitlessloop/flex-gap-polyfill/issues/31
+  // .flex.gap-* {
+  //   display: flex;
+  //   gap: *;
+  // }
 
   // Responsive Square
   // NOTE: _has_ to have a child `.content`!
