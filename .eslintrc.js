@@ -30,6 +30,8 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint"],
   rules: {
+    "no-console": "error",
+
     // IMPORTS
     // --------------------------------------------------
     "sort-imports": [

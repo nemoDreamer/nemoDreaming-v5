@@ -4,12 +4,9 @@ import classNames from "classnames";
 import Image from "next/image";
 import * as React from "react";
 
-const getRandom = (arr: unknown[]) =>
-  arr[Math.round(Math.random() * (arr.length - 1))];
+import { useRandom } from "../contexts/Random";
 
 const rotations = [1, 2, 3, 6];
-const getRotation = () =>
-  `${Math.random() < 0.5 ? "-" : ""}rotate-${getRandom(rotations)}`;
 
 const getImageSrc = (folder: string | undefined, image: string): string =>
   folder ? path.join(folder, image) : image;
@@ -21,6 +18,16 @@ const Thumbnail: React.FC<{
   height?: number;
   shouldFill?: boolean;
 }> = ({ image, folder, width, height, shouldFill = false }): JSX.Element => {
+  const [rng] = useRandom();
+
+  const getRandom = (arr: unknown[]) =>
+    arr[Math.round(rng.quick() * (arr.length - 1))];
+
+  const getRotation = () =>
+    `${rng.quick() < 0.5 ? "-" : ""}rotate-${getRandom(rotations)}`;
+
+  const src = getImageSrc(folder, image);
+
   return (
     <div
       className={classNames(
@@ -42,7 +49,7 @@ const Thumbnail: React.FC<{
     >
       <Image
         className="inline-block"
-        src={getImageSrc(folder, image)}
+        src={src}
         {...(shouldFill
           ? {
               layout: "fill",

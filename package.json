@@ -30,10 +30,12 @@
     "remark": "^13.0.0",
     "remark-html": "^13.0.1",
     "sass": "^1.32.12",
+    "seedrandom": "^3.0.5",
     "tailwindcss": "^2.1.2"
   },
   "devDependencies": {
     "@types/react": "^17.0.5",
+    "@types/seedrandom": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "eslint": "^7.26.0",
