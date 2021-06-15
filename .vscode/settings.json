@@ -4,5 +4,6 @@
         "nemo",
         "nemodreaming",
         "plex"
-    ]
+    ],
+    "browser-preview.startUrl": "http://localhost:3000"
 }

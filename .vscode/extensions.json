@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "mrmlnc.vscode-remark",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "auchenberg.vscode-browser-preview"
     ]
 }
