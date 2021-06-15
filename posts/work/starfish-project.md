@@ -2,7 +2,7 @@
 title: The Starfish Project
 date: 12/12/2008, 7:51:44 PM
 url: http://www.thestarfishproject.org
-category: identity
+category: design
 technologies:
   - Adobe Photoshop
   - Adobe Illustrator

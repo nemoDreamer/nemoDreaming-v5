@@ -8,8 +8,7 @@ technologies:
   - PHP
   - Flat file DB
 folder: /work/nemodreaming/v2
-thumbnail:
-  - 03.jpg
+thumbnail: 03.jpg
 images:
   - 01.jpg
   - 02.jpg

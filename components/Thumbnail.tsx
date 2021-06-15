@@ -34,6 +34,8 @@ const Thumbnail: React.FC<{
   const getRotation = () =>
     `${rng.quick() < 0.5 ? "-" : ""}rotate-${getRandom(rotations)}`;
 
+  const rotation = getRotation();
+
   const src = getImageSrc(folder, image);
 
   return (
@@ -41,7 +43,8 @@ const Thumbnail: React.FC<{
       className={classNames(
         "border-solid border-8 border-white shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2",
         {
-          [`hover:${getRotation()}`]: !disableRotate,
+          [`hover:${rotation}`]: !disableRotate,
+          [`group-hover:${rotation}`]: !disableRotate,
         }
       )}
       style={
