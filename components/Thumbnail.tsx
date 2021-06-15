@@ -17,7 +17,15 @@ const Thumbnail: React.FC<{
   width?: number;
   height?: number;
   shouldFill?: boolean;
-}> = ({ image, folder, width, height, shouldFill = false }): JSX.Element => {
+  disableRotate?: boolean;
+}> = ({
+  image,
+  folder,
+  width,
+  height,
+  shouldFill = false,
+  disableRotate = false,
+}): JSX.Element => {
   const [rng] = useRandom();
 
   const getRandom = (arr: unknown[]) =>
@@ -33,7 +41,7 @@ const Thumbnail: React.FC<{
       className={classNames(
         "border-solid border-8 border-white shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2",
         {
-          [`hover:${getRotation()}`]: !shouldFill,
+          [`hover:${getRotation()}`]: !disableRotate,
         }
       )}
       style={

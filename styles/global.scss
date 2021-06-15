@@ -33,12 +33,6 @@
 }
 
 @layer utilities {
-  // // NOTE: see https://github.com/limitlessloop/flex-gap-polyfill/issues/31
-  // .flex.gap-* {
-  //   display: flex;
-  //   gap: *;
-  // }
-
   // Responsive Square
   // NOTE: _has_ to have a child `.content`!
   // see https://spin.atomicobject.com/2015/07/14/css-responsive-square/

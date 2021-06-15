@@ -31,10 +31,10 @@ export const getStaticPaths: GetStaticPaths = async () => ({
   fallback: false,
 });
 
-const rowMax = 5;
-const thumbnailSize = Math.floor(
-  (640 - 8 * 2 * rowMax - (rowMax - 1) * 16) / rowMax
-);
+// const rowMax = 5;
+// const thumbnailSize = Math.floor(
+//   (640 - 8 * 2 * rowMax - (rowMax - 1) * 16) / rowMax
+// );
 
 const subHeader = (
   <ArrowLink href="/work" isBack>
@@ -82,7 +82,12 @@ const Work: React.FC<{
         <div className="mb-4 xs:mb-0 md:col-span-2 md:-ml-24 md:w-64">
           <div className="square">
             <div className="content">
-              <Thumbnail image={images[0]} folder={folder} shouldFill />
+              <Thumbnail
+                image={images[0]}
+                folder={folder}
+                shouldFill
+                disableRotate
+              />
             </div>
           </div>
         </div>
@@ -92,15 +97,19 @@ const Work: React.FC<{
         />
       </div>
 
-      <div className="flex flex-row flex-wrap gap-4 items-start justify-center xs:justify-start">
+      <div className="mb-4 grid grid-flow-row grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 justify-center place-items-center">
         {images.slice(1).map((image) => (
-          <Thumbnail
-            key={`image-${image}`}
-            image={image}
-            folder={folder}
-            width={thumbnailSize}
-            height={thumbnailSize}
-          />
+          <div className="square" key={`image-${image}`}>
+            <div className="content">
+              <Thumbnail
+                image={image}
+                folder={folder}
+                // width={thumbnailSize}
+                // height={thumbnailSize}
+                shouldFill
+              />
+            </div>
+          </div>
         ))}
       </div>
     </Main>
