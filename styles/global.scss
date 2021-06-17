@@ -1,22 +1,27 @@
 @layer base {
+  p,
+  ul,
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply mb-4;
+  }
+
   h1 {
-    @apply font-bold mb-4;
+    @apply font-bold;
   }
 
   h1::before {
     content: "# ";
   }
 
-  h2::before {
-    content: "## ";
+  h2 {
+    @apply font-bold;
   }
 
-  p,
-  ul,
-  h2,
-  h3,
-  h4 {
-    @apply mb-4 last:mb-0;
+  h2::before {
+    // content: "## ";
   }
 
   code {

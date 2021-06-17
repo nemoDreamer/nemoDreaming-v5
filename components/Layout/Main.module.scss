@@ -1,0 +1,25 @@
+.subHeader {
+  @apply font-mono;
+
+  h1 {
+    @apply text-base text-white;
+  }
+
+  code {
+    @apply text-white bg-teal-600;
+  }
+}
+
+.children {
+  h1 {
+    @apply text-2xl;
+  }
+
+  h2 {
+    @apply text-xl border-b-4 border-black border-solid;
+  }
+
+  h3 {
+    @apply text-lg border-b-2 border-black border-solid;
+  }
+}

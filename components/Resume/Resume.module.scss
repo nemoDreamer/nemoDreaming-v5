@@ -1,0 +1,63 @@
+.label {
+  @apply font-bold uppercase;
+
+  letter-spacing: 0.1em;
+}
+
+.groups {
+  @apply grid grid-cols-3 gap-x-2 mb-4;
+
+  .label {
+    text-align: right;
+  }
+}
+
+.item {
+  h3 {
+    @apply mb-0 flex-wrap md:flex-nowrap flex flex-row;
+
+    .label {
+      @apply w-full md:w-auto;
+    }
+
+    .location {
+      &::before {
+        @apply hidden md:inline;
+
+        content: ", ";
+      }
+    }
+
+    .date {
+      @apply flex-1 text-right italic whitespace-nowrap;
+    }
+  }
+
+  .position,
+  .degree {
+    @apply font-bold text-lg;
+
+    .detail {
+      @apply font-normal italic;
+    }
+  }
+
+  .position {
+    .detail {
+      @apply ml-1;
+
+      &::before {
+        content: "(";
+      }
+      &::after {
+        content: ")";
+      }
+    }
+  }
+
+  .degree {
+    .detail::before {
+      content: ", ";
+    }
+  }
+}
