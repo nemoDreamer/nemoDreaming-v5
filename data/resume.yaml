@@ -1,4 +1,4 @@
-# cspell:ignore architected, MAMP, Figma, strategized, SDLC, Nanoc, Endo
+# cspell:ignore architected MAMP Figma strategized SDLC Nanoc Endo Königliches Athenäum Eupen
 
 header:
   name: Philip Featherstone Blyth
@@ -8,18 +8,8 @@ header:
 qualifications:
   title: Qualifications
   body:
-    - I am an innovative and creative professional with 22 years of experience in
-      design and development. Skilled in front~ to back-end development and
-      pipeline tooling using a variety of modern stacks, I also hold a Bachelor of
-      Arts in Visual Communication and Interactive Media Design.
-    - My passion for
-      tinkering with new technologies has kept me up-to-date and on my toes, and
-      my time as senior software developer and a group lead and manager has seen
-      me able to drive technical change in a corporate setting, delivering
-      flexible, future-proof, impactful solutions for major web applications.
-      Natively fluent in English, French and German, with working proficiency in
-      Dutch, I am excited to work inside of a distributed team and make use of my
-      comprehensive background in remote work.
+    - I am an innovative and creative professional with 22 years of experience in design and development. Skilled in front~ to back-end development and pipeline tooling using a variety of modern stacks, I also hold a Bachelor of Arts in Visual Communication and Interactive Media Design.
+    - My passion for tinkering with new technologies has kept me up-to-date and on my toes, and my time as senior software developer and a group lead and manager has seen me able to drive technical change in a corporate setting, delivering flexible, future-proof, impactful solutions for major web applications. Natively fluent in English, French and German, with working proficiency in Dutch, I am excited to work inside of a distributed team and make use of my comprehensive background in remote work.
 
 skills:
   title: Technical Skills
@@ -112,7 +102,7 @@ experience:
     - employer: 19rockets
       location: Los Angeles, CA & New York City, NY
       date: 2007 – 2008
-      position: Lead Designer
+      position: Lead Front-End Designer / Developer
       achievements:
         - Contributed to all aspects of brainstorming and idea incubating for the startup.
         - In charge of design/GUI/UX for goHuman.com _(successfully sold)_.
@@ -133,6 +123,11 @@ education:
       date: 2000 – 2004
       degree: Bachelor of Arts in Design (BA-Des)
       major: Visual Communication & Interactive Media Design
+    - school: Königliches Athenäum Eupen
+      location: Eupen, Belgium
+      date: 1993 – 1999
+      degree: High School
+      major: Science, Programming, Mathematics
 
 passions:
   title: Passions
