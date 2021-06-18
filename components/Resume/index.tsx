@@ -1,12 +1,9 @@
 import startCase from "lodash.startcase";
 import * as React from "react";
-import remark from "remark";
-import html from "remark-html";
+
+import Markdown from "../Markdown";
 
 import styles from "./Resume.module.scss";
-
-const toHTML = (markdown: string) =>
-  remark().use(html).processSync(markdown).toString();
 
 const Resume: React.FC<{
   data: ResumeType;
@@ -31,12 +28,12 @@ const Resume: React.FC<{
       {!skipFirstLine && (
         <>
           <h2>{startCase(qualifications.title)}</h2>
-          <p>{qualifications.body[0]}</p>
+          <Markdown content={qualifications.body[0]} />
         </>
       )}
-      {qualifications.body.slice(1).map((line, index) => (
-        <p key={`line-${index}`}>{line}</p>
-      ))}
+      {qualifications.body.length > 1 && (
+        <Markdown content={qualifications.body.slice(1).join("\n\n")} />
+      )}
     </div>
 
     <div className="skills">
@@ -46,10 +43,9 @@ const Resume: React.FC<{
         {Object.entries(skills.groups).map(([group, items], iG) => (
           <React.Fragment key={`item-${iG}`}>
             <div className={styles.label}>{startCase(group)}</div>
-            <div
+            <Markdown
               className="items col-span-2"
-              // TODO: parse whole all strings in YAML to HTML first?
-              dangerouslySetInnerHTML={{ __html: toHTML(items.join(" | ")) }}
+              content={items.join(" | ")}
             />
           </React.Fragment>
         ))}
@@ -80,7 +76,11 @@ const Resume: React.FC<{
             {achievements && (
               <ul>
                 {achievements.map((achievement, iA) => (
-                  <li key={`achievement-${iA}`}>{achievement}</li>
+                  <Markdown
+                    tag="li"
+                    key={`achievement-${iA}`}
+                    content={achievement}
+                  />
                 ))}
               </ul>
             )}
