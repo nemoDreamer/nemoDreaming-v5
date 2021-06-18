@@ -18,11 +18,12 @@ skills:
     development:
       - JavaScript
       - React
+      - Node.js
       - Webpack
       - Babel
       - HTML
       - CSS
-      - Jamstack / LAMP / MAMP
+      - Jamstack / LAMP~/MAMP-stack
       - Ruby
       - PHP
       - Python
@@ -32,6 +33,8 @@ skills:
       - Atom
       - Sublime
       - "`git`"
+      - Docker
+      - Jenkins / Travis / CircleCI
       - Postman
       - Figma / Sketch
       - Photoshop
