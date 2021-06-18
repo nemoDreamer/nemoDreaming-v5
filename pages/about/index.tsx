@@ -3,6 +3,7 @@ import React from "react";
 
 import ArrowLink from "../../components/ArrowLink";
 import Main from "../../components/Layout/Main";
+import Markdown from "../../components/Markdown";
 import Resume from "../../components/Resume";
 import resume from "../../data/resume.yaml";
 
@@ -17,7 +18,7 @@ const SubHeader: React.FC<{ resume: ResumeType }> = ({
     </p>
     <h1>{resume.header.name}</h1>
 
-    <p className="contact hidden print:block text-right">
+    <p className="contact hidden print:block text-right no-break-inside no-break-after">
       {header.url && (
         <>
           <span className="url">{header.url}</span>
@@ -29,7 +30,7 @@ const SubHeader: React.FC<{ resume: ResumeType }> = ({
       <span className="email">{header.email}</span>
     </p>
 
-    <p>{resume.qualifications.body[0]}</p>
+    <Markdown content={resume.qualifications.body[0]} />
   </>
 );
 

@@ -8,6 +8,10 @@
   code {
     @apply text-white bg-teal-600;
   }
+
+  strong {
+    @apply text-sm leading-none px-2 pt-0.5 pb-1 rounded-sm text-white bg-teal-600 print:text-base print:p-0 print:text-black print:bg-transparent;
+  }
 }
 
 .children {
