@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import startCase from "lodash.startcase";
 import * as React from "react";
 
@@ -44,7 +45,7 @@ const Resume: React.FC<{
           <React.Fragment key={`item-${iG}`}>
             <div className={styles.label}>{startCase(group)}</div>
             <Markdown
-              className="items col-span-2"
+              className="items col-span-2 no-break-inside"
               content={items.join(" | ")}
             />
           </React.Fragment>
@@ -60,13 +61,13 @@ const Resume: React.FC<{
           iJ
         ) => (
           <div className={styles.item} key={`job-${iJ}`}>
-            <h3>
+            <h3 className="no-break-inside no-break-after">
               <span className={styles.label}>{employer}</span>
               <span className={styles.location}>{location}</span>
               <span className={styles.date}>{date}</span>
             </h3>
 
-            <p className={styles.position}>
+            <p className={classNames(styles.position, "no-break-after")}>
               {position}
               {additional && (
                 <span className={styles.detail}>{additional}</span>
@@ -93,7 +94,10 @@ const Resume: React.FC<{
       <h2>{startCase(education.title)}</h2>
       {education.degrees.map(
         ({ school, location, date, degree, major }, iJ) => (
-          <div className={styles.item} key={`job-${iJ}`}>
+          <div
+            className={classNames(styles.item, "no-break-inside")}
+            key={`job-${iJ}`}
+          >
             <h3>
               <span className={styles.label}>{school}</span>
               <span className={styles.location}>{location}</span>

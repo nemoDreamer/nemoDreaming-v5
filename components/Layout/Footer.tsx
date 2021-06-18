@@ -5,7 +5,7 @@ import * as React from "react";
 const Footer: React.FC<{
   isHome: boolean;
 }> = ({ isHome }) => (
-  <footer className="flex flex-col md:flex-row items-center justify-center md:space-x-1 p-2 text-gray-500 bg-white text-xs">
+  <footer className="flex flex-col md:flex-row items-center justify-center md:space-x-1 p-2 text-gray-500 bg-white text-xs print:hidden">
     {!isHome && (
       <span className="font-extralight">
         <Link href="/">

@@ -1,8 +1,8 @@
 .subHeader {
-  @apply font-mono;
+  @apply font-mono print:font-sans;
 
   h1 {
-    @apply text-base text-white;
+    @apply text-base text-white print:text-black print:text-2xl;
   }
 
   code {

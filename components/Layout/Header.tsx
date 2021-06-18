@@ -32,7 +32,7 @@ const Header: React.FC<{
 
   return (
     <motion.header
-      className="bg-teal-500 shadow-xl flex z-20"
+      className="bg-teal-500 shadow-xl flex z-20 print:hidden"
       transition={transition}
       // NOTE: since we have a shared Layout that won't be replaced:
       // - used on initial document load only:
@@ -47,6 +47,7 @@ const Header: React.FC<{
             "flex flex-1 items-center justify-center -mt-14 -mb-10 z-0"
           }
         >
+          {/* TODO: make b&w logo for print styles */}
           <Image
             src="/logo.png"
             width={640}

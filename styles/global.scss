@@ -61,4 +61,12 @@
       height: 100%;
     }
   }
+
+  .no-break-after {
+    break-after: avoid;
+  }
+
+  .no-break-inside {
+    break-inside: avoid;
+  }
 }

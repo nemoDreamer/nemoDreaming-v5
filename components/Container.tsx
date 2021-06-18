@@ -13,7 +13,7 @@ const Container: React.FC<{
 }) => (
   <div
     className={classNames(
-      "container mx-auto md:max-w-2xl h-full flex flex-col",
+      "container mx-auto md:max-w-2xl print:w-full print:max-w-full h-full flex flex-col",
       className,
       {
         "ml-0": disableLeftMargin,

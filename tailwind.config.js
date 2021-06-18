@@ -60,6 +60,10 @@ module.exports = {
           [`${50 + blinkFade}%, 100%`]: { opacity: 0 },
         },
       },
+      screens: {
+        // => @media print { ... }
+        print: { raw: "print" },
+      },
     },
   },
   variants: {
