@@ -4,9 +4,9 @@ import { segmentConfigs } from "./Layout/Terminal/Prompt";
 
 const shades = ["█", "▓", "▒", "░"];
 
-const Cursor: React.FC = () => (
+const Cursor: React.FC<{ variant?: number }> = ({ variant = 2 }) => (
   <span className="animate-blink" style={{ color: segmentConfigs[3].bg }}>
-    {shades[2]}
+    {shades[variant]}
   </span>
 );
 
