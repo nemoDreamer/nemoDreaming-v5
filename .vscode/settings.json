@@ -4,6 +4,7 @@
         "gtag",
         "nemo",
         "nemodreaming",
+        "octokit",
         "plex"
     ],
     "browser-preview.startUrl": "http://localhost:3000"

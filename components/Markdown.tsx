@@ -12,6 +12,7 @@ const Markdown: React.FC<{
 }> = ({ content, tag = "div", className }) =>
   React.createElement(tag, {
     className,
+    // TODO: use `remark-react` to avoid this!
     dangerouslySetInnerHTML: { __html: toHTML(content) },
   });
 
