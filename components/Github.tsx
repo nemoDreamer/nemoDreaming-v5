@@ -27,6 +27,31 @@ export const getRepos = async ({
     user: { repositories },
   } = await graphql(
     // `
+    //   {
+    //     viewer {
+    //       login
+    //       pullRequests(
+    //         first: 100
+    //         orderBy: { field: UPDATED_AT, direction: DESC }
+    //       ) {
+    //         totalCount
+    //         nodes {
+    //           title
+    //           isCrossRepository
+    //           state
+    //           baseRepository {
+    //             nameWithOwner
+    //             stargazerCount
+    //             forkCount
+    //             isPrivate
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // `,
+    // ---
+    // `
     //   query {
     //     user(login: "nemoDreamer") {
     //       repositoriesContributedTo(
@@ -51,6 +76,7 @@ export const getRepos = async ({
     //     }
     //   }
     // `,
+    // ---
     `
       query ($login: String!, $isFork: Boolean, $limit: Int!) {
         user(login: $login) {
