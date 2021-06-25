@@ -38,11 +38,7 @@ export type PullRequestConnection = {
   nodes: [PullRequest];
 };
 
-type queryId =
-  | "pullRequests"
-  | "repositories"
-  | "repositoriesContributedTo"
-  | "topRepositories";
+type queryId = keyof typeof queries;
 
 type ApiRequest = NextApiRequest & {
   query: { queryId: queryId };
@@ -129,7 +125,7 @@ export const queries = {
 };
 
 export const customFetch = async (
-  query: typeof queries[keyof typeof queries],
+  query: typeof queries[queryId],
   variables: RequestParameters
 ): Promise<RepositoryConnection | Repository[]> =>
   query.responseTransform(
