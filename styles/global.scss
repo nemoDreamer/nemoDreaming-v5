@@ -10,32 +10,35 @@
 
   h1 {
     @apply font-bold;
-  }
 
-  h1::before {
-    @apply opacity-50 print:hidden;
+    &::before {
+      @apply opacity-50 print:hidden;
 
-    content: "# ";
-    // margin-left: -1.2em;
+      content: "# ";
+      // margin-left: -1.2em;
+    }
   }
 
   h2 {
-    @apply font-bold;
+    @apply relative font-bold;
+
+    &::before {
+      @apply absolute text-gray-300 print:hidden;
+
+      content: "## ";
+      left: -1.5em;
+    }
   }
 
-  h2::before {
-    @apply text-gray-300 print:hidden;
+  h3 {
+    @apply relative;
 
-    content: "## ";
-    margin-left: -1.5em;
-  }
+    &::before {
+      @apply absolute font-bold text-gray-300 print:hidden;
 
-  h3::before {
-    @apply text-gray-300 print:hidden;
-
-    content: "###";
-    margin-right: 0.25em;
-    margin-left: -2.35em;
+      content: "### ";
+      left: -2.15em;
+    }
   }
 
   code {

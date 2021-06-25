@@ -5,10 +5,10 @@
 }
 
 .groups {
-  @apply grid grid-cols-3 gap-x-2 mb-4;
+  @apply grid grid-cols-1 xs:grid-cols-3 gap-x-2 mb-4;
 
   .label {
-    text-align: right;
+    @apply text-left xs:text-right;
   }
 }
 

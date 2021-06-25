@@ -22,7 +22,7 @@ const Home = (): JSX.Element => (
         </span>,
         "- [x] add résumé",
         "- [ ] pull in `featured` from `work`",
-        "- [ ] add GitHub repos",
+        "- [x] add GitHub repos",
         "- [ ] transfer items from old portfolio...!",
         "- [ ] add social links",
       ]}
