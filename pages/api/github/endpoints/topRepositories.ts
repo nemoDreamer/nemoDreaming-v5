@@ -6,7 +6,7 @@ import { stargazerCountDesc } from "../utils/sorters";
 import { RepositoriesResponse, Repository } from "../types";
 
 export default {
-  body: print(query),
+  query: print(query),
   responseTransform: ({
     viewer: { login, repositories },
   }: RepositoriesResponse): Repository[] =>

@@ -22,7 +22,7 @@ export type PullRequestsResponse = {
 };
 
 export default {
-  body: print(query),
+  query: print(query),
   responseTransform: ({
     viewer: {
       pullRequests: { nodes },

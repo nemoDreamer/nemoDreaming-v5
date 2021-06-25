@@ -10,7 +10,7 @@ import Thumbnail from "../../components/Thumbnail";
 import fetcher from "../../lib/fetcher";
 import { PostData, getAllPosts } from "../../lib/posts";
 import formatDate from "../../utils/formatDate";
-import { customFetch, queries } from "../api/github/[queryId]";
+import { customFetch, endpoints } from "../api/github/[endpointId]";
 import { RepositoryConnection } from "../api/github/types";
 
 export const DIRECTORY = "work";
@@ -33,8 +33,8 @@ export const getStaticProps: GetStaticProps = async () => ({
       branch: "dev",
       filePath: "work/index.tsx",
     },
-    ownRepos: await customFetch(queries.repositories, ownVariables),
-    forkedRepos: await customFetch(queries.repositories, forkVariables),
+    ownRepos: await customFetch(endpoints.repositories, ownVariables),
+    forkedRepos: await customFetch(endpoints.repositories, forkVariables),
   },
 });
 

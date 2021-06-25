@@ -13,18 +13,18 @@ import type {
 } from "./types";
 import octokitGraphQL from "./utils/octokitGraphQL";
 
-type ApiRequest = NextApiRequest & {
-  query: { queryId: queryId };
-};
-
-export const queries = {
+export const endpoints = {
   pullRequests,
   repositories,
   repositoriesContributedTo,
   topRepositories,
 };
 
-type queryId = keyof typeof queries;
+type EndpointId = keyof typeof endpoints;
+
+type ApiRequest = NextApiRequest & {
+  query: { endpointId: EndpointId };
+};
 
 type ApiResponse = {
   [key: string]: unknown;
@@ -34,20 +34,20 @@ type ApiResponse = {
 type TransformedResponse = RepositoryConnection | Repository[];
 
 export const customFetch = async (
-  query: typeof queries[queryId],
+  endpoint: typeof endpoints[EndpointId],
   variables: RequestParameters
 ): Promise<TransformedResponse> =>
   await octokitGraphQL<ApiResponse, TransformedResponse>({
-    query: query.body,
+    query: endpoint.query,
     variables,
-    responseTransform: query.responseTransform,
+    responseTransform: endpoint.responseTransform,
   });
 
 export default async (
-  { query: { queryId }, body }: ApiRequest,
+  { query: { endpointId }, body }: ApiRequest,
   res: NextApiResponse
 ): Promise<void> => {
-  const query = queries[queryId];
+  const query = endpoints[endpointId];
   if (!query) {
     res.status(404).json({ message: "Invalid `queryId`!" });
   } else {

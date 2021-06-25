@@ -5,7 +5,7 @@ import query from "../queries/repositories.graphql";
 import { RepositoriesResponse, RepositoryConnection } from "../types";
 
 export default {
-  body: print(query),
+  query: print(query),
   responseTransform: ({
     viewer: { repositories },
   }: RepositoriesResponse): RepositoryConnection => repositories,
