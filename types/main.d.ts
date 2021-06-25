@@ -46,3 +46,9 @@ declare module "*/data/resume.yaml" {
   const data: ResumeType;
   export = data;
 }
+
+declare module "*.graphql" {
+  import { DocumentNode } from "@octokit/graphql/dist-types/types";
+  const document: DocumentNode;
+  export = document;
+}

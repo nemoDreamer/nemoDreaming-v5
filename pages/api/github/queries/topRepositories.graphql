@@ -1,0 +1,23 @@
+query ($limit: Int = 100) {
+  viewer {
+    login
+    repositories: topRepositories(
+      first: $limit
+      orderBy: { field: STARGAZERS, direction: DESC }
+      since: "2007-10-01T00:00:00Z" # <- Github member since Oct 2007
+    ) {
+      totalCount
+      nodes {
+        url
+        nameWithOwner
+        owner {
+          login # <- filter out our own...
+        }
+        description
+        stargazerCount
+        forkCount
+        isPrivate # <- filter out!
+      }
+    }
+  }
+}

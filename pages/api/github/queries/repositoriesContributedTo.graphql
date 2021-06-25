@@ -1,0 +1,25 @@
+query ($limit: Int = 100) {
+  viewer {
+    repositories: repositoriesContributedTo(
+      contributionTypes: [
+        # ISSUE,
+        COMMIT
+        PULL_REQUEST
+        PULL_REQUEST_REVIEW
+      ]
+      first: $limit
+      includeUserRepositories: false # <- ... why don't `pullRequests` and `topRepositories` support this?
+      orderBy: { field: STARGAZERS, direction: DESC }
+    ) {
+      totalCount
+      nodes {
+        url
+        nameWithOwner
+        description
+        stargazerCount
+        forkCount
+        isPrivate # <- filter out!
+      }
+    }
+  }
+}

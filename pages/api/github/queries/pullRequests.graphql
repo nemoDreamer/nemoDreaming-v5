@@ -1,0 +1,25 @@
+query ($limit: Int = 100) {
+  viewer {
+    pullRequests(
+      # NOTE: sadly, the API doesn't allow us to filter out our own, so we'll
+      # need to do it after the results come back...
+      first: $limit
+      orderBy: { field: UPDATED_AT, direction: DESC }
+    ) {
+      totalCount
+      nodes {
+        title
+        isCrossRepository # <- later, filter results on this
+        state # <- OPEN, CLOSED, MERGED
+        baseRepository {
+          url
+          nameWithOwner
+          description
+          stargazerCount
+          forkCount
+          isPrivate # <- filter out!
+        }
+      }
+    }
+  }
+}

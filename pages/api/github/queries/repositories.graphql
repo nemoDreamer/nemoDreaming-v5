@@ -1,0 +1,23 @@
+query ($isFork: Boolean = false, $limit: Int = 100) {
+  viewer {
+    repositories(
+      isFork: $isFork
+      first: $limit
+      orderBy: { field: STARGAZERS, direction: DESC }
+      privacy: PUBLIC
+      ownerAffiliations: [OWNER]
+    ) {
+      totalCount
+      nodes {
+        url
+        name
+        parent {
+          nameWithOwner
+        }
+        description
+        stargazerCount
+        forkCount
+      }
+    }
+  }
+}
