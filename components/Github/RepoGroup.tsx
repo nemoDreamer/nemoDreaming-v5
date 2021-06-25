@@ -1,7 +1,7 @@
 import Link from "next/link";
 import * as React from "react";
 
-import { RepositoryConnection } from "../../pages/api/github/[queryId]";
+import { RepositoryConnection } from "../../pages/api/github/types";
 
 import Repo from "./Repo";
 

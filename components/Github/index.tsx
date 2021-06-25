@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { RepositoryConnection } from "../../pages/api/github/[queryId]";
+import { RepositoryConnection } from "../../pages/api/github/types";
 
 import RepoGroup from "./RepoGroup";
 

@@ -10,11 +10,8 @@ import Thumbnail from "../../components/Thumbnail";
 import fetcher from "../../lib/fetcher";
 import { PostData, getAllPosts } from "../../lib/posts";
 import formatDate from "../../utils/formatDate";
-import {
-  RepositoryConnection,
-  customFetch,
-  queries,
-} from "../api/github/[queryId]";
+import { customFetch, queries } from "../api/github/[queryId]";
+import { RepositoryConnection } from "../api/github/types";
 
 export const DIRECTORY = "work";
 
