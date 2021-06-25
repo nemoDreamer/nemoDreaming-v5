@@ -78,7 +78,7 @@ const AllWork: React.FC<{
         lines={[
           <span key="note">
             <span className="rounded-sm bg-teal-500 text-teal-200">NOTE:</span>{" "}
-            excuse the ugly-ass layout...
+            please excuse the mess...
           </span>,
           <span key="todo" className="rounded-sm bg-yellow-200 text-yellow-900">
             TODO:
