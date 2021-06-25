@@ -16,7 +16,7 @@ const Github: React.FC<{
 }> = ({ ownRepos, forkedRepos }) => (
   <section>
     <h2>Open-Source</h2>
-    <RepoGroup title={ownTitle} repos={ownRepos} isOwn />
+    <RepoGroup title={ownTitle} repos={ownRepos} />
     <RepoGroup title="Forks" repos={forkedRepos} hideDetails />
   </section>
 );

@@ -9,9 +9,10 @@ query ($limit: Int = 100) {
       totalCount
       nodes {
         url
+        name
         nameWithOwner
         owner {
-          login # <- filter out our own...
+          login # <- to optionally filter out our own...
         }
         description
         stargazerCount

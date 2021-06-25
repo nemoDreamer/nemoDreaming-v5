@@ -6,11 +6,10 @@ import { RepositoryConnection } from "../../pages/api/github/types";
 import Repo from "./Repo";
 
 const RepoGroup: React.FC<{
-  isOwn?: boolean;
   title: string | React.ReactNode;
   repos: RepositoryConnection | undefined;
   hideDetails?: boolean;
-}> = ({ isOwn = false, title, repos, hideDetails = false }) => (
+}> = ({ title, repos, hideDetails = false }) => (
   <div className="mb-4">
     <h3 className="flex flex-row items-center">
       <span className="flex-1">{title}</span>
@@ -31,12 +30,7 @@ const RepoGroup: React.FC<{
     <div className="grid grid-flow-row gap-4 grid-cols-1 xs:grid-cols-2">
       {repos ? (
         repos.nodes.map((repo) => (
-          <Repo
-            key={repo.name}
-            {...repo}
-            isOwn={isOwn}
-            hideDetails={hideDetails}
-          />
+          <Repo key={repo.name} {...repo} hideDetails={hideDetails} />
         ))
       ) : (
         <span>Loading...</span>
