@@ -15,7 +15,7 @@ const Resume: React.FC<{
   skipFirstLine = false,
   skipHeader = false,
 }) => (
-  <div>
+  <div className={styles.body}>
     {!skipHeader && (
       <div className="header">
         <h1 className="name">{header.name}</h1>

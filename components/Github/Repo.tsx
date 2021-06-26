@@ -40,7 +40,7 @@ const Repo: React.FC<
     <div>
       <Link href={url} passHref={true}>
         <a target="_blank">
-          <div className={styles.card}>
+          <div className={styles.repo}>
             <div className={styles.top}>
               <div className={styles.name}>
                 {React.createElement(isOwn ? RepoIcon : RepoForkedIcon, {

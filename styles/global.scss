@@ -8,39 +8,6 @@
     @apply mb-4;
   }
 
-  h1 {
-    @apply font-bold;
-
-    &::before {
-      @apply opacity-50 print:hidden;
-
-      content: "# ";
-      // margin-left: -1.2em;
-    }
-  }
-
-  h2 {
-    @apply relative font-bold;
-
-    &::before {
-      @apply absolute text-gray-300 print:hidden;
-
-      content: "## ";
-      left: -1.5em;
-    }
-  }
-
-  h3 {
-    @apply relative;
-
-    &::before {
-      @apply absolute font-bold text-gray-300 print:hidden;
-
-      content: "### ";
-      left: -2.15em;
-    }
-  }
-
   code {
     @apply font-mono text-sm leading-none px-2 pt-0.5 pb-1 rounded-sm text-gray-700 bg-gray-200;
   }
@@ -85,5 +52,21 @@
 
   .no-break-inside {
     break-inside: avoid;
+  }
+
+  .separator {
+    @apply mx-2 text-gray-300;
+  }
+
+  .card {
+    @apply bg-white shadow-md hover:shadow-xl transition-shadow border border-solid border-gray-200;
+
+    .top {
+      @apply p-4;
+    }
+
+    .details {
+      @apply bg-gray-100 group-hover:bg-gray-50 transition-colors px-4 py-2;
+    }
   }
 }

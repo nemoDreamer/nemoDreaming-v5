@@ -1,5 +1,19 @@
 .card {
-  @apply group bg-white shadow-md hover:shadow-xl transition-shadow cursor-pointer;
+  @apply bg-white shadow-md hover:shadow-xl transition-shadow border border-solid border-gray-200;
+
+  .top {
+    @apply p-4;
+  }
+
+  .details {
+    @apply bg-gray-100 group-hover:bg-gray-50 transition-colors px-4 py-2;
+  }
+}
+
+// ---
+
+.repo {
+  @apply card group cursor-pointer;
 
   .top {
     @apply p-4;
@@ -16,6 +30,6 @@
   }
 
   .details {
-    @apply bg-gray-100 group-hover:bg-gray-50 transition-colors px-4 py-2 rounded-b-md flex flex-row justify-end items-center text-xs;
+    @apply flex flex-row justify-end items-center text-xs;
   }
 }
