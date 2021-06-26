@@ -6,6 +6,8 @@ import { Repository } from "../../pages/api/github/types";
 
 import Markdown from "../Markdown";
 
+import styles from "./Repo.module.scss";
+
 const login = "nemoDreamer";
 
 const Repo: React.FC<
@@ -37,33 +39,40 @@ const Repo: React.FC<
   return (
     <div>
       <Link href={url} passHref={true}>
-        <a
-          target="_blank"
-          className="block group bg-white shadow-md hover:shadow-xl transition-shadow rounded-md cursor-pointer"
-        >
-          <span className="block p-4">
-            <span className="font-bold group-hover:underline">
-              <RepoIcon verticalAlign="middle" size={16} /> {name}
-            </span>
-            <Markdown className="description text-sm" content={description} />
-          </span>
-          {!hideDetails && (
-            <span className="bg-gray-100 group-hover:bg-gray-50 transition-colors p-4 rounded-b-md flex flex-row justify-end items-center text-sm">
-              {!!stargazerCount && (
-                <span className="stargazerCount">
-                  <StarFillIcon size={16} fill="#ffe000" /> {stargazerCount}
-                </span>
-              )}
-              {!!stargazerCount && !!forkCount && (
-                <span className="mx-2 text-gray-300">|</span>
-              )}
-              {!!forkCount && (
-                <span className="forkCount">
-                  <RepoForkedIcon size={16} /> {forkCount}
-                </span>
-              )}
-            </span>
-          )}
+        <a target="_blank">
+          <div className={styles.card}>
+            <div className={styles.top}>
+              <div className={styles.name}>
+                {React.createElement(isOwn ? RepoIcon : RepoForkedIcon, {
+                  verticalAlign: "middle",
+                  size: 16,
+                })}{" "}
+                {name}
+              </div>
+              <Markdown className={styles.description} content={description} />
+            </div>
+            {!hideDetails && !!stargazerCount && !!forkCount && (
+              <div className={styles.details}>
+                {!!stargazerCount && (
+                  <span>
+                    <StarFillIcon
+                      size={16}
+                      fill="#ffe000"
+                      aria-label="stargazer count"
+                    />{" "}
+                    {stargazerCount}
+                  </span>
+                )}
+                <span className="separator">|</span>
+                {!!forkCount && (
+                  <span>
+                    <RepoForkedIcon size={16} aria-label="fork count" />{" "}
+                    {forkCount}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
         </a>
       </Link>
     </div>

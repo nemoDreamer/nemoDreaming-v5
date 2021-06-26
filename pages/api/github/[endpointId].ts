@@ -1,16 +1,13 @@
 import { RequestParameters } from "@octokit/graphql/dist-types/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+import allTopRepositories from "./endpoints/allTopRepositories";
 import pullRequests from "./endpoints/pullRequests";
 import type { PullRequestsResponse } from "./endpoints/pullRequests";
 import repositories from "./endpoints/repositories";
 import repositoriesContributedTo from "./endpoints/repositoriesContributedTo";
 import topRepositories from "./endpoints/topRepositories";
-import type {
-  RepositoriesResponse,
-  Repository,
-  RepositoryConnection,
-} from "./types";
+import type { RepositoriesResponse, Repository } from "./types";
 import octokitGraphQL from "./utils/octokitGraphQL";
 
 export const endpoints = {
@@ -18,6 +15,7 @@ export const endpoints = {
   repositories,
   repositoriesContributedTo,
   topRepositories,
+  allTopRepositories,
 };
 
 type EndpointId = keyof typeof endpoints;
@@ -31,11 +29,11 @@ type ApiResponse = {
 } & RepositoriesResponse &
   PullRequestsResponse;
 
-type TransformedResponse = RepositoryConnection | Repository[];
+type TransformedResponse = Repository[];
 
 export const customFetch = async (
   endpoint: typeof endpoints[EndpointId],
-  variables: RequestParameters
+  variables?: RequestParameters
 ): Promise<TransformedResponse> =>
   await octokitGraphQL<ApiResponse, TransformedResponse>({
     query: endpoint.query,

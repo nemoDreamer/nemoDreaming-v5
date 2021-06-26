@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { RepositoryConnection } from "../../pages/api/github/types";
+import { Repository } from "../../pages/api/github/types";
 
 import RepoGroup from "./RepoGroup";
 
@@ -11,8 +11,8 @@ const ownTitle = (
 );
 
 const Github: React.FC<{
-  ownRepos: RepositoryConnection | undefined;
-  forkedRepos: RepositoryConnection | undefined;
+  ownRepos: Repository[] | undefined;
+  forkedRepos: Repository[] | undefined;
 }> = ({ ownRepos, forkedRepos }) => (
   <section>
     <h2>Open-Source</h2>

@@ -4,26 +4,16 @@ import useSWR from "swr";
 
 import ArrowLink from "../../components/ArrowLink";
 import Comments from "../../components/Comments";
-import Github from "../../components/Github";
+import RepoGroup from "../../components/Github/RepoGroup";
 import Main from "../../components/Layout/Main";
 import Thumbnail from "../../components/Thumbnail";
 import fetcher from "../../lib/fetcher";
 import { PostData, getAllPosts } from "../../lib/posts";
 import formatDate from "../../utils/formatDate";
 import { customFetch, endpoints } from "../api/github/[endpointId]";
-import { RepositoryConnection } from "../api/github/types";
+import { Repository } from "../api/github/types";
 
 export const DIRECTORY = "work";
-
-// keep references stable:
-const forkVariables = { isFork: true, limit: 6 };
-const ownVariables = { isFork: false, limit: 6 };
-const getApiUrlAndBody = (
-  isFork = false
-): [string, { [key: string]: unknown }] => [
-  "/api/github/repositories",
-  isFork ? forkVariables : ownVariables,
-];
 
 export const getStaticProps: GetStaticProps = async () => ({
   props: {
@@ -33,8 +23,7 @@ export const getStaticProps: GetStaticProps = async () => ({
       branch: "dev",
       filePath: "work/index.tsx",
     },
-    ownRepos: await customFetch(endpoints.repositories, ownVariables),
-    forkedRepos: await customFetch(endpoints.repositories, forkVariables),
+    topRepositories: await customFetch(endpoints.allTopRepositories),
   },
 });
 
@@ -46,26 +35,13 @@ const subHeader = (
 
 const AllWork: React.FC<{
   workPosts: PostData[];
-  ownRepos: RepositoryConnection;
-  forkedRepos: RepositoryConnection;
-}> = ({
-  workPosts,
-  ownRepos: preFetchedOwnRepos,
-  forkedRepos: preFetchedForkedRepos,
-}) => {
-  const { data: ownRepos } = useSWR<RepositoryConnection>(
-    getApiUrlAndBody(),
+  topRepositories: Repository[];
+}> = ({ workPosts, topRepositories: initialTopRepositories }) => {
+  const { data: topRepositories } = useSWR<Repository[]>(
+    ["/api/github/allTopRepositories", undefined],
     fetcher,
     {
-      initialData: preFetchedOwnRepos,
-    }
-  );
-
-  const { data: forkedRepos } = useSWR<RepositoryConnection>(
-    getApiUrlAndBody(true),
-    fetcher,
-    {
-      initialData: preFetchedForkedRepos,
+      initialData: initialTopRepositories,
     }
   );
 
@@ -84,11 +60,12 @@ const AllWork: React.FC<{
           "- [x] temporary repo list",
           "- [ ] make thumbnail grid",
           "- [ ] transfer items from old portfolio...!",
-          "- [ ] use `topRepositories` to better reflect open-source contributions",
+          "- [x] use `topRepositories` to better reflect open-source contributions",
           "- [ ] add larger `featured` to top",
         ]}
       />
       <div className="mb-8">
+        <h2>Client Work</h2>
         {workPosts.map(({ title, slug, date, folder, thumbnail }) => (
           <div key={`work-post-${slug}`} className="mb-2">
             <ArrowLink href={`/work/${slug}`}>
@@ -110,7 +87,10 @@ const AllWork: React.FC<{
           </div>
         ))}
       </div>
-      <Github ownRepos={ownRepos} forkedRepos={forkedRepos} />
+      <div>
+        <h2>Open-Source</h2>
+        <RepoGroup title="Top Repositories" repos={topRepositories} />
+      </div>
     </Main>
   );
 };
