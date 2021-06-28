@@ -1,14 +1,18 @@
 import { RepoForkedIcon, RepoIcon, StarFillIcon } from "@primer/octicons-react";
+import humanNumber from "human-number";
 import Link from "next/link";
 import * as React from "react";
 
 import { Repository } from "../../pages/api/github/types";
 
+import Card from "../Card";
 import Markdown from "../Markdown";
 
-import styles from "./Repo.module.scss";
-
 const login = "nemoDreamer";
+const formatCount = (number: number) =>
+  humanNumber(number, (n): string =>
+    Number.isInteger(n) ? n.toString() : n.toFixed(1)
+  );
 
 const Repo: React.FC<
   {
@@ -40,19 +44,20 @@ const Repo: React.FC<
     <div>
       <Link href={url} passHref={true}>
         <a target="_blank">
-          <div className={styles.repo}>
-            <div className={styles.top}>
-              <div className={styles.name}>
+          <Card hasHover className="cursor-pointer">
+            <Card.Body>
+              <div className="font-bold group-hover:underline">
                 {React.createElement(isOwn ? RepoIcon : RepoForkedIcon, {
                   verticalAlign: "middle",
                   size: 16,
                 })}{" "}
                 {name}
               </div>
-              <Markdown className={styles.description} content={description} />
-            </div>
+              {/* TODO: use `remark-react` to control wrapping `p`! */}
+              <Markdown className="text-sm mb-0" content={description} />
+            </Card.Body>
             {!hideDetails && !!stargazerCount && !!forkCount && (
-              <div className={styles.details}>
+              <Card.Details className="flex flex-row justify-end items-center text-xs">
                 {!!stargazerCount && (
                   <span>
                     <StarFillIcon
@@ -60,19 +65,19 @@ const Repo: React.FC<
                       fill="#ffe000"
                       aria-label="stargazer count"
                     />{" "}
-                    {stargazerCount}
+                    {formatCount(stargazerCount)}
                   </span>
                 )}
                 <span className="separator">|</span>
                 {!!forkCount && (
                   <span>
                     <RepoForkedIcon size={16} aria-label="fork count" />{" "}
-                    {forkCount}
+                    {formatCount(forkCount)}
                   </span>
                 )}
-              </div>
+              </Card.Details>
             )}
-          </div>
+          </Card>
         </a>
       </Link>
     </div>
