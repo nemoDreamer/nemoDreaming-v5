@@ -49,6 +49,7 @@ const Header: React.FC<{
         >
           {/* TODO: make b&w logo for print styles */}
           <Image
+            alt="nemoDreaming Logo"
             src="/logo.png"
             width={640}
             height={199}

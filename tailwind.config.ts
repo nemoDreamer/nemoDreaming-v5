@@ -1,11 +1,15 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
+import type { Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 const blinkFade = 10; // in %
 
-module.exports = {
-  // mode: "jit",
+const config: Config = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   purge: {
-    content: ["./pages/**/*.{jsx,tsx}", "./components/**/*.{jsx,tsx}"],
     options: {
       safelist: [
         // FIXME: these kept getting removed, even though they were explicitly named in the HTML output...:
@@ -20,7 +24,6 @@ module.exports = {
       ],
     },
   },
-  darkMode: false, // or 'media' or 'class'
   theme: {
     // NOTE: overwriting sizes to add `xs`, because adding it using `extends`
     // gives it _higher_ specificity...
@@ -55,14 +58,19 @@ module.exports = {
       },
       keyframes: {
         blink: {
-          "0%": { opacity: 0 },
-          [`${blinkFade}%, 50%`]: { opacity: 1 },
-          [`${50 + blinkFade}%, 100%`]: { opacity: 0 },
+          "0%": { opacity: "0" },
+          [`${blinkFade}%, 50%`]: { opacity: "1" },
+          [`${50 + blinkFade}%, 100%`]: { opacity: "0" },
         },
       },
       screens: {
         // => @media print { ... }
         print: { raw: "print" },
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },
@@ -74,3 +82,4 @@ module.exports = {
   },
   plugins: [],
 };
+export default config;

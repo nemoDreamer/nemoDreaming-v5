@@ -42,7 +42,7 @@ const AllWork: React.FC<{
     fetcher,
     {
       initialData: initialTopRepositories,
-    }
+    },
   );
 
   return (
@@ -71,6 +71,7 @@ const AllWork: React.FC<{
             <ArrowLink href={`/work/${slug}`}>
               <div className="inline-block mr-2 align-middle">
                 <Thumbnail
+                  alt="Preview Thumbnail"
                   image={thumbnail}
                   folder={folder}
                   width={48}

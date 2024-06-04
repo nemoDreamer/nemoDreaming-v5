@@ -16,7 +16,7 @@ export default {
           // is public?
           !repository.isPrivate &&
           // is not own?
-          repository.owner?.login !== login
+          repository.owner?.login !== login,
       )
       .sort(stargazerCountDesc),
 };

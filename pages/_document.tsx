@@ -7,18 +7,16 @@ import Document, {
 } from "next/document";
 import * as React from "react";
 
-const GA_TRACKING_ID = "G-Z8RFGTQHDF";
+const GA_TRACKING_ID = process.env.GA_TRACKING_ID; // "G-Z8RFGTQHDF"
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext): Promise<{
     html: string;
     head?: (JSX.Element | null)[] | undefined;
     styles?:
+      | JSX.Element
+      | React.ReactElement<any, string | React.JSXElementConstructor<any>>[]
       | React.ReactFragment
-      | React.ReactElement<
-          Record<string, unknown>,
-          string | React.JSXElementConstructor<Record<string, unknown>>
-        >[]
       | undefined;
   }> {
     const initialProps = await Document.getInitialProps(ctx);

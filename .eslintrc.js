@@ -1,34 +1,17 @@
-const jsExtensions = ".{j,t}s?(x)";
-
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    node: true,
-  },
   extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
+    "next/core-web-vitals",
+    "plugin:import/recommended",
     "plugin:import/typescript",
-    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
   ],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 12,
-    sourceType: "module",
-  },
   settings: {
-    react: {
-      version: "detect",
+    "import/resolver": {
+      typescript: true,
+      node: true,
     },
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["@typescript-eslint"],
   rules: {
     "no-console": "error",
 
@@ -72,40 +55,6 @@ module.exports = {
         },
       },
     ],
-    // 'import/no-cycle': ['error', {}],
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        devDependencies: [
-          // Jest, Storybook:
-          "**/__{tests,stories,mocks,fixtures}__/**/*" + jsExtensions,
-          "**/*.{{spec,test}?(s),stories}" + jsExtensions,
-          "{,.}{jest,storybook}/**/*" + jsExtensions,
-          // Scripts:
-          "{bin,script}/**/*" + jsExtensions,
-          // Configs:
-          "**/?(*.)config?(.*).{js,json}",
-          "**/.*rc?(.{js,json})",
-        ],
-      },
-    ],
-
-    "@typescript-eslint/no-unused-vars": "error",
+    "import/no-anonymous-default-export": 0,
   },
-  overrides: [
-    {
-      files: "*.{ts,tsx}",
-      rules: {
-        // REACT
-        // --------------------------------------------------
-        "react/prop-types": "off", // <- keeps interfering w/ TypeScript
-      },
-    },
-    {
-      files: "*.{js,jsx}",
-      rules: {
-        "@typescript-eslint/no-var-requires": "off",
-      },
-    },
-  ],
 };

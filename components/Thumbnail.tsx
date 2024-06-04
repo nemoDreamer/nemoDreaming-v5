@@ -13,6 +13,7 @@ const getImageSrc = (folder: string | undefined, image: string): string =>
 
 const Thumbnail: React.FC<{
   image: string;
+  alt: string;
   folder?: string;
   width?: number;
   height?: number;
@@ -20,6 +21,7 @@ const Thumbnail: React.FC<{
   disableRotate?: boolean;
 }> = ({
   image,
+  alt,
   folder,
   width,
   height,
@@ -45,7 +47,7 @@ const Thumbnail: React.FC<{
         {
           [`hover:${rotation}`]: !disableRotate,
           [`group-hover:${rotation}`]: !disableRotate,
-        }
+        },
       )}
       style={
         shouldFill
@@ -59,6 +61,7 @@ const Thumbnail: React.FC<{
       }
     >
       <Image
+        alt={alt}
         className="inline-block"
         src={src}
         {...(shouldFill

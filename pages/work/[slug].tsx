@@ -83,6 +83,7 @@ const Work: React.FC<{
           <div className="square">
             <div className="content">
               <Thumbnail
+                alt="Main Preview Image"
                 image={images[0]}
                 folder={folder}
                 shouldFill
@@ -98,10 +99,11 @@ const Work: React.FC<{
       </div>
 
       <div className="mb-4 grid grid-flow-row grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 justify-center place-items-center">
-        {images.slice(1).map((image) => (
+        {images.slice(1).map((image, i) => (
           <div className="square" key={`image-${image}`}>
             <div className="content">
               <Thumbnail
+                alt={`Preview Thumbnail #${i + 1}`}
                 image={image}
                 folder={folder}
                 // width={thumbnailSize}

@@ -1,10 +1,14 @@
 import Link from "next/link";
 import * as React from "react";
 
-const ArrowLink: React.FC<{
+const ArrowLink = ({
+  children,
+  href,
+  isBack = false,
+}: React.PropsWithChildren<{
   href: string;
   isBack?: boolean;
-}> = ({ children, href, isBack = false }) => (
+}>) => (
   <Link href={href}>
     <a className="group transition-all flex flex-row items-baseline">
       {isBack ? (

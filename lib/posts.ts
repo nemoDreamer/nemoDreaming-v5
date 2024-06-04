@@ -27,7 +27,7 @@ const getSlug = (fileName: string) => fileName.replace(/\.md$/, "");
 
 const processPost = async (directory: string, fileName: string) => {
   const matterResult = matter(
-    fs.readFileSync(getPath(directory, fileName), "utf8")
+    fs.readFileSync(getPath(directory, fileName), "utf8"),
   );
 
   return {
@@ -46,7 +46,7 @@ const getAllPostFileNames = (directory: string) =>
   fs.readdirSync(getPath(directory));
 
 export const getAllPostSlugs = (
-  directory: string
+  directory: string,
 ): { params: { slug: string } }[] =>
   getAllPostFileNames(directory).map((fileName) => ({
     params: {
@@ -57,8 +57,8 @@ export const getAllPostSlugs = (
 export const getAllPosts = async (directory: string): Promise<PostData[]> =>
   Promise.all(
     getAllPostFileNames(directory).map(
-      async (fileName) => await processPost(directory, fileName)
-    )
+      async (fileName) => await processPost(directory, fileName),
+    ),
   ).then((post) =>
     post.sort((a, b) => {
       if (a.date < b.date) {
@@ -66,10 +66,10 @@ export const getAllPosts = async (directory: string): Promise<PostData[]> =>
       } else {
         return -1;
       }
-    })
+    }),
   );
 
 export const getPost = async (
   directory: string,
-  slug: string
+  slug: string,
 ): Promise<PostData> => await processPost(directory, getFileName(slug));

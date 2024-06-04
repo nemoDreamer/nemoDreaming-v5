@@ -11,7 +11,7 @@ import Markdown from "../Markdown";
 const login = "nemoDreamer";
 const formatCount = (number: number) =>
   humanNumber(number, (n): string =>
-    Number.isInteger(n) ? n.toString() : n.toFixed(1)
+    Number.isInteger(n) ? n.toString() : n.toFixed(1),
   );
 
 const Repo: React.FC<

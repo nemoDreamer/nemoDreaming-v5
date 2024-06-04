@@ -32,8 +32,8 @@ type ApiResponse = {
 type TransformedResponse = Repository[];
 
 export const customFetch = async (
-  endpoint: typeof endpoints[EndpointId],
-  variables?: RequestParameters
+  endpoint: (typeof endpoints)[EndpointId],
+  variables?: RequestParameters,
 ): Promise<TransformedResponse> =>
   await octokitGraphQL<ApiResponse, TransformedResponse>({
     query: endpoint.query,
@@ -43,7 +43,7 @@ export const customFetch = async (
 
 export default async (
   { query: { endpointId }, body }: ApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ): Promise<void> => {
   const query = endpoints[endpointId];
   if (!query) {

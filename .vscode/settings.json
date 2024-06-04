@@ -8,5 +8,6 @@
         "plex"
     ],
     "browser-preview.startUrl": "http://localhost:3000",
+    "typescript.tsdk": "./node_modules/typescript/lib",
     "print.colourScheme": "Grayscale"
 }

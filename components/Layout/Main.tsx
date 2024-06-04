@@ -5,9 +5,12 @@ import Container from "../Container";
 
 import styles from "./Main.module.scss";
 
-const Main: React.FC<{
+const Main = ({
+  children,
+  subHeader,
+}: React.PropsWithChildren<{
   subHeader?: React.ReactNode;
-}> = ({ children, subHeader }) => (
+}>) => (
   <main className={"flex-1 z-10 bg-gray-100"}>
     {subHeader && (
       <section

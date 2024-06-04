@@ -10,11 +10,16 @@ export const siteTitle = "nemoDreaming | Philip Blyth";
 export const description =
   "Interactive Media Design & Development Portfolio of Philip Blyth. Projects spanning Web, Print, Graphic, Motion, Photography & Illustration.";
 
-const Layout: React.FC<{
+const Layout = ({
+  children,
+  pageTitle,
+  prompt,
+  isHome = false,
+}: React.PropsWithChildren<{
   pageTitle?: string;
   prompt?: PromptProps;
   isHome?: boolean;
-}> = ({ children, pageTitle, prompt, isHome = false }) => (
+}>) => (
   <div className="flex flex-col min-h-screen">
     <Head>
       <link rel="icon" href="/favicon.ico" />

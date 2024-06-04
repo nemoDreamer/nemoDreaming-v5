@@ -3,12 +3,14 @@ import * as React from "react";
 
 const CardContext = React.createContext({ hasHover: false });
 
-const Card: React.FC<{ hasHover?: boolean; className?: string }> & {
-  Top: typeof CardTop;
-  Body: typeof CardTop;
-  Bottom: typeof CardBottom;
-  Details: typeof CardBottom;
-} = ({ hasHover = false, className, children }) => (
+const Card = ({
+  hasHover = false,
+  className,
+  children,
+}: React.PropsWithChildren<{
+  hasHover?: boolean;
+}> &
+  React.HTMLAttributes<HTMLDivElement>) => (
   <CardContext.Provider value={{ hasHover }}>
     <div
       className={classNames(
@@ -16,7 +18,7 @@ const Card: React.FC<{ hasHover?: boolean; className?: string }> & {
         className,
         {
           "group hover:shadow-xl transition-shadow": hasHover,
-        }
+        },
       )}
     >
       {children}
@@ -24,14 +26,17 @@ const Card: React.FC<{ hasHover?: boolean; className?: string }> & {
   </CardContext.Provider>
 );
 
-const CardTop: React.FC<{ className?: string }> = ({ className, children }) => (
+const CardTop = ({
+  className,
+  children,
+}: React.PropsWithChildren & React.HTMLAttributes<HTMLDivElement>) => (
   <div className={classNames("p-4", className)}>{children}</div>
 );
 
-const CardBottom: React.FC<{ className?: string }> = ({
+const CardBottom = ({
   className,
   children,
-}) => {
+}: React.PropsWithChildren & React.HTMLAttributes<HTMLDivElement>) => {
   const { hasHover } = React.useContext(CardContext);
 
   return (

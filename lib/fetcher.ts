@@ -1,6 +1,6 @@
 const fetcher = async <T>(
   url: string,
-  body: Record<string, unknown> | undefined
+  body: Record<string, unknown> | undefined,
 ): Promise<T> => {
   const res = await fetch(url, {
     method: "POST",

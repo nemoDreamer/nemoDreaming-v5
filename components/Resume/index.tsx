@@ -58,7 +58,7 @@ const Resume: React.FC<{
       {experience.jobs.map(
         (
           { employer, location, date, position, additional, achievements },
-          iJ
+          iJ,
         ) => (
           <div className={styles.item} key={`job-${iJ}`}>
             <h3 className="no-break-inside no-break-after">
@@ -86,7 +86,7 @@ const Resume: React.FC<{
               </ul>
             )}
           </div>
-        )
+        ),
       )}
     </div>
 
@@ -109,7 +109,7 @@ const Resume: React.FC<{
               {major && <span className={styles.detail}>{major}</span>}
             </p>
           </div>
-        )
+        ),
       )}
     </div>
   </div>

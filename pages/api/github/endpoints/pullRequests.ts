@@ -32,7 +32,7 @@ export default {
       .filter(
         (node) =>
           // has different base repository?
-          node.isCrossRepository
+          node.isCrossRepository,
         // is merged?
         // node.state === "MERGED"
       )
@@ -43,8 +43,8 @@ export default {
           !repository.isPrivate &&
           // unique!
           repositories.findIndex(
-            (r) => r.nameWithOwner === repository.nameWithOwner
-          ) === index
+            (r) => r.nameWithOwner === repository.nameWithOwner,
+          ) === index,
       )
       .sort(stargazerCountDesc),
 };
