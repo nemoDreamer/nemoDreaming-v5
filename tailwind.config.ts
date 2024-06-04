@@ -1,5 +1,9 @@
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
+
+const ibm_plex_mono = IBM_Plex_Mono({ weight: "300", subsets: ["latin"] });
+const ibm_plex_sans = IBM_Plex_Sans({ weight: "300", subsets: ["latin"] });
 
 const blinkFade = 10; // in %
 
@@ -37,8 +41,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        mono: ["ibm-plex-mono", ...defaultTheme.fontFamily.mono],
-        sans: ["ibm-plex-sans", ...defaultTheme.fontFamily.sans],
+        mono: [ibm_plex_mono.className, ...defaultTheme.fontFamily.mono],
+        sans: [ibm_plex_sans.className, ...defaultTheme.fontFamily.sans],
       },
       colors: {
         teal: {
