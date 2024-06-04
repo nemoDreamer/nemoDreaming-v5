@@ -43,7 +43,7 @@ const Thumbnail: React.FC<{
   return (
     <div
       className={classNames(
-        "border-solid border-8 border-white shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2",
+        "border-solid border-8 border-white shadow-lg hover:shadow-2xl transition hover:-translate-y-2",
         {
           [`hover:${rotation}`]: !disableRotate,
           [`group-hover:${rotation}`]: !disableRotate,
@@ -66,15 +66,13 @@ const Thumbnail: React.FC<{
         src={src}
         {...(shouldFill
           ? {
-              layout: "fill",
+              fill: true,
             }
           : {
               width: width as number,
               height: height as number,
             })}
         style={{
-          maxWidth: "100%",
-          height: "auto",
           objectFit: "cover",
         }}
       />

@@ -32,6 +32,7 @@ const Header: React.FC<{
 
   return (
     <motion.header
+      id="header"
       className="bg-teal-500 shadow-xl flex z-20 print:hidden"
       transition={transition}
       // NOTE: since we have a shared Layout that won't be replaced:
@@ -55,10 +56,6 @@ const Header: React.FC<{
             height={199}
             className="flex items-center justify-center"
             priority
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-            }}
           />
         </div>
         <div className="z-10">

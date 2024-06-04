@@ -4,7 +4,7 @@ import * as React from "react";
 
 import Markdown from "../Markdown";
 
-import styles from "./Resume.module.scss";
+import styles from "./Resume.module.sass";
 
 const Resume: React.FC<{
   data: ResumeType;

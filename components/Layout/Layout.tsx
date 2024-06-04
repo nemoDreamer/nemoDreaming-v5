@@ -1,3 +1,5 @@
+import classNames from "classnames";
+import { Metadata } from "next";
 import Head from "next/head";
 import * as React from "react";
 
@@ -10,26 +12,31 @@ export const siteTitle = "nemoDreaming | Philip Blyth";
 export const description =
   "Interactive Media Design & Development Portfolio of Philip Blyth. Projects spanning Web, Print, Graphic, Motion, Photography & Illustration.";
 
+export const metadata: Metadata = {
+  icons: { icon: "/favicon.ico" },
+  description,
+  twitter: { card: "summary_large_image" },
+};
+
 const Layout = ({
   children,
   pageTitle,
   prompt,
   isHome = false,
+  className,
 }: React.PropsWithChildren<{
   pageTitle?: string;
   prompt?: PromptProps;
   isHome?: boolean;
-}>) => (
-  <div className="flex flex-col min-h-screen">
+}> &
+  React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={classNames(className, "flex flex-col min-h-screen")}>
     <Head>
-      <link rel="icon" href="/favicon.ico" />
-      <meta name="description" content={description} />
       <meta property="og:image" content="/og-image.png" />
       <meta
         name="og:title"
         content={pageTitle ? `${siteTitle} | ${pageTitle}` : siteTitle}
       />
-      <meta name="twitter:card" content="summary_large_image" />
     </Head>
 
     <Header isHome={isHome} prompt={prompt} />

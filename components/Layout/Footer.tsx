@@ -26,16 +26,7 @@ const Footer: React.FC<{
     >
       Powered by Next.js &
       <span className="inline-block h-3.5 ml-1">
-        <Image
-          src="/vercel.svg"
-          alt="Vercel Logo"
-          width={45}
-          height={10}
-          style={{
-            maxWidth: "100%",
-            height: "auto",
-          }}
-        />
+        <Image src="/vercel.svg" alt="Vercel Logo" width={45} height={10} />
       </span>
     </a>
   </footer>

@@ -1,0 +1,24 @@
+.subHeader
+  @apply font-mono print:font-sans
+
+  h1
+    @apply font-bold text-base text-white print:text-black print:text-2xl
+
+    &::before
+      @apply opacity-50 print:hidden
+
+      content: "# "
+      // margin-left: -1.2em
+
+  code
+    @apply text-white bg-teal-600
+
+  strong
+    @apply text-sm leading-none px-2 pt-0.5 pb-1 rounded-sm text-white bg-teal-600 print:text-base print:p-0 print:text-black print:bg-transparent
+
+.children
+  h2
+    @apply font-bold text-xl
+
+  h3
+    @apply text-lg
