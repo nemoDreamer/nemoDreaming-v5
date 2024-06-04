@@ -72,7 +72,11 @@ const Thumbnail: React.FC<{
               width: width as number,
               height: height as number,
             })}
-        objectFit="cover"
+        style={{
+          maxWidth: "100%",
+          height: "auto",
+          objectFit: "cover",
+        }}
       />
     </div>
   );

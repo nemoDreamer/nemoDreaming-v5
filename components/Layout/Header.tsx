@@ -55,6 +55,10 @@ const Header: React.FC<{
             height={199}
             className="flex items-center justify-center"
             priority
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+            }}
           />
         </div>
         <div className="z-10">

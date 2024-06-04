@@ -20,10 +20,12 @@ const RepoGroup: React.FC<{
             {truncate} of {repos.length}
           </span>
           <div className="mx-1 text-gray-400">|</div>
-          <Link href="https://github.com/nemoDreamer">
-            <a className="text-blue-500" target="_blank">
-              See all ↗︎
-            </a>
+          <Link
+            href="https://github.com/nemoDreamer"
+            className="text-blue-500"
+            target="_blank"
+          >
+            See all ↗︎
           </Link>
         </span>
       )}

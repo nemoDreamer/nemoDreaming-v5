@@ -8,9 +8,7 @@ const Footer: React.FC<{
   <footer className="flex flex-col md:flex-row items-center justify-center md:space-x-1 p-2 text-gray-500 bg-white text-xs print:hidden">
     {!isHome && (
       <span className="font-extralight">
-        <Link href="/">
-          <a>← Back to home</a>
-        </Link>
+        <Link href="/">← Back to home</Link>
         <span>{" | "}</span>
       </span>
     )}
@@ -28,7 +26,16 @@ const Footer: React.FC<{
     >
       Powered by Next.js &
       <span className="inline-block h-3.5 ml-1">
-        <Image src="/vercel.svg" alt="Vercel Logo" width={45} height={10} />
+        <Image
+          src="/vercel.svg"
+          alt="Vercel Logo"
+          width={45}
+          height={10}
+          style={{
+            maxWidth: "100%",
+            height: "auto",
+          }}
+        />
       </span>
     </a>
   </footer>

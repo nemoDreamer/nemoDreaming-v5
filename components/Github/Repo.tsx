@@ -42,43 +42,41 @@ const Repo: React.FC<
 
   return (
     <div>
-      <Link href={url} passHref={true}>
-        <a target="_blank">
-          <Card hasHover className="cursor-pointer">
-            <Card.Body>
-              <div className="font-bold group-hover:underline">
-                {React.createElement(isOwn ? RepoIcon : RepoForkedIcon, {
-                  verticalAlign: "middle",
-                  size: 16,
-                })}{" "}
-                {name}
-              </div>
-              {/* TODO: use `remark-react` to control wrapping `p`! */}
-              <Markdown className="text-sm mb-0" content={description} />
-            </Card.Body>
-            {!hideDetails && !!stargazerCount && !!forkCount && (
-              <Card.Details className="flex flex-row justify-end items-center text-xs">
-                {!!stargazerCount && (
-                  <span>
-                    <StarFillIcon
-                      size={16}
-                      fill="#ffe000"
-                      aria-label="stargazer count"
-                    />{" "}
-                    {formatCount(stargazerCount)}
-                  </span>
-                )}
-                <span className="separator">|</span>
-                {!!forkCount && (
-                  <span>
-                    <RepoForkedIcon size={16} aria-label="fork count" />{" "}
-                    {formatCount(forkCount)}
-                  </span>
-                )}
-              </Card.Details>
-            )}
-          </Card>
-        </a>
+      <Link href={url} passHref={true} target="_blank">
+        <Card hasHover className="cursor-pointer">
+          <Card.Body>
+            <div className="font-bold group-hover:underline">
+              {React.createElement(isOwn ? RepoIcon : RepoForkedIcon, {
+                verticalAlign: "middle",
+                size: 16,
+              })}{" "}
+              {name}
+            </div>
+            {/* TODO: use `remark-react` to control wrapping `p`! */}
+            <Markdown className="text-sm mb-0" content={description} />
+          </Card.Body>
+          {!hideDetails && !!stargazerCount && !!forkCount && (
+            <Card.Details className="flex flex-row justify-end items-center text-xs">
+              {!!stargazerCount && (
+                <span>
+                  <StarFillIcon
+                    size={16}
+                    fill="#ffe000"
+                    aria-label="stargazer count"
+                  />{" "}
+                  {formatCount(stargazerCount)}
+                </span>
+              )}
+              <span className="separator">|</span>
+              {!!forkCount && (
+                <span>
+                  <RepoForkedIcon size={16} aria-label="fork count" />{" "}
+                  {formatCount(forkCount)}
+                </span>
+              )}
+            </Card.Details>
+          )}
+        </Card>
       </Link>
     </div>
   );

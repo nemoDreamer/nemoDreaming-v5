@@ -24,8 +24,8 @@ const Menu: React.FC = () => {
                 $(<span className="text-teal-200">{label}</span>)
               </span>
             ) : (
-              <Link href={route}>
-                <a className="underline text-teal-100">{label}</a>
+              <Link href={route} className="underline text-teal-100">
+                {label}
               </Link>
             )}
 
