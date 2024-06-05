@@ -1,5 +1,4 @@
 # cspell:ignore architected MAMP Figma strategized SDLC Nanoc Endo Königliches Athenäum Eupen
-
 header:
   name: Philip Featherstone Blyth
   email: philip.blyth@gmail.com
@@ -18,7 +17,10 @@ skills:
     development:
       - JavaScript
       - React
+      - Vue
+      - Next.js
       - Node.js
+      - Express
       - Webpack
       - Babel
       - HTML
@@ -37,13 +39,10 @@ skills:
       - Jenkins / Travis / CircleCI
       - Postman
       - Figma / Sketch
-      - Photoshop
-      - Illustrator
-      - Flash
-      - InDesign
-      - AfterEffects
-      - Premiere
+      - Adobe Photoshop / Illustrator / Flash / InDesign / AfterEffects / Premiere
+      - Affinity Photo / Designer / Publisher
       - Unity 3D
+      - Godot
     platforms:
       - Mac OSX
       - "`bash` / `zsh` / `fish`"
@@ -54,7 +53,15 @@ skills:
 experience:
   title: professional experience
   jobs:
-    - employer: Autodesk -  Shotgun / ShotGrid
+    - employer: Unity Technologies – SyncSketch
+      location: Remote
+      date: 2021 – present
+      position: Senior Software Engineer
+      additional: C3
+      achievements:
+        - ...
+
+    - employer: Autodesk – Shotgun / ShotGrid
       location: Remote
       date: 2014 – 2021
       position: Senior Web Application Developer
@@ -66,6 +73,7 @@ experience:
         - Won the Shotgun Hackathon 2 years in a row, with big ROI innovations in UI consistency and performance.
         - Optimized build systems to achieve a 90% reduction in code shipped to clients.
         - Extensively refactored the codebase to promote visual consistency and reusability.
+
     - employer: Church Pension Group
       location: Manhattan, NY
       date: 2010 – 2014
@@ -82,6 +90,7 @@ experience:
         - Created rapid prototyping frameworks on top of Nanoc/Sinatra + Bootstrap CSS.
         - Instructed front~ and back-end team on Ruby development basics and best practices, cross-team code reviews.
         - Increased productivity of development teams by automating common source-control management, pre-flight and deployment tasks via custom bash, Ruby and make scripts.
+
     - employer: nemoDreaming.com
       location: Brussels, BE & New York City, NY
       date: 1999 – 2018
@@ -92,6 +101,7 @@ experience:
         - Created graphic designs for posters, flyers, CD sleeves, book covers, business cards, and logo designs.
         - Wrote lightweight PHP MVC framework “Endo”, used in client projects.
         - Executed status/progress reporting, issue/bug-tracking, time tracking, and invoicing tasks.
+
     - employer: songness.com
       location: Nashville, TN & New York City, NY
       date: 2008 – 2010
@@ -103,6 +113,7 @@ experience:
         - Spearheaded the development of a prototype site in PHP, which encompassed designing identity, creating front-end of the final site, and implementing UI/functionality changes.
         - Created illustrations used throughout the site, designed promotional print material and VC presentations.
         - Managed deployment, migration, and database administration tasks.
+
     - employer: 19rockets
       location: Los Angeles, CA & New York City, NY
       date: 2007 – 2008
@@ -110,6 +121,7 @@ experience:
       achievements:
         - Contributed to all aspects of brainstorming and idea incubating for the startup.
         - In charge of design/GUI/UX for goHuman.com _(successfully sold)_.
+
     - employer: O2Interaction
       location: Leicester, UK
       date: 2003 – 2004
@@ -137,7 +149,7 @@ passions:
   title: Passions
   items:
     - game design & development
-    - board games
+    - board games & TTRPGs
     - teaching children
     - mountain biking
     - hiking

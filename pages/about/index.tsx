@@ -7,8 +7,15 @@ import Markdown from "../../components/Markdown";
 import Resume from "../../components/Resume";
 import resume from "../../data/resume.yaml";
 
+const fixYears = (resume: ResumeType): void => {
+  resume.qualifications.body[0] = resume.qualifications.body[0].replace(
+    "22 years",
+    new Date().getFullYear() - 1999 + " years",
+  );
+};
+
 const SubHeader: React.FC<{ resume: ResumeType }> = ({
-  resume: { header },
+  resume: { header, qualifications },
 }) => (
   <>
     <p className="print:hidden">
@@ -30,15 +37,19 @@ const SubHeader: React.FC<{ resume: ResumeType }> = ({
       <span className="email">{header.email}</span>
     </p>
 
-    <Markdown content={resume.qualifications.body[0]} />
+    <Markdown content={qualifications.body[0]} />
   </>
 );
 
-const About: React.FC = () => (
-  <Main subHeader={<SubHeader resume={resume} />}>
-    <Resume data={resume} skipFirstLine skipHeader />
-  </Main>
-);
+const About: React.FC = () => {
+  fixYears(resume);
+
+  return (
+    <Main subHeader={<SubHeader resume={resume} />}>
+      <Resume data={resume} skipFirstLine skipHeader />
+    </Main>
+  );
+};
 
 export const getStaticProps: GetStaticProps = async () => ({
   props: {

@@ -25,7 +25,7 @@ type ResumeType = {
         position: string;
         additional?: string;
         achievements?: [string];
-      }
+      },
     ];
   };
   education: {
@@ -37,7 +37,7 @@ type ResumeType = {
         date: string;
         degree: string;
         major?: string;
-      }
+      },
     ];
   };
 };
