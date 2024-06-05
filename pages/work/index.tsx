@@ -3,7 +3,7 @@ import * as React from "react";
 import useSWR from "swr";
 
 import ArrowLink from "../../components/ArrowLink";
-// import Comments from "../../components/Comments";
+import Comments from "../../components/Comments";
 import RepoGroup from "../../components/Github/RepoGroup";
 import Main from "../../components/Layout/Main";
 import Thumbnail from "../../components/Thumbnail";
@@ -47,7 +47,7 @@ const AllWork: React.FC<{
 
   return (
     <Main subHeader={subHeader}>
-      {/* <Comments
+      <Comments
         lines={[
           <span key="note">
             <span className="rounded-sm bg-teal-500 text-teal-200">NOTE:</span>{" "}
@@ -63,7 +63,7 @@ const AllWork: React.FC<{
           "- [x] use `topRepositories` to better reflect open-source contributions",
           "- [ ] add larger `featured` to top",
         ]}
-      /> */}
+      />
       <div className="mb-8">
         <h2>Client Work</h2>
         {workPosts.map(({ title, slug, date, folder, thumbnail }) => (
