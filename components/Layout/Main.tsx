@@ -3,7 +3,7 @@ import * as React from "react";
 
 import Container from "../Container";
 
-import styles from "./Main.module.sass";
+import styles from "./Main.module.scss";
 
 const Main = ({
   children,
