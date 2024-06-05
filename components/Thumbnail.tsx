@@ -11,21 +11,31 @@ const rotations = [1, 2, 3, 6];
 const getImageSrc = (folder: string | undefined, image: string): string =>
   folder ? path.join(folder, image) : image;
 
-const Thumbnail: React.FC<{
-  image: string;
-  alt: string;
-  folder?: string;
-  width?: number;
-  height?: number;
-  shouldFill?: boolean;
-  disableRotate?: boolean;
-}> = ({
+const Thumbnail: React.FC<
+  {
+    image: string;
+    alt: string;
+    folder?: string;
+    disableRotate?: boolean;
+  } & (
+    | {
+        shouldFill: true;
+        width?: never;
+        height?: never;
+      }
+    | {
+        shouldFill?: false;
+        width: number;
+        height: number;
+      }
+  )
+> = ({
   image,
   alt,
   folder,
   width,
   height,
-  shouldFill = false,
+  shouldFill,
   disableRotate = false,
 }): JSX.Element => {
   const [rng] = useRandom();
@@ -62,15 +72,14 @@ const Thumbnail: React.FC<{
     >
       <Image
         alt={alt}
-        className="inline-block"
         src={src}
         {...(shouldFill
           ? {
-              fill: true,
+              layout: "fill",
             }
           : {
-              width: width as number,
-              height: height as number,
+              width,
+              height,
             })}
         style={{
           objectFit: "cover",
