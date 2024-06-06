@@ -70,7 +70,6 @@ export const useDialog = () => {
  *     <Dialog
  *       refs={refs}
  *       context={context}
- *       isOpen={isOpen}
  *       getFloatingProps={getFloatingProps}
  *     >
  *       <h2 id={headingId}>Dialog Heading</h2>
@@ -85,7 +84,6 @@ export const useDialog = () => {
 export default function Dialog({
   refs,
   context,
-  isOpen,
   getFloatingProps,
   headingId,
   descriptionId,
@@ -93,20 +91,25 @@ export default function Dialog({
 }: React.PropsWithChildren<
   Omit<ReturnType<typeof useDialog>, "setIsOpen" | "getReferenceProps">
 >) {
-  const { styles } = useTransitionStyles(context, {
+  const { isMounted, styles } = useTransitionStyles(context, {
     duration: 250,
     initial: {
       opacity: "0",
-      transform: "translate(0,50px) scale(0.95)",
+      transform: "translate(0,25px) scale(0.975)",
     },
   });
 
   return (
     <FloatingPortal>
-      {isOpen && (
+      {isMounted && (
         <FloatingOverlay
           lockScroll
           className="z-50 grid place-items-center bg-teal-300/50"
+          style={{
+            opacity: styles.opacity,
+            transitionProperty: styles.transitionProperty,
+            transitionDuration: styles.transitionDuration,
+          }}
         >
           <FloatingFocusManager context={context}>
             <div
