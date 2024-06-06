@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import { createContext, useContext } from "react";
 import seedrandom from "seedrandom";
 
-const Random = React.createContext("seed");
+const Random = createContext("seed");
 
 const rngCache: {
   [key: string]: ReturnType<seedrandom>;

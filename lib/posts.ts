@@ -69,7 +69,5 @@ export const getAllPosts = async (directory: string): Promise<PostData[]> =>
     }),
   );
 
-export const getPost = async (
-  directory: string,
-  slug: string,
-): Promise<PostData> => await processPost(directory, getFileName(slug));
+export const getPost = (directory: string, slug: string): Promise<PostData> =>
+  processPost(directory, getFileName(slug));

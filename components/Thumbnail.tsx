@@ -1,22 +1,21 @@
-import path from "path";
-
 import classNames from "classnames";
-import Image from "next/image";
 import * as React from "react";
 
 import { useRandom } from "../contexts/Random";
 
+import Image from "./Image";
+
 const rotations = [1, 2, 3, 6];
 
-const getImageSrc = (folder: string | undefined, image: string): string =>
-  folder ? path.join(folder, image) : image;
-
-const Thumbnail: React.FC<
+const Thumbnail = React.forwardRef<
+  HTMLDivElement,
   {
     image: string;
     alt: string;
     folder?: string;
     disableRotate?: boolean;
+    id?: string;
+    onClick?: React.MouseEventHandler<HTMLDivElement>;
   } & (
     | {
         shouldFill: true;
@@ -29,15 +28,20 @@ const Thumbnail: React.FC<
         height: number;
       }
   )
-> = ({
-  image,
-  alt,
-  folder,
-  width,
-  height,
-  shouldFill,
-  disableRotate = false,
-}): JSX.Element => {
+>(function Thumbnail(
+  {
+    image,
+    alt,
+    folder,
+    width,
+    height,
+    shouldFill,
+    disableRotate = false,
+    id,
+    onClick,
+  },
+  ref,
+): JSX.Element {
   const [rng] = useRandom();
 
   const getRandom = (arr: unknown[]) =>
@@ -48,10 +52,9 @@ const Thumbnail: React.FC<
 
   const rotation = getRotation();
 
-  const src = getImageSrc(folder, image);
-
   return (
     <div
+      ref={ref}
       className={classNames(
         "border-solid border-8 border-white shadow-lg hover:shadow-2xl transition hover:-translate-y-2",
         {
@@ -69,10 +72,13 @@ const Thumbnail: React.FC<
             }
           : { boxSizing: "content-box", width, height }
       }
+      onClick={onClick}
     >
       <Image
+        id={id}
         alt={alt}
-        src={src}
+        image={image}
+        folder={folder}
         {...(shouldFill
           ? {
               layout: "fill",
@@ -87,6 +93,6 @@ const Thumbnail: React.FC<
       />
     </div>
   );
-};
+});
 
 export default Thumbnail;
