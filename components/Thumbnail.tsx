@@ -10,11 +10,7 @@ const rotations = [1, 2, 3, 6];
 const Thumbnail = React.forwardRef<
   HTMLDivElement,
   {
-    image: string;
-    alt: string;
-    folder?: string;
     disableRotate?: boolean;
-    id?: string;
     onClick?: React.MouseEventHandler<HTMLDivElement>;
   } & (
     | {
@@ -27,18 +23,17 @@ const Thumbnail = React.forwardRef<
         width: number;
         height: number;
       }
-  )
+  ) &
+    Omit<React.ComponentProps<typeof Image>, "onClick">
 >(function Thumbnail(
   {
-    image,
-    alt,
-    folder,
     width,
     height,
     shouldFill,
     disableRotate = false,
-    id,
     onClick,
+    alt, // <- needs to be explicitly set in `Image` for linter
+    ...imageProps
   },
   ref,
 ): JSX.Element {
@@ -75,12 +70,11 @@ const Thumbnail = React.forwardRef<
       onClick={onClick}
     >
       <Image
-        id={id}
         alt={alt}
-        image={image}
-        folder={folder}
+        {...imageProps}
         {...(shouldFill
           ? {
+              fill: true,
               layout: "fill",
             }
           : {

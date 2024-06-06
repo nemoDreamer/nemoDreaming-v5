@@ -113,13 +113,14 @@ const Work: React.FC<{
         <div className="mb-8 xs:grid xs:gap-4 xs:grid-cols-3 md:grid-cols-7">
           <div className="mb-4 xs:mb-0 md:col-span-2 md:-ml-24 md:w-64">
             <div className="square">
-              <div className="content">
+              <div className="content relative">
                 <Thumbnail
                   alt="Main Preview Image"
                   image={images[0]}
                   folder={folder}
                   shouldFill
                   disableRotate
+                  priority
                   onClick={makeThumbnailClickHandler(0)}
                 />
               </div>
@@ -134,12 +135,13 @@ const Work: React.FC<{
         <div className="mb-4 grid grid-flow-row grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 justify-center place-items-center">
           {images.slice(1).map((image, index) => (
             <div className="square" key={`image-${image}`}>
-              <div className="content">
+              <div className="content relative">
                 <Thumbnail
                   alt={`Preview Thumbnail #${index + 1}`}
                   image={image}
                   folder={folder}
                   shouldFill
+                  priority
                   onClick={makeThumbnailClickHandler(
                     index + 1 /* <- +1 because of `.slice` */,
                   )}
@@ -169,6 +171,7 @@ const Work: React.FC<{
               style={{
                 objectFit: "contain",
               }}
+              priority
             />
             <div
               className={classNames(
