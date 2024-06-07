@@ -1,9 +1,8 @@
 import fs from "fs";
-// import fs from "node:fs/promises";
 import path from "path";
 
 import matter, { GrayMatterFile } from "gray-matter";
-// import { getPlaiceholder } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 import remark from "remark";
 import html from "remark-html";
 
@@ -22,6 +21,8 @@ type PostResult = GrayMatterFile<string> & {
 
 export type PostData = Awaited<ReturnType<typeof processPost>>;
 
+export type PostImage = PostData["images"][number];
+
 const getPath = (...parts: string[]) =>
   path.resolve(process.cwd(), "posts", ...parts);
 
@@ -33,18 +34,28 @@ const processPost = async (directory: string, fileName: string) => {
     fs.readFileSync(getPath(directory, fileName), "utf8"),
   ) as PostResult;
 
-  const images = data.folder
-    ? data.images.map((image) => path.join(data.folder as string, image))
-    : data.images;
+  // --- helpers:
 
-  //   await data.images.map(
-  //   async (image) => {
-  //     const file = await fs.readFile(
-  //       path.join(data.folder, image),
-  //     );
-  //     await getPlaiceholder(file);
-  //   },
-  // );
+  const getImageSrc = (image: string) =>
+    data.folder ? path.join(data.folder, image) : image;
+
+  const getImageData = async (image: string) => {
+    const src = getImageSrc(image);
+    const file = fs.readFileSync(path.join("./public", src));
+    const {
+      base64,
+      color: { hex },
+      metadata: { width, height },
+    } = await getPlaiceholder(file, { size: 5 });
+
+    return { src, width, height, blurDataURL: base64, color: hex };
+  };
+
+  // ---
+
+  // enhance images with joined src, metadata and blur-base64
+  const thumbnail = await getImageData(data.thumbnail);
+  const images = await Promise.all(data.images.map(getImageData));
 
   return {
     slug: getSlug(fileName),
@@ -56,6 +67,7 @@ const processPost = async (directory: string, fileName: string) => {
     // add front-matter:
     ...data,
     // add images:
+    thumbnail,
     images,
   };
 };

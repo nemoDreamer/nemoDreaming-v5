@@ -69,11 +69,16 @@ const Work: React.FC<{
     [setIsOpen, setImageIndex],
   );
 
-  const prevImage = React.useCallback(() => {
+  const currentImage = React.useMemo(
+    () => images[imageIndex],
+    [images, imageIndex],
+  );
+
+  const onPrevImage = React.useCallback(() => {
     setImageIndex((imageIndex + images.length - 1) % images.length);
   }, [imageIndex, images.length]);
 
-  const nextImage = React.useCallback(() => {
+  const onNextImage = React.useCallback(() => {
     setImageIndex((imageIndex + 1) % images.length);
   }, [imageIndex, images.length]);
 
@@ -107,8 +112,9 @@ const Work: React.FC<{
               <div className="content relative">
                 <Thumbnail
                   alt="Main Preview Image"
-                  src={images[0]}
+                  image={images[0]}
                   shouldFill
+                  sizes="(max-width: 768px) 256px, (max-width: 480px) 160px, 480px"
                   disableRotate
                   priority
                   onClick={makeThumbnailClickHandler(0)}
@@ -124,13 +130,14 @@ const Work: React.FC<{
 
         <div className="mb-4 grid grid-flow-row grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 justify-center place-items-center">
           {images.slice(1).map((image, index) => (
-            <div className="square" key={`image-${image}`}>
+            <div className="square" key={`image-${image.src}`}>
               <div className="content relative">
                 <Thumbnail
                   alt={`Preview Thumbnail #${index + 1}`}
-                  src={image}
+                  image={image}
                   shouldFill
-                  priority
+                  // NOTE: this is the responsive grid break-points translated...:
+                  sizes="(max-width: 480px) 240px, (max-width: 640px) 213px, (max-width: 768px) 192px, 153px"
                   onClick={makeThumbnailClickHandler(
                     index + 1 /* <- +1 because of `.slice` */,
                   )}
@@ -150,14 +157,18 @@ const Work: React.FC<{
         >
           <div className="relative">
             <Image
+              key={imageIndex} // <- force new instance of Image (to show blur)
               id={headingId}
               alt={`Preview #${imageIndex + 1}`}
-              src={images[imageIndex]}
-              width={640}
-              height={480}
+              src={currentImage.src}
+              blurDataURL={currentImage.blurDataURL}
+              width={Math.min(640, currentImage.width)}
+              height={Math.min(480, currentImage.height)}
+              placeholder="blur"
               className="transition-[height]"
               style={{
                 objectFit: "contain",
+                backgroundColor: currentImage.color,
               }}
               priority
             />
@@ -166,7 +177,7 @@ const Work: React.FC<{
                 CAROUSEL_NAV_CLASSES,
                 "left-0 bg-gradient-to-r",
               )}
-              onClick={prevImage}
+              onClick={onPrevImage}
             >
               <div className="bg-black p-4 leading-none text-white font-sans">
                 &larr;
@@ -177,7 +188,7 @@ const Work: React.FC<{
                 CAROUSEL_NAV_CLASSES,
                 "right-0 bg-gradient-to-l",
               )}
-              onClick={nextImage}
+              onClick={onNextImage}
             >
               <div className="bg-black p-4 leading-none text-white font-sans">
                 &rarr;

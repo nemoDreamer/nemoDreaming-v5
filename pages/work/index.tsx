@@ -72,7 +72,7 @@ const AllWork: React.FC<{
               <div className="inline-block mr-2 align-middle">
                 <Thumbnail
                   alt="Preview Thumbnail"
-                  src={thumbnail}
+                  image={thumbnail}
                   width={48}
                   height={48}
                 />

@@ -2,6 +2,8 @@ import classNames from "classnames";
 import Image from "next/image";
 import * as React from "react";
 
+import { type PostImage } from "@/lib/posts";
+
 import { useRandom } from "../contexts/Random";
 
 const rotations = [1, 2, 3, 6];
@@ -9,6 +11,7 @@ const rotations = [1, 2, 3, 6];
 const Thumbnail = React.forwardRef<
   HTMLDivElement,
   {
+    image: PostImage;
     disableRotate?: boolean;
     onClick?: React.MouseEventHandler<HTMLDivElement>;
   } & (
@@ -23,9 +26,13 @@ const Thumbnail = React.forwardRef<
         height: number;
       }
   ) &
-    Omit<React.ComponentProps<typeof Image>, "onClick">
+    Omit<
+      React.ComponentProps<typeof Image>,
+      "onClick" | "src" | "blurDataURL" | "placeholder" | "color"
+    >
 >(function Thumbnail(
   {
+    image,
     width,
     height,
     shouldFill,
@@ -71,10 +78,12 @@ const Thumbnail = React.forwardRef<
       <Image
         alt={alt}
         {...imageProps}
+        src={image.src}
+        blurDataURL={image.blurDataURL}
+        placeholder="blur"
         {...(shouldFill
           ? {
               fill: true,
-              layout: "fill",
             }
           : {
               width,
@@ -82,6 +91,7 @@ const Thumbnail = React.forwardRef<
             })}
         style={{
           objectFit: "cover",
+          backgroundColor: image.color,
         }}
       />
     </div>
