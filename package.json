@@ -15,7 +15,10 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@floating-ui/react": "^0.26.16",
+    "@mui/lab": "^5.0.0-alpha.170",
     "@next/bundle-analyzer": "^14.2.3",
     "@octokit/graphql": "^4.6.4",
     "@plaiceholder/next": "^3.0.0",

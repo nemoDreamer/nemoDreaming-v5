@@ -1,15 +1,21 @@
+import Masonry from "@mui/lab/Masonry";
 import Link from "next/link";
 
 import { Repository } from "../../pages/api/github/types";
 
 import Repo from "./Repo";
 
-const RepoGroup: React.FC<{
+const RepoGroup = ({
+  title,
+  repos,
+  truncate = 10,
+  hideDetails = false,
+}: {
   title: string | React.ReactNode;
   repos: Repository[] | undefined;
   truncate?: number;
   hideDetails?: boolean;
-}> = ({ title, repos, truncate = 10, hideDetails = false }) => (
+}) => (
   <div className="mb-4">
     <h3 className="flex flex-row items-center">
       <span className="flex-1">{title}</span>
@@ -29,7 +35,9 @@ const RepoGroup: React.FC<{
         </span>
       )}
     </h3>
-    <div className="grid grid-flow-row gap-4 grid-cols-1 xs:grid-cols-2">
+    {/* <div className="grid grid-flow-row gap-4 grid-cols-1 xs:grid-cols-2">
+    </div> */}
+    <Masonry columns={2} spacing={2}>
       {repos ? (
         repos
           .slice(0, truncate)
@@ -39,7 +47,7 @@ const RepoGroup: React.FC<{
       ) : (
         <span>Loading...</span>
       )}
-    </div>
+    </Masonry>
   </div>
 );
 
