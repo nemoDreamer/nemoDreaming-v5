@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Image from "next/image";
-import * as React from "react";
+import { forwardRef } from "react";
 
 import { type PostImage } from "@/lib/posts";
 
@@ -8,7 +8,7 @@ import { useRandom } from "../contexts/Random";
 
 const rotations = [1, 2, 3, 6];
 
-const Thumbnail = React.forwardRef<
+const Thumbnail = forwardRef<
   HTMLDivElement,
   {
     image: PostImage;

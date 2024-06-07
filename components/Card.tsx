@@ -1,7 +1,7 @@
 import classNames from "classnames";
-import * as React from "react";
+import { createContext, useContext } from "react";
 
-const CardContext = React.createContext({ hasHover: false });
+const CardContext = createContext({ hasHover: false });
 
 const Card = ({
   hasHover = false,
@@ -37,7 +37,7 @@ const CardBottom = ({
   className,
   children,
 }: React.PropsWithChildren & React.HTMLAttributes<HTMLDivElement>) => {
-  const { hasHover } = React.useContext(CardContext);
+  const { hasHover } = useContext(CardContext);
 
   return (
     <div

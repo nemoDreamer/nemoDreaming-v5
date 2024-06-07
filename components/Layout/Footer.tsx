@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import * as React from "react";
+import React from "react";
 
 const Footer: React.FC<{
   isHome: boolean;

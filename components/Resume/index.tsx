@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import startCase from "lodash.startcase";
-import * as React from "react";
+import { Fragment } from "react";
 
 import Markdown from "../Markdown";
 
@@ -42,13 +42,13 @@ const Resume: React.FC<{
       {/* TODO: use table instead? Hm, should be responsive, tho... */}
       <div className={styles.groups}>
         {Object.entries(skills.groups).map(([group, items], iG) => (
-          <React.Fragment key={`item-${iG}`}>
+          <Fragment key={`item-${iG}`}>
             <div className={styles.label}>{startCase(group)}</div>
             <Markdown
               className="items col-span-2 no-break-inside"
               content={items.join(" | ")}
             />
-          </React.Fragment>
+          </Fragment>
         ))}
       </div>
     </div>

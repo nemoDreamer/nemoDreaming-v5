@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { type GetStaticPaths, type GetStaticProps } from "next";
 import Image from "next/image";
-import * as React from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import ArrowLink from "../../components/ArrowLink";
 import Dialog, { useDialog } from "../../components/Dialog";
@@ -59,9 +59,9 @@ const Work: React.FC<{
     descriptionId,
   } = useDialog();
 
-  const [imageIndex, setImageIndex] = React.useState(0);
+  const [imageIndex, setImageIndex] = useState(0);
 
-  const makeThumbnailClickHandler = React.useCallback(
+  const makeThumbnailClickHandler = useCallback(
     (index: number) => () => {
       setImageIndex(index);
       setIsOpen(true);
@@ -69,16 +69,13 @@ const Work: React.FC<{
     [setIsOpen, setImageIndex],
   );
 
-  const currentImage = React.useMemo(
-    () => images[imageIndex],
-    [images, imageIndex],
-  );
+  const currentImage = useMemo(() => images[imageIndex], [images, imageIndex]);
 
-  const onPrevImage = React.useCallback(() => {
+  const onPrevImage = useCallback(() => {
     setImageIndex((imageIndex + images.length - 1) % images.length);
   }, [imageIndex, images.length]);
 
-  const onNextImage = React.useCallback(() => {
+  const onNextImage = useCallback(() => {
     setImageIndex((imageIndex + 1) % images.length);
   }, [imageIndex, images.length]);
 

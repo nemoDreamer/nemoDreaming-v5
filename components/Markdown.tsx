@@ -1,4 +1,4 @@
-import * as React from "react";
+import { createElement } from "react";
 import remark from "remark";
 import html from "remark-html";
 
@@ -10,7 +10,7 @@ const Markdown: React.FC<{
   tag?: string;
   className?: string;
 }> = ({ content, tag = "div", className }) =>
-  React.createElement(tag, {
+  createElement(tag, {
     className,
     // TODO: use `remark-react` to avoid this!
     dangerouslySetInnerHTML: { __html: toHTML(content) },

@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
-import * as React from "react";
+import React from "react";
 
 import Container from "../Container";
 
@@ -31,7 +31,7 @@ const Header: React.FC<{
   };
 
   return (
-    <motion.header
+    <m.header
       id="header"
       className="bg-teal-500 shadow-xl flex z-20 print:hidden"
       transition={transition}
@@ -63,7 +63,7 @@ const Header: React.FC<{
           <Prompt {...prompt} />
         </div>
       </Container>
-    </motion.header>
+    </m.header>
   );
 };
 

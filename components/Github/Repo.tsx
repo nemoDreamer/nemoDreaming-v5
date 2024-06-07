@@ -1,7 +1,7 @@
 import { RepoForkedIcon, RepoIcon, StarFillIcon } from "@primer/octicons-react";
 import humanNumber from "human-number";
 import Link from "next/link";
-import * as React from "react";
+import { createElement } from "react";
 
 import { Repository } from "../../pages/api/github/types";
 
@@ -46,7 +46,7 @@ const Repo: React.FC<
         <Card hasHover className="cursor-pointer">
           <Card.Body>
             <div className="font-bold group-hover:underline">
-              {React.createElement(isOwn ? RepoIcon : RepoForkedIcon, {
+              {createElement(isOwn ? RepoIcon : RepoForkedIcon, {
                 verticalAlign: "middle",
                 size: 16,
               })}{" "}

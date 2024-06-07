@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { LazyMotion, domAnimation } from "framer-motion";
 import type { AppProps } from "next/app";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import Script from "next/script";
@@ -40,27 +41,28 @@ const App = ({
   });
 
   return (
-    <Layout
-      pageTitle={pageTitle}
-      prompt={prompt}
-      isHome={isHome}
-      className={classNames(
-        ibm_plex_mono.variable,
-        ibm_plex_sans.variable,
-        "font-sans",
-      )}
-    >
-      <Component {...pageProps} />
+    <LazyMotion features={domAnimation}>
+      <Layout
+        pageTitle={pageTitle}
+        prompt={prompt}
+        isHome={isHome}
+        className={classNames(
+          ibm_plex_mono.variable,
+          ibm_plex_sans.variable,
+          "font-sans",
+        )}
+      >
+        <Component {...pageProps} />
 
-      {/* Global site tag (gtag.js) - Google Analytics */}
-      <Script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-      />
-      <Script
-        id="ga-tracking"
-        dangerouslySetInnerHTML={{
-          __html: `
+        {/* Global site tag (gtag.js) - Google Analytics */}
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+        />
+        <Script
+          id="ga-tracking"
+          dangerouslySetInnerHTML={{
+            __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag() {
                   dataLayer.push(arguments);
@@ -70,9 +72,10 @@ const App = ({
                   page_path: window.location.pathname,
                 });
               `,
-        }}
-      />
-    </Layout>
+          }}
+        />
+      </Layout>
+    </LazyMotion>
   );
 };
 

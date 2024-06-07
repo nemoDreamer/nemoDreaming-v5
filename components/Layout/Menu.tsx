@@ -1,6 +1,6 @@
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import * as React from "react";
+import { Fragment } from "react";
 
 const items = [
   { route: "/", label: "Home" },
@@ -18,7 +18,7 @@ const Menu: React.FC = () => {
         const isCurrent = route === pathname;
 
         return (
-          <React.Fragment key={`item-${label}`}>
+          <Fragment key={`item-${label}`}>
             {isCurrent ? (
               <span className="text-teal-100">
                 $(<span className="text-teal-200">{label}</span>)
@@ -30,7 +30,7 @@ const Menu: React.FC = () => {
             )}
 
             {!isLast && <span className="text-teal-400">{" / "}</span>}
-          </React.Fragment>
+          </Fragment>
         );
       })}
     </div>

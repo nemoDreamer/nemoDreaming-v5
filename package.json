@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.16",
+    "@next/bundle-analyzer": "^14.2.3",
     "@octokit/graphql": "^4.6.4",
     "@plaiceholder/next": "^3.0.0",
     "@primer/octicons-react": "^19.9.0",
