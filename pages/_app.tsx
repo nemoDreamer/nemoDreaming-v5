@@ -4,7 +4,6 @@ import type { AppProps } from "next/app";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import Script from "next/script";
 import { useReportWebVitals } from "next/web-vitals";
-import React from "react";
 
 import Layout from "../components/Layout/Layout";
 

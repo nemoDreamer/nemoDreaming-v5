@@ -1,5 +1,4 @@
 import type { GetStaticProps } from "next";
-import React from "react";
 
 import ArrowLink from "../../components/ArrowLink";
 import Main from "../../components/Layout/Main";

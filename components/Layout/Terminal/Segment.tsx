@@ -1,5 +1,3 @@
-import React from "react";
-
 import Caret from "./Caret";
 
 const height = 20;

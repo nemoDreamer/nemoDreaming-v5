@@ -1,5 +1,3 @@
-import React from "react";
-
 type Comment = string | React.ReactNode;
 
 const Comment = ({ children }: { children: Comment }) => (

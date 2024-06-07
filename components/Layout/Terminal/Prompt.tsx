@@ -1,5 +1,3 @@
-import React from "react";
-
 import Segment from "./Segment";
 
 // TODO: make variations? Bake into tailwind.config?

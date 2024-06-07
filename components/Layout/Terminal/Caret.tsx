@@ -1,5 +1,3 @@
-import React from "react";
-
 const Caret: React.FC<{
   height?: number;
   fill?: string;

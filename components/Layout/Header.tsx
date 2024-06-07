@@ -1,6 +1,5 @@
 import { m } from "framer-motion";
 import Image from "next/image";
-import React from "react";
 
 import Container from "../Container";
 

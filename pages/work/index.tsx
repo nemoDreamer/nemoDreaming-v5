@@ -1,5 +1,4 @@
 import { type GetStaticProps } from "next";
-import React from "react";
 import useSWR from "swr";
 
 import ArrowLink from "../../components/ArrowLink";

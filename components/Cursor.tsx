@@ -1,5 +1,3 @@
-import React from "react";
-
 import { segmentConfigs } from "./Layout/Terminal/Prompt";
 
 const shades = ["█", "▓", "▒", "░"];

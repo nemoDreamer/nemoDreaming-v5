@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import { Metadata } from "next";
 import Head from "next/head";
-import React from "react";
 
 import Footer from "./Footer";
 import Header from "./Header";
