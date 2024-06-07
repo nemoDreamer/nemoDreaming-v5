@@ -1,23 +1,26 @@
 import fs from "fs";
+// import fs from "node:fs/promises";
 import path from "path";
 
 import matter, { GrayMatterFile } from "gray-matter";
+// import { getPlaiceholder } from "plaiceholder";
 import remark from "remark";
 import html from "remark-html";
 
-export type PostData = GrayMatterFile<string>["data"] & {
-  slug: string;
-  title: string;
-  date: string;
-  content: string;
-  contentHtml: string;
-  url?: string;
-  category?: string;
-  technologies?: string[];
-  folder?: string;
-  thumbnail: string;
-  images: string[];
+type PostResult = GrayMatterFile<string> & {
+  data: {
+    title: string;
+    date: string;
+    url?: string;
+    category?: string;
+    technologies?: string[];
+    folder?: string;
+    thumbnail: string;
+    images: string[];
+  };
 };
+
+export type PostData = Awaited<ReturnType<typeof processPost>>;
 
 const getPath = (...parts: string[]) =>
   path.resolve(process.cwd(), "posts", ...parts);
@@ -26,20 +29,35 @@ const getFileName = (slug: string) => `${slug}.md`;
 const getSlug = (fileName: string) => fileName.replace(/\.md$/, "");
 
 const processPost = async (directory: string, fileName: string) => {
-  const matterResult = matter(
+  const { content, data } = matter(
     fs.readFileSync(getPath(directory, fileName), "utf8"),
-  );
+  ) as PostResult;
+
+  const images = data.folder
+    ? data.images.map((image) => path.join(data.folder as string, image))
+    : data.images;
+
+  //   await data.images.map(
+  //   async (image) => {
+  //     const file = await fs.readFile(
+  //       path.join(data.folder, image),
+  //     );
+  //     await getPlaiceholder(file);
+  //   },
+  // );
 
   return {
     slug: getSlug(fileName),
     // parse content:
     contentHtml: await remark()
       .use(html)
-      .process(matterResult.content)
+      .process(content)
       .then((content) => content.toString()),
     // add front-matter:
-    ...matterResult.data,
-  } as PostData;
+    ...data,
+    // add images:
+    images,
+  };
 };
 
 const getAllPostFileNames = (directory: string) =>

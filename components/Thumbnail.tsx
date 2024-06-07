@@ -1,9 +1,8 @@
 import classNames from "classnames";
+import Image from "next/image";
 import * as React from "react";
 
 import { useRandom } from "../contexts/Random";
-
-import Image from "./Image";
 
 const rotations = [1, 2, 3, 6];
 

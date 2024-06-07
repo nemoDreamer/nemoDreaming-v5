@@ -1,15 +1,15 @@
 import classNames from "classnames";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { type GetStaticPaths, type GetStaticProps } from "next";
+import Image from "next/image";
 import * as React from "react";
 
 import ArrowLink from "../../components/ArrowLink";
 import Dialog, { useDialog } from "../../components/Dialog";
-import Image from "../../components/Image";
 import Main from "../../components/Layout/Main";
 import Separator from "../../components/Separator";
 import Thumbnail from "../../components/Thumbnail";
 import Random from "../../contexts/Random";
-import { PostData, getAllPostSlugs, getPost } from "../../lib/posts";
+import { type PostData, getAllPostSlugs, getPost } from "../../lib/posts";
 import formatDate from "../../utils/formatDate";
 
 import { DIRECTORY } from ".";
@@ -40,22 +40,13 @@ const subHeader = (
   </ArrowLink>
 );
 
-// FIXME: type T = keyof React.HTMLAttributes<HTMLDivElement>
-const CAROUSEL_NAV_CLASSES =
+const CAROUSEL_NAV_CLASSES: React.HTMLAttributes<HTMLDivElement>["className"] =
   "opacity-0 hover:opacity-100 transition-opacity duration-300 from-black/25 via-35% via-black/10 to-transparent w-1/4 absolute top-0 bottom-0 grid place-items-center cursor-pointer select-none";
 
 const Work: React.FC<{
   workPost: PostData;
 }> = ({
-  workPost: {
-    title,
-    date,
-    contentHtml,
-    category,
-    technologies,
-    folder,
-    images,
-  },
+  workPost: { title, date, contentHtml, category, technologies, images },
 }) => {
   const {
     refs,
@@ -116,8 +107,7 @@ const Work: React.FC<{
               <div className="content relative">
                 <Thumbnail
                   alt="Main Preview Image"
-                  image={images[0]}
-                  folder={folder}
+                  src={images[0]}
                   shouldFill
                   disableRotate
                   priority
@@ -138,8 +128,7 @@ const Work: React.FC<{
               <div className="content relative">
                 <Thumbnail
                   alt={`Preview Thumbnail #${index + 1}`}
-                  image={image}
-                  folder={folder}
+                  src={image}
                   shouldFill
                   priority
                   onClick={makeThumbnailClickHandler(
@@ -163,8 +152,7 @@ const Work: React.FC<{
             <Image
               id={headingId}
               alt={`Preview #${imageIndex + 1}`}
-              image={images[imageIndex]}
-              folder={folder}
+              src={images[imageIndex]}
               width={640}
               height={480}
               className="transition-[height]"

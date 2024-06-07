@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { type GetStaticProps } from "next";
 import * as React from "react";
 import useSWR from "swr";
 
@@ -8,10 +8,10 @@ import RepoGroup from "../../components/Github/RepoGroup";
 import Main from "../../components/Layout/Main";
 import Thumbnail from "../../components/Thumbnail";
 import fetcher from "../../lib/fetcher";
-import { PostData, getAllPosts } from "../../lib/posts";
+import { type PostData, getAllPosts } from "../../lib/posts";
 import formatDate from "../../utils/formatDate";
 import { customFetch, endpoints } from "../api/github/[endpointId]";
-import { Repository } from "../api/github/types";
+import { type Repository } from "../api/github/types";
 
 export const DIRECTORY = "work";
 
@@ -66,14 +66,13 @@ const AllWork: React.FC<{
       />
       <div className="mb-8">
         <h2>Client Work</h2>
-        {workPosts.map(({ title, slug, date, folder, thumbnail }) => (
+        {workPosts.map(({ title, slug, date, thumbnail }) => (
           <div key={`work-post-${slug}`} className="mb-2">
             <ArrowLink href={`/work/${slug}`}>
               <div className="inline-block mr-2 align-middle">
                 <Thumbnail
                   alt="Preview Thumbnail"
-                  image={thumbnail}
-                  folder={folder}
+                  src={thumbnail}
                   width={48}
                   height={48}
                 />
