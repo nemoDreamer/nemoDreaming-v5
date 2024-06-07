@@ -23,6 +23,9 @@ export type PostData = Awaited<ReturnType<typeof processPost>>;
 
 export type PostImage = PostData["images"][number];
 
+const MAX_WIDTH = 1280;
+const MAX_HEIGHT = 960;
+
 const getPath = (...parts: string[]) =>
   path.resolve(process.cwd(), "posts", ...parts);
 
@@ -45,8 +48,23 @@ const processPost = async (directory: string, fileName: string) => {
     const {
       base64,
       color: { hex },
-      metadata: { width, height },
-    } = await getPlaiceholder(file, { size: 5 });
+      metadata: { width: _width, height: _height },
+    } = await getPlaiceholder(file, {
+      size: 15,
+      // saturation: 0.5,
+      // brightness: 2,
+    });
+
+    let width = _width;
+    let height = _height;
+    if (width > MAX_WIDTH || height > MAX_HEIGHT) {
+      const widthRatio = MAX_WIDTH / width;
+      const heightRatio = MAX_HEIGHT / height;
+      const scalingFactor = Math.min(widthRatio, heightRatio);
+
+      width = Math.round(width * scalingFactor);
+      height = Math.round(height * scalingFactor);
+    }
 
     return { src, width, height, blurDataURL: base64, color: hex };
   };

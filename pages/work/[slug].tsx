@@ -160,11 +160,10 @@ const Work: React.FC<{
               key={imageIndex} // <- force new instance of Image (to show blur)
               id={headingId}
               alt={`Preview #${imageIndex + 1}`}
-              src={currentImage.src}
-              blurDataURL={currentImage.blurDataURL}
-              width={Math.min(640, currentImage.width)}
-              height={Math.min(480, currentImage.height)}
+              {...currentImage}
               placeholder="blur"
+              sizes="100vw"
+              quality={85}
               className="transition-[height]"
               style={{
                 objectFit: "contain",
