@@ -59,6 +59,7 @@ const Thumbnail = forwardRef<
       className={classNames(
         "border-solid border-8 border-white shadow-lg hover:shadow-2xl transition hover:-translate-y-2",
         {
+          "cursor-pointer": !!onClick,
           [`hover:${rotation}`]: !disableRotate,
           [`group-hover:${rotation}`]: !disableRotate,
         },

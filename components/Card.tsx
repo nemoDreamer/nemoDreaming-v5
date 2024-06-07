@@ -14,10 +14,11 @@ const Card = ({
   <CardContext.Provider value={{ hasHover }}>
     <div
       className={classNames(
-        "bg-white shadow-md border border-solid border-gray-200",
+        "bg-white border border-solid border-gray-200",
+        "shadow-md transition-[shadow,transform] transform",
         className,
         {
-          "group hover:shadow-xl transition-shadow": hasHover,
+          "group hover:shadow-xl hover:-translate-y-1": hasHover,
         },
       )}
     >
