@@ -14,11 +14,7 @@ const formatCount = (number: number) =>
     Number.isInteger(n) ? n.toString() : n.toFixed(1),
   );
 
-const Repo: React.FC<
-  {
-    hideDetails?: boolean;
-  } & Repository
-> = ({
+const Repo = ({
   url,
   name: childName,
   nameWithOwner,
@@ -28,7 +24,9 @@ const Repo: React.FC<
   forkCount: childForkCount,
   stargazerCount: childStargazerCount,
   hideDetails = false,
-}) => {
+}: {
+  hideDetails?: boolean;
+} & Repository) => {
   const isOwn = (childName && !nameWithOwner) || owner?.login === login;
 
   let name = isOwn ? childName : nameWithOwner;

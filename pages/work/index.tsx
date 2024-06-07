@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps = async () => ({
       branch: "dev",
       filePath: "work/index.tsx",
     },
-    topRepositories: await customFetch(endpoints.allTopRepositories),
+    repos: await customFetch(endpoints.allTopRepositories),
   },
 });
 
@@ -34,13 +34,13 @@ const subHeader = (
 
 const AllWork: React.FC<{
   workPosts: PostData[];
-  topRepositories: Repository[];
-}> = ({ workPosts, topRepositories: initialTopRepositories }) => {
-  const { data: topRepositories } = useSWR<Repository[]>(
+  repos: Repository[];
+}> = ({ workPosts, repos: initialRepos }) => {
+  const { data: repos } = useSWR<Repository[]>(
     ["/api/github/allTopRepositories", undefined],
     fetcher,
     {
-      initialData: initialTopRepositories,
+      initialData: initialRepos,
     },
   );
 
@@ -88,7 +88,7 @@ const AllWork: React.FC<{
       </div>
       <div>
         <h2>Open-Source</h2>
-        <RepoGroup title="Top Repositories" repos={topRepositories} />
+        <RepoGroup title="Top Repositories" repos={repos} truncate={10} />
       </div>
     </Main>
   );

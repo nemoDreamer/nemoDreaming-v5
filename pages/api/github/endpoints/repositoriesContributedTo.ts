@@ -10,7 +10,5 @@ export default {
   responseTransform: ({
     viewer: { repositories },
   }: RepositoriesResponse): Repository[] =>
-    repositories.nodes
-      .filter((repository) => !repository.isPrivate)
-      .sort(stargazerCountDesc),
+    repositories.nodes.sort(stargazerCountDesc),
 };
