@@ -10,7 +10,7 @@ import {
   useRole,
   useTransitionStyles,
 } from "@floating-ui/react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 // import "./styles.css";
 
@@ -70,6 +70,7 @@ export const useDialog = () => {
  *     <Dialog
  *       refs={refs}
  *       context={context}
+ *       setIsOpen={setIsOpen}
  *       getFloatingProps={getFloatingProps}
  *     >
  *       <h2 id={headingId}>Dialog Heading</h2>
@@ -84,12 +85,13 @@ export const useDialog = () => {
 export default function Dialog({
   refs,
   context,
+  setIsOpen,
   getFloatingProps,
   headingId,
   descriptionId,
   children,
 }: React.PropsWithChildren<
-  Omit<ReturnType<typeof useDialog>, "setIsOpen" | "getReferenceProps">
+  Omit<ReturnType<typeof useDialog>, "isOpen" | "getReferenceProps">
 >) {
   const { isMounted, styles } = useTransitionStyles(context, {
     duration: 250,
@@ -98,6 +100,10 @@ export default function Dialog({
       transform: "translate(0,25px) scale(0.975)",
     },
   });
+
+  const handleCloseClick = useCallback(() => {
+    setIsOpen(false);
+  }, [setIsOpen]);
 
   return (
     <FloatingPortal>
@@ -113,7 +119,7 @@ export default function Dialog({
         >
           <FloatingFocusManager context={context}>
             <div
-              className="trans m-4 p-4 bg-white rounded-md shadow-2xl font-sans outline-none"
+              className="relative m-4 p-4 bg-white shadow-2xl font-sans outline-none transition-[height]"
               ref={refs.setFloating}
               aria-labelledby={headingId}
               aria-describedby={descriptionId}
@@ -125,6 +131,12 @@ export default function Dialog({
               }}
             >
               {children}
+              <button
+                className="absolute top-0 right-0 z-50 bg-white text-black hover:bg-black hover:text-white font-mono grid place-items-center p-0 m-0 w-8 h-8 leading-none outline-none border-none"
+                onClick={handleCloseClick}
+              >
+                &times;
+              </button>
             </div>
           </FloatingFocusManager>
         </FloatingOverlay>

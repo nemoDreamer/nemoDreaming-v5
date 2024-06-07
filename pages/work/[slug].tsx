@@ -51,7 +51,7 @@ const Work: React.FC<{
   const {
     refs,
     context,
-    isOpen,
+    // isOpen,
     setIsOpen,
     // getReferenceProps,
     getFloatingProps,
@@ -85,7 +85,7 @@ const Work: React.FC<{
   return (
     <Random.Provider value={/* seed: */ `${title}|${date}`}>
       <Main subHeader={subHeader}>
-        <h1>{title}</h1>
+        <h2>{title}</h2>
         <div className="mb-4 text-sm text-gray-500 flex flex-row items-baseline space-x-4">
           <span className="date">{formatDate(date)}</span>
           {category && (
@@ -150,7 +150,7 @@ const Work: React.FC<{
         <Dialog
           refs={refs}
           context={context}
-          isOpen={isOpen}
+          setIsOpen={setIsOpen}
           getFloatingProps={getFloatingProps}
           headingId={headingId}
           descriptionId={descriptionId}
