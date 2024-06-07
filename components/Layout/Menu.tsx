@@ -20,7 +20,7 @@ const Menu: React.FC = () => {
         return (
           <Fragment key={`item-${label}`}>
             {isCurrent ? (
-              <span className="text-teal-100">
+              <span className="text-teal-100 cursor-pointer">
                 $(<span className="text-teal-200">{label}</span>)
               </span>
             ) : (
