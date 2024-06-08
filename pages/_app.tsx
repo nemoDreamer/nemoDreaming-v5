@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { LazyMotion, domAnimation } from "framer-motion";
+import { LazyMotion } from "framer-motion";
 import type { AppProps } from "next/app";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import Script from "next/script";
@@ -8,6 +8,10 @@ import { useReportWebVitals } from "next/web-vitals";
 import Layout from "../components/Layout/Layout";
 
 import "../styles/global.scss";
+
+// defer loading:
+const loadFeatures = () =>
+  import("@/lib/framer-motion-features").then((res) => res.default);
 
 const GA_TRACKING_ID = process.env.GA_TRACKING_ID; // "G-Z8RFGTQHDF"
 
@@ -40,7 +44,7 @@ const App = ({
   });
 
   return (
-    <LazyMotion features={domAnimation}>
+    <LazyMotion features={loadFeatures}>
       <Layout
         pageTitle={pageTitle}
         prompt={prompt}
