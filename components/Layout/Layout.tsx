@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
+export type SharedLayoutProps = Pick<
+  React.ComponentProps<typeof Layout>,
+  "pageTitle" | "prompt" | "isHome"
+>;
+
 const Layout = ({
   children,
   pageTitle,
@@ -28,22 +33,23 @@ const Layout = ({
   prompt?: PromptProps;
   isHome?: boolean;
 }> &
-  React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={classNames(className, "flex flex-col min-h-screen")}>
-    <Head>
-      <meta property="og:image" content="/og-image.png" />
-      <meta
-        name="og:title"
-        content={pageTitle ? `${siteTitle} | ${pageTitle}` : siteTitle}
-      />
-    </Head>
+  React.HTMLAttributes<HTMLDivElement>) => {
+  const title = pageTitle ? `${siteTitle} | ${pageTitle}` : siteTitle;
+  return (
+    <div className={classNames(className, "flex flex-col min-h-screen")}>
+      <Head>
+        <title>{title}</title>
+        <meta property="og:image" content="/og-image.png" />
+        <meta name="og:title" content={title} />
+      </Head>
 
-    <Header isHome={isHome} prompt={prompt} />
+      <Header isHome={isHome} prompt={prompt} />
 
-    {children}
+      {children}
 
-    <Footer isHome={isHome} />
-  </div>
-);
+      <Footer isHome={isHome} />
+    </div>
+  );
+};
 
 export default Layout;

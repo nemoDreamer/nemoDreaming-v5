@@ -3,26 +3,34 @@ import { type GetStaticPaths, type GetStaticProps } from "next";
 import Image from "next/image";
 import { useCallback, useMemo, useState } from "react";
 
+import ArrowLink from "@/components/ArrowLink";
+import Dialog, { useDialog } from "@/components/Dialog";
+import { SharedLayoutProps } from "@/components/Layout/Layout";
+import Main from "@/components/Layout/Main";
 import ReadMore from "@/components/ReadMore";
-
-import ArrowLink from "../../components/ArrowLink";
-import Dialog, { useDialog } from "../../components/Dialog";
-import Main from "../../components/Layout/Main";
-import Separator from "../../components/Separator";
-import Thumbnail from "../../components/Thumbnail";
-import Random from "../../contexts/Random";
-import { type PostData, getAllPostSlugs, getPost } from "../../lib/posts";
-import formatDate from "../../utils/formatDate";
+import Separator from "@/components/Separator";
+import Thumbnail from "@/components/Thumbnail";
+import Random from "@/contexts/Random";
+import { type PostData, getAllPostSlugs, getPost } from "@/lib/posts";
+import formatDate from "@/utils/formatDate";
 
 import { DIRECTORY } from ".";
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const workPost = await getPost(DIRECTORY, params?.slug as string);
+export const getStaticProps: GetStaticProps<
+  React.ComponentProps<typeof Work> & SharedLayoutProps,
+  { slug: string }
+> = async ({ params }) => {
+  if (!params) {
+    throw "Missing `params`!";
+  }
+
+  const workPost = await getPost(DIRECTORY, params?.slug);
 
   return {
     props: {
       workPost,
-      siteTitle: workPost.title,
+      // ---
+      pageTitle: workPost.title,
       prompt: {
         branch: "dev",
         filePath: `work/${workPost.slug ? `${workPost.slug}.md` : ""}`,
@@ -36,7 +44,7 @@ export const getStaticPaths: GetStaticPaths = async () => ({
   fallback: false,
 });
 
-const subHeader = (
+const SUB_HEADER = (
   <ArrowLink href="/work" isBack>
     Back
   </ArrowLink>
@@ -85,7 +93,7 @@ const Work: React.FC<{
 
   return (
     <Random.Provider value={/* seed: */ `${title}|${date}`}>
-      <Main subHeader={subHeader}>
+      <Main subHeader={SUB_HEADER}>
         <h2>{title}</h2>
         <div className="mb-4 text-sm text-gray-500 flex flex-row items-baseline space-x-4">
           <span className="date">{formatDate(date)}</span>

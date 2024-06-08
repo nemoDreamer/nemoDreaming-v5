@@ -1,14 +1,15 @@
 import { type GetStaticProps } from "next";
 import useSWR from "swr";
 
-import ArrowLink from "../../components/ArrowLink";
-import Comments from "../../components/Comments";
-import RepoGroup from "../../components/Github/RepoGroup";
-import Main from "../../components/Layout/Main";
-import Thumbnail from "../../components/Thumbnail";
-import fetcher from "../../lib/fetcher";
-import { type PostData, getAllPosts } from "../../lib/posts";
-import formatDate from "../../utils/formatDate";
+import ArrowLink from "@/components/ArrowLink";
+import Comments from "@/components/Comments";
+import RepoGroup from "@/components/Github/RepoGroup";
+import Main from "@/components/Layout/Main";
+import Thumbnail from "@/components/Thumbnail";
+import fetcher from "@/lib/fetcher";
+import { type PostData, getAllPosts } from "@/lib/posts";
+import formatDate from "@/utils/formatDate";
+
 import { customFetch, endpoints } from "../api/github/[endpointId]";
 import { type Repository } from "../api/github/types";
 
@@ -16,13 +17,14 @@ export const DIRECTORY = "work";
 
 export const getStaticProps: GetStaticProps = async () => ({
   props: {
-    siteTitle: "Work",
     workPosts: await getAllPosts(DIRECTORY),
+    repos: await customFetch(endpoints.allTopRepositories),
+    // ---
+    pageTitle: "Work",
     prompt: {
       branch: "dev",
       filePath: "work/index.tsx",
     },
-    repos: await customFetch(endpoints.allTopRepositories),
   },
 });
 

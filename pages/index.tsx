@@ -1,8 +1,9 @@
 import { type GetStaticProps } from "next";
 
-import Comments from "../components/Comments";
-import Cursor from "../components/Cursor";
-import Main from "../components/Layout/Main";
+import Comments from "@/components/Comments";
+import Cursor from "@/components/Cursor";
+import { SharedLayoutProps } from "@/components/Layout/Layout";
+import Main from "@/components/Layout/Main";
 
 const subHeader = <h1>Home</h1>;
 
@@ -36,7 +37,10 @@ const Home = (): JSX.Element => (
   </Main>
 );
 
-export const getStaticProps: GetStaticProps = async () => ({
+export const getStaticProps: GetStaticProps<
+  React.ComponentProps<typeof Home> & SharedLayoutProps,
+  {}
+> = async () => ({
   props: {
     isHome: true,
     prompt: {
