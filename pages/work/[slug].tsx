@@ -155,7 +155,7 @@ const Work: React.FC<{
           headingId={headingId}
           descriptionId={descriptionId}
         >
-          <div className="relative">
+          <div className="relative ring-1 ring-gray-100 shadow-md">
             <Image
               key={imageIndex} // <- force new instance of Image (to show blur)
               id={headingId}

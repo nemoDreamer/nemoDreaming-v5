@@ -90,6 +90,7 @@ const Thumbnail = forwardRef<
               width,
               height,
             })}
+        className="ring-1 ring-gray-300 shadow-md"
         style={{
           objectFit: "cover",
           backgroundColor: image.color,
