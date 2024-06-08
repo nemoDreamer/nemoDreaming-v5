@@ -3,6 +3,8 @@ import { type GetStaticPaths, type GetStaticProps } from "next";
 import Image from "next/image";
 import { useCallback, useMemo, useState } from "react";
 
+import ReadMore from "@/components/ReadMore";
+
 import ArrowLink from "../../components/ArrowLink";
 import Dialog, { useDialog } from "../../components/Dialog";
 import Main from "../../components/Layout/Main";
@@ -79,6 +81,8 @@ const Work: React.FC<{
     setImageIndex((imageIndex + 1) % images.length);
   }, [imageIndex, images.length]);
 
+  const innerHtml = useMemo(() => ({ __html: contentHtml }), [contentHtml]);
+
   return (
     <Random.Provider value={/* seed: */ `${title}|${date}`}>
       <Main subHeader={subHeader}>
@@ -119,10 +123,9 @@ const Work: React.FC<{
               </div>
             </div>
           </div>
-          <div
-            className="mb-4 mx-3 xs:mx-0 xs:mb-0 xs:col-span-2 md:col-span-5"
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          />
+          <ReadMore className="mb-4 mx-3 xs:mx-0 xs:mb-0 xs:col-span-2 md:col-span-5">
+            <div dangerouslySetInnerHTML={innerHtml} />
+          </ReadMore>
         </div>
 
         <div className="mb-4 grid grid-flow-row grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 justify-center place-items-center">
