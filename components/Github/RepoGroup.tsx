@@ -8,12 +8,12 @@ import Repo from "./Repo";
 const RepoGroup = ({
   title,
   repos,
-  truncate = 10,
+  total,
   hideDetails = false,
 }: {
   title: string | React.ReactNode;
   repos: Repository[] | undefined;
-  truncate?: number;
+  total: number;
   hideDetails?: boolean;
 }) => (
   <div className="mb-4">
@@ -22,7 +22,7 @@ const RepoGroup = ({
       {repos && (
         <span className="text-xs font-normal flex flex-row">
           <span className="count">
-            {truncate} of {repos.length}
+            {repos.length} of {total}
           </span>
           <div className="mx-1 text-gray-400">|</div>
           <Link
@@ -35,15 +35,11 @@ const RepoGroup = ({
         </span>
       )}
     </h3>
-    {/* <div className="grid grid-flow-row gap-4 grid-cols-1 xs:grid-cols-2">
-    </div> */}
     <Masonry columns={2} spacing={2}>
       {repos ? (
-        repos
-          .slice(0, truncate)
-          .map((repo) => (
-            <Repo key={repo.name} {...repo} hideDetails={hideDetails} />
-          ))
+        repos.map((repo) => (
+          <Repo key={repo.name} {...repo} hideDetails={hideDetails} />
+        ))
       ) : (
         <span>Loading...</span>
       )}

@@ -1,9 +1,11 @@
 import { type GetStaticProps } from "next";
+import { useMemo } from "react";
 import useSWR from "swr";
 
 import ArrowLink from "@/components/ArrowLink";
 import Comments from "@/components/Comments";
 import RepoGroup from "@/components/Github/RepoGroup";
+import { SharedLayoutProps } from "@/components/Layout/Layout";
 import Main from "@/components/Layout/Main";
 import Thumbnail from "@/components/Thumbnail";
 import fetcher from "@/lib/fetcher";
@@ -12,23 +14,39 @@ import formatDate from "@/utils/formatDate";
 
 import { customFetch, endpoints } from "../api/github/[endpointId]";
 import { type Repository } from "../api/github/types";
+import { stargazerCountDesc } from "../api/github/utils/sorters";
 
 export const DIRECTORY = "work";
 
-export const getStaticProps: GetStaticProps = async () => ({
-  props: {
-    workPosts: await getAllPosts(DIRECTORY),
-    repos: await customFetch(endpoints.allTopRepositories),
-    // ---
-    pageTitle: "Work",
-    prompt: {
-      branch: "dev",
-      filePath: "work/index.tsx",
-    },
-  },
-});
+const LIMIT = 10;
 
-const subHeader = (
+export const getStaticProps: GetStaticProps<
+  React.ComponentProps<typeof AllWork> & SharedLayoutProps,
+  {}
+> = async () => {
+  const workPosts = await getAllPosts(DIRECTORY);
+  const repos = await customFetch(
+    endpoints.allTopRepositories,
+    // NOTE: no limit here, we need the actual total count on this server-side
+    // fetch
+  );
+
+  return {
+    props: {
+      workPosts,
+      repos: repos.slice(0, LIMIT),
+      reposTotal: repos.length,
+      // ---
+      pageTitle: "Work",
+      prompt: {
+        branch: "dev",
+        filePath: "work/index.tsx",
+      },
+    },
+  };
+};
+
+const SUB_HEADER = (
   <>
     <h1>Work</h1>
   </>
@@ -37,7 +55,8 @@ const subHeader = (
 const AllWork: React.FC<{
   workPosts: PostData[];
   repos: Repository[];
-}> = ({ workPosts, repos: initialRepos }) => {
+  reposTotal: number;
+}> = ({ workPosts, repos: initialRepos, reposTotal }) => {
   const { data: repos } = useSWR<Repository[]>(
     ["/api/github/allTopRepositories", undefined],
     fetcher,
@@ -46,8 +65,13 @@ const AllWork: React.FC<{
     },
   );
 
+  const truncatedRepos = useMemo(
+    () => (repos ? repos.sort(stargazerCountDesc).slice(0, LIMIT) : []),
+    [repos],
+  );
+
   return (
-    <Main subHeader={subHeader}>
+    <Main subHeader={SUB_HEADER}>
       <Comments
         lines={[
           <span key="note">
@@ -90,7 +114,11 @@ const AllWork: React.FC<{
       </div>
       <div>
         <h2>Open-Source</h2>
-        <RepoGroup title="Top Repositories" repos={repos} truncate={10} />
+        <RepoGroup
+          title="Top Repositories"
+          repos={truncatedRepos}
+          total={reposTotal}
+        />
       </div>
     </Main>
   );
