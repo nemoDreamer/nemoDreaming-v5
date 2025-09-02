@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=./schema/resume.json
 # cspell:ignore architected MAMP Figma strategized SDLC Nanoc Endo Königliches Athenäum Eupen
 header:
   name: Philip Featherstone Blyth
