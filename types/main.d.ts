@@ -40,6 +40,10 @@ type ResumeType = {
       },
     ];
   };
+  passions: {
+    title: string;
+    items: [string];
+  };
 };
 
 declare module "*/data/resume.yaml" {

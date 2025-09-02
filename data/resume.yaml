@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=./schema/resume.json
-# cspell:ignore architected MAMP Figma strategized SDLC Nanoc Endo Königliches Athenäum Eupen
+# cspell:ignore architected MAMP Figma strategized SDLC Nanoc Endo Königliches Athenäum Eupen TTRPG
 header:
   name: Philip Featherstone Blyth
   email: philip.blyth@gmail.com
@@ -149,9 +149,10 @@ education:
 passions:
   title: Passions
   items:
-    - game design & development
-    - board games & TTRPGs
-    - teaching children
-    - mountain biking
-    - hiking
-    - camping
+    - Board Games
+    - Tabletop Role-Playing Games (TTRPG’s)
+    - Game Design & Development
+    - Teaching Children
+    - Mountain Biking
+    - Hiking
+    - Camping

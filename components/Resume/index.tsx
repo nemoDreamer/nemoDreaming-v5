@@ -11,7 +11,7 @@ const Resume: React.FC<{
   skipFirstLine?: boolean;
   skipHeader?: boolean;
 }> = ({
-  data: { header, qualifications, skills, experience, education },
+  data: { header, qualifications, skills, experience, education, passions },
   skipFirstLine = false,
   skipHeader = false,
 }) => (
@@ -111,6 +111,15 @@ const Resume: React.FC<{
           </div>
         ),
       )}
+    </div>
+
+    <div className="passions">
+      <h2>{startCase(passions.title)}</h2>
+      <ul>
+        {passions.items.map((passion, iP) => (
+          <Markdown tag="li" key={`passion-${iP}`} content={passion} />
+        ))}
+      </ul>
     </div>
   </div>
 );
