@@ -2,15 +2,15 @@ import { type GetStaticProps } from "next";
 import { useMemo } from "react";
 import useSWR from "swr";
 
-import ArrowLink from "@/components/ArrowLink";
-import Comments from "@/components/Comments";
-import RepoGroup from "@/components/Github/RepoGroup";
-import { SharedLayoutProps } from "@/components/Layout/Layout";
-import Main from "@/components/Layout/Main";
-import Thumbnail from "@/components/Thumbnail";
-import fetcher from "@/lib/fetcher";
-import { type PostData, getAllPosts } from "@/lib/posts";
-import formatDate from "@/utils/formatDate";
+import ArrowLink from "@//components/ArrowLink";
+import Comments from "@//components/Comments";
+import RepoGroup from "@//components/Github/RepoGroup";
+import { SharedLayoutProps } from "@//components/Layout/Layout";
+import Main from "@//components/Layout/Main";
+import Thumbnail from "@//components/Thumbnail";
+import fetcher from "@//lib/fetcher";
+import { type PostData, getAllPosts } from "@//lib/posts";
+import formatDate from "@//utils/formatDate";
 
 import { customFetch, endpoints } from "../api/github/[endpointId]";
 import { type Repository } from "../api/github/types";

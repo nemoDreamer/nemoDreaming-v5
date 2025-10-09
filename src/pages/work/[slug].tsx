@@ -3,16 +3,16 @@ import { type GetStaticPaths, type GetStaticProps } from "next";
 import Image from "next/image";
 import { useCallback, useMemo, useState } from "react";
 
-import ArrowLink from "@/components/ArrowLink";
-import Dialog, { useDialog } from "@/components/Dialog";
-import { SharedLayoutProps } from "@/components/Layout/Layout";
-import Main from "@/components/Layout/Main";
-import ReadMore from "@/components/ReadMore";
-import Separator from "@/components/Separator";
-import Thumbnail from "@/components/Thumbnail";
-import Random from "@/contexts/Random";
-import { type PostData, getAllPostSlugs, getPost } from "@/lib/posts";
-import formatDate from "@/utils/formatDate";
+import ArrowLink from "@//components/ArrowLink";
+import Dialog, { useDialog } from "@//components/Dialog";
+import { SharedLayoutProps } from "@//components/Layout/Layout";
+import Main from "@//components/Layout/Main";
+import ReadMore from "@//components/ReadMore";
+import Separator from "@//components/Separator";
+import Thumbnail from "@//components/Thumbnail";
+import Random from "@//contexts/Random";
+import { type PostData, getAllPostSlugs, getPost } from "@//lib/posts";
+import formatDate from "@//utils/formatDate";
 
 import { DIRECTORY } from ".";
 

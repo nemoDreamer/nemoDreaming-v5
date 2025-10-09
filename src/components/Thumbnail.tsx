@@ -2,7 +2,7 @@ import classNames from "classnames";
 import Image from "next/image";
 import { forwardRef } from "react";
 
-import { type PostImage } from "@/lib/posts";
+import { type PostImage } from "@//lib/posts";
 
 import { useRandom } from "../contexts/Random";
 

@@ -4,11 +4,7 @@ import defaultTheme from "tailwindcss/defaultTheme";
 const blinkFade = 10; // in %
 
 const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   safelist: [
     // FIXME: these kept getting removed, even though they were explicitly named in the HTML output...:
     "hover:rotate-1",

@@ -1,9 +1,9 @@
 import { type GetStaticProps } from "next";
 
-import Comments from "@/components/Comments";
-import Cursor from "@/components/Cursor";
-import { SharedLayoutProps } from "@/components/Layout/Layout";
-import Main from "@/components/Layout/Main";
+import Comments from "@//components/Comments";
+import Cursor from "@//components/Cursor";
+import { SharedLayoutProps } from "@//components/Layout/Layout";
+import Main from "@//components/Layout/Main";
 
 const subHeader = <h1>Home</h1>;
 

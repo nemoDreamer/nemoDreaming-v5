@@ -27,7 +27,7 @@ const MAX_WIDTH = 1280;
 const MAX_HEIGHT = 960;
 
 const getPath = (...parts: string[]) =>
-  path.resolve(process.cwd(), "posts", ...parts);
+  path.resolve(process.cwd(), "src/posts", ...parts);
 
 const getFileName = (slug: string) => `${slug}.md`;
 const getSlug = (fileName: string) => fileName.replace(/\.md$/, "");
