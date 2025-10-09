@@ -60,7 +60,13 @@ experience:
       position: Senior Software Engineer
       additional: C3
       achievements:
-        - ...
+        - Vue.js & React
+        - Design System / Component Library
+        - Storybook / Testing Library
+        - TypeScript
+        - Annotation Panel
+        - Toolbars, responsive
+        - Management site, increased sales
 
     - employer: Autodesk – Shotgun / ShotGrid
       location: Remote

@@ -45,7 +45,7 @@ const Resume: React.FC<{
           <Fragment key={`item-${iG}`}>
             <div className={styles.label}>{startCase(group)}</div>
             <Markdown
-              className="items col-span-2 no-break-inside"
+              className="col-span-2 no-break-inside"
               content={items.join(" | ")}
             />
           </Fragment>
