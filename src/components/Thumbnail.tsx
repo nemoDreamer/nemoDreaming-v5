@@ -42,7 +42,7 @@ const Thumbnail = forwardRef<
     ...imageProps
   },
   ref,
-): JSX.Element {
+): React.JSX.Element {
   const [rng] = useRandom();
 
   const getRandom = (arr: unknown[]) =>

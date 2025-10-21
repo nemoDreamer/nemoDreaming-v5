@@ -18,7 +18,7 @@ importers:
         specifier: ^0.26.16
         version: 0.26.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/lab':
-        specifier: ^5.0.0-alpha.170
+        specifier: ^5.0.0-alpha.177
         version: 5.0.0-alpha.177(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(react@18.3.1))(@mui/material@7.3.4(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@next/bundle-analyzer':
         specifier: ^14.2.3
@@ -71,6 +71,12 @@ importers:
       react-dom:
         specifier: ^18
         version: 18.3.1(react@18.3.1)
+      remark:
+        specifier: ^13.0.0
+        version: 13.0.0
+      remark-html:
+        specifier: ^13.0.1
+        version: 13.0.2
       seedrandom:
         specifier: ^3.0.5
         version: 3.0.5
@@ -100,7 +106,7 @@ importers:
         specifier: ^18
         version: 18.3.7(@types/react@18.3.26)
       '@types/seedrandom':
-        specifier: ^3.0.0
+        specifier: ^3.0.8
         version: 3.0.8
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.12.0
@@ -141,12 +147,6 @@ importers:
       prettier:
         specifier: ^3.3.0
         version: 3.6.2
-      remark:
-        specifier: ^13.0.0
-        version: 13.0.0
-      remark-html:
-        specifier: ^13.0.1
-        version: 13.0.2
       sass:
         specifier: ^1.77.4
         version: 1.93.2

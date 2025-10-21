@@ -7,7 +7,7 @@ import Main from "@//components/Layout/Main";
 
 const subHeader = <h1>Home</h1>;
 
-const Home = (): JSX.Element => (
+const Home = (): React.JSX.Element => (
   <Main subHeader={subHeader}>
     <p className="font-mono">
       $ Hi, I’m Philip Blyth <Cursor />

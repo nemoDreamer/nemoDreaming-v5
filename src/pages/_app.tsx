@@ -31,7 +31,7 @@ const ibm_plex_sans = IBM_Plex_Sans({
 const App = ({
   Component,
   pageProps: { pageTitle, prompt, isHome, ...pageProps },
-}: AppProps): JSX.Element => {
+}: AppProps): React.JSX.Element => {
   useReportWebVitals(({ id, name, label, value }): void => {
     // NOTE: see https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics/pages/_document.js
     window.gtag("event", name, {

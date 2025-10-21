@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
 
 const fs = require("fs");
 const path = require("path");
@@ -51,7 +52,7 @@ JSON.parse(fs.readFileSync(path.join(DUMPS_DIR, "wp_posts.json")))
     }) => {
       // NOTE: `nemo` is a PHP serialized object...
       const n = nemo.match(
-        /web-url"[^"]*?"([^"]*).*main-category"[^"]*?"([^"]*)/m
+        /web-url"[^"]*?"([^"]*).*main-category"[^"]*?"([^"]*)/m,
       );
       const frontMatter = YAML.stringify({
         title,
@@ -76,5 +77,5 @@ JSON.parse(fs.readFileSync(path.join(DUMPS_DIR, "wp_posts.json")))
       });
 
       console.log("wrote", fileName);
-    }
+    },
   );
