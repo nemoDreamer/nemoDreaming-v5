@@ -5,17 +5,6 @@ const blinkFade = 10; // in %
 
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
-  safelist: [
-    // FIXME: these kept getting removed, even though they were explicitly named in the HTML output...:
-    "hover:rotate-1",
-    "hover:rotate-2",
-    "hover:rotate-3",
-    "hover:rotate-6",
-    "hover:-rotate-1",
-    "hover:-rotate-2",
-    "hover:-rotate-3",
-    "hover:-rotate-6",
-  ],
   theme: {
     // NOTE: overwriting sizes to add `xs`, because adding it using `extends`
     // gives it _higher_ specificity...

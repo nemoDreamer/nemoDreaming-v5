@@ -1,3 +1,4 @@
+/*
 import makeBundleAnalyzer from "@next/bundle-analyzer";
 import withPlaiceholder from "@plaiceholder/next";
 import withGraphql from "next-plugin-graphql";
@@ -7,5 +8,13 @@ const withBundleAnalyzer = makeBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
 
-/** @type {import('next').NextConfig} */
 export default withBundleAnalyzer(withPlaiceholder(withYaml(withGraphql())));
+*/
+
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
