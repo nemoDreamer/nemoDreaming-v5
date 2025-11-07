@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import type { ReactNode } from "react";
+
+import { Header } from "@/components/Header";
+import { LayoutProvider } from "@/contexts/layout";
 
 import "./globals.css";
 
@@ -20,15 +24,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  pageTitle,
 }: Readonly<{
   children: React.ReactNode;
+  pageTitle: ReactNode;
 }>) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <LayoutProvider>
+          <Header />
+          <h1 className="border-solid border-2 border-green-500">
+            {pageTitle || "NemoDreaming"}
+          </h1>
+          {children}
+        </LayoutProvider>
       </body>
     </html>
   );
