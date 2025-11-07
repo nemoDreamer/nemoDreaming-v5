@@ -1,35 +1,40 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+import prettier from "eslint-config-prettier/flat";
 
-import { FlatCompat } from "@eslint/eslintrc";
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  prettier,
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    "node_modules/**",
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+  // ADDITIONAL RULES:
+  // --------------------------------------------------
+  {
+    rules: {
+      "no-console": "error",
+    },
+  },
 
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
+  // IMPORT RULES:
+  // --------------------------------------------------
   {
     settings: {
       "import/resolver": {
         typescript: true,
       },
     },
-    ignores: [
-      "node_modules/**",
-      ".next/**",
-      "out/**",
-      "build/**",
-      "next-env.d.ts",
-    ],
     rules: {
-      "no-console": "error",
-
-      // IMPORTS
-      // --------------------------------------------------
       "sort-imports": [
         "error",
         {
@@ -71,6 +76,9 @@ const eslintConfig = [
       "import/no-anonymous-default-export": 0,
     },
   },
+
+  // FILE-SPECIFIC OVERRIDES:
+  // --------------------------------------------------
   {
     // Ignore generated file:
     files: ["next-env.d.ts"],
@@ -78,6 +86,6 @@ const eslintConfig = [
       "@typescript-eslint/triple-slash-reference": "off",
     },
   },
-];
+]);
 
 export default eslintConfig;
