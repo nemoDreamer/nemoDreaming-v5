@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Footer: React.FC<{
-  isHome: boolean;
-}> = ({ isHome }) => (
+  isHome?: boolean;
+}> = ({ isHome = false }) => (
   <footer className="flex flex-col md:flex-row items-center justify-center md:space-x-1 p-2 text-gray-500 bg-white text-xs print:hidden">
     {!isHome && (
       <span className="font-extralight">
@@ -23,10 +23,15 @@ const Footer: React.FC<{
       target="_blank"
       rel="noopener noreferrer"
     >
-      Powered by Next.js &
-      <span className="inline-block h-3.5 ml-1">
-        <Image src="/vercel.svg" alt="Vercel Logo" width={45} height={10} />
-      </span>
+      Powered by Next.js &amp;{" "}
+      <Image
+        src="/vercel.svg"
+        alt="Vercel Logo"
+        width={10}
+        height={10}
+        className="inline-block ml-1 mr-1"
+      />{" "}
+      Vercel
     </a>
   </footer>
 );

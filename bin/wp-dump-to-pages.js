@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 
-const fs = require("fs");
-const path = require("path");
+import * as fs from "fs";
+import * as path from "path";
 
-const Turndown = require("turndown");
-const YAML = require("yaml");
+import * as Turndown from "turndown";
+import * as YAML from "yaml";
 
 /*
 NOTE: dump created via:

@@ -1,10 +1,13 @@
-import { m } from "framer-motion";
+"use client";
+
+import { motion } from "motion/react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { ReactNode } from "react";
 
 import Container from "../Container";
 
 import Menu from "./Menu";
-import Prompt, { PromptProps } from "./Terminal/Prompt";
 
 const baseFontSize = 16;
 
@@ -19,22 +22,27 @@ const headerHeight = {
   max: toPx(toRem(logoHeight) + extraLines),
 };
 
-const transition = { type: "spring", bounce: 0, duration: 0.5 };
+const transition = {
+  type: "spring" as const,
+  bounce: 0,
+  duration: 0.5,
+};
 
 const Header: React.FC<{
-  isHome: boolean;
-  prompt?: PromptProps;
-}> = ({ isHome, prompt }) => {
+  prompt?: ReactNode;
+}> = ({ prompt }) => {
+  const pathName = usePathname();
+  const isExpanded = pathName === "/";
+
   const animate = {
-    height: `${isHome ? headerHeight.max : headerHeight.min}px`,
+    height: `${isExpanded ? headerHeight.max : headerHeight.min}px`,
   };
 
   return (
-    <m.header
+    <motion.header
       id="header"
       className="bg-teal-500 shadow-xl flex z-20 print:hidden"
       transition={transition}
-      // NOTE: since we have a shared Layout that won't be replaced:
       // - used on initial document load only:
       initial={animate}
       // on re-renders:
@@ -59,10 +67,10 @@ const Header: React.FC<{
         </div>
         <div className="z-10">
           <Menu />
-          <Prompt {...prompt} />
+          {prompt}
         </div>
       </Container>
-    </m.header>
+    </motion.header>
   );
 };
 

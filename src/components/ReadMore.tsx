@@ -1,3 +1,5 @@
+"use client";
+
 import { createRef, useCallback, useEffect, useState } from "react";
 
 export default function ReadMore({
@@ -27,6 +29,7 @@ export default function ReadMore({
 
   useEffect(() => {
     if (ref.current) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setHeight(isRevealed ? `${ref.current?.scrollHeight}px` : "18rem");
     }
   }, [ref, isRevealed, setHeight]);
@@ -50,8 +53,8 @@ export default function ReadMore({
 
         {isOverflowing &&
           (!isRevealed ? (
-            <div className="absolute w-full -bottom-0">
-              <div className="h-24 bg-gradient-to-t from-gray-100 to-transparent" />
+            <div className="absolute w-full bottom-0">
+              <div className="h-24 bg-linear-to-t from-gray-100 to-transparent" />
               <a
                 className="block bg-gray-100 border-t border-t-gray-200 p-4 text-center leading-none font-mono italic text-xs text-gray-400 hover:text-teal-300 hover:underline"
                 href="#"

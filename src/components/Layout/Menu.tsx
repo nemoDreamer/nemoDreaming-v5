@@ -1,5 +1,5 @@
-import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Fragment } from "react";
 
 const items = [
@@ -9,7 +9,7 @@ const items = [
 ];
 
 const Menu: React.FC = () => {
-  const { pathname } = useRouter();
+  const pathname = usePathname();
 
   return (
     <div className="font-mono mb-3">

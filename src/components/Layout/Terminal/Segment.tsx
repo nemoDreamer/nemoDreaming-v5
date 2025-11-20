@@ -1,3 +1,5 @@
+import classNames from "classnames";
+
 import Caret from "./Caret";
 
 const height = 20;
@@ -16,7 +18,7 @@ const Segment: React.FC<{
 
   return (
     <span
-      className={`flex flex-row items-center ${className}`}
+      className={classNames(className, "flex flex-row items-center")}
       style={{
         zIndex: length - index,
         marginLeft: -height / 2,

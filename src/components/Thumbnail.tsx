@@ -1,63 +1,65 @@
 import classNames from "classnames";
 import Image from "next/image";
-import { forwardRef } from "react";
+import seedrandom from "seedrandom";
 
-import { type PostImage } from "@//lib/posts";
+import { ImageData } from "@/utils/image";
 
-import { useRandom } from "../contexts/Random";
+// TailwindCSS rotations (spelled out to avoid culling in production builds)
+const rotations = [
+  "rotate-1",
+  "rotate-2",
+  "rotate-3",
+  "rotate-6",
+  "-rotate-1",
+  "-rotate-2",
+  "-rotate-3",
+  "-rotate-6",
+];
 
-const rotations = [1, 2, 3, 6];
-
-const Thumbnail = forwardRef<
-  HTMLDivElement,
-  {
-    image: PostImage;
-    disableRotate?: boolean;
-    onClick?: React.MouseEventHandler<HTMLDivElement>;
-  } & (
-    | {
-        shouldFill: true;
-        width?: never;
-        height?: never;
-      }
-    | {
-        shouldFill?: false;
-        width: number;
-        height: number;
-      }
-  ) &
-    Omit<
-      React.ComponentProps<typeof Image>,
-      "onClick" | "src" | "blurDataURL" | "placeholder" | "color"
-    >
->(function Thumbnail(
-  {
-    image,
-    width,
-    height,
-    shouldFill,
-    disableRotate = false,
-    onClick,
-    alt, // <- needs to be explicitly set in `Image` for linter
-    ...imageProps
-  },
+export default function Thumbnail({
+  className,
+  image,
+  width,
+  height,
+  alt, // <- needs to be explicitly set in `Image` for linter
+  shouldFill,
+  disableRotate = false,
+  onClick,
   ref,
-): React.JSX.Element {
-  const [rng] = useRandom();
-
+  ...imageProps
+}: {
+  image: ImageData;
+  disableRotate?: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+} & (
+  | {
+      shouldFill: true;
+      width?: never;
+      height?: never;
+    }
+  | {
+      shouldFill?: false;
+      width: number;
+      height: number;
+    }
+) &
+  Omit<
+    React.ComponentProps<typeof Image>,
+    "onClick" | "src" | "blurDataURL" | "placeholder" | "color"
+  >) {
+  const rng = seedrandom(image.blurDataURL); // <- seed to get consistent results
   const getRandom = (arr: unknown[]) =>
     arr[Math.round(rng.quick() * (arr.length - 1))];
 
-  const getRotation = () =>
-    `${rng.quick() < 0.5 ? "-" : ""}rotate-${getRandom(rotations)}`;
-
-  const rotation = getRotation();
+  const rotation = getRandom(rotations);
 
   return (
     <div
       ref={ref}
       className={classNames(
-        "border-solid border-8 border-white shadow-lg hover:shadow-2xl transition hover:-translate-y-2",
+        className,
+        "border-solid border-8 border-white shadow-lg",
+        "hover:shadow-2xl transition hover:-translate-y-2",
         {
           "cursor-pointer": !!onClick,
           [`hover:${rotation}`]: !disableRotate,
@@ -98,6 +100,4 @@ const Thumbnail = forwardRef<
       />
     </div>
   );
-});
-
-export default Thumbnail;
+}

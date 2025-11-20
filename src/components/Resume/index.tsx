@@ -2,9 +2,54 @@ import classNames from "classnames";
 import startCase from "lodash.startcase";
 import { Fragment } from "react";
 
+import H1 from "../core/H1";
+import H2 from "../core/H2";
+import H3 from "../core/H3";
+
 import Markdown from "../Markdown";
 
-import styles from "./Resume.module.scss";
+const Label = ({ children, className }: React.ComponentProps<"span">) => (
+  <span
+    className={classNames(className, "font-bold uppercase tracking-widest")}
+  >
+    {children}
+  </span>
+);
+
+const ItemH3 = ({
+  children,
+  className,
+  location,
+  date,
+}: React.ComponentProps<typeof H3> & {
+  location: string;
+  date: string;
+}) => (
+  <H3
+    className={classNames(
+      className,
+      "mb-0 flex-wrap md:flex-nowrap flex flex-row no-break-inside no-break-after",
+    )}
+  >
+    <Label className="w-full md:w-auto">{children}</Label>
+    <span>
+      <span className="hidden md:inline">{", "}</span>
+      {location}
+    </span>
+    <span className="flex-1 text-right italic whitespace-nowrap">{date}</span>
+  </H3>
+);
+
+const ItemPosition = ({
+  children,
+  className,
+  detail,
+}: React.ComponentProps<"p"> & { detail?: React.ReactNode }) => (
+  <p className={classNames(className, "font-bold text-lg")}>
+    {children}
+    {detail && <span className="font-normal italic">{detail}</span>}
+  </p>
+);
 
 const Resume: React.FC<{
   data: ResumeType;
@@ -15,10 +60,10 @@ const Resume: React.FC<{
   skipFirstLine = false,
   skipHeader = false,
 }) => (
-  <div className={styles.body}>
+  <div>
     {!skipHeader && (
       <div className="header">
-        <h1 className="name">{header.name}</h1>
+        <H1 className="name">{header.name}</H1>
         {header.url && <div className="url">{header.url}</div>}
         <div className="phone">{header.phone}</div>
         <div className="email">{header.email}</div>
@@ -28,7 +73,7 @@ const Resume: React.FC<{
     <div className="qualifications">
       {!skipFirstLine && (
         <>
-          <h2>{startCase(qualifications.title)}</h2>
+          <H2>{startCase(qualifications.title)}</H2>
           <Markdown content={qualifications.body[0]} />
         </>
       )}
@@ -38,12 +83,14 @@ const Resume: React.FC<{
     </div>
 
     <div className="skills">
-      <h2>{startCase(skills.title)}</h2>
+      <H2>{startCase(skills.title)}</H2>
       {/* TODO: use table instead? Hm, should be responsive, tho... */}
-      <div className={styles.groups}>
+      <div className="grid grid-cols-1 xs:grid-cols-3 gap-x-2 mb-4">
         {Object.entries(skills.groups).map(([group, items], iG) => (
           <Fragment key={`item-${iG}`}>
-            <div className={styles.label}>{startCase(group)}</div>
+            <Label className="text-left xs:text-right">
+              {startCase(group)}
+            </Label>
             <Markdown
               className="col-span-2 no-break-inside"
               content={items.join(" | ")}
@@ -54,31 +101,32 @@ const Resume: React.FC<{
     </div>
 
     <div className="experience">
-      <h2>{startCase(experience.title)}</h2>
+      <H2>{startCase(experience.title)}</H2>
       {experience.jobs.map(
         (
           { employer, location, date, position, additional, achievements },
           iJ,
         ) => (
-          <div className={styles.item} key={`job-${iJ}`}>
-            <h3 className="no-break-inside no-break-after">
-              <span className={styles.label}>{employer}</span>
-              <span className={styles.location}>{location}</span>
-              <span className={styles.date}>{date}</span>
-            </h3>
+          <div key={`job-${iJ}`}>
+            <ItemH3 location={location} date={date}>
+              {employer}
+            </ItemH3>
 
-            <p className={classNames(styles.position, "no-break-after")}>
+            <ItemPosition
+              className="no-break-after"
+              detail={
+                additional && <span className="ml-1">({additional})</span>
+              }
+            >
               {position}
-              {additional && (
-                <span className={styles.detail}>{additional}</span>
-              )}
-            </p>
+            </ItemPosition>
 
             {achievements && (
               <ul>
                 {achievements.map((achievement, iA) => (
                   <Markdown
                     tag="li"
+                    isSingleLine
                     key={`achievement-${iA}`}
                     content={achievement}
                   />
@@ -91,33 +139,30 @@ const Resume: React.FC<{
     </div>
 
     <div className="education">
-      <h2>{startCase(education.title)}</h2>
+      <H2>{startCase(education.title)}</H2>
       {education.degrees.map(
         ({ school, location, date, degree, major }, iJ) => (
-          <div
-            className={classNames(styles.item, "no-break-inside")}
-            key={`job-${iJ}`}
-          >
-            <h3>
-              <span className={styles.label}>{school}</span>
-              <span className={styles.location}>{location}</span>
-              <span className={styles.date}>{date}</span>
-            </h3>
+          <div className="no-break-inside" key={`job-${iJ}`}>
+            <ItemH3 location={location} date={date}>
+              {school}
+            </ItemH3>
 
-            <p className={styles.degree}>
-              {degree}
-              {major && <span className={styles.detail}>{major}</span>}
-            </p>
+            <ItemPosition detail={major && `, ${major}`}>{degree}</ItemPosition>
           </div>
         ),
       )}
     </div>
 
     <div className="passions">
-      <h2>{startCase(passions.title)}</h2>
+      <H2>{startCase(passions.title)}</H2>
       <ul>
         {passions.items.map((passion, iP) => (
-          <Markdown tag="li" key={`passion-${iP}`} content={passion} />
+          <Markdown
+            tag="li"
+            isSingleLine
+            key={`passion-${iP}`}
+            content={passion}
+          />
         ))}
       </ul>
     </div>

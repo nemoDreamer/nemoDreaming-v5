@@ -1,3 +1,5 @@
+"use client";
+
 import {
   FloatingFocusManager,
   FloatingOverlay,
@@ -120,7 +122,7 @@ export default function Dialog({
           <FloatingFocusManager context={context}>
             <div
               className="relative m-4 p-4 bg-white shadow-2xl font-sans outline-none transition-[height]"
-              ref={refs.setFloating}
+              ref={(floatingRef) => refs.setFloating(floatingRef)}
               aria-labelledby={headingId}
               aria-describedby={descriptionId}
               {...getFloatingProps()}

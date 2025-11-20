@@ -1,0 +1,5 @@
+/*
+ * stand-alone file to @import, since Tailwind extension can't parse
+ * globals.SCSS
+*/
+@import "tailwindcss";
