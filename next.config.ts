@@ -20,6 +20,10 @@ const nextConfig: NextConfig = {
         loaders: ["yaml-loader"],
         as: "*.js",
       },
+      "*.graphql": {
+        loaders: ["graphql-tag/loader"],
+        as: "*.js",
+      },
     },
   },
 };

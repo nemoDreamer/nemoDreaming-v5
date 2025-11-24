@@ -1,7 +1,7 @@
 import Comments from "@/components/Comments";
-import Cursor from "@/components/Cursor";
 import Main from "@/components/Layout/Main";
 import { H1 } from "@/components/Layout/SubHeader";
+import Cursor from "@/components/Terminal/Cursor";
 
 const HomeSubHeader = () => <H1>Home</H1>;
 

@@ -1,3 +1,5 @@
+"use client";
+
 import classNames from "classnames";
 import { createContext, useContext } from "react";
 
@@ -27,14 +29,14 @@ const Card = ({
   </CardContext.Provider>
 );
 
-const CardTop = ({
+export const CardTop = ({
   className,
   children,
 }: React.PropsWithChildren & React.HTMLAttributes<HTMLDivElement>) => (
   <div className={classNames("p-4", className)}>{children}</div>
 );
 
-const CardBottom = ({
+export const CardBottom = ({
   className,
   children,
 }: React.PropsWithChildren & React.HTMLAttributes<HTMLDivElement>) => {
@@ -51,10 +53,8 @@ const CardBottom = ({
   );
 };
 
-Card.Top = CardTop;
-Card.Bottom = CardBottom;
 // NOTE: aliases:
-Card.Body = CardTop;
-Card.Details = CardBottom;
+export const CardBody = CardTop;
+export const CardDetails = CardBottom;
 
 export default Card;

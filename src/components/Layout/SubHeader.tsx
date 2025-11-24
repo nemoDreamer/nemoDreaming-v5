@@ -1,7 +1,8 @@
 import classNames from "classnames";
 
-import Container from "@/components/Container";
-import CoreH1 from "@/components/core/H1";
+import CoreH1 from "../core/H1";
+
+import Container from "./Container";
 
 export const H1 = ({
   children,

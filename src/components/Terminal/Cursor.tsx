@@ -1,4 +1,4 @@
-import { segmentConfigs } from "./Layout/Terminal/Prompt";
+import { segmentConfigs } from "./Prompt";
 
 const shades = ["█", "▓", "▒", "░"];
 

@@ -4,15 +4,15 @@ import classNames from "classnames";
 import Image from "next/image";
 import { useCallback, useMemo, useState } from "react";
 
-import Dialog, { useDialog } from "@/components/Dialog";
 import Markdown from "@/components/Markdown";
 import ReadMore from "@/components/ReadMore";
-import Separator from "@/components/Separator";
-import Thumbnail from "@/components/Thumbnail";
 import H2 from "@/components/core/H2";
-import formatDate from "@/utils/format-date";
+import Dialog, { useDialog } from "@/components/elements/Dialog";
+import Separator from "@/components/elements/Separator";
+import Thumbnail from "@/components/elements/Thumbnail";
+import { formatDate } from "@/utils/utils";
 
-import { type WorkPost } from "../data/work-post";
+import { type WorkPost } from "../../_data/posts";
 
 const CAROUSEL_NAV_CLASSES: React.HTMLAttributes<HTMLDivElement>["className"] =
   "opacity-0 hover:opacity-100 transition-opacity duration-300 from-black/25 via-35% via-black/10 to-transparent w-1/4 absolute top-0 bottom-0 grid place-items-center cursor-pointer select-none";

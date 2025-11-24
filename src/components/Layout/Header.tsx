@@ -1,12 +1,11 @@
 "use client";
 
-import { motion } from "motion/react";
+import * as motion from "motion/react-m";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
-import Container from "../Container";
-
+import Container from "./Container";
 import Menu from "./Menu";
 
 const baseFontSize = 16;

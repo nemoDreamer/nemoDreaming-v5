@@ -2,11 +2,10 @@ import classNames from "classnames";
 import startCase from "lodash.startcase";
 import { Fragment } from "react";
 
-import H1 from "../core/H1";
-import H2 from "../core/H2";
-import H3 from "../core/H3";
-
-import Markdown from "../Markdown";
+import Markdown from "@/components/Markdown";
+import H1 from "@/components/core/H1";
+import H2 from "@/components/core/H2";
+import H3 from "@/components/core/H3";
 
 const Label = ({ children, className }: React.ComponentProps<"span">) => (
   <span

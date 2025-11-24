@@ -1,5 +1,5 @@
 import { graphql } from "@octokit/graphql";
-import { RequestParameters } from "@octokit/graphql/dist-types/types";
+import { type RequestParameters } from "@octokit/graphql/types";
 
 const octokitGraphQL = async <ApiResponseType, TransformedResponseType>({
   query,
@@ -7,7 +7,7 @@ const octokitGraphQL = async <ApiResponseType, TransformedResponseType>({
   responseTransform,
 }: {
   query: string;
-  variables: RequestParameters | undefined;
+  variables?: RequestParameters;
   responseTransform: (response: ApiResponseType) => TransformedResponseType;
 }): Promise<TransformedResponseType> =>
   responseTransform(

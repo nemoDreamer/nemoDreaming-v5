@@ -1,5 +1,4 @@
-import Container from "../Container";
-
+import Container from "./Container";
 import SubHeader from "./SubHeader";
 
 const Main = ({
@@ -10,6 +9,9 @@ const Main = ({
 }>) => {
   return (
     <main className="flex-1 z-10 bg-gray-100">
+      {/* TODO:
+        - [ ] accept `title` for automatic H1
+       */}
       {subHeader && <SubHeader>{subHeader}</SubHeader>}
 
       <Container className="py-4 px-4 print:py-0">{children}</Container>

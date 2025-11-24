@@ -136,6 +136,7 @@ export default function Dialog({
               <button
                 className="absolute top-0 right-0 z-50 bg-white text-black hover:bg-black hover:text-white font-mono grid place-items-center p-0 m-0 w-8 h-8 leading-none outline-none border-none"
                 onClick={handleCloseClick}
+                aria-label="Close dialog"
               >
                 &times;
               </button>

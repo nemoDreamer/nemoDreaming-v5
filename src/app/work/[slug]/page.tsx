@@ -1,8 +1,8 @@
-import ArrowLink from "@/components/ArrowLink";
 import Main from "@/components/Layout/Main";
+import ArrowLink from "@/components/elements/ArrowLink";
 
-import WorkContent from "../components/WorkContent";
-import { getAllWorkPostSlugs, getWorkPost } from "../data/work-post";
+import WorkContent from "../_components/Work/WorkContent";
+import { getAllWorkPostSlugs, getWorkPost } from "../_data/posts";
 
 export function generateStaticParams() {
   return getAllWorkPostSlugs();

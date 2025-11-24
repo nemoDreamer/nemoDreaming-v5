@@ -1,5 +1,6 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import classNames from "classnames";
+import { LazyMotion, domAnimation } from "motion/react";
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import type { ReactNode } from "react";
@@ -31,17 +32,6 @@ export const metadata: Metadata = {
     "Interactive Media Design & Development Portfolio of Philip Blyth. Projects spanning Web, Print, Graphic, Motion, Photography & Illustration.",
 };
 
-// TODO: LazyMotion
-/*
-import { LazyMotion } from "framer-motion";
-
-// defer loading:
-const loadFeatures = () =>
-  import("@/lib/framer-motion-features").then((res) => res.default);
-
-    <LazyMotion features={loadFeatures}>
-*/
-
 export default function RootLayout({
   children,
   prompt,
@@ -61,11 +51,13 @@ export default function RootLayout({
           "flex flex-col min-h-screen",
         )}
       >
-        <Header prompt={prompt} />
+        <LazyMotion features={domAnimation}>
+          <Header prompt={prompt} />
 
-        {children}
+          {children}
 
-        <Footer />
+          <Footer />
+        </LazyMotion>
       </body>
     </html>
   );

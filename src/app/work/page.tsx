@@ -1,18 +1,23 @@
-import ArrowLink from "@/components/ArrowLink";
+import { Suspense } from "react";
+
 import Comments from "@/components/Comments";
 import Main from "@/components/Layout/Main";
 import { H1 } from "@/components/Layout/SubHeader";
-import Thumbnail from "@/components/Thumbnail";
 import H2 from "@/components/core/H2";
-import formatDate from "@/utils/format-date";
 
-import { getAllWorkPosts } from "./data/work-post";
+import RepoGroup from "./_components/Repo/RepoGroup";
+import RepoGroupSkeleton from "./_components/Repo/RepoGroupSkeleton";
+import WorkGroup from "./_components/Work/WorkGroup";
+import { getPullRequests, getTopRepositories } from "./_data/github/endpoints";
 
 const WorkSubHeader = () => <H1>Work</H1>;
 
-export default async function WorkPage() {
-  const workPosts = await getAllWorkPosts();
+const _getTopRepositories = () =>
+  getTopRepositories({
+    includeOwn: "ONLY",
+  });
 
+export default function WorkPage() {
   return (
     <Main subHeader={<WorkSubHeader />}>
       <Comments
@@ -25,7 +30,7 @@ export default async function WorkPage() {
             TODO:
           </span>,
           "- [x] temporary thumbnailed links",
-          "- [ ] temporary repo list",
+          "- [x] temporary repo list",
           "- [ ] make thumbnail grid",
           "- [ ] transfer items from old portfolio...!",
           "- [x] use `topRepositories` to better reflect open-source contributions",
@@ -36,35 +41,23 @@ export default async function WorkPage() {
       />
       <div className="mb-8">
         <H2>Client Work</H2>
-        {workPosts.map(({ title, slug, date, thumbnail }) => (
-          <div key={`work-post-${slug}`} className="mb-2">
-            <ArrowLink href={`/work/${slug}`}>
-              <div className="inline-block mr-2 align-middle">
-                <Thumbnail
-                  alt="Preview Thumbnail"
-                  image={thumbnail}
-                  width={48}
-                  height={48}
-                />
-              </div>
-              <span className="underline group-hover:no-underline">
-                {title}
-              </span>
-              <span className="ml-2 text-xs italic text-gray-500 group-hover:text-gray-300">
-                {formatDate(date)}
-              </span>
-            </ArrowLink>
-          </div>
-        ))}
+        <Suspense fallback={<div>Loading...</div>}>
+          <WorkGroup />
+        </Suspense>
       </div>
-      {/* <div>
+      <div>
         <H2>Open-Source</H2>
-        <RepoGroup
-          title="Top Repositories"
-          repos={truncatedRepos}
-          total={reposTotal}
-        />
-      </div> */}
+        <Suspense fallback={<RepoGroupSkeleton title="Top Repositories" />}>
+          <RepoGroup
+            title="Top Repositories"
+            fetcher={_getTopRepositories}
+            limit={6}
+          />
+        </Suspense>
+        <Suspense fallback={<RepoGroupSkeleton title="Contributions" />}>
+          <RepoGroup title="Contributions" fetcher={getPullRequests} />
+        </Suspense>
+      </div>
     </Main>
   );
 }

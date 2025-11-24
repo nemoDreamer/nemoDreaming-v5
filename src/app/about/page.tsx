@@ -1,9 +1,10 @@
-import ArrowLink from "@/components/ArrowLink";
 import Main from "@/components/Layout/Main";
 import { Code, H1, Strong } from "@/components/Layout/SubHeader";
 import Markdown from "@/components/Markdown";
-import Resume from "@/components/Resume";
-import resume from "@/data/resume.yaml";
+import ArrowLink from "@/components/elements/ArrowLink";
+
+import Resume from "./_components/Resume";
+import resume from "./_data/resume.yaml";
 
 const fixYears = (resume: ResumeType): void => {
   resume.qualifications.body[0] = resume.qualifications.body[0].replace(
@@ -12,7 +13,7 @@ const fixYears = (resume: ResumeType): void => {
   );
 };
 
-const PageSubHeader = () => {
+const AboutSubHeader = () => {
   fixYears(resume);
 
   return (
@@ -50,7 +51,7 @@ const PageSubHeader = () => {
 
 export default function AboutPage() {
   return (
-    <Main subHeader={<PageSubHeader />}>
+    <Main subHeader={<AboutSubHeader />}>
       <Resume data={resume} skipFirstLine skipHeader />
     </Main>
   );
