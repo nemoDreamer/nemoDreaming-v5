@@ -1,14 +1,10 @@
 import Comments from "@/components/Comments";
 import Main from "@/components/Layout/Main";
-import { H1 } from "@/components/Layout/SubHeader";
 import Cursor from "@/components/Terminal/Cursor";
-
-const HomeSubHeader = () => <H1>Home</H1>;
 
 export default function HomePage() {
   return (
-    <Main subHeader={<HomeSubHeader />}>
-      {" "}
+    <Main title="Home">
       <p className="font-mono">
         $ Hi, I’m Philip Blyth <Cursor />
       </p>

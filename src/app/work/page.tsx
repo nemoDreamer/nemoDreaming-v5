@@ -10,8 +10,6 @@ import RepoGroupSkeleton from "./_components/Repo/RepoGroupSkeleton";
 import WorkGroup from "./_components/Work/WorkGroup";
 import { getPullRequests, getTopRepositories } from "./_data/github/endpoints";
 
-const WorkSubHeader = () => <H1>Work</H1>;
-
 const _getTopRepositories = () =>
   getTopRepositories({
     includeOwn: "ONLY",
@@ -19,7 +17,7 @@ const _getTopRepositories = () =>
 
 export default function WorkPage() {
   return (
-    <Main subHeader={<WorkSubHeader />}>
+    <Main title="Work">
       <Comments
         lines={[
           <span key="note">
