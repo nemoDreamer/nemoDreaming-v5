@@ -42,8 +42,12 @@ export default async function RepoGroup({
         </span>
       </H3>
       <Masonry columns={2} spacing={2}>
-        {truncatedRepos.map((repo) => (
-          <Repo key={repo.name} {...repo} hideDetails={hideDetails} />
+        {truncatedRepos.map((repo, index) => (
+          <Repo
+            key={`${repo.name}+${index}`}
+            {...repo}
+            hideDetails={hideDetails}
+          />
         ))}
       </Masonry>
     </div>

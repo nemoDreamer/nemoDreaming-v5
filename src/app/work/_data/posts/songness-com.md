@@ -15,14 +15,9 @@ images:
   - page-songs.jpg
   - page-splash-crop.jpg
   - page-splash.jpg
-  - banner-all-music.jpg
-  - banner-new-free.jpg
-  - banner-splash.jpg
-  - banner-thankyou.jpg
-  - illustration-exponential-sharing.jpg
-  - illustration-push-vs-pull.jpg
-  - illustration-stacks.jpg
 ---
+
+Music recommendation startup.
 
 - UI/UX design
 - JS/Flash hybrid audio-player _(ActionScript3, jQuery)_

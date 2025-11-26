@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Image from "next/image";
 import { useCallback, useMemo, useState } from "react";
 
+import Grid from "@/components/Layout/Grid";
 import Markdown from "@/components/Markdown";
 import ReadMore from "@/components/ReadMore";
 import H2 from "@/components/core/H2";
@@ -102,7 +103,7 @@ export default function WorkContent({
         </ReadMore>
       </div>
 
-      <div className="mb-4 grid grid-flow-row grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 justify-center place-items-center">
+      <Grid className="mb-4">
         {images.slice(1).map((image, index) => (
           <div className="square" key={`image-${image.src}`}>
             <div className="content relative">
@@ -110,8 +111,7 @@ export default function WorkContent({
                 alt={`Preview Thumbnail #${index + 1}`}
                 image={image}
                 shouldFill
-                // NOTE: this is the responsive grid break-points translated...:
-                sizes="(max-width: 480px) 240px, (max-width: 640px) 213px, (max-width: 768px) 192px, 153px"
+                sizes={Grid.SIZES}
                 onClick={makeThumbnailClickHandler(
                   index + 1 /* <- +1 because of `.slice` */,
                 )}
@@ -119,7 +119,7 @@ export default function WorkContent({
             </div>
           </div>
         ))}
-      </div>
+      </Grid>
 
       <Dialog
         refs={refs}

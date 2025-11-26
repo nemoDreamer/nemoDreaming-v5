@@ -1,4 +1,6 @@
-import ArrowLink from "@/components/elements/ArrowLink";
+import Link from "next/link";
+
+import Grid from "@/components/Layout/Grid";
 import Thumbnail from "@/components/elements/Thumbnail";
 import { formatDate } from "@/utils/utils";
 
@@ -8,22 +10,31 @@ export default async function WorkGroup() {
   // client work:
   const workPosts = await getAllWorkPosts();
 
-  return workPosts.map(({ title, slug, date, thumbnail }) => (
-    <div key={`work-post-${slug}`} className="mb-2">
-      <ArrowLink href={`/work/${slug}`}>
-        <div className="inline-block mr-2 align-middle">
-          <Thumbnail
-            alt="Preview Thumbnail"
-            image={thumbnail}
-            width={48}
-            height={48}
-          />
+  return (
+    <Grid className="mb-4">
+      {workPosts.map(({ title, slug, date, thumbnail }) => (
+        <div key={`work-post-${slug}`} className="square">
+          <Link href={`/work/${slug}`} className="content relative">
+            <Thumbnail
+              alt="Preview Thumbnail"
+              image={thumbnail}
+              shouldFill
+              sizes={Grid.SIZES}
+            />
+
+            {/* FIXME: */}
+
+            <div className="hidden">
+              <span className="underline group-hover:no-underline">
+                {title}
+              </span>
+              <span className="ml-2 text-xs italic text-gray-500 group-hover:text-gray-300">
+                {formatDate(date)}
+              </span>
+            </div>
+          </Link>
         </div>
-        <span className="underline group-hover:no-underline">{title}</span>
-        <span className="ml-2 text-xs italic text-gray-500 group-hover:text-gray-300">
-          {formatDate(date)}
-        </span>
-      </ArrowLink>
-    </div>
-  ));
+      ))}
+    </Grid>
+  );
 }

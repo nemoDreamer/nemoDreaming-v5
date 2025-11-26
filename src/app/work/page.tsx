@@ -39,9 +39,7 @@ export default function WorkPage() {
       />
       <div className="mb-8">
         <H2>Client Work</H2>
-        <Suspense fallback={<div>Loading...</div>}>
-          <WorkGroup />
-        </Suspense>
+        <WorkGroup />
       </div>
       <div>
         <H2>Open-Source</H2>
