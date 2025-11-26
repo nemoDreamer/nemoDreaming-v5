@@ -1,5 +1,5 @@
 module.exports = {
-  "**/*.ts?(x)": () => "tsc -p tsconfig.json --noEmit",
+  "**/*.ts?(x)": () => "npm run type-check",
   "**/*.{js,ts}?(x)": "npm run lint:js",
   "**/*.md": "npm run lint:md",
   "package.json": "sort-package-json",

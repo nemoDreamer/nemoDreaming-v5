@@ -13,5 +13,8 @@
     "files.associations": {
         "*.css": "tailwindcss",
         "*.scss": "tailwindcss"
-    }
+    },
+    "tailwindCSS.classFunctions": [
+        "classNames"
+    ]
 }

@@ -1,0 +1,163 @@
+# yaml-language-server: $schema=./schema/resume.json
+# cspell:ignore architected MAMP Figma strategized SDLC Nanoc Endo Königliches Athenäum Eupen TTRPG
+header:
+  name: Philip Featherstone Blyth
+  email: philip.blyth@gmail.com
+  phone: +1 (646) 701-2597
+qualifications:
+  title: Qualifications
+  body:
+    - I am an innovative and creative professional with **22 years of experience** in design and development. Skilled in front~ to back-end development and pipeline tooling using a **variety of modern stacks**, I also hold a Bachelor of Arts in **Visual Communication** and **Interactive Media Design**.
+    - My passion for **tinkering with new technologies** has kept me up-to-date and on my toes, and my time as **senior software developer** and a **group lead and manager** has seen me able to **drive technical change** in a corporate setting, delivering **flexible**, **future-proof**, **impactful** solutions for **major web applications**.
+    - Natively fluent in English, French and German, with working proficiency in Dutch, I am **excited** to work inside of a distributed team and make use of my comprehensive background in **remote work**.
+
+skills:
+  title: Technical Skills
+  groups:
+    development:
+      - JavaScript
+      - React
+      - Vue
+      - Next.js
+      - Node.js
+      - Express
+      - Webpack
+      - Babel
+      - HTML
+      - CSS
+      - Jamstack / LAMP~/MAMP-stack
+      - Ruby
+      - PHP
+      - Python
+      - SQL
+    software:
+      - Visual Studio Code
+      - Atom
+      - Sublime
+      - "`git`"
+      - Docker
+      - Jenkins / Travis / CircleCI
+      - Postman
+      - Figma / Sketch
+      - Adobe Photoshop / Illustrator / Flash / InDesign / AfterEffects / Premiere
+      - Affinity Photo / Designer / Publisher
+      - Unity 3D
+      - Godot
+    platforms:
+      - Mac OSX
+      - "`bash` / `zsh` / `fish`"
+      - Linux
+      - Windows 3.1 to 10
+      - DOS
+
+experience:
+  title: professional experience
+  jobs:
+    - employer: Unity Technologies – SyncSketch
+      location: Remote
+      date: 2021 – present
+      position: Senior Software Engineer
+      additional: C3
+      achievements:
+        - Vue.js & React
+        - Design System / Component Library
+        - Storybook / Testing Library
+        - TypeScript
+        - Annotation Panel
+        - Toolbars, responsive
+        - Management site, increased sales
+
+    - employer: Autodesk – Shotgun / ShotGrid
+      location: Remote
+      date: 2014 – 2021
+      position: Senior Web Application Developer
+      additional: Senior Software Engineer 3
+      achievements:
+        - Developed the Shotgun Design System in React following Autodesk’s Human Interface Guidelines.
+        - Championed modern frameworks and development practices and architected front-end pipeline for continuous integration across multiple repositories, ensuring 100% test coverage and standards compliance for new code.
+        - Built custom Apollo Client links to integrate front-end GraphQL with a transitioning REST API while increasing performance by batching queries with DataLoader.
+        - Won the Shotgun Hackathon 2 years in a row, with big ROI innovations in UI consistency and performance.
+        - Optimized build systems to achieve a 90% reduction in code shipped to clients.
+        - Extensively refactored the codebase to promote visual consistency and reusability.
+
+    - employer: Church Pension Group
+      location: Manhattan, NY
+      date: 2010 – 2014
+      position: User Interface Development Group Lead
+      achievements:
+        - Managed a small team of junior~ to senior-level employees and 1-4 consultants, conducting code reviews, Performance Reviews and crafting Personal Development Plans.
+        - Strategized with peers across IT department and across technology layers, with direct line to CIO.
+        - Worked closely with internal clients to meet rapidly increasing business needs in web-application software development.
+        - Drove technical change on all application tiers, from database layer to front-end.
+        - Launched re-designed corporate website and built theme-editing and caching capabilities into the CMS.
+        - Increased performance and flexibility of thick client-side code, brought multiple web-applications under same framework and interface.
+        - Solution Engineered single-sign-in rebuild through full PMO lifecycle and SDLC, with proven increase in usability for elderly users.
+        - Built responsive interfaces for web and mobile using CSS3, HTML5, custom jQuery plug-ins and UI widgets.
+        - Created rapid prototyping frameworks on top of Nanoc/Sinatra + Bootstrap CSS.
+        - Instructed front~ and back-end team on Ruby development basics and best practices, cross-team code reviews.
+        - Increased productivity of development teams by automating common source-control management, pre-flight and deployment tasks via custom bash, Ruby and make scripts.
+
+    - employer: nemoDreaming.com
+      location: Brussels, BE & New York City, NY
+      date: 1999 – 2018
+      position: Freelance Designer / Developer
+      achievements:
+        - Provided creative services and expertise associated with web design, web development, print, motion, photography, and illustration.
+        - Cultivated positive and enduring relationships with a diverse client base, enhancing client retention levels.
+        - Created graphic designs for posters, flyers, CD sleeves, book covers, business cards, and logo designs.
+        - Wrote lightweight PHP MVC framework “Endo”, used in client projects.
+        - Executed status/progress reporting, issue/bug-tracking, time tracking, and invoicing tasks.
+
+    - employer: songness.com
+      location: Nashville, TN & New York City, NY
+      date: 2008 – 2010
+      position: Lead Designer / Developer
+      achievements:
+        - Played a key role in launching the music business market research startup.
+        - Maintained sole accountability for prototyping, UI design, and agile workflow.
+        - Instrumental in efforts to secure a $1 million funding agreement by launching and updating the beta site on time for multiple VC meeting deadlines.
+        - Spearheaded the development of a prototype site in PHP, which encompassed designing identity, creating front-end of the final site, and implementing UI/functionality changes.
+        - Created illustrations used throughout the site, designed promotional print material and VC presentations.
+        - Managed deployment, migration, and database administration tasks.
+
+    - employer: 19rockets
+      location: Los Angeles, CA & New York City, NY
+      date: 2007 – 2008
+      position: Lead Front-End Designer / Developer
+      achievements:
+        - Contributed to all aspects of brainstorming and idea incubating for the startup.
+        - In charge of design/GUI/UX for goHuman.com _(successfully sold)_.
+
+    - employer: O2Interaction
+      location: Leicester, UK
+      date: 2003 – 2004
+      position: Lead Designer / Developer
+      additional: Internship
+      achievements:
+        - Augmented the company image and market presence by creating cutting-edge web presences as well as print products for clients, which significantly expanded the client base.
+        - Maintained sole accountability for project management functions for private sector and city-run agencies, which included managing 10+ projects simultaneously.
+
+education:
+  title: Education
+  degrees:
+    - school: Academy Of Fine Arts
+      location: Maastricht, The Netherlands
+      date: 2000 – 2004
+      degree: Bachelor of Arts in Design (BA-Des)
+      major: Visual Communication & Interactive Media Design
+    - school: Königliches Athenäum Eupen
+      location: Eupen, Belgium
+      date: 1993 – 1999
+      degree: High School
+      major: Science, Programming, Mathematics
+
+passions:
+  title: Passions
+  items:
+    - Board Games
+    - Tabletop Role-Playing Games (TTRPG’s)
+    - Game Design & Development
+    - Teaching Children
+    - Mountain Biking
+    - Hiking
+    - Camping

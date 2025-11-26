@@ -1,0 +1,138 @@
+@use "tailwindcss";
+
+@theme inline {
+  --font-sans:
+    var(--font-ibm-plex-sans), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono:
+    var(--font-ibm-plex-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@theme {
+  /* Custom teal: */
+  --color-teal-100: #cce0df;
+  --color-teal-200: #99c2c0;
+  --color-teal-300: #66a3a0;
+  --color-teal-400: #338581;
+  --color-teal-500: #006661;
+  --color-teal-600: #00524e;
+  --color-teal-700: #003d3a;
+  --color-teal-800: #002927;
+  --color-teal-900: #001413;
+
+  /* Add `xs` breakpoint: */
+  --breakpoint-xs: 480px;
+  /* --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px; */
+
+  /* Custom animation: */
+  --animate-blink: blink 1s linear infinite;
+  @keyframes blink {
+    10%,
+    50% {
+      opacity: 1;
+    }
+    0%,
+    60%,
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+/* --- dark theme? --- */
+
+/* :root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+} */
+
+/* --- */
+
+@layer base {
+  p,
+  ul,
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply mb-4;
+  }
+
+  code {
+    @apply font-mono text-sm leading-none px-2 pt-0.5 pb-1 rounded-xs text-gray-700 bg-gray-200;
+  }
+
+  pre {
+    @apply font-mono leading-snug;
+  }
+
+  ul {
+    @apply pl-4 list-disc list-outside;
+
+    li {
+      @apply ml-4;
+    }
+  }
+
+  img {
+    height: inherit;
+  }
+}
+
+@layer utilities {
+  /*
+    Responsive Square
+    NOTE: _has_ to have a child `.content`!
+    see https://spin.atomicobject.com/2015/07/14/css-responsive-square/
+  */
+  .square {
+    position: relative;
+    width: 100%;
+
+    &::after {
+      content: " ";
+      display: block;
+      padding-bottom: 100%;
+    }
+
+    .content {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .no-break-after {
+    break-after: avoid;
+  }
+
+  .no-break-inside {
+    break-inside: avoid;
+  }
+
+  .separator {
+    @apply mx-2 text-gray-300;
+  }
+}
