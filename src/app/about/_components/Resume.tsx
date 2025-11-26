@@ -15,11 +15,22 @@ const Label = ({ children, className }: React.ComponentProps<"span">) => (
   </span>
 );
 
-const ItemH3 = ({
+const ResumeH2 = ({
+  children,
+  className,
+  ...props
+}: React.ComponentProps<typeof H2>) => (
+  <H2 className={classNames(className, "mt-16")} {...props}>
+    {children}
+  </H2>
+);
+
+const ResumeH3 = ({
   children,
   className,
   location,
   date,
+  ...props
 }: React.ComponentProps<typeof H3> & {
   location: string;
   date: string;
@@ -27,8 +38,9 @@ const ItemH3 = ({
   <H3
     className={classNames(
       className,
-      "mb-0 flex-wrap md:flex-nowrap flex flex-row no-break-inside no-break-after",
+      "mt-16 mb-0 flex-wrap md:flex-nowrap flex flex-row no-break-inside no-break-after",
     )}
+    {...props}
   >
     <Label className="w-full md:w-auto">{children}</Label>
     <span>
@@ -82,7 +94,7 @@ const Resume: React.FC<{
     </div>
 
     <div className="skills">
-      <H2>{startCase(skills.title)}</H2>
+      <ResumeH2>{startCase(skills.title)}</ResumeH2>
       {/* TODO: use table instead? Hm, should be responsive, tho... */}
       <div className="grid grid-cols-1 xs:grid-cols-3 gap-x-2 mb-4">
         {Object.entries(skills.groups).map(([group, items], iG) => (
@@ -100,16 +112,16 @@ const Resume: React.FC<{
     </div>
 
     <div className="experience">
-      <H2>{startCase(experience.title)}</H2>
+      <ResumeH2>{startCase(experience.title)}</ResumeH2>
       {experience.jobs.map(
         (
           { employer, location, date, position, additional, achievements },
           iJ,
         ) => (
-          <div key={`job-${iJ}`}>
-            <ItemH3 location={location} date={date}>
+          <div key={`job-${iJ}`} className="mb-12">
+            <ResumeH3 location={location} date={date}>
               {employer}
-            </ItemH3>
+            </ResumeH3>
 
             <ItemPosition
               className="no-break-after"
@@ -138,13 +150,13 @@ const Resume: React.FC<{
     </div>
 
     <div className="education">
-      <H2>{startCase(education.title)}</H2>
+      <ResumeH2>{startCase(education.title)}</ResumeH2>
       {education.degrees.map(
         ({ school, location, date, degree, major }, iJ) => (
-          <div className="no-break-inside" key={`job-${iJ}`}>
-            <ItemH3 location={location} date={date}>
+          <div className="no-break-inside mb-12" key={`job-${iJ}`}>
+            <ResumeH3 location={location} date={date}>
               {school}
-            </ItemH3>
+            </ResumeH3>
 
             <ItemPosition detail={major && `, ${major}`}>{degree}</ItemPosition>
           </div>
@@ -153,7 +165,7 @@ const Resume: React.FC<{
     </div>
 
     <div className="passions">
-      <H2>{startCase(passions.title)}</H2>
+      <ResumeH2>{startCase(passions.title)}</ResumeH2>
       <ul>
         {passions.items.map((passion, iP) => (
           <Markdown
