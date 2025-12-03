@@ -1,4 +1,6 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import classNames from "classnames";
 import { LazyMotion, domAnimation } from "motion/react";
 import type { Metadata } from "next";
@@ -41,8 +43,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleAnalytics gaId={process.env.GA_TRACKING_ID as string} />
-
       <body
         className={classNames(
           ibm_plex_mono.variable,
@@ -58,6 +58,10 @@ export default function RootLayout({
 
           <Footer />
         </LazyMotion>
+
+        <GoogleAnalytics gaId={process.env.GA_TRACKING_ID as string} />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
