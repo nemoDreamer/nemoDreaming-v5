@@ -1,32 +1,8 @@
 import classNames from "classnames";
 import Image from "next/image";
-import seedrandom from "seedrandom";
 
+import { getRotationClassNames } from "@/utils/class-names";
 import type { ImageData } from "@/utils/image";
-
-// TailwindCSS rotations (spelled out to avoid culling in production builds)
-const rotations = {
-  default: [
-    "rotate-1",
-    "rotate-2",
-    "rotate-3",
-    // "rotate-6",
-    "-rotate-1",
-    "-rotate-2",
-    "-rotate-3",
-    // "-rotate-6",
-  ],
-  hover: [
-    "hover:rotate-1", // group-hover:rotate-1
-    "hover:rotate-2", // group-hover:rotate-2
-    "hover:rotate-3", // group-hover:rotate-3
-    // "hover:rotate-6", // group-hover:rotate-6
-    "hover:-rotate-1", // group-hover:-rotate-1
-    "hover:-rotate-2", // group-hover:-rotate-2
-    "hover:-rotate-3", // group-hover:-rotate-3
-    // "hover:-rotate-6", // group-hover:-rotate-6
-  ],
-} as const;
 
 export default function Thumbnail({
   className,
@@ -59,11 +35,8 @@ export default function Thumbnail({
     React.ComponentProps<typeof Image>,
     "onClick" | "src" | "blurDataURL" | "placeholder" | "color"
   >) {
-  const rng = seedrandom(image.blurDataURL); // <- seed to get consistent results
-  const getRandom = (arr: readonly string[]) =>
-    arr[Math.round(rng.quick() * (arr.length - 1))];
-
-  const rotation = getRandom(rotations.default);
+  const rotationClassNames =
+    !disableRotate && getRotationClassNames(image.blurDataURL);
 
   return (
     <div
@@ -72,7 +45,7 @@ export default function Thumbnail({
         className,
         "border-solid border-8 border-white shadow-lg",
         "transition hover:shadow-2xl hover:-translate-y-2 group-hover:-translate-y-2",
-        !disableRotate && `${rotation} hover:rotate-0 group-hover:rotate-0`,
+        rotationClassNames,
         !!onClick && "cursor-pointer",
       )}
       style={
