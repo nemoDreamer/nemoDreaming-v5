@@ -1,8 +1,8 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 
 import Comments from "@/components/Comments";
 import Main from "@/components/Layout/Main";
-import { H1 } from "@/components/Layout/SubHeader";
 import H2 from "@/components/core/H2";
 
 import RepoGroup from "./_components/Repo/RepoGroup";
@@ -14,6 +14,10 @@ const _getTopRepositories = () =>
   getTopRepositories({
     includeOwn: "ONLY",
   });
+
+export const metadata: Metadata = {
+  title: "Work",
+};
 
 export default function WorkPage() {
   return (

@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import Main from "@/components/Layout/Main";
 import { Code, H1, Strong } from "@/components/Layout/SubHeader";
 import Markdown from "@/components/Markdown";
@@ -5,6 +7,10 @@ import ArrowLink from "@/components/elements/ArrowLink";
 
 import Resume from "./_components/Resume";
 import resume from "./_data/resume.yaml";
+
+export const metadata: Metadata = {
+  title: "About",
+};
 
 const fixYears = (resume: ResumeType): void => {
   resume.qualifications.body[0] = resume.qualifications.body[0].replace(
