@@ -1,12 +1,13 @@
-@use "tailwindcss";
+@import "tailwindcss";
 
 @theme inline {
   --font-sans:
-    var(--font-ibm-plex-sans), ui-sans-serif, system-ui, sans-serif,
+    var(--font-sans-override), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-mono:
-    var(--font-ibm-plex-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    var(--font-mono-override), ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-ascii: var(--font-ascii);
 }
 
 @theme {
@@ -85,7 +86,7 @@ body {
   }
 
   pre {
-    @apply font-mono leading-snug;
+    @apply font-ascii leading-[1.18];
   }
 
   ul {
