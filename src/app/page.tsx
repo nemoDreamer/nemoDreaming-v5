@@ -27,6 +27,7 @@ export default function HomePage() {
           "- [ ] pull in `featured` from `work`",
           "- [x] add GitHub repos",
           "- [ ] transfer items from old portfolio...!",
+          "- [ ] generate `sitemap.xml`, `robots.txt`, rss, og",
           "- [ ] add social links",
         ]}
       />

@@ -38,7 +38,6 @@ export default function WorkPage() {
           "- [x] use `topRepositories` to better reflect open-source contributions",
           "- [ ] add larger 'featured' to top",
           "- [ ] add filtering by category / technology",
-          "- [ ] generate `sitemap.xml`, `robots.txt`, rss, og",
         ]}
       />
       <div className="mb-8">
