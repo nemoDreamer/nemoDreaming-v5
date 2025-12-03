@@ -1,12 +1,10 @@
+import type { Metadata } from "next";
+
 import Main from "@/components/Layout/Main";
 import ArrowLink from "@/components/elements/ArrowLink";
 
 import WorkContent from "../_components/Work/WorkContent";
 import { getAllWorkPostSlugs, getWorkPost } from "../_data/posts";
-
-export function generateStaticParams() {
-  return getAllWorkPostSlugs();
-}
 
 const PageSubHeader = () => (
   <ArrowLink href="/work" isBack>
@@ -14,13 +12,29 @@ const PageSubHeader = () => (
   </ArrowLink>
 );
 
-export default async function WorkPost({
+type PageParams = Promise<{
+  slug: string;
+}>;
+
+const getWorkPostFromParams = async (params: PageParams) =>
+  getWorkPost((await params).slug);
+
+export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const workPost = await getWorkPost(slug);
+  params: PageParams;
+}): Promise<Metadata> => {
+  const { title } = await getWorkPostFromParams(params);
+
+  return {
+    title: `Work - ${title}`,
+  };
+};
+
+export const generateStaticParams = () => getAllWorkPostSlugs();
+
+export default async function WorkPost({ params }: { params: PageParams }) {
+  const workPost = await getWorkPostFromParams(params);
 
   return (
     <Main subHeader={<PageSubHeader />}>
