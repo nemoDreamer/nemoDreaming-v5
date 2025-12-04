@@ -4,7 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import classNames from "classnames";
 import { LazyMotion, domAnimation } from "motion/react";
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Fira_Code, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import type { ReactNode } from "react";
 
 import Footer from "@/components/Layout/Footer";
@@ -12,17 +12,25 @@ import Header from "@/components/Layout/Header";
 
 import "./globals.scss";
 
-const ibm_plex_mono = IBM_Plex_Mono({
+const font_mono_override = IBM_Plex_Mono({
   weight: ["200", "400", "700"],
   subsets: ["latin-ext"],
-  variable: "--font-ibm-plex-mono",
+  variable: "--font-mono-override",
   style: ["normal", "italic"],
 });
-const ibm_plex_sans = IBM_Plex_Sans({
+
+const font_sans_override = IBM_Plex_Sans({
   weight: ["200", "400", "700"],
   subsets: ["latin-ext"],
-  variable: "--font-ibm-plex-sans",
+  variable: "--font-sans-override",
   style: ["normal", "italic"],
+});
+
+const font_ascii = Fira_Code({
+  weight: "variable",
+  subsets: ["latin-ext"],
+  variable: "--font-ascii",
+  style: "normal",
 });
 
 export const metadata: Metadata = {
@@ -45,9 +53,10 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={classNames(
-          ibm_plex_mono.variable,
-          ibm_plex_sans.variable,
-          "font-sans _antialiased",
+          font_mono_override.variable,
+          font_sans_override.variable,
+          font_ascii.variable,
+          "font-sans antialiased",
           "flex flex-col min-h-screen",
         )}
       >

@@ -11,6 +11,19 @@ const Comment = ({ children }: { children: Comment }) => (
   </p>
 );
 
+const formatLine = (line: Comment): Comment => {
+  const DONE = "- [x]";
+  if (typeof line === "string" && line.startsWith(DONE)) {
+    const [, comment] = line.split(DONE);
+    return (
+      <>
+        {DONE} <s>{comment}</s>
+      </>
+    );
+  }
+  return line;
+};
+
 export default function Comments({ lines }: { lines: Comment[] }) {
   const [shouldShow, setShouldShow] = useState(true);
 
@@ -26,7 +39,7 @@ export default function Comments({ lines }: { lines: Comment[] }) {
       </Link>
 
       {lines.map((line, index) => (
-        <Comment key={index}>{line}</Comment>
+        <Comment key={index}>{formatLine(line)}</Comment>
       ))}
     </div>
   ) : (

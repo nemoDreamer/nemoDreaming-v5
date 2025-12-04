@@ -86,7 +86,7 @@ export default function Repo({
             />
           </CardBody>
           {!hideDetails && (showStars || showForks) && (
-            <CardDetails className="flex flex-row justify-end items-center text-xs">
+            <CardDetails className="flex flex-row justify-end items-center font-mono text-xs">
               {showStars && (
                 <span>
                   <StarFillIcon
