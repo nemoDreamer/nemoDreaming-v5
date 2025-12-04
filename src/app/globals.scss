@@ -10,6 +10,7 @@
   --font-ascii: var(--font-ascii);
 }
 
+/* prettier-ignore */
 @theme {
   /* Custom teal: */
   --color-teal-100: #cce0df;
@@ -21,6 +22,27 @@
   --color-teal-700: #003d3a;
   --color-teal-800: #002927;
   --color-teal-900: #001413;
+
+  /*
+    Custom color palette:
+    ---
+    From https://meodai.github.io/pro-color-harmonies/
+    - Base Color: #006661
+    - Color Count: 11
+    - Color Harmony: Tetratic
+    - Style: Diamond
+  */
+  --color-palette-1: oklch(0.46007673156163087 0.07973859398987947 188.91519739008186);
+  --color-palette-2: oklch(0.49506673156163084 0.06026414290517609 242.676340233534);
+  --color-palette-3: oklch(0.5300567315616308 0.09758309459238962 283.90519739008187);
+  --color-palette-4: oklch(0.39510173156163086 0.0887915472961948 283.90519739008187);
+  --color-palette-5: oklch(0.2601467315616309 0.08 283.90519739008187);
+  --color-palette-6: oklch(0.3601467315616308 0.05218834416164282 314.9043549295038);
+  --color-palette-7: oklch(0.4601467315616308 0.054584257129832066 3.9151973900817842);
+  --color-palette-8: oklch(0.585071731561631 0.03998076742348175 74.00110243791107);
+  --color-palette-9: oklch(0.7099967315616309 0.08 113.90519739008187);
+  --color-palette-10: oklch(0.4451017315616309 0.055374329663708755 113.90519739008187);
+  --color-palette-11: oklch(0.18020673156163092 0.030748659327417504 113.90519739008187);
 
   /* Add `xs` breakpoint: */
   --breakpoint-xs: 480px;
