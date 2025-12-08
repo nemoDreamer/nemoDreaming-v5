@@ -24,6 +24,6 @@ Look & feel for successful local services startup
 While the think-tank 19rockets still existed, we brainstormed and developed GoHuman, a local services & networking site. I created the logo, refined the look & feel and developed the front-end.
 
 - Logo (Flash, Illustrator)
-- XHTML, JavaScript
+- HTML, JavaScript
 - Illustration (SketchUp, Photoshop)
 - Concept © 19rockets

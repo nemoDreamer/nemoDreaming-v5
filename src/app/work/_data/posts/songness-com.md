@@ -24,7 +24,7 @@ tags:
   - Web 2.0
 featured: true
 folder: /work/songness
-thumbnail: page-splash-crop.jpg
+thumbnail: thumbnail.jpg
 images:
   - page-account.jpg
   - page-songs.jpg
@@ -32,8 +32,8 @@ images:
   - page-splash.jpg
 ---
 
-Nashville, TN based music marketing research using crowd-sourcing
+Nashville, TN based music marketing research using crowd-sourcing.
 
-- UI/UX design _(Photoshop, XHTML, CSS, jQuery)_
+- UI/UX design _(Photoshop, HTML, CSS, jQuery)_
 - JS/Flash hybrid audio-player _(ActionScript3, jQuery)_
 - Concept & design © Songness

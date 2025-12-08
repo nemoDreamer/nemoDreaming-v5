@@ -37,7 +37,7 @@ images:
   - comadosis-cutscene.jpg
 ---
 
-Non-linear flash game about drug-use
+Non-linear flash game about drug-use.
 
 - Illustration & animation _(Flash)_
 - Game Engine _(ActionScript 2)_

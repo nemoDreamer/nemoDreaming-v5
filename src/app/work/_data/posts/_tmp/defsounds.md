@@ -21,6 +21,6 @@ images: []
 Fast-growing Hip-Hop news, blogging, music & video site
 
 - Design _(Photoshop)_
-- XHTML/CSS
+- HTML/CSS
 - jQuery plug-ins _(JavaScript)_
 - Custom Flash video/mp3-player

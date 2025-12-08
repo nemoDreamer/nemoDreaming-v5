@@ -16,13 +16,14 @@ tags:
   - HTML
   - Seamless Texture
 folder: /work/baywood-es-inc
-thumbnail: ""
-images: []
+thumbnail: thumbnail.jpg
+images:
+  - contact.jpg
+  - services.jpg
+  - splash.jpg
 ---
 
-Procedural animation for small business in environmental services
+Procedural animation for small business in environmental services.
 
-- Design _(XHTML & CSS)_
+- Design _(HTML & CSS)_
 - Procedural animation _(Flash, ActionScript 3)_
-
-_(Click the root of the plant to re-generate it)_

@@ -18,6 +18,6 @@ images: []
 
 Signup process for TIE online
 
-- Conversion of flat files to XHTML/CSS
+- Conversion of flat files to HTML/CSS
 - Interactive elements & floats _(JavaScript)_
 - Collaboration with Devon Gundry _(19rockets)_

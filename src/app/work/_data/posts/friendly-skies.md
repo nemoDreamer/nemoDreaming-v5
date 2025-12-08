@@ -38,4 +38,4 @@ images:
   - Surface.jpg
 ---
 
-Sleeve~, booklet~ & surface-design for Hugh Featherstone album
+Sleeve~, booklet~ & surface-design for Hugh Featherstone album.

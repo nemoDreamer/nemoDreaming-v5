@@ -18,9 +18,12 @@ tags:
   - HTML
   - JavaScript
   - Swift3D
-folder: /work/blutopia-networks-v2
-thumbnail: ""
-images: []
+folder: /work/blutopia-networks/v2
+thumbnail: thumbnail.jpg
+images:
+  - main.jpg
+  - order.jpg
+  - welcome.jpg
 ---
 
-Simple e-commerce site for online record label
+Simple e-commerce site for online record label.

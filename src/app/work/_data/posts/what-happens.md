@@ -10,9 +10,10 @@ tags:
   - Cintiq
   - SoulPancake
   - Wacom tablet
-folder: /work/what-happens
-thumbnail: ""
-images: []
+folder: /work/illustration
+thumbnail: cintiq-11_what-happens.jpg
+images:
+  - cintiq-11_what-happens.jpg
 ---
 
-Editorial illustration for SoulPancake.com
+Editorial illustration for SoulPancake.com.

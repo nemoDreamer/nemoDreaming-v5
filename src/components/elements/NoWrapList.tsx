@@ -7,7 +7,7 @@ export default function NoWrapList({
 }) {
   return items.map((item, index) => (
     <>
-      <span key={index} className="whitespace-nowrap">
+      <span key={`${item}-${index}`} className="whitespace-nowrap">
         {item}
         {index < items.length - 1 && ` ${separator}`}
       </span>{" "}

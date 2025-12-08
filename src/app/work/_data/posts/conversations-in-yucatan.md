@@ -13,9 +13,10 @@ tags:
   - Book
   - Cover
   - Fictional
-folder: /work/conversations-in-yucatan
-thumbnail: ""
-images: []
+folder: /work/illustration
+thumbnail: conversations-in-yucatan.jpg
+images:
+  - conversations-in-yucatan.jpg
 ---
 
-Fictional book-cover project
+Fictional book-cover project.

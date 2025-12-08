@@ -29,4 +29,4 @@ images:
 ---
 
 - Ruby on Rails _(with RoR/Merb core-team member Carl Lerche)_
-- Advanced Haml XHTML/CSS
+- Advanced Haml HTML/CSS

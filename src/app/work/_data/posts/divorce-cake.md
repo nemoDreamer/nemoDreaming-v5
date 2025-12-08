@@ -10,9 +10,10 @@ tags:
   - Cintiq
   - SoulPancake
   - Wacom tablet
-folder: /work/divorce-cake
-thumbnail: ""
-images: []
+folder: /work/illustration
+thumbnail: cintiq-13_divorce-cake.jpg
+images:
+  - cintiq-13_divorce-cake.jpg
 ---
 
-Editorial illustration for SoulPancake.com
+Editorial illustration for SoulPancake.com.

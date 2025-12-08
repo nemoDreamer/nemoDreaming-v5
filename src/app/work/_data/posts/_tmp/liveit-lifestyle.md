@@ -20,7 +20,7 @@ images: []
 
 Nutritional lifestyle education portal
 
-- Design to XHTML/CSS conversion
+- Design to HTML/CSS conversion
 - Development of CMS framework extensions _(on top of my_ **_Endo MVC_**_)_
 - Dynamic PDF customization & caching
 - Multiple jQuery widgets and plug-ins _(JavaScript)_
