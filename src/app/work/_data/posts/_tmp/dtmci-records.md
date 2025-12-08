@@ -10,8 +10,9 @@ tags:
   - Adobe Illustrator
   - Adobe Photoshop
 folder: /work/dtmci-records
-thumbnail: ""
-images: []
+thumbnail: home.jpg
+images:
+  - home.jpg
 ---
 
 Mockup for record label revamp

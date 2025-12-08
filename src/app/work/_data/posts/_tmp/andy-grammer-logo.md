@@ -11,7 +11,7 @@ tags:
   - Adobe Photoshop
   - Music
 folder: /work/andy-grammer-logo
-thumbnail: ""
+thumbnail: thumbnail.png
 images: []
 ---
 

@@ -10,8 +10,9 @@ tags:
   - HTML
   - PHP
 folder: /work/jobs-at-belden-europe
-thumbnail: ""
-images: []
+thumbnail: jobs-search.png
+images:
+  - jobs-search.png
 ---
 
 Job-listing search tool for leading electronics company

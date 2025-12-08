@@ -13,8 +13,9 @@ tags:
   - HTML
   - jQuery
 folder: /work/merb-foundation
-thumbnail: ""
-images: []
+thumbnail: merb-the-ruby-web-framework.jpg
+images:
+  - merb-the-ruby-web-framework.jpg
 ---
 
 Design for the foundation's new website

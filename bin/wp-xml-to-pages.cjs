@@ -18,7 +18,7 @@ mysqldump -p nemodreaming_v3 wp_posts wp_postmeta wp_terms wp_term_taxonomy wp_t
 */
 
 const DUMPS_DIR = path.resolve(__dirname, "../_dumps/");
-const PAGES_DIR = path.join(__dirname, "../src/app/work/_data/posts");
+const PAGES_DIR = path.join(__dirname, "../src/app/work/_data/posts/_tmp");
 
 if (!fs.existsSync(PAGES_DIR)) {
   fs.mkdirSync(PAGES_DIR, { force: true });
@@ -101,6 +101,16 @@ async function xmlToPages() {
           { categories: [], tags: [] },
         );
 
+      // add uploads?
+      const UPLOADS_DIR = path.join(DUMPS_DIR, "uploads", post.name);
+      if (fs.existsSync(UPLOADS_DIR)) {
+        const uploads = fs.readdirSync(UPLOADS_DIR);
+        if (uploads.length) {
+          post.thumbnail = uploads[0];
+          post.images = uploads;
+        }
+      }
+
       return post;
     });
 
@@ -124,6 +134,8 @@ async function xmlToPages() {
       excerpt,
       metadata: { nemo },
       relationships: { categories, tags, featured },
+      thumbnail,
+      images,
     }) => {
       const frontMatter = YAML.stringify({
         title,
@@ -135,8 +147,8 @@ async function xmlToPages() {
         featured,
         // stubs:
         folder: `/work/${slug}`,
-        thumbnail: "",
-        images: [],
+        thumbnail: thumbnail || "thumbnail.png",
+        images: images || [],
       }).trim();
 
       const output = [

@@ -17,10 +17,11 @@ tags:
   - Ruby on Rails
   - Startup
   - Web 2.0
-  - webapp
+  - Web App
 folder: /work/illumine
-thumbnail: ""
-images: []
+thumbnail: dashboard-localized.jpg
+images:
+  - dashboard-localized.jpg
 ---
 
-Event-management webapp for religious communities
+Event-management web-app for religious communities.

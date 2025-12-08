@@ -12,12 +12,15 @@ tags:
   - HTML
   - JavaScript
 folder: /work/the-international-educator
-thumbnail: ""
-images: []
+thumbnail: page-account-payment.jpg
+images:
+  - page-account-payment.jpg
+  - page-landing.jpg
+  - page-offline-payment.jpg
 ---
 
 Signup process for TIE online
 
-- Conversion of flat files to HTML/CSS
+- Conversion of flat files to XHTML/CSS
 - Interactive elements & floats _(JavaScript)_
 - Collaboration with Devon Gundry _(19rockets)_

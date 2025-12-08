@@ -19,6 +19,16 @@ export const metadata: Metadata = {
   title: "Work",
 };
 
+/*
+TODO:
+- [ ] Missing projects:
+  - Slow Night
+  - Winter's Fire
+  - Between the Times
+  - Design Libraries?
+  - Kerosene / Day You Left
+*/
+
 export default function WorkPage() {
   return (
     <Main title="Work">

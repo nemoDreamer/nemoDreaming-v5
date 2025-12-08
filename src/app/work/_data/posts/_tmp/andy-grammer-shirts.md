@@ -12,7 +12,7 @@ tags:
   - Music
   - T-Shirt
 folder: /work/andy-grammer-shirts
-thumbnail: ""
+thumbnail: thumbnail.png
 images: []
 ---
 
