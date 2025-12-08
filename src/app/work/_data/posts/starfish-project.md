@@ -2,12 +2,18 @@
 title: The Starfish Project
 date: 12/12/2008, 7:51:44 PM
 url: http://www.thestarfishproject.org
-category: design
-technologies:
-  - Adobe Photoshop
+category: Design
+categories:
+  - Design
+  - Identity
+  - Interactive
+tags:
+  - Adobe Flash
   - Adobe Illustrator
-  - HTML
+  - Adobe Photoshop
   - CSS
+  - HTML
+  - sIFR
 folder: /work/starfish-project
 thumbnail: logo_01-03-preview.jpg
 images:
@@ -16,6 +22,8 @@ images:
   - logo_01-03-preview.jpg
 ---
 
-- Design _(Photoshop)_
+Logo & website design for a non-profit AIDS-medication collection & distribution organization.
+
+- Design _(Photoshop, Illustrator)_
 - HTML/CSS conversion
 - sIFR _(Flash font replacement)_

@@ -2,12 +2,27 @@
 title: Songness.com
 date: 09/28/2010, 9:41:25 PM
 url: http://www.songness.com
-category: interactive
-technologies:
+category: Interactive
+categories:
+  - Design
+  - Development
+  - Identity
+  - Illustration
+  - Interactive
+tags:
+  - ActionScript 3
+  - Adobe Flash
+  - Adobe Illustrator
   - Adobe Photoshop
-  - HTML
   - CSS
+  - HTML
+  - JavaScript
   - jQuery
+  - Music
+  - Ruby on Rails
+  - Startup
+  - Web 2.0
+featured: true
 folder: /work/songness
 thumbnail: page-splash-crop.jpg
 images:
@@ -17,8 +32,8 @@ images:
   - page-splash.jpg
 ---
 
-Music recommendation startup.
+Nashville, TN based music marketing research using crowd-sourcing
 
-- UI/UX design
+- UI/UX design _(Photoshop, XHTML, CSS, jQuery)_
 - JS/Flash hybrid audio-player _(ActionScript3, jQuery)_
 - Concept & design © Songness

@@ -11,9 +11,12 @@ type WorkPostData = {
   title: string;
   date: string;
   url?: string;
-  category?: string;
-  technologies?: string[];
-  folder?: string;
+  // ---
+  category: string;
+  categories: string[];
+  tags: string[];
+  // ---
+  folder: string;
   thumbnail: string;
   images: string[];
 };

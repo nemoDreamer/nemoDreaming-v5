@@ -1,11 +1,12 @@
 {
     "cSpell.words": [
-        "Vercel",
         "gtag",
         "nemo",
         "nemodreaming",
         "octokit",
-        "plex"
+        "plex",
+        "unserialize",
+        "Vercel"
     ],
     "browser-preview.startUrl": "http://localhost:3000",
     "typescript.tsdk": "./node_modules/typescript/lib",

@@ -9,6 +9,7 @@ import Markdown from "@/components/Markdown";
 import ReadMore from "@/components/ReadMore";
 import H2 from "@/components/core/H2";
 import Dialog, { useDialog } from "@/components/elements/Dialog";
+import NoWrapList from "@/components/elements/NoWrapList";
 import Separator from "@/components/elements/Separator";
 import Thumbnail from "@/components/elements/Thumbnail";
 import { formatDate } from "@/utils/utils";
@@ -19,7 +20,7 @@ const CAROUSEL_NAV_CLASSES: React.HTMLAttributes<HTMLDivElement>["className"] =
   "opacity-0 hover:opacity-100 transition-opacity duration-300 from-black/25 via-35% via-black/10 to-transparent w-1/4 absolute top-0 bottom-0 grid place-items-center cursor-pointer select-none";
 
 export default function WorkContent({
-  workPost: { title, date, category, technologies, images, content },
+  workPost: { title, date, category, categories, tags, images, content },
 }: {
   workPost: WorkPost;
 }) {
@@ -63,23 +64,27 @@ export default function WorkContent({
       <H2>{title}</H2>
 
       <div className="mb-4 text-sm text-gray-500 flex flex-row items-baseline space-x-4">
-        <span className="date">{formatDate(date)}</span>
-        {category && (
+        <span className="date whitespace-nowrap">{formatDate(date)}</span>
+        <Separator />
+        <span className="category rounded-sm bg-yellow-300 text-yellow-900 px-1.5 py-0.5">
+          {category}
+        </span>
+        {categories.length > 1 ? (
           <>
-            <Separator />
-            <span className="category rounded-sm bg-yellow-300 text-yellow-900 px-1.5 py-0.5">
-              {category}
+            <Separator char="+" />
+            <span className="categories">
+              <NoWrapList
+                items={categories.filter((cat) => cat !== category).sort()}
+              />
             </span>
+            <div className="border-l border-gray-200 h-vh w-0 self-stretch" />
           </>
+        ) : (
+          <Separator />
         )}
-        {technologies && (
-          <>
-            <Separator />
-            <span className="technologies">
-              {technologies.sort().join(" / ")}
-            </span>
-          </>
-        )}
+        <span className="tags">
+          <NoWrapList items={tags.sort()} />
+        </span>
       </div>
 
       <div className="mb-8 xs:grid xs:gap-4 xs:grid-cols-3 md:grid-cols-7">

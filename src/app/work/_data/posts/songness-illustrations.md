@@ -1,11 +1,17 @@
 ---
-title: Songness
+title: Songness (illustrations)
 date: 09/28/2010, 8:41:25 PM
 url: http://www.songness.com
-category: illustration
-technologies:
-  - Adobe Photoshop
+category: Illustration
+categories:
+  - Illustration
+tags:
   - Adobe Illustrator
+  - Adobe Photoshop
+  - Cintiq
+  - SmartObjects
+  - Startup
+  - Wacom tablet
 folder: /work/songness
 thumbnail: banner-thankyou.jpg
 images:
@@ -18,4 +24,4 @@ images:
   - illustration-stacks.jpg
 ---
 
-Header and banner illustrations for a music recommendation site.
+Header and banner illustrations for Songness.com, a music recommendation site.

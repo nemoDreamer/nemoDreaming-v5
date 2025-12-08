@@ -7,17 +7,24 @@ import { type ImageData, getImageData } from "./image";
 
 // --------------------------------------------------
 
-export const getAllPostFileNames = (directory: string) =>
-  fs.readdirSync(directory);
+export const getAllPostFileNames = (directory: string, ext = ".md") =>
+  fs
+    .readdirSync(directory, { withFileTypes: true })
+    .filter((dirent) => dirent.isFile() && dirent.name.endsWith(ext))
+    .map((dirent) => dirent.name);
 
 export const getFileNameFromSlug = (slug: string, ext = ".md") =>
   `${slug}${ext}`;
+
 export const getSlugFromFileName = (fileName: string, ext = ".md") =>
   fileName.replace(new RegExp(`${ext}$`), "");
 
-export const getAllPostSlugs = (directory: string): { slug: string }[] =>
-  getAllPostFileNames(directory).map((fileName) => ({
-    slug: getSlugFromFileName(fileName),
+export const getAllPostSlugs = (
+  directory: string,
+  ext = ".md",
+): { slug: string }[] =>
+  getAllPostFileNames(directory, ext).map((fileName) => ({
+    slug: getSlugFromFileName(fileName, ext),
   }));
 
 // --------------------------------------------------

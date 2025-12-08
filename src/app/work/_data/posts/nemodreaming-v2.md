@@ -2,11 +2,17 @@
 title: nemoDreaming v2
 date: 09/15/2006, 5:58:08 PM
 url: http://v2.nemodreaming.com
-category: interactive
-technologies:
-  - Flash
+category: Interactive
+categories:
+  - Design
+  - Development
+  - Interactive
+tags:
+  - ActionScript 2
+  - Adobe Flash
+  - TXT DB
   - PHP
-  - Flat file DB
+featured: true
 folder: /work/nemodreaming/v2
 thumbnail: 03.jpg
 images:
@@ -21,5 +27,10 @@ images:
   - 09.jpg
   - 10.jpg
 ---
+
+Previous Flash version of this portfolio
+
+- Flash _(front-end)_
+- PHP/Text-file DB _(back-end)_
 
 This site lasted me 7 good years. But once i started producing faster than I could keep the unwieldy textfile-based "database" up-to-date, I knew it was time to move on...
