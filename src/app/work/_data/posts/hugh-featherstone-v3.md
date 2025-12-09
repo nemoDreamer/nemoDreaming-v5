@@ -18,7 +18,7 @@ tags:
   - PHP
 featured: true
 folder: /work/hugh-featherstone/hughfeatherstone-com/v3
-thumbnail: home.jpg
+thumbnail: thumbnail.jpg
 images:
   - home.jpg
   - menu.png

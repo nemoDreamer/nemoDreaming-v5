@@ -17,7 +17,7 @@ tags:
   - PHP
   - WordPress
 folder: /work/mit-biomolecular-materials-group
-thumbnail: home.jpg
+thumbnail: thumbnail.jpg
 images:
   - home.jpg
   - profile-angela-belcher.jpg

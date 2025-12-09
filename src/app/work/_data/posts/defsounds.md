@@ -18,12 +18,12 @@ tags:
   - Music
   - SmartObjects
 folder: /work/defsounds
-thumbnail: home.jpg
+thumbnail: logo.png
 images:
   - home.jpg
-  - logo.png
-  - video-player.jpg
   - videos.jpg
+  - video-player.jpg
+  - logo.png
 excerpt: Fast-growing Hip-Hop news, blogging, music & video site.
 ---
 

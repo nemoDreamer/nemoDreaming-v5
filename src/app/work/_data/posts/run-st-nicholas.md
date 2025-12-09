@@ -19,13 +19,13 @@ tags:
   - Santa Claus
   - St. Nicholas
 folder: /work/run-st-nicholas
-thumbnail: screens-01.jpg
+thumbnail: thumbnail.jpg
 images:
   - screens-01.jpg
-  - screens-02.jpg
   - screens-03.jpg
   - screens-04.jpg
   - screens-05.jpg
+  - screens-02.jpg # <- less interesting
   # - ecard.jpg
 excerpt: Flash game about the real meaning of Christmas.
 ---

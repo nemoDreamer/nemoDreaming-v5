@@ -11,7 +11,7 @@ tags:
   - CSS
   - HTML
 folder: /work/hillary-chapman
-thumbnail: design_01-011.jpg
+thumbnail: thumbnail.jpg
 images:
   - design_01-011.jpg
 excerpt: Website design for Nashville-based singer/songwriter.

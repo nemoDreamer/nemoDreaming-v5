@@ -17,7 +17,7 @@ tags:
   - Theme
   - WordPress
 folder: /work/salvai-com
-thumbnail: iphone-01.jpg
+thumbnail: thumbnail.jpg
 images:
   - iphone-01.jpg
   - iphone-02.jpg

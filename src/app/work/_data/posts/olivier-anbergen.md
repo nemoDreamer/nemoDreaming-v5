@@ -15,7 +15,7 @@ tags:
   - JavaScript
   - PHP
 folder: /work/olivier-anbergen
-thumbnail: olivierAnbergen-com.png
+thumbnail: thumbnail.png
 images:
   - olivierAnbergen-com.png
   - logo.jpg

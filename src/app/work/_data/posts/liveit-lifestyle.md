@@ -14,7 +14,7 @@ tags:
   - PHP
   - jQuery
 folder: /work/liveit-lifestyle
-thumbnail: page-listings-home.jpg
+thumbnail: thumbnail.jpg
 images:
   - page-listings-home.jpg
   - page-lessons.jpg

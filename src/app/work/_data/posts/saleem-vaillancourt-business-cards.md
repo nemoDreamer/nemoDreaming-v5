@@ -13,7 +13,7 @@ tags:
   - SketchUp
   - SmartObjects
 folder: /work/saleem-vaillancourt-business-cards
-thumbnail: business-card-01.jpg
+thumbnail: thumbnail.jpg
 images:
   - business-card-01.jpg
   - business-card-02.jpg

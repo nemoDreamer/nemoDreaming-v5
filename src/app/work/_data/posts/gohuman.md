@@ -15,7 +15,7 @@ tags:
   - JavaScript
   - Logo
 folder: /work/gohuman
-thumbnail: home.jpg
+thumbnail: thumbnail.jpg
 images:
   - home.jpg
 excerpt: Look & feel for successful local services startup.

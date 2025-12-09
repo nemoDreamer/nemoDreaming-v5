@@ -19,7 +19,7 @@ tags:
   - Music
   - YouTubeAPI
 folder: /work/crimson-world
-thumbnail: home.jpg
+thumbnail: thumbnail.jpg
 images:
   - home.jpg
   - media-feed.jpg

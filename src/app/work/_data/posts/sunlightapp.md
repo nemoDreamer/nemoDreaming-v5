@@ -13,11 +13,11 @@ tags:
   - jQuery
   - Web App
 folder: /work/sunlightapp
-thumbnail: illustration-spread.jpg
+thumbnail: thumbnail.jpg
 images:
+  - illustration-spread.jpg
   - page-dashboard.jpg
   - page-donors.jpg
-  - illustration-spread.jpg
   - page-history.jpg
   - page-campaigns.jpg
   - page-campaign.jpg
