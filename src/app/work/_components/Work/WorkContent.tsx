@@ -86,7 +86,7 @@ export default function WorkContent({
                 items={categories.filter((cat) => cat !== category).sort()}
               />
             </span>
-            <div className="border-l border-gray-200 h-vh w-0 self-stretch" />
+            <div className="border-l border-gray-400 opacity-50 h-vh w-0 self-stretch" />
           </>
         ) : (
           <Separator />

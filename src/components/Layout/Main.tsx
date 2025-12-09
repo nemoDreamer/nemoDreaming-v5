@@ -15,7 +15,7 @@ const Main = ({
         <SubHeader>{subHeader || <H1>{title}</H1>}</SubHeader>
       )}
 
-      <Container className="py-4 px-4 print:py-0">{children}</Container>
+      <Container className="mt-4 py-4 px-4 print:py-0">{children}</Container>
     </main>
   );
 };

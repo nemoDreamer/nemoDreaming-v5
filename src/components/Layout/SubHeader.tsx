@@ -12,7 +12,7 @@ export const H1 = ({
   <CoreH1
     className={classNames(
       className,
-      "font-bold text-base text-white print:text-black print:text-2xl",
+      "font-bold text-base text-white print:text-black print:text-2xl mb-0",
     )}
     {...props}
   >

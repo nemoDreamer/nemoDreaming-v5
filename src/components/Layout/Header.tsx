@@ -40,7 +40,7 @@ const Header: React.FC<{
   return (
     <motion.header
       id="header"
-      className="bg-teal-500 shadow-xl flex z-20 print:hidden"
+      className="bg-teal-500 shadow-xl cursor-default flex z-20 print:hidden"
       transition={transition}
       // - used on initial document load only:
       initial={animate}

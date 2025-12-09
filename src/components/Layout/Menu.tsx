@@ -2,7 +2,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
 
-const items = [
+import Separator from "../elements/Separator";
+
+const MENU_ITEMS = [
   { route: "/", label: "Home" },
   { route: "/work", label: "Work" },
   { route: "/about", label: "About" },
@@ -13,14 +15,16 @@ const Menu: React.FC = () => {
 
   return (
     <div className="font-mono mb-3">
-      {items.map(({ route, label }, index) => {
-        const isLast = index === items.length - 1;
-        const isCurrent = route === pathname;
+      {MENU_ITEMS.map(({ route, label }, index) => {
+        const isLast = index === MENU_ITEMS.length - 1;
+        const isCurrent =
+          route === pathname ||
+          (route !== MENU_ITEMS[0].route && pathname.startsWith(route));
 
         return (
           <Fragment key={`item-${label}`}>
             {isCurrent ? (
-              <span className="text-teal-100 cursor-pointer">
+              <span className="text-teal-100">
                 $(<span className="text-teal-200">{label}</span>)
               </span>
             ) : (
@@ -29,7 +33,7 @@ const Menu: React.FC = () => {
               </Link>
             )}
 
-            {!isLast && <span className="text-teal-400">{" / "}</span>}
+            {!isLast && <Separator className="text-teal-200" char=" / " />}
           </Fragment>
         );
       })}
