@@ -6,6 +6,7 @@ import Markdown from "@/components/Markdown";
 import H1 from "@/components/core/H1";
 import H2 from "@/components/core/H2";
 import H3 from "@/components/core/H3";
+import Separator from "@/components/elements/Separator";
 
 const Label = ({ children, className }: React.ComponentProps<"span">) => (
   <span
@@ -103,7 +104,7 @@ const Resume: React.FC<{
               {startCase(group)}
             </Label>
             <Markdown
-              className="col-span-2 no-break-inside"
+              className="xs:col-span-2 no-break-inside"
               content={items.join(" | ")}
             />
           </Fragment>
@@ -116,9 +117,9 @@ const Resume: React.FC<{
       {experience.jobs.map(
         (
           { employer, location, date, position, additional, achievements },
-          iJ,
+          i,
         ) => (
-          <div key={`job-${iJ}`} className="mb-12">
+          <div key={`job-${i}`} className="mb-12">
             <ResumeH3 location={location} date={date}>
               {employer}
             </ResumeH3>
@@ -134,11 +135,11 @@ const Resume: React.FC<{
 
             {achievements && (
               <ul>
-                {achievements.map((achievement, iA) => (
+                {achievements.map((achievement, j) => (
                   <Markdown
                     tag="li"
                     isSingleLine
-                    key={`achievement-${iA}`}
+                    key={`achievement-${j}`}
                     content={achievement}
                   />
                 ))}
@@ -151,27 +152,25 @@ const Resume: React.FC<{
 
     <div className="education">
       <ResumeH2>{startCase(education.title)}</ResumeH2>
-      {education.degrees.map(
-        ({ school, location, date, degree, major }, iJ) => (
-          <div className="no-break-inside mb-12" key={`job-${iJ}`}>
-            <ResumeH3 location={location} date={date}>
-              {school}
-            </ResumeH3>
+      {education.degrees.map(({ school, location, date, degree, major }, i) => (
+        <div className="no-break-inside mb-12" key={`job-${i}`}>
+          <ResumeH3 location={location} date={date}>
+            {school}
+          </ResumeH3>
 
-            <ItemPosition detail={major && `, ${major}`}>{degree}</ItemPosition>
-          </div>
-        ),
-      )}
+          <ItemPosition detail={major && `, ${major}`}>{degree}</ItemPosition>
+        </div>
+      ))}
     </div>
 
     <div className="passions">
       <ResumeH2>{startCase(passions.title)}</ResumeH2>
       <ul>
-        {passions.items.map((passion, iP) => (
+        {passions.items.map((passion, i) => (
           <Markdown
             tag="li"
             isSingleLine
-            key={`passion-${iP}`}
+            key={`passion-${i}`}
             content={passion}
           />
         ))}
