@@ -36,10 +36,11 @@ export const getAllWorkPostFileNames = () => getAllPostFileNames(DIRECTORY);
 
 export const getAllWorkPostSlugs = () => getAllPostSlugs(DIRECTORY);
 
-export const getAllWorkPosts = async () =>
+export const getAllWorkPosts = async ({ isShallow = false } = {}) =>
   Promise.all(
     getAllWorkPostFileNames().map(
-      async (fileName) => await processPost<WorkPostData>(DIRECTORY, fileName),
+      async (fileName) =>
+        await processPost<WorkPostData>(DIRECTORY, fileName, { isShallow }),
     ),
   ).then((post) =>
     post.sort((a, b) => {

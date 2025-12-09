@@ -8,7 +8,7 @@ import { getAllWorkPosts } from "../../_data/posts";
 
 export default async function WorkGroup() {
   // client work:
-  const workPosts = await getAllWorkPosts();
+  const workPosts = await getAllWorkPosts({ isShallow: true });
 
   return (
     <Grid className="mb-4">
