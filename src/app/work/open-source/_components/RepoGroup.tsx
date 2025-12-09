@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import H3 from "@/components/core/H3";
 
-import type { Repository } from "../../_data/github/endpoints";
+import type { Repository } from "../_data/endpoints";
 
 import Repo from "./Repo";
 

@@ -7,7 +7,7 @@ import { createElement } from "react";
 import Markdown from "@/components/Markdown";
 import Card, { CardBody, CardDetails } from "@/components/elements/Card";
 
-import type { Repository } from "../../_data/github/endpoints";
+import type { Repository } from "../_data/endpoints";
 
 // SETUP
 // --------------------------------------------------

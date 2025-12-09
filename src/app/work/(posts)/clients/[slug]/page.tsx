@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import Main from "@/components/Layout/Main";
 import ArrowLink from "@/components/elements/ArrowLink";
 
-import WorkContent from "../../_components/Work/WorkContent";
-import { getAllWorkPostSlugs, getWorkPost } from "../../_data/posts";
+import WorkContent from "../../_components/WorkContent";
+import { getAllWorkPostSlugs, getWorkPost } from "../../_data/work-post";
 
 const PageSubHeader = () => (
   <ArrowLink href="/work/clients" isBack>

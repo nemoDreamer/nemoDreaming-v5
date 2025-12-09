@@ -29,7 +29,7 @@ export type WorkPost = Awaited<ReturnType<typeof processPost<WorkPostData>>>;
 
 export const DIRECTORY = path.resolve(
   process.cwd(),
-  "./src/app/work/_data/posts",
+  "./src/app/work/(posts)/clients/_data",
 );
 
 export const getAllWorkPostFileNames = () => getAllPostFileNames(DIRECTORY);

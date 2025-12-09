@@ -4,17 +4,16 @@ import Grid from "@/components/Layout/Grid";
 import Thumbnail from "@/components/elements/Thumbnail";
 import { formatDate } from "@/utils/utils";
 
-import { getAllWorkPosts } from "../../_data/posts";
+import { getAllWorkPosts } from "../_data/work-post";
 
-export default async function WorkGroup() {
-  // client work:
+export default async function WorkGroup({ basepath }: { basepath: string }) {
   const workPosts = await getAllWorkPosts();
 
   return (
     <Grid className="mb-4">
       {workPosts.map(({ title, slug, date, thumbnail }) => (
         <div key={`work-post-${slug}`} className="square">
-          <Link href={`/work/clients/${slug}`} className="content relative">
+          <Link href={`${basepath}/${slug}`} className="content relative">
             <Thumbnail
               alt="Preview Thumbnail"
               image={thumbnail}
