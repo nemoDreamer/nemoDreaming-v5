@@ -7,11 +7,27 @@ import { type ImageData, getImageData } from "./image";
 
 // --------------------------------------------------
 
-export const getAllPostFileNames = (directory: string, ext = ".md") =>
-  fs
+const FILENAMES_CACHE = new Map<string, string[]>();
+const POSTS_CACHE = new Map<string, unknown>();
+
+// --------------------------------------------------
+
+export const getAllPostFileNames = (directory: string, ext = ".md") => {
+  const cache_key = `${directory}::${ext}`;
+
+  if (FILENAMES_CACHE.has(cache_key)) {
+    return FILENAMES_CACHE.get(cache_key)!;
+  }
+
+  const fileNames = fs
     .readdirSync(directory, { withFileTypes: true })
     .filter((dirent) => dirent.isFile() && dirent.name.endsWith(ext))
     .map((dirent) => dirent.name);
+
+  FILENAMES_CACHE.set(cache_key, fileNames);
+
+  return fileNames;
+};
 
 export const getFileNameFromSlug = (slug: string, ext = ".md") =>
   `${slug}${ext}`;
@@ -42,8 +58,16 @@ export const processPost = async <Raw>(
       images: ImageData[];
     }
 > => {
+  const postPath = path.join(directory, fileName);
+
+  if (POSTS_CACHE.has(postPath)) {
+    return Promise.resolve(
+      POSTS_CACHE.get(postPath) as ReturnType<typeof processPost<Raw>>,
+    );
+  }
+
   const { content, data } = matter(
-    fs.readFileSync(path.join(directory, fileName), "utf8"),
+    fs.readFileSync(postPath, "utf8"),
   ) as GrayMatterFile<string> & {
     data: Raw;
   };
@@ -54,7 +78,7 @@ export const processPost = async <Raw>(
     data.images.map((image: string) => getImageData(image, data.folder)),
   );
 
-  return {
+  const post = {
     slug: getSlugFromFileName(fileName),
     content,
     // add front-matter:
@@ -65,4 +89,8 @@ export const processPost = async <Raw>(
     thumbnail: processedThumbnail,
     images: processedImages,
   };
+
+  POSTS_CACHE.set(postPath, post);
+
+  return post;
 };
