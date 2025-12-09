@@ -1,7 +1,6 @@
 ---
 title: Andy Grammer (logo)
 date: 11/24/2009, 6:39:05 PM
-url: ""
 category: Identity
 categories:
   - Identity

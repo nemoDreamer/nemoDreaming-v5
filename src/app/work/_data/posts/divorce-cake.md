@@ -14,6 +14,5 @@ folder: /work/illustration
 thumbnail: cintiq-13_divorce-cake.jpg
 images:
   - cintiq-13_divorce-cake.jpg
+excerpt: Editorial illustration for SoulPancake.com.
 ---
-
-Editorial illustration for SoulPancake.com.

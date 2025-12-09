@@ -1,7 +1,6 @@
 ---
 title: Conversations in Yucatán
 date: 11/24/2009, 6:08:05 PM
-url: ""
 category: Design
 categories:
   - Design
@@ -17,6 +16,5 @@ folder: /work/illustration
 thumbnail: conversations-in-yucatan.jpg
 images:
   - conversations-in-yucatan.jpg
+excerpt: Fictional book-cover project.
 ---
-
-Fictional book-cover project.

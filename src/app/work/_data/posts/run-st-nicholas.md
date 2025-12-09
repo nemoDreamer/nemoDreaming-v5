@@ -27,9 +27,8 @@ images:
   - screens-04.jpg
   - screens-05.jpg
   # - ecard.jpg
+excerpt: Flash game about the real meaning of Christmas.
 ---
-
-Flash game about the real meaning of Christmas.
 
 - Flash game engine _(ActionScript2)_
 - Illustration & animation _(hand-drawn scans, Flash treatment)_

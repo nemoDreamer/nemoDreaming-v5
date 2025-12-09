@@ -20,9 +20,8 @@ folder: /work/hugh-featherstone/when-the-kennedys-ride-again
 thumbnail: hfb_kennedys.jpg
 images:
   - hfb_kennedys.jpg
+excerpt: Sleeve design for single off "Friendly Skies".
 ---
-
-Sleeve design for single off "Friendly Skies".
 
 A cover grimly inspired by J. F. Kennedy's last ticker-tape parade and the famed Dallas storage building.
 

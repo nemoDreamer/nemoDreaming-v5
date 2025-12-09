@@ -15,9 +15,8 @@ folder: /work/illustration
 thumbnail: photo_thegame_encounter-smoother.jpg
 images:
   - photo_thegame_encounter-smoother.jpg
+excerpt: Point-and-click adventure.
 ---
-
-Point-and-click adventure.
 
 - Manipulation _(Photoshop)_
 - Photo session _(© Mike Gretry [serialsilence.com](http://www.serialsilence.com))_

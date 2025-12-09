@@ -19,9 +19,8 @@ images:
   - page-listings-home.jpg
   - page-lessons.jpg
   - admin-stories.jpg
+excerpt: Nutritional lifestyle education portal.
 ---
-
-Nutritional lifestyle education portal.
 
 - Design to XHTML/CSS conversion
 - Development of CMS framework extensions _(on top of my_ **_Endo MVC_**_)_

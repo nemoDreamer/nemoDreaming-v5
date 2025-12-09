@@ -24,6 +24,5 @@ images:
   - main.jpg
   - order.jpg
   - welcome.jpg
+excerpt: Simple e-commerce site for online record label.
 ---
-
-Simple e-commerce site for online record label.

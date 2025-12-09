@@ -26,9 +26,8 @@ images:
   - 08.jpg
   - 09.jpg
   - 10.jpg
+excerpt: Previous Flash version of this portfolio.
 ---
-
-Previous Flash version of this portfolio.
 
 - Flash _(front-end)_
 - PHP/Text-file DB _(back-end)_

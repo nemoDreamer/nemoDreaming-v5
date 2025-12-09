@@ -1,7 +1,6 @@
 ---
 title: Me & Miss Wray (single disc)
 date: 11/29/2009, 9:13:27 PM
-url: ""
 category: Print
 categories:
   - Design
@@ -17,8 +16,7 @@ folder: /work/hugh-featherstone/me-and-miss-wray-special
 thumbnail: DSC_1336_clean.jpg
 images:
   - DSC_1336_clean.jpg
+excerpt: Sleeve~, surface~ & mailer-design for Hugh Featherstone album.
 ---
-
-Sleeve~, surface~ & mailer-design for Hugh Featherstone album.
 
 Hugh Featherstone's "Me & Miss Wray"'s 1st disc was distributed by blutopia.networks as a special promotion.

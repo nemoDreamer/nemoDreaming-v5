@@ -23,6 +23,5 @@ thumbnail: home.jpg
 images:
   - home.jpg
   - media-feed.jpg
+excerpt: LA-based record label's online showcase.
 ---
-
-LA-based record label's online showcase.

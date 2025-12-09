@@ -140,7 +140,7 @@ async function xmlToPages() {
       const frontMatter = YAML.stringify({
         title,
         date: new Date(date).toLocaleString(),
-        url: nemo["web-url"],
+        url: nemo["web-url"] || undefined,
         category: startCase(nemo["main-category"]),
         categories: categories.sort(),
         tags: tags.sort(),
@@ -149,6 +149,7 @@ async function xmlToPages() {
         folder: `/work/${slug}`,
         thumbnail: thumbnail || "thumbnail.png",
         images: images || [],
+        excerpt: excerpt ? turndown.turndown(excerpt).trim() : undefined,
       }).trim();
 
       const output = [
@@ -156,13 +157,7 @@ async function xmlToPages() {
         frontMatter,
         "---",
         "",
-        [
-          excerpt ? turndown.turndown(excerpt).trim() : "",
-          "",
-          content ? turndown.turndown(content).trim() : "",
-        ]
-          .join("\n")
-          .trim(),
+        content ? turndown.turndown(content).trim() : "",
         "", // <- EOF new-line
       ].join("\n");
 

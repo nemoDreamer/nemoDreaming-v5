@@ -1,7 +1,6 @@
 ---
 title: Illumine
 date: 11/24/2009, 6:26:48 PM
-url: ""
 category: Development
 categories:
   - Design

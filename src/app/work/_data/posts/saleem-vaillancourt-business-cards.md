@@ -17,6 +17,5 @@ thumbnail: business-card-01.jpg
 images:
   - business-card-01.jpg
   - business-card-02.jpg
+excerpt: Business cards for London-based writer/journalist.
 ---
-
-Business cards for London-based writer/journalist.

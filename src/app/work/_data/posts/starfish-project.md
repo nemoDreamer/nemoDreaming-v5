@@ -20,9 +20,8 @@ images:
   - home.jpg
   - logo_01-preview_coolbrown.jpg
   - logo_01-03-preview.jpg
+excerpt: Logo & website design for a non-profit AIDS-medication collection & distribution organization.
 ---
-
-Logo & website design for a non-profit AIDS-medication collection & distribution organization.
 
 - Design _(Photoshop, Illustrator)_
 - HTML/CSS conversion

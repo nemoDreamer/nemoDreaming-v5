@@ -22,6 +22,5 @@ images:
   - banner-thankyou.jpg
   - illustration-exponential-sharing.jpg
   - illustration-stacks.jpg
+excerpt: Header and banner illustrations for a music recommendation site.
 ---
-
-Header and banner illustrations for Songness.com, a music recommendation site.

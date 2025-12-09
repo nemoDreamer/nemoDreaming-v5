@@ -26,6 +26,7 @@ images:
   - collection.png
   - order.png
   - payment.png
+excerpt: Record label's online platform
 ---
 
 - Ruby on Rails _(with RoR/Merb core-team member Carl Lerche)_

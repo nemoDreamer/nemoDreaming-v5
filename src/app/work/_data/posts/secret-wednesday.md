@@ -29,8 +29,7 @@ images:
   - page-not-wednesday.png
   - page-project.png
   - page-wednesday.png
+excerpt: My interactive media playground / showcase / cemetery.
 ---
-
-My interactive media playground / showcase / cemetery.
 
 - Flash/dHTML hybrid _(ActionScript 2/JavaScript)_

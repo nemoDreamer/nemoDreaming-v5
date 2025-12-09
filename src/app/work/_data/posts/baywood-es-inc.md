@@ -21,9 +21,8 @@ images:
   - contact.jpg
   - services.jpg
   - splash.jpg
+excerpt: Procedural animation for small business in environmental services.
 ---
-
-Procedural animation for small business in environmental services.
 
 - Design _(HTML & CSS)_
 - Procedural animation _(Flash, ActionScript 3)_

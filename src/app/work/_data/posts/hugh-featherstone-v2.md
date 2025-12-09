@@ -21,6 +21,5 @@ images:
   - contact-professionals.png
   - resources.png
   - the-artist.png
+excerpt: Flash site for British singer/songwriter.
 ---
-
-Flash site for British singer/songwriter.

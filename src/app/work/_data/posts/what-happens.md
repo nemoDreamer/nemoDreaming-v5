@@ -1,7 +1,6 @@
 ---
 title: What Happens?
 date: 11/24/2009, 7:45:23 PM
-url: ""
 category: Illustration
 categories:
   - Illustration
@@ -14,6 +13,5 @@ folder: /work/illustration
 thumbnail: cintiq-11_what-happens.jpg
 images:
   - cintiq-11_what-happens.jpg
+excerpt: Editorial illustration for SoulPancake.com.
 ---
-
-Editorial illustration for SoulPancake.com.

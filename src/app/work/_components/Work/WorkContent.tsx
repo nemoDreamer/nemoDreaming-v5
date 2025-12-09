@@ -20,7 +20,16 @@ const CAROUSEL_NAV_CLASSES: React.HTMLAttributes<HTMLDivElement>["className"] =
   "opacity-0 hover:opacity-100 transition-opacity duration-300 from-black/25 via-35% via-black/10 to-transparent w-1/4 absolute top-0 bottom-0 grid place-items-center cursor-pointer select-none";
 
 export default function WorkContent({
-  workPost: { title, date, category, categories, tags, images, content },
+  workPost: {
+    title,
+    date,
+    category,
+    categories,
+    tags,
+    images,
+    content,
+    excerpt,
+  },
 }: {
   workPost: WorkPost;
 }) {
@@ -103,8 +112,14 @@ export default function WorkContent({
             </div>
           </div>
         </div>
-        <ReadMore className="mb-4 mx-3 xs:mx-0 xs:mb-0 xs:col-span-2 md:col-span-5">
-          <Markdown content={content} />{" "}
+        <ReadMore className="mx-3 my-4 xs:mx-0 xs:mb-0 xs:col-span-2 md:col-span-5">
+          <Markdown
+            tag="p"
+            className="text-teal-500 font-semibold"
+            content={excerpt}
+            isSingleLine
+          />
+          <Markdown content={content} />
         </ReadMore>
       </div>
 

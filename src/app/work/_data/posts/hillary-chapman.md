@@ -1,7 +1,6 @@
 ---
 title: Hillary Chapman
 date: 12/9/2009, 2:59:25 PM
-url: ""
 category: Design
 categories:
   - Design
@@ -15,6 +14,5 @@ folder: /work/hillary-chapman
 thumbnail: design_01-011.jpg
 images:
   - design_01-011.jpg
+excerpt: Website design for Nashville-based singer/songwriter.
 ---
-
-Website design for Nashville-based singer/songwriter.

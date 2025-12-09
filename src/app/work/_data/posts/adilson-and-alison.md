@@ -1,7 +1,6 @@
 ---
 title: Adilson & Alison
 date: 11/29/2009, 8:20:03 PM
-url: ""
 category: Print
 categories:
   - Design
@@ -21,9 +20,8 @@ images:
   - DSC_1318.JPG
   - DSC_1322.JPG
   - covers.jpg
+excerpt: Wedding invitation design with a twist.
 ---
-
-Wedding invitation design with a twist.
 
 - Logotype design _(Illustrator)_
 - Layout _(InDesign)_

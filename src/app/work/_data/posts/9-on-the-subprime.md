@@ -1,7 +1,6 @@
 ---
 title: 9 on the subprime
 date: 12/11/2009, 9:02:02 PM
-url: ""
 category: Print
 categories:
   - Design
@@ -30,6 +29,5 @@ images:
   - 05-04f-gray.png
   - 05-04f-magenta.png
   - 05-04f-teal.png
+excerpt: Final design (and quick comps) for album-cover project.
 ---
-
-Final design (and quick comps) for album-cover project.

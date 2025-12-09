@@ -1,7 +1,6 @@
 ---
 title: Andy Grammer (shirts)
 date: 11/24/2009, 6:52:08 PM
-url: ""
 category: Design
 categories:
   - Illustration

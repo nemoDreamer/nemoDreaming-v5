@@ -1,7 +1,6 @@
 ---
 title: Friendly Skies
 date: 11/29/2009, 7:52:26 PM
-url: ""
 category: Print
 categories:
   - Design
@@ -36,6 +35,5 @@ images:
   - Booklet-12.jpg
   - Booklet-18.jpg
   - Surface.jpg
+excerpt: Sleeve~, booklet~ & surface-design for Hugh Featherstone album.
 ---
-
-Sleeve~, booklet~ & surface-design for Hugh Featherstone album.

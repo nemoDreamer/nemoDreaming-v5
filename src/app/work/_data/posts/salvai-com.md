@@ -22,6 +22,5 @@ images:
   - iphone-01.jpg
   - iphone-02.jpg
   - salvai-com-front.jpg
+excerpt: Logo & blog theme for journalist/novelist Saleem Vaillancourt.
 ---
-
-Logo & blog theme for journalist/novelist Saleem Vaillancourt.

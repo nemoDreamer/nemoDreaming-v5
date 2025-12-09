@@ -23,9 +23,8 @@ images:
   - screens-05.jpg
   - screens-06.jpg
   - screens-07.jpg
+excerpt: Flash development for Interior Design Agency & custom CMS
 ---
-
-Flash development for Interior Design Agency & custom CMS
 
 - Custom Content Management System _(PHP, TXTDB)_
 - Flash development _(ActionScript2)_

@@ -1,7 +1,6 @@
 ---
 title: MIT Biomolecular Materials Group
 date: 12/9/2009, 12:29:58 PM
-url: ""
 category: Design
 categories:
   - Design
@@ -22,9 +21,8 @@ thumbnail: home.jpg
 images:
   - home.jpg
   - profile-angela-belcher.jpg
+excerpt: Project page for MIT lab.
 ---
-
-Project page for MIT lab.
 
 - WordPress theme conversion _(PHP)_
 - Illustration & Image-Map _(Photoshop)_

@@ -1,7 +1,6 @@
 ---
 title: Snufkin Returns
 date: 12/17/2009, 9:44:27 PM
-url: ""
 category: Illustration
 categories:
   - Illustration
@@ -13,8 +12,7 @@ folder: /work/illustration
 thumbnail: cintiq-8_snuffkin-returns_reduced.jpg
 images:
   - cintiq-8_snuffkin-returns_reduced.jpg
+excerpt: Digital illustration.
 ---
-
-Digital illustration.
 
 _(Snufkin character © Tove Jansson)_

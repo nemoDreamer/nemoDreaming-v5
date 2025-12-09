@@ -20,8 +20,7 @@ folder: /work/kognation
 thumbnail: kognation.jpg
 images:
   - kognation.jpg
+excerpt: Interactive global metabrain.
 ---
-
-Interactive global metabrain.
 
 KogNation is an interactive database designed to simulate a global metabrain, one capable of the reception, cataloguing, discussion and solution of diverse problems and the development of ideas and suggestions.

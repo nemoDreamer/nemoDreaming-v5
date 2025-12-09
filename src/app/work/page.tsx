@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 /*
 TODO:
 - [ ] Missing projects:
+  - Urban Icons
   - Slow Night
   - Winter's Fire
   - Between the Times

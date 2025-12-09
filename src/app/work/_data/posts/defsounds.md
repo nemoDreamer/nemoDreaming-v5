@@ -24,9 +24,8 @@ images:
   - logo.png
   - video-player.jpg
   - videos.jpg
+excerpt: Fast-growing Hip-Hop news, blogging, music & video site.
 ---
-
-Fast-growing Hip-Hop news, blogging, music & video site.
 
 - Logo & Design _(Photoshop)_
 - XHTML/CSS

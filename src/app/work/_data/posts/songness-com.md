@@ -30,9 +30,8 @@ images:
   - page-songs.jpg
   - page-splash-crop.jpg
   - page-splash.jpg
+excerpt: Nashville, TN based music marketing research using crowd-sourcing.
 ---
-
-Nashville, TN based music marketing research using crowd-sourcing.
 
 - UI/UX design _(Photoshop, HTML, CSS, jQuery)_
 - JS/Flash hybrid audio-player _(ActionScript3, jQuery)_

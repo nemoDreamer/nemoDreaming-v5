@@ -18,9 +18,8 @@ folder: /work/gohuman
 thumbnail: home.jpg
 images:
   - home.jpg
+excerpt: Look & feel for successful local services startup.
 ---
-
-Look & feel for successful local services startup.
 
 While the think-tank 19rockets still existed, we brainstormed and developed GoHuman, a local services & networking site. I created the logo, refined the look & feel and developed the front-end.
 

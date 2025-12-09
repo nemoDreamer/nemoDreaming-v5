@@ -1,7 +1,6 @@
 ---
 title: SunlightApp
 date: 11/23/2009, 8:30:00 PM
-url: ""
 category: Design
 categories:
   - Design
@@ -23,9 +22,8 @@ images:
   - page-campaigns.jpg
   - page-campaign.jpg
   - page-tasks.jpg
+excerpt: Donor & campaign management web-app.
 ---
-
-Donor & campaign management web-app.
 
 - Look & feel
 - UI design

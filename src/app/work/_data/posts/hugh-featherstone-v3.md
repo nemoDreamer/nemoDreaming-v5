@@ -24,9 +24,8 @@ images:
   - menu.png
   - lyrics.png
   - samples-1.png
+excerpt: Flash/HTML hybrid for British singer/songwriter.
 ---
-
-Flash/HTML hybrid for British singer/songwriter.
 
 - Flash menu _(ActionsScript 2)_
 - Dynamic menu structure _(PHP)_

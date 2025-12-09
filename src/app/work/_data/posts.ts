@@ -19,6 +19,8 @@ type WorkPostData = {
   folder: string;
   thumbnail: string;
   images: string[];
+  // ---
+  excerpt: string;
 };
 
 export type WorkPost = Awaited<ReturnType<typeof processPost<WorkPostData>>>;
