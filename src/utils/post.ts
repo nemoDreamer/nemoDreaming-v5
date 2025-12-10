@@ -12,6 +12,26 @@ NOTE:
 - `loadAndProcess~` combine loading and processing in one step.
 */
 
+// TYPES
+// --------------------------------------------------
+
+export type Frontmatter = {
+  date: string;
+  thumbnail: string;
+  images: string[];
+  folder: string;
+};
+
+export type Post<T> = {
+  fileName: string;
+  content: string;
+  data: T & Frontmatter;
+};
+
+export type ProcessedPost<T extends Frontmatter> = Awaited<
+  ReturnType<typeof processPost<T>>
+>;
+
 // HELPERS
 // --------------------------------------------------
 
@@ -38,34 +58,41 @@ export const loadAllPostSlugs = (
     slug: makeSlugFromFileName(fileName, ext),
   }));
 
-export const loadPost = <Frontmatter>(directory: string, fileName: string) => ({
-  fileName,
-  ...(matter(
+export const loadPost = <T extends Frontmatter>(
+  directory: string,
+  fileName: string,
+): Post<T> => {
+  const { content, data } = matter(
     fs.readFileSync(path.join(directory, fileName), "utf8"),
   ) as GrayMatterFile<string> & {
-    data: Frontmatter;
-  }),
-});
+    data: T;
+  };
+  return {
+    fileName,
+    content,
+    data,
+  };
+};
 
 // PROCESS
 // --------------------------------------------------
 
-export const processPost = async <Frontmatter>(
-  { fileName, content, data }: ReturnType<typeof loadPost<Frontmatter>>,
+export const processPost = async <T extends Frontmatter>(
+  { fileName, content, data }: Post<T>,
   { isShallow = false } = {},
 ): Promise<
-  {
+  Omit<Post<T>, "data"> & {
     slug: string;
-    content: string;
-  } & Omit<Frontmatter, "date" | "thumbnail" | "images"> & {
+    data: Omit<Post<T>["data"], "date" | "thumbnail" | "images"> & {
       date: Date;
       thumbnail: ImageData;
       images: ImageData[];
-    }
+    };
+  }
 > => {
   // enhance images with joined src, metadata and blur-base64
   const processedThumbnail = await getImageData(data.thumbnail, data.folder);
-  let processedImages = [];
+  let processedImages: ImageData[] = [];
   if (!isShallow) {
     processedImages = await Promise.all(
       data.images.map((image: string) => getImageData(image, data.folder)),
@@ -73,32 +100,35 @@ export const processPost = async <Frontmatter>(
   }
 
   return {
-    slug: makeSlugFromFileName(fileName),
+    fileName,
     content,
-    // add front-matter:
-    ...data,
-    // process date:
-    date: new Date(data.date),
-    // add images:
-    thumbnail: processedThumbnail,
-    images: processedImages,
+    slug: makeSlugFromFileName(fileName),
+    data: {
+      // add front-matter:
+      ...data,
+      // process date:
+      date: new Date(data.date),
+      // add images:
+      thumbnail: processedThumbnail,
+      images: processedImages,
+    },
   };
 };
 
 // LOAD AND PROCESS
 // --------------------------------------------------
 
-export const loadAndProcessPost = <Frontmatter>(
+export const loadAndProcessPost = <T extends Frontmatter>(
   directory: string,
   fileName: string,
-) => processPost<Frontmatter>(loadPost<Frontmatter>(directory, fileName));
+) => processPost<T>(loadPost<T>(directory, fileName));
 
-export const loadAndProcessAllPosts = <Frontmatter>(
+export const loadAndProcessAllPosts = <T extends Frontmatter>(
   directory: string,
   ext = ".md",
 ) =>
   Promise.all(
     loadAllPostFileNames(directory, ext).map((fileName) =>
-      loadAndProcessPost<Frontmatter>(directory, fileName),
+      loadAndProcessPost<T>(directory, fileName),
     ),
-  ).then((posts) => posts.sort((a, b) => b.date.getTime() - a.date.getTime()));
+  ).then((posts) => posts.sort((a, b) => (a.data.date < b.data.date ? 1 : -1)));

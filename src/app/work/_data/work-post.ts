@@ -1,6 +1,9 @@
 import path from "path";
 
 import {
+  type Frontmatter,
+  type Post,
+  type ProcessedPost,
   loadAllPostFileNames,
   loadAllPostSlugs,
   loadPost,
@@ -8,25 +11,20 @@ import {
   processPost,
 } from "@/utils/post";
 
-type WorkPostFrontmatter = {
+type WorkPostFrontmatter = Frontmatter & {
   title: string;
-  date: string;
   url?: string;
   // ---
   category: string;
   categories: string[];
   tags: string[];
   // ---
-  folder: string;
-  thumbnail: string;
-  images: string[];
-  // ---
   excerpt: string;
 };
 
-export type WorkPost = Awaited<
-  ReturnType<typeof processPost<WorkPostFrontmatter>>
->;
+export type WorkPost = Post<WorkPostFrontmatter>;
+
+export type ProcessedWorkPost = ProcessedPost<WorkPostFrontmatter>;
 
 // --------------------------------------------------
 
@@ -87,7 +85,7 @@ export const loadAllWorkPosts = async ({
     )
   )
     // re-sort after Promise.all since it resolves out of order
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+    .sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
 
   return {
     posts: processedPosts,

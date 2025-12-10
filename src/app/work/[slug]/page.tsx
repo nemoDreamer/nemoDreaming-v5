@@ -24,7 +24,9 @@ export const generateMetadata = async ({
 }: {
   params: PageParams;
 }): Promise<Metadata> => {
-  const { title } = await getWorkPostFromParams(params);
+  const {
+    data: { title },
+  } = await getWorkPostFromParams(params);
 
   return {
     title: `Client Work - ${title}`,

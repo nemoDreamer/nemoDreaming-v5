@@ -24,7 +24,7 @@ export default async function WorkGroup({ page = 1 }: { page?: number }) {
       />
 
       <Grid className="mb-4">
-        {posts.map(({ title, slug, date, thumbnail }) => (
+        {posts.map(({ slug, data: { title, date, thumbnail } }) => (
           <div key={`work-post-${slug}`} className="square">
             <Link href={`/work/${slug}`} className="content relative">
               <Thumbnail
