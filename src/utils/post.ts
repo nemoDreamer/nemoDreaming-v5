@@ -27,11 +27,22 @@ export const getAllPostSlugs = (
     slug: getSlugFromFileName(fileName, ext),
   }));
 
+export const getRawPostByFileName = <Raw>(
+  directory: string,
+  fileName: string,
+) => ({
+  fileName,
+  ...(matter(
+    fs.readFileSync(path.join(directory, fileName), "utf8"),
+  ) as GrayMatterFile<string> & {
+    data: Raw;
+  }),
+});
+
 // --------------------------------------------------
 
 export const processPost = async <Raw>(
-  directory: string,
-  fileName: string,
+  { fileName, content, data }: ReturnType<typeof getRawPostByFileName<Raw>>,
   { isShallow = false } = {},
 ): Promise<
   {
@@ -43,12 +54,6 @@ export const processPost = async <Raw>(
       images: ImageData[];
     }
 > => {
-  const { content, data } = matter(
-    fs.readFileSync(path.join(directory, fileName), "utf8"),
-  ) as GrayMatterFile<string> & {
-    data: Raw;
-  };
-
   // enhance images with joined src, metadata and blur-base64
   const processedThumbnail = await getImageData(data.thumbnail, data.folder);
   let processedImages = [];

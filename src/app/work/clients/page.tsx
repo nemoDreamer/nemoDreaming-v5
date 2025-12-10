@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
-import Comments from "@/components/Comments";
 import Main from "@/components/Layout/Main";
 import H2 from "@/components/core/H2";
 
 import RepoGroup from "../_components/Repo/RepoGroup";
 import RepoGroupSkeleton from "../_components/Repo/RepoGroupSkeleton";
 import WorkGroup from "../_components/Work/WorkGroup";
+import WorkGroupSkeleton from "../_components/Work/WorkGroupSkeleton";
 import { getPullRequests, getTopRepositories } from "../_data/github/endpoints";
 
 const _getTopRepositories = () =>
@@ -22,38 +22,37 @@ export const metadata: Metadata = {
 /*
 TODO:
 - [ ] Missing projects:
-  - Urban Icons
+  - Suburban Icons
   - Slow Night
   - Winter's Fire
   - Between the Times
   - Design Libraries?
   - Kerosene / Day You Left
+- [ ] add larger 'featured' to top
+- [x] pagination
+- [ ] pre-render static pages?
+- [ ] add filtering by category / technology
 */
 
-export default function WorkPage() {
+type PageSearchParams = Promise<{
+  page?: string;
+}>;
+
+export default async function WorkPage({
+  searchParams,
+}: {
+  searchParams: PageSearchParams;
+}) {
+  const { page: pageParam } = await searchParams;
+  const page = pageParam ? parseInt(pageParam, 10) : 1;
+
   return (
     <Main title="Work">
-      <Comments
-        lines={[
-          <span key="note">
-            <span className="rounded-xs bg-teal-500 text-teal-200">NOTE:</span>{" "}
-            please excuse the mess...
-          </span>,
-          <span key="todo" className="rounded-xs bg-yellow-200 text-yellow-900">
-            TODO:
-          </span>,
-          "- [x] temporary thumbnailed links",
-          "- [x] temporary repo list",
-          "- [ ] make thumbnail grid",
-          "- [ ] transfer items from old portfolio...!",
-          "- [x] use `topRepositories` to better reflect open-source contributions",
-          "- [ ] add larger 'featured' to top",
-          "- [ ] add filtering by category / technology",
-        ]}
-      />
       <div className="mb-8">
-        <H2>Client Work</H2>
-        <WorkGroup />
+        {/* <H2>Client Work</H2> */}
+        <Suspense fallback={<WorkGroupSkeleton />}>
+          <WorkGroup page={page} />
+        </Suspense>
       </div>
       <div>
         <H2>Open-Source</H2>

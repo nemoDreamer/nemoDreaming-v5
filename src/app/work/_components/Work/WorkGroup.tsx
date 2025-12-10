@@ -1,40 +1,60 @@
 import Link from "next/link";
 
 import Grid from "@/components/Layout/Grid";
+import Pagination from "@/components/elements/Pagination";
 import Thumbnail from "@/components/elements/Thumbnail";
 import { formatDate } from "@/utils/utils";
 
 import { getAllWorkPosts } from "../../_data/posts";
 
-export default async function WorkGroup() {
-  // client work:
-  const workPosts = await getAllWorkPosts({ isShallow: true });
+export default async function WorkGroup({ page = 1 }: { page?: number }) {
+  // client work with pagination:
+  const { posts, total, totalPages } = await getAllWorkPosts({
+    isShallow: true,
+    page,
+  });
 
   return (
-    <Grid className="mb-4">
-      {workPosts.map(({ title, slug, date, thumbnail }) => (
-        <div key={`work-post-${slug}`} className="square">
-          <Link href={`/work/clients/${slug}`} className="content relative">
-            <Thumbnail
-              alt="Preview Thumbnail"
-              image={thumbnail}
-              shouldFill
-              sizes={Grid.SIZES}
-            />
+    <>
+      <Pagination
+        page={page}
+        total={total}
+        totalPages={totalPages}
+        className="mb-8"
+      />
 
-            {/* FIXME: */}
+      <Grid className="mb-4">
+        {posts.map(({ title, slug, date, thumbnail }) => (
+          <div key={`work-post-${slug}`} className="square">
+            <Link href={`/work/clients/${slug}`} className="content relative">
+              <Thumbnail
+                alt="Preview Thumbnail"
+                image={thumbnail}
+                shouldFill
+                sizes={Grid.SIZES}
+              />
 
-            <div className="hidden">
-              <span className="underline group-hover:no-underline">
-                {title}
-              </span>
-              <span className="ml-2 text-xs italic text-gray-500 group-hover:text-gray-300">
-                {formatDate(date)}
-              </span>
-            </div>
-          </Link>
-        </div>
-      ))}
-    </Grid>
+              {/* FIXME: */}
+
+              <div className="hidden">
+                <span className="underline group-hover:no-underline">
+                  {title}
+                </span>
+                <span className="ml-2 text-xs italic text-gray-500 group-hover:text-gray-300">
+                  {formatDate(date)}
+                </span>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </Grid>
+
+      <Pagination
+        page={page}
+        total={total}
+        totalPages={totalPages}
+        className="mt-8"
+      />
+    </>
   );
 }
