@@ -7,27 +7,27 @@ import { type ImageData, getImageData } from "./image";
 
 // --------------------------------------------------
 
-export const getAllPostFileNames = (directory: string, ext = ".md") =>
+export const makeFileNameFromSlug = (slug: string, ext = ".md") =>
+  `${slug}${ext}`;
+
+export const makeSlugFromFileName = (fileName: string, ext = ".md") =>
+  fileName.replace(new RegExp(`${ext}$`), "");
+
+export const loadAllPostFileNames = (directory: string, ext = ".md") =>
   fs
     .readdirSync(directory, { withFileTypes: true })
     .filter((dirent) => dirent.isFile() && dirent.name.endsWith(ext))
     .map((dirent) => dirent.name);
 
-export const getFileNameFromSlug = (slug: string, ext = ".md") =>
-  `${slug}${ext}`;
-
-export const getSlugFromFileName = (fileName: string, ext = ".md") =>
-  fileName.replace(new RegExp(`${ext}$`), "");
-
-export const getAllPostSlugs = (
+export const loadAllPostSlugs = (
   directory: string,
   ext = ".md",
 ): { slug: string }[] =>
-  getAllPostFileNames(directory, ext).map((fileName) => ({
-    slug: getSlugFromFileName(fileName, ext),
+  loadAllPostFileNames(directory, ext).map((fileName) => ({
+    slug: makeSlugFromFileName(fileName, ext),
   }));
 
-export const getRawPostByFileName = <Raw>(
+export const loadPostByFileName = <Frontmatter>(
   directory: string,
   fileName: string,
 ) => ({
@@ -35,28 +35,44 @@ export const getRawPostByFileName = <Raw>(
   ...(matter(
     fs.readFileSync(path.join(directory, fileName), "utf8"),
   ) as GrayMatterFile<string> & {
-    data: Raw;
+    data: Frontmatter;
   }),
 });
 
+export const loadAllPosts = <Frontmatter>(directory: string, ext = ".md") =>
+  loadAllPostFileNames(directory, ext).map((fileName) =>
+    loadPostByFileName<Frontmatter>(directory, fileName),
+  );
+
 // --------------------------------------------------
 
-export const processPost = async <Raw>(
-  { fileName, content, data }: ReturnType<typeof getRawPostByFileName<Raw>>,
-  { isShallow = false } = {},
-): Promise<
-  {
-    slug: string;
-    content: string;
-  } & Omit<Raw, "date" | "thumbnail" | "images"> & {
-      date: Date;
-      thumbnail: ImageData;
-      images: ImageData[];
-    }
-> => {
+type Frontmatter = {
+  date: string;
+  folder: string;
+  thumbnail: string | ImageData;
+  images: string[];
+};
+
+export const processPost = async <T extends Frontmatter>(
+  { fileName, content, data }: { fileName: string; content: string; data: T },
+  { isShallow = false }: { isShallow?: boolean } = {},
+): Promise<{
+  fileName: string;
+  content: string;
+  // --- add slug, processed front-matter:
+  slug: string;
+  data: Omit<T, "date" | "thumbnail" | "images"> & {
+    date: Date;
+    thumbnail: ImageData;
+    images: ImageData[];
+  };
+}> => {
   // enhance images with joined src, metadata and blur-base64
-  const processedThumbnail = await getImageData(data.thumbnail, data.folder);
-  let processedImages = [];
+  const processedThumbnail =
+    typeof data.thumbnail === "string"
+      ? await getImageData(data.thumbnail, data.folder)
+      : data.thumbnail;
+  let processedImages: ImageData[] = [];
   if (!isShallow) {
     processedImages = await Promise.all(
       data.images.map((image: string) => getImageData(image, data.folder)),
@@ -64,14 +80,28 @@ export const processPost = async <Raw>(
   }
 
   return {
-    slug: getSlugFromFileName(fileName),
+    fileName,
     content,
+    // add slug:
+    slug: makeSlugFromFileName(fileName),
     // add front-matter:
-    ...data,
-    // process date:
-    date: new Date(data.date),
-    // add images:
-    thumbnail: processedThumbnail,
-    images: processedImages,
+    data: {
+      ...data,
+      // process date:
+      date: new Date(data.date),
+      // add images:
+      thumbnail: processedThumbnail,
+      images: processedImages,
+    },
   };
 };
+
+export const loadAndProcessAllPosts = async <T extends Frontmatter>(
+  directory: string,
+  { isShallow = false }: { isShallow?: boolean } = {},
+) =>
+  Promise.all(
+    loadAllPosts<T>(directory).map((post) =>
+      processPost<T>(post, { isShallow }),
+    ),
+  );

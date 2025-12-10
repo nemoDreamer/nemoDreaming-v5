@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "tsx bin/generate-posts-cache.ts",
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint",

@@ -1,14 +1,18 @@
+import fs from "fs";
 import path from "path";
 
+import type { ImageData } from "@/utils/image";
 import {
-  getAllPostFileNames,
-  getAllPostSlugs,
-  getFileNameFromSlug,
-  getRawPostByFileName,
+  loadAllPostFileNames,
+  loadAllPostSlugs,
+  loadAllPosts,
+  loadAndProcessAllPosts,
+  loadPostByFileName,
+  makeFileNameFromSlug,
   processPost,
 } from "@/utils/post";
 
-type WorkPostData = {
+export type WorkPostFrontmatter = {
   title: string;
   date: string;
   url?: string;
@@ -24,7 +28,16 @@ type WorkPostData = {
   excerpt: string;
 };
 
-export type WorkPost = Awaited<ReturnType<typeof processPost<WorkPostData>>>;
+export type CachedPost = {
+  fileName: string;
+  data: Omit<WorkPostFrontmatter, "thumbnail"> & {
+    thumbnail: ImageData;
+  };
+};
+
+export type WorkPost = Awaited<
+  ReturnType<typeof processPost<WorkPostFrontmatter>>
+>;
 
 // --------------------------------------------------
 
@@ -33,28 +46,40 @@ export const DIRECTORY = path.resolve(
   "./src/app/work/_data/posts",
 );
 
-export const getAllWorkPostFileNames = () => getAllPostFileNames(DIRECTORY);
+const CACHE_FILE = path.resolve(
+  process.cwd(),
+  "./src/app/work/_data/.posts-cache.json",
+);
 
-export const getAllWorkPostSlugs = () => getAllPostSlugs(DIRECTORY);
+export const getAllWorkPostFileNames = () => loadAllPostFileNames(DIRECTORY);
+
+export const getAllWorkPostSlugs = () => loadAllPostSlugs(DIRECTORY);
 
 const ITEMS_PER_PAGE = 20;
 
-// cache sorted metadata to avoid re-reading all files on every request
-let sortedMetadataCache: { fileName: string; date: string }[] | null = null;
+// cache sorted metadata (loaded from build-time cache file)
+let sortedPostsCache: CachedPost[] | null = null;
 
-const getSortedPostMetadata = () => {
-  if (sortedMetadataCache) {
-    return sortedMetadataCache;
+const loadSortedPosts = async (): Promise<CachedPost[]> => {
+  if (sortedPostsCache) {
+    return sortedPostsCache;
   }
 
-  sortedMetadataCache = getAllWorkPostFileNames()
-    .map((fileName) => {
-      const { data } = getRawPostByFileName<WorkPostData>(DIRECTORY, fileName);
-      return { fileName, date: data.date };
-    })
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+  // try to load from cache file (generated at build time)
+  if (fs.existsSync(CACHE_FILE)) {
+    const cacheData = fs.readFileSync(CACHE_FILE, "utf8");
+    sortedPostsCache = JSON.parse(cacheData) as CachedPost[];
+    return sortedPostsCache;
+  }
 
-  return sortedMetadataCache;
+  // fallback: generate at runtime (for development)
+  sortedPostsCache = (
+    await loadAndProcessAllPosts<WorkPostFrontmatter>(DIRECTORY, {
+      isShallow: true,
+    })
+  ).sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
+
+  return sortedPostsCache;
 };
 
 export const getAllWorkPosts = async ({
@@ -66,18 +91,36 @@ export const getAllWorkPosts = async ({
   page?: number;
   limit?: number;
 } = {}) => {
-  // get sorted metadata (reads only frontmatter, cached after first call)
-  const sortedMetadata = getSortedPostMetadata();
+  const sortedPosts = await loadSortedPosts();
 
-  // process only the files needed for this page
+  // process only the posts needed for this page
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
   const processedPosts = (
     await Promise.all(
-      sortedMetadata.slice(startIndex, endIndex).map(async ({ fileName }) => {
-        const rawPost = getRawPostByFileName<WorkPostData>(DIRECTORY, fileName);
-        return await processPost<WorkPostData>(rawPost, { isShallow });
-      }),
+      sortedPosts
+        .slice(startIndex, endIndex)
+        .map(async ({ fileName, data }) => {
+          if (isShallow) {
+            return await processPost<WorkPostFrontmatter>(
+              { fileName, content: "", data },
+              { isShallow },
+            );
+          }
+
+          const rawPost = loadPostByFileName<WorkPostFrontmatter>(
+            DIRECTORY,
+            fileName,
+          );
+
+          // prefer cached frontmatter (includes processed thumbnail) but merge with raw to keep content in sync
+          const mergedData = { ...rawPost.data, ...data };
+
+          return await processPost<WorkPostFrontmatter>({
+            ...rawPost,
+            data: mergedData,
+          });
+        }),
     )
   )
     // re-sort after Promise.all since it resolves out of order
@@ -85,12 +128,26 @@ export const getAllWorkPosts = async ({
 
   return {
     posts: processedPosts,
-    total: sortedMetadata.length,
-    totalPages: Math.ceil(sortedMetadata.length / limit),
+    total: sortedPosts.length,
+    totalPages: Math.ceil(sortedPosts.length / limit),
   };
 };
 
 export const getWorkPost = (slug: string) =>
-  processPost<WorkPostData>(
-    getRawPostByFileName<WorkPostData>(DIRECTORY, getFileNameFromSlug(slug)),
-  );
+  (() => {
+    const fileName = makeFileNameFromSlug(slug);
+    const cached = loadSortedPosts().find(
+      (entry) => entry.fileName === fileName,
+    );
+
+    const rawPost = loadPostByFileName<WorkPostFrontmatter>(
+      DIRECTORY,
+      fileName,
+    );
+
+    const mergedData = cached
+      ? { ...rawPost.data, ...cached.data }
+      : rawPost.data;
+
+    return processPost<WorkPostFrontmatter>({ ...rawPost, data: mergedData });
+  })();
