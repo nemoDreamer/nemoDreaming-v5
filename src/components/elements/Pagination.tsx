@@ -25,7 +25,7 @@ export default function Pagination({
       )}
     >
       <ArrowLink
-        href={`/work/clients${page !== 2 ? `?page=${page - 1}` : ""}`}
+        href={`/work${page !== 2 ? `?page=${page - 1}` : ""}`}
         className="text-gray-500 group-hover:text-teal-300"
         isBack
         isDisabled={page <= 1}
@@ -38,7 +38,7 @@ export default function Pagination({
       </span>
 
       <ArrowLink
-        href={`/work/clients?page=${page + 1}`}
+        href={`/work?page=${page + 1}`}
         className="text-gray-500 group-hover:text-teal-300"
         isBehind
         isDisabled={page >= totalPages}

@@ -148,7 +148,7 @@ The site features a **terminal-style header prompt** implemented via parallel ro
 Example parallel route prompt:
 
 ```tsx
-// src/app/@prompt/work/clients/page.tsx
+// src/app/@prompt/work/page.tsx
 import Prompt from "@/components/Terminal/Prompt";
 
 export default function PagePrompt() {

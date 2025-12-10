@@ -52,7 +52,7 @@
     "@types/react-dom": "^19",
     "@types/seedrandom": "^3.0.8",
     "@types/xml2js": "^0.4.14",
-    "baseline-browser-mapping": "^2.9.5",
+    "baseline-browser-mapping": "^2.9.6",
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
     "eslint-config-prettier": "^10.1.8",

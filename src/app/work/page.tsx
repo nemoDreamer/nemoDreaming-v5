@@ -4,11 +4,11 @@ import { Suspense } from "react";
 import Main from "@/components/Layout/Main";
 import H2 from "@/components/core/H2";
 
-import RepoGroup from "../_components/Repo/RepoGroup";
-import RepoGroupSkeleton from "../_components/Repo/RepoGroupSkeleton";
-import WorkGroup from "../_components/Work/WorkGroup";
-import WorkGroupSkeleton from "../_components/Work/WorkGroupSkeleton";
-import { getPullRequests, getTopRepositories } from "../_data/github/endpoints";
+import RepoGroup from "./_components/Repo/RepoGroup";
+import RepoGroupSkeleton from "./_components/Repo/RepoGroupSkeleton";
+import WorkGroup from "./_components/Work/WorkGroup";
+import WorkGroupSkeleton from "./_components/Work/WorkGroupSkeleton";
+import { getPullRequests, getTopRepositories } from "./_data/github/endpoints";
 
 const _getTopRepositories = () =>
   getTopRepositories({

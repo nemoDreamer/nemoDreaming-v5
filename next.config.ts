@@ -13,15 +13,6 @@ const withBundleAnalyzer = makeBundleAnalyzer({
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async redirects() {
-    return [
-      {
-        source: "/work",
-        destination: "/work/clients",
-        permanent: true,
-      },
-    ];
-  },
   turbopack: {
     // resolveExtensions: [".mdx", ".tsx", ".ts", ".jsx", ".js", ".mjs", ".json"],
     rules: {
