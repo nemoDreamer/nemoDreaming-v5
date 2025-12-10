@@ -6,12 +6,13 @@ import {
   type ProcessedPost,
   loadAllPostFileNames,
   loadAllPostSlugs,
+  loadAndProcessAllPosts,
   loadPost,
   makeFileNameFromSlug,
   processPost,
 } from "@/utils/post";
 
-type WorkPostFrontmatter = Frontmatter & {
+export type WorkPostFrontmatter = Frontmatter & {
   title: string;
   url?: string;
   // ---
@@ -94,7 +95,12 @@ export const loadAllWorkPosts = async ({
   };
 };
 
-export const loadWorkPost = (slug: string) =>
+export const loadAndProcessAllWorkPosts = (isShallow = false) =>
+  loadAndProcessAllPosts<WorkPostFrontmatter>(DIRECTORY, undefined, {
+    isShallow,
+  });
+
+export const loadAndProcessWorkPost = (slug: string) =>
   processPost<WorkPostFrontmatter>(
     loadPost<WorkPostFrontmatter>(DIRECTORY, makeFileNameFromSlug(slug)),
   );

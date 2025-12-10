@@ -121,14 +121,16 @@ export const processPost = async <T extends Frontmatter>(
 export const loadAndProcessPost = <T extends Frontmatter>(
   directory: string,
   fileName: string,
-) => processPost<T>(loadPost<T>(directory, fileName));
+  { isShallow = false } = {},
+) => processPost<T>(loadPost<T>(directory, fileName), { isShallow });
 
 export const loadAndProcessAllPosts = <T extends Frontmatter>(
   directory: string,
   ext = ".md",
+  { isShallow = false } = {},
 ) =>
   Promise.all(
     loadAllPostFileNames(directory, ext).map((fileName) =>
-      loadAndProcessPost<T>(directory, fileName),
+      loadAndProcessPost<T>(directory, fileName, { isShallow }),
     ),
   ).then((posts) => posts.sort((a, b) => (a.data.date < b.data.date ? 1 : -1)));

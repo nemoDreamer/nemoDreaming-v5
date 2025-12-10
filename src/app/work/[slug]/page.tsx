@@ -4,7 +4,10 @@ import Main from "@/components/Layout/Main";
 import ArrowLink from "@/components/elements/ArrowLink";
 
 import WorkContent from "../_components/Work/WorkContent";
-import { loadAllWorkPostSlugs, loadWorkPost } from "../_data/work-post";
+import {
+  loadAllWorkPostSlugs,
+  loadAndProcessWorkPost,
+} from "../_data/work-post";
 
 const PageSubHeader = () => (
   <ArrowLink href="/work" isBack>
@@ -17,7 +20,7 @@ type PageParams = Promise<{
 }>;
 
 const getWorkPostFromParams = async (params: PageParams) =>
-  loadWorkPost((await params).slug);
+  loadAndProcessWorkPost((await params).slug);
 
 export const generateMetadata = async ({
   params,
