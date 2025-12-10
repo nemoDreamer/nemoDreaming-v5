@@ -1,14 +1,14 @@
 import path from "path";
 
 import {
-  getAllPostFileNames,
-  getAllPostSlugs,
-  getFileNameFromSlug,
-  getRawPostByFileName,
+  loadAllPostFileNames,
+  loadAllPostSlugs,
+  loadPost,
+  makeFileNameFromSlug,
   processPost,
 } from "@/utils/post";
 
-type WorkPostData = {
+type WorkPostFrontmatter = {
   title: string;
   date: string;
   url?: string;
@@ -24,7 +24,9 @@ type WorkPostData = {
   excerpt: string;
 };
 
-export type WorkPost = Awaited<ReturnType<typeof processPost<WorkPostData>>>;
+export type WorkPost = Awaited<
+  ReturnType<typeof processPost<WorkPostFrontmatter>>
+>;
 
 // --------------------------------------------------
 
@@ -33,9 +35,9 @@ export const DIRECTORY = path.resolve(
   "./src/app/work/_data/posts",
 );
 
-export const getAllWorkPostFileNames = () => getAllPostFileNames(DIRECTORY);
+export const loadAllWorkPostFileNames = () => loadAllPostFileNames(DIRECTORY);
 
-export const getAllWorkPostSlugs = () => getAllPostSlugs(DIRECTORY);
+export const loadAllWorkPostSlugs = () => loadAllPostSlugs(DIRECTORY);
 
 const ITEMS_PER_PAGE = 20;
 
@@ -47,17 +49,17 @@ const getSortedPostMetadata = () => {
     return sortedMetadataCache;
   }
 
-  sortedMetadataCache = getAllWorkPostFileNames()
+  sortedMetadataCache = loadAllWorkPostFileNames()
     .map((fileName) => {
-      const { data } = getRawPostByFileName<WorkPostData>(DIRECTORY, fileName);
+      const { data } = loadPost<WorkPostFrontmatter>(DIRECTORY, fileName);
       return { fileName, date: data.date };
     })
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+    .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
 
   return sortedMetadataCache;
 };
 
-export const getAllWorkPosts = async ({
+export const loadAllWorkPosts = async ({
   isShallow = false,
   page = 1,
   limit = ITEMS_PER_PAGE,
@@ -74,10 +76,14 @@ export const getAllWorkPosts = async ({
   const endIndex = startIndex + limit;
   const processedPosts = (
     await Promise.all(
-      sortedMetadata.slice(startIndex, endIndex).map(async ({ fileName }) => {
-        const rawPost = getRawPostByFileName<WorkPostData>(DIRECTORY, fileName);
-        return await processPost<WorkPostData>(rawPost, { isShallow });
-      }),
+      sortedMetadata
+        .slice(startIndex, endIndex)
+        .map(({ fileName }) =>
+          processPost<WorkPostFrontmatter>(
+            loadPost<WorkPostFrontmatter>(DIRECTORY, fileName),
+            { isShallow },
+          ),
+        ),
     )
   )
     // re-sort after Promise.all since it resolves out of order
@@ -90,7 +96,7 @@ export const getAllWorkPosts = async ({
   };
 };
 
-export const getWorkPost = (slug: string) =>
-  processPost<WorkPostData>(
-    getRawPostByFileName<WorkPostData>(DIRECTORY, getFileNameFromSlug(slug)),
+export const loadWorkPost = (slug: string) =>
+  processPost<WorkPostFrontmatter>(
+    loadPost<WorkPostFrontmatter>(DIRECTORY, makeFileNameFromSlug(slug)),
   );

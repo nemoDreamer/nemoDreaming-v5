@@ -5,11 +5,11 @@ import Pagination from "@/components/elements/Pagination";
 import Thumbnail from "@/components/elements/Thumbnail";
 import { formatDate } from "@/utils/utils";
 
-import { getAllWorkPosts } from "../../_data/posts";
+import { loadAllWorkPosts } from "../../_data/work-post";
 
 export default async function WorkGroup({ page = 1 }: { page?: number }) {
   // client work with pagination:
-  const { posts, total, totalPages } = await getAllWorkPosts({
+  const { posts, total, totalPages } = await loadAllWorkPosts({
     isShallow: true,
     page,
   });

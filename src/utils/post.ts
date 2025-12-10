@@ -5,50 +5,59 @@ import matter, { type GrayMatterFile } from "gray-matter";
 
 import { type ImageData, getImageData } from "./image";
 
+/*
+NOTE:
+- `load~` access the file-system and return raw data.
+- `process~` transform the raw data and return processed data.
+- `loadAndProcess~` combine loading and processing in one step.
+*/
+
+// HELPERS
 // --------------------------------------------------
 
-export const getAllPostFileNames = (directory: string, ext = ".md") =>
+export const makeFileNameFromSlug = (slug: string, ext = ".md") =>
+  `${slug}${ext}`;
+
+export const makeSlugFromFileName = (fileName: string, ext = ".md") =>
+  fileName.replace(new RegExp(`${ext}$`), "");
+
+// LOAD
+// --------------------------------------------------
+
+export const loadAllPostFileNames = (directory: string, ext = ".md") =>
   fs
     .readdirSync(directory, { withFileTypes: true })
     .filter((dirent) => dirent.isFile() && dirent.name.endsWith(ext))
     .map((dirent) => dirent.name);
 
-export const getFileNameFromSlug = (slug: string, ext = ".md") =>
-  `${slug}${ext}`;
-
-export const getSlugFromFileName = (fileName: string, ext = ".md") =>
-  fileName.replace(new RegExp(`${ext}$`), "");
-
-export const getAllPostSlugs = (
+export const loadAllPostSlugs = (
   directory: string,
   ext = ".md",
 ): { slug: string }[] =>
-  getAllPostFileNames(directory, ext).map((fileName) => ({
-    slug: getSlugFromFileName(fileName, ext),
+  loadAllPostFileNames(directory, ext).map((fileName) => ({
+    slug: makeSlugFromFileName(fileName, ext),
   }));
 
-export const getRawPostByFileName = <Raw>(
-  directory: string,
-  fileName: string,
-) => ({
+export const loadPost = <Frontmatter>(directory: string, fileName: string) => ({
   fileName,
   ...(matter(
     fs.readFileSync(path.join(directory, fileName), "utf8"),
   ) as GrayMatterFile<string> & {
-    data: Raw;
+    data: Frontmatter;
   }),
 });
 
+// PROCESS
 // --------------------------------------------------
 
-export const processPost = async <Raw>(
-  { fileName, content, data }: ReturnType<typeof getRawPostByFileName<Raw>>,
+export const processPost = async <Frontmatter>(
+  { fileName, content, data }: ReturnType<typeof loadPost<Frontmatter>>,
   { isShallow = false } = {},
 ): Promise<
   {
     slug: string;
     content: string;
-  } & Omit<Raw, "date" | "thumbnail" | "images"> & {
+  } & Omit<Frontmatter, "date" | "thumbnail" | "images"> & {
       date: Date;
       thumbnail: ImageData;
       images: ImageData[];
@@ -64,7 +73,7 @@ export const processPost = async <Raw>(
   }
 
   return {
-    slug: getSlugFromFileName(fileName),
+    slug: makeSlugFromFileName(fileName),
     content,
     // add front-matter:
     ...data,
@@ -75,3 +84,21 @@ export const processPost = async <Raw>(
     images: processedImages,
   };
 };
+
+// LOAD AND PROCESS
+// --------------------------------------------------
+
+export const loadAndProcessPost = <Frontmatter>(
+  directory: string,
+  fileName: string,
+) => processPost<Frontmatter>(loadPost<Frontmatter>(directory, fileName));
+
+export const loadAndProcessAllPosts = <Frontmatter>(
+  directory: string,
+  ext = ".md",
+) =>
+  Promise.all(
+    loadAllPostFileNames(directory, ext).map((fileName) =>
+      loadAndProcessPost<Frontmatter>(directory, fileName),
+    ),
+  ).then((posts) => posts.sort((a, b) => b.date.getTime() - a.date.getTime()));
