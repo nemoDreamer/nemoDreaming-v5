@@ -17,5 +17,6 @@
     },
     "tailwindCSS.classFunctions": [
         "classNames"
-    ]
+    ],
+    "githubPullRequests.codingAgent.enabled": false,
 }
