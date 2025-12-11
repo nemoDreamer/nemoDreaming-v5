@@ -19,8 +19,8 @@ type PageParams = Promise<{
   slug: string;
 }>;
 
-const getWorkPostFromParams = async (params: PageParams) =>
-  loadAndProcessWorkPost((await params).slug);
+const getWorkPostFromParams = async (params: PageParams, isShallow = false) =>
+  loadAndProcessWorkPost({ slug: (await params).slug, isShallow });
 
 export const generateMetadata = async ({
   params,
@@ -29,7 +29,7 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const {
     data: { title },
-  } = await getWorkPostFromParams(params);
+  } = await getWorkPostFromParams(params, true);
 
   return {
     title: `Client Work - ${title}`,

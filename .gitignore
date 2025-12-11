@@ -47,4 +47,4 @@ next-env.d.ts
 _dumps
 
 # built-time caches
-.*-cache.json
+static/*-cache.json

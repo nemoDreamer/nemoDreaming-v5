@@ -1,3 +1,4 @@
+import fs from "fs";
 import path from "path";
 
 import {
@@ -7,6 +8,7 @@ import {
   loadAllPostFileNames,
   loadAllPostSlugs,
   loadAndProcessAllPosts,
+  loadAndProcessPost,
   loadPost,
   makeFileNameFromSlug,
   processPost,
@@ -27,80 +29,108 @@ export type WorkPost = Post<WorkPostFrontmatter>;
 
 export type ProcessedWorkPost = ProcessedPost<WorkPostFrontmatter>;
 
-// --------------------------------------------------
+type CachedWorkPosts = Awaited<ReturnType<typeof loadWorkPostsForCache>>;
 
-export const DIRECTORY = path.resolve(
+// --------------------------------------------------
+export const POSTS_DIR = path.resolve(
   process.cwd(),
   "./src/app/work/_data/posts",
 );
 
-export const loadAllWorkPostFileNames = () => loadAllPostFileNames(DIRECTORY);
-
-export const loadAllWorkPostSlugs = () => loadAllPostSlugs(DIRECTORY);
-
 const ITEMS_PER_PAGE = 20;
 
-// cache sorted metadata to avoid re-reading all files on every request
-let sortedMetadataCache: { fileName: string; date: string }[] | null = null;
+/** Build-time cache file path */
+export const POSTS_CACHE_PATH = path.resolve(
+  process.cwd(),
+  "static",
+  "posts-cache.json",
+);
 
-const getSortedPostMetadata = () => {
-  if (sortedMetadataCache) {
-    return sortedMetadataCache;
-  }
+export const loadAllWorkPostFileNames = () => loadAllPostFileNames(POSTS_DIR);
 
-  sortedMetadataCache = loadAllWorkPostFileNames()
-    .map((fileName) => {
-      const { data } = loadPost<WorkPostFrontmatter>(DIRECTORY, fileName);
-      return { fileName, date: data.date };
-    })
-    .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
+export const loadAllWorkPostSlugs = () => loadAllPostSlugs(POSTS_DIR);
 
-  return sortedMetadataCache;
-};
-
-export const loadAllWorkPosts = async ({
-  isShallow = false,
+export const getPaginatedPosts = async ({
   page = 1,
   limit = ITEMS_PER_PAGE,
 }: {
-  isShallow?: boolean;
   page?: number;
   limit?: number;
 } = {}) => {
-  // get sorted metadata (reads only frontmatter, cached after first call)
-  const sortedMetadata = getSortedPostMetadata();
+  // get posts (loaded from cache file)
+  const posts = await getCachedPosts();
 
-  // process only the files needed for this page
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
-  const processedPosts = (
-    await Promise.all(
-      sortedMetadata
-        .slice(startIndex, endIndex)
-        .map(({ fileName }) =>
-          processPost<WorkPostFrontmatter>(
-            loadPost<WorkPostFrontmatter>(DIRECTORY, fileName),
-            { isShallow },
-          ),
-        ),
-    )
-  )
-    // re-sort after Promise.all since it resolves out of order
-    .sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
+  const pagePosts = posts.slice(startIndex, endIndex);
 
   return {
-    posts: processedPosts,
-    total: sortedMetadata.length,
-    totalPages: Math.ceil(sortedMetadata.length / limit),
+    posts: pagePosts,
+    total: posts.length,
+    totalPages: Math.ceil(posts.length / limit),
   };
 };
 
 export const loadAndProcessAllWorkPosts = (isShallow = false) =>
-  loadAndProcessAllPosts<WorkPostFrontmatter>(DIRECTORY, undefined, {
+  loadAndProcessAllPosts<WorkPostFrontmatter>(POSTS_DIR, undefined, {
     isShallow,
   });
 
-export const loadAndProcessWorkPost = (slug: string) =>
-  processPost<WorkPostFrontmatter>(
-    loadPost<WorkPostFrontmatter>(DIRECTORY, makeFileNameFromSlug(slug)),
+/**
+ * @returns array of shallowly processed posts
+ */
+export const loadWorkPostsForCache = () =>
+  loadAndProcessAllWorkPosts(/* is shallow?: */ true).then((posts) =>
+    // reduce the size of the cache file:
+    posts.map(
+      (
+        post: Omit<ProcessedWorkPost, "content" | "data"> & {
+          content?: string;
+          data: Omit<ProcessedWorkPost["data"], "images"> & {
+            images?: unknown;
+          };
+        },
+      ) => {
+        delete post.content;
+        delete post.data.images;
+        return post;
+      },
+    ),
   );
+
+export const loadAndProcessWorkPost = ({
+  slug,
+  isShallow = false,
+}: {
+  slug: string;
+  isShallow?: boolean;
+}) =>
+  loadAndProcessPost<WorkPostFrontmatter>(
+    POSTS_DIR,
+    makeFileNameFromSlug(slug),
+    { isShallow },
+  );
+
+// CACHING
+// --------------------------------------------------
+
+/** Cached, shallowly processed posts (loaded from build-time cache file). */
+let POSTS_CACHE: CachedWorkPosts | null = null;
+
+const getCachedPosts = async () => {
+  if (POSTS_CACHE) {
+    return POSTS_CACHE;
+  }
+
+  // try to load from cache file (generated at build time)
+  if (fs.existsSync(POSTS_CACHE_PATH)) {
+    const cacheData = fs.readFileSync(POSTS_CACHE_PATH, "utf8");
+    POSTS_CACHE = JSON.parse(cacheData) as CachedWorkPosts;
+    return POSTS_CACHE;
+  }
+
+  // fallback: generate at runtime (for development)
+  POSTS_CACHE = await loadWorkPostsForCache();
+
+  return POSTS_CACHE;
+};

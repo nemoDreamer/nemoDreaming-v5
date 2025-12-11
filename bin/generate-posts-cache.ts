@@ -5,40 +5,26 @@ import fs from "fs/promises";
 import path from "path";
 
 import {
-  DIRECTORY,
-  type ProcessedWorkPost,
-  loadAndProcessAllWorkPosts,
+  POSTS_CACHE_PATH,
+  loadWorkPostsForCache,
 } from "../src/app/work/_data/work-post";
-
-const CACHE_FILE_NAME = ".posts-cache.json";
 
 async function generatePostsCache() {
   console.log(`🔍 Finding posts...`);
 
-  const posts = (await loadAndProcessAllWorkPosts()).map(
-    // reduce the size of the cache file:
-    (
-      post: Omit<ProcessedWorkPost, "content" | "data"> & {
-        content?: string;
-        data: Omit<ProcessedWorkPost["data"], "images"> & { images?: unknown };
-      },
-    ) => {
-      delete post.content;
-      delete post.data.images;
-      return post;
-    },
-  );
+  const posts = await loadWorkPostsForCache();
 
   console.log(`🔍 Processed ${posts.length} posts.`);
 
-  const CACHE_PATH = path.resolve(DIRECTORY, "../", CACHE_FILE_NAME);
+  // ensure directory exists
+  await fs.mkdir(path.dirname(POSTS_CACHE_PATH), { recursive: true });
 
-  await fs.writeFile(CACHE_PATH, JSON.stringify(posts, null, 2), {
+  await fs.writeFile(POSTS_CACHE_PATH, JSON.stringify(posts, null, 2), {
     encoding: "utf-8",
   });
 
   console.log(
-    `👍 Wrote cache to '${path.relative(process.cwd(), CACHE_PATH)}'.`,
+    `👍 Wrote cache to '${path.relative(process.cwd(), POSTS_CACHE_PATH)}'.`,
   );
 }
 

@@ -67,6 +67,7 @@ export const loadPost = <T extends Frontmatter>(
   ) as GrayMatterFile<string> & {
     data: T;
   };
+
   return {
     fileName,
     content,
