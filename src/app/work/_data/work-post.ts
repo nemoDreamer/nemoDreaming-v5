@@ -12,6 +12,18 @@ import {
   makeFileNameFromSlug,
 } from "@/utils/post";
 
+// import postsJson from "../../../../static/posts-cache.json";
+
+// const POSTS: CachedWorkPost[] = postsJson.map((post) => ({
+//   ...post,
+//   data: {
+//     ...post.data,
+//     date: new Date(post.data.date),
+//   },
+// }));
+
+// --------------------------------------------------
+
 export type WorkPostFrontmatter = Frontmatter & {
   title: string;
   url?: string;
@@ -27,7 +39,7 @@ export type WorkPost = Post<WorkPostFrontmatter>;
 
 export type ProcessedWorkPost = ProcessedPost<WorkPostFrontmatter>;
 
-type CachedWorkPosts = Awaited<ReturnType<typeof loadWorkPostsForCache>>;
+type CachedWorkPost = Awaited<ReturnType<typeof loadWorkPostsForCache>>[0];
 
 // --------------------------------------------------
 export const POSTS_DIR = path.resolve(
@@ -37,11 +49,9 @@ export const POSTS_DIR = path.resolve(
 
 const ITEMS_PER_PAGE = 20;
 
-/** Build-time cache file path */
 export const POSTS_CACHE_PATH = path.resolve(
   process.cwd(),
-  "static",
-  "posts-cache.json",
+  "static/posts-cache.json",
 );
 
 export const loadAllWorkPostFileNames = () => loadAllPostFileNames(POSTS_DIR);
@@ -56,16 +66,16 @@ export const getPaginatedPosts = async ({
   limit?: number;
 } = {}) => {
   // get posts (loaded from cache file)
-  const posts = await getCachedPosts();
+  const POSTS = await getCachedPosts();
 
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
-  const pagePosts = posts.slice(startIndex, endIndex);
+  const pagePosts = POSTS.slice(startIndex, endIndex);
 
   return {
     posts: pagePosts,
-    total: posts.length,
-    totalPages: Math.ceil(posts.length / limit),
+    total: POSTS.length,
+    totalPages: Math.ceil(POSTS.length / limit),
   };
 };
 
@@ -111,7 +121,7 @@ export const loadAndProcessWorkPost = ({
 // --------------------------------------------------
 
 /** Cached, shallowly processed posts (loaded from build-time cache file). */
-let POSTS_CACHE: CachedWorkPosts | null = null;
+let POSTS_CACHE: CachedWorkPost[] | null = null;
 
 const getCachedPosts = async () => {
   if (POSTS_CACHE) {
@@ -121,7 +131,17 @@ const getCachedPosts = async () => {
   // try to load from cache file (generated at build time)
   if (fs.existsSync(POSTS_CACHE_PATH)) {
     const cacheData = fs.readFileSync(POSTS_CACHE_PATH, "utf8");
-    POSTS_CACHE = JSON.parse(cacheData) as CachedWorkPosts;
+    POSTS_CACHE = (
+      JSON.parse(cacheData) as (Omit<CachedWorkPost, "data"> & {
+        data: Omit<CachedWorkPost["data"], "date"> & { date: string };
+      })[]
+    ).map((post) => ({
+      ...post,
+      data: {
+        ...post.data,
+        date: new Date(post.data.date),
+      },
+    }));
     return POSTS_CACHE;
   }
 
