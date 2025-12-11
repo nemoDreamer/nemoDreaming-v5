@@ -58,10 +58,13 @@ export const loadAllPostSlugs = (
     slug: makeSlugFromFileName(fileName, ext),
   }));
 
-export const loadPost = <T extends Frontmatter>(
-  directory: string,
-  fileName: string,
-): Post<T> => {
+export const loadPost = <T extends Frontmatter>({
+  directory,
+  fileName,
+}: {
+  directory: string;
+  fileName: string;
+}): Post<T> => {
   const { content, data } = matter(
     fs.readFileSync(path.join(directory, fileName), "utf8"),
   ) as GrayMatterFile<string> & {
@@ -78,10 +81,13 @@ export const loadPost = <T extends Frontmatter>(
 // PROCESS
 // --------------------------------------------------
 
-export const processPost = async <T extends Frontmatter>(
-  { fileName, content, data }: Post<T>,
-  { isShallow = false } = {},
-): Promise<
+export const processPost = async <T extends Frontmatter>({
+  post: { fileName, content, data },
+  isShallow = false,
+}: {
+  post: Post<T>;
+  isShallow?: boolean;
+}): Promise<
   Omit<Post<T>, "data"> & {
     slug: string;
     data: Omit<Post<T>["data"], "date" | "thumbnail" | "images"> & {
@@ -119,19 +125,27 @@ export const processPost = async <T extends Frontmatter>(
 // LOAD AND PROCESS
 // --------------------------------------------------
 
-export const loadAndProcessPost = <T extends Frontmatter>(
-  directory: string,
-  fileName: string,
-  { isShallow = false } = {},
-) => processPost<T>(loadPost<T>(directory, fileName), { isShallow });
+export const loadAndProcessPost = <T extends Frontmatter>({
+  directory,
+  fileName,
+  isShallow = false,
+}: {
+  directory: string;
+  fileName: string;
+  isShallow?: boolean;
+}) => processPost<T>({ post: loadPost<T>({ directory, fileName }), isShallow });
 
-export const loadAndProcessAllPosts = <T extends Frontmatter>(
-  directory: string,
+export const loadAndProcessAllPosts = <T extends Frontmatter>({
+  directory,
   ext = ".md",
-  { isShallow = false } = {},
-) =>
+  isShallow = false,
+}: {
+  directory: string;
+  ext?: string;
+  isShallow?: boolean;
+}) =>
   Promise.all(
     loadAllPostFileNames(directory, ext).map((fileName) =>
-      loadAndProcessPost<T>(directory, fileName, { isShallow }),
+      loadAndProcessPost<T>({ directory, fileName, isShallow }),
     ),
   ).then((posts) => posts.sort((a, b) => (a.data.date < b.data.date ? 1 : -1)));

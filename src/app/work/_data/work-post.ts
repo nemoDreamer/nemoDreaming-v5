@@ -69,16 +69,14 @@ export const getPaginatedPosts = async ({
   };
 };
 
-export const loadAndProcessAllWorkPosts = (isShallow = false) =>
-  loadAndProcessAllPosts<WorkPostFrontmatter>(POSTS_DIR, undefined, {
-    isShallow,
-  });
-
 /**
  * @returns array of shallowly processed posts
  */
 export const loadWorkPostsForCache = () =>
-  loadAndProcessAllWorkPosts(/* is shallow?: */ true).then((posts) =>
+  loadAndProcessAllPosts<WorkPostFrontmatter>({
+    directory: POSTS_DIR,
+    isShallow: true,
+  }).then((posts) =>
     // reduce the size of the cache file:
     posts.map(
       (
@@ -103,11 +101,11 @@ export const loadAndProcessWorkPost = ({
   slug: string;
   isShallow?: boolean;
 }) =>
-  loadAndProcessPost<WorkPostFrontmatter>(
-    POSTS_DIR,
-    makeFileNameFromSlug(slug),
-    { isShallow },
-  );
+  loadAndProcessPost<WorkPostFrontmatter>({
+    directory: POSTS_DIR,
+    fileName: makeFileNameFromSlug(slug),
+    isShallow,
+  });
 
 // CACHING
 // --------------------------------------------------
