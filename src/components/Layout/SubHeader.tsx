@@ -6,13 +6,13 @@ import Container from "./Container";
 
 export const H1 = ({
   children,
-  className,
+  className = "mb-0",
   ...props
 }: React.ComponentProps<typeof CoreH1>) => (
   <CoreH1
     className={classNames(
       className,
-      "font-bold text-base text-white print:text-black print:text-2xl mb-0",
+      "font-bold text-base text-white print:text-black print:text-2xl",
     )}
     {...props}
   >

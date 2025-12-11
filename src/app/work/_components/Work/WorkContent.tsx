@@ -64,7 +64,7 @@ export default function WorkContent({
 
   return (
     <>
-      <H2 className="mt-0">{title}</H2>
+      <H2>{title}</H2>
 
       <div className="mb-4 text-sm text-gray-500 flex flex-row items-baseline space-x-4">
         <span className="date whitespace-nowrap">{formatDate(date)}</span>

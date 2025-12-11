@@ -30,7 +30,7 @@ const AboutSubHeader = () => {
         </ArrowLink>
       </p>
 
-      <H1>{resume.header.name}</H1>
+      <H1 className="">{resume.header.name}</H1>
 
       <p className="contact hidden print:block text-right no-break-inside no-break-after">
         {resume.header.url && (

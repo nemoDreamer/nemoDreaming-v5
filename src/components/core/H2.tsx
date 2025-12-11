@@ -2,7 +2,7 @@ import classNames from "classnames";
 
 const H2 = ({
   children,
-  className = "mt-8",
+  className = "mt-8 first:mt-0",
   ...props
 }: React.HtmlHTMLAttributes<HTMLHeadingElement>) => (
   <h2
