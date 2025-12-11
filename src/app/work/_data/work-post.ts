@@ -12,7 +12,7 @@ import {
   makeFileNameFromSlug,
 } from "@/utils/post";
 
-// import postsJson from "../../../../static/posts-cache.json";
+// import postsJson from "./posts-cache.json";
 
 // const POSTS: CachedWorkPost[] = postsJson.map((post) => ({
 //   ...post,
@@ -47,11 +47,9 @@ export const POSTS_DIR = path.resolve(
   "./src/app/work/_data/posts",
 );
 
-const ITEMS_PER_PAGE = 20;
-
 export const POSTS_CACHE_PATH = path.resolve(
   process.cwd(),
-  "static/posts-cache.json",
+  "public/posts-cache.json",
 );
 
 export const loadAllWorkPostFileNames = () => loadAllPostFileNames(POSTS_DIR);
@@ -60,7 +58,7 @@ export const loadAllWorkPostSlugs = () => loadAllPostSlugs(POSTS_DIR);
 
 export const getPaginatedPosts = async ({
   page = 1,
-  limit = ITEMS_PER_PAGE,
+  limit = 20,
 }: {
   page?: number;
   limit?: number;

@@ -34,15 +34,14 @@ export default async function WorkGroup({ page = 1 }: { page?: number }) {
               />
 
               {/* FIXME: */}
-
-              <div className="hidden">
+              {/* <div className="hidden">
                 <span className="underline group-hover:no-underline">
                   {title}
                 </span>
                 <span className="ml-2 text-xs italic text-gray-500 group-hover:text-gray-300">
                   {formatDate(date)}
                 </span>
-              </div>
+              </div> */}
             </Link>
           </div>
         ))}
