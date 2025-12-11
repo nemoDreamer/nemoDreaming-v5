@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 export default function NoWrapList({
   items,
   separator = "/",
@@ -6,11 +8,11 @@ export default function NoWrapList({
   separator?: React.ReactNode;
 }) {
   return items.map((item, index) => (
-    <>
-      <span key={`${item}-${index}`} className="whitespace-nowrap">
+    <Fragment key={`${item}-${index}`}>
+      <span className="whitespace-nowrap">
         {item}
         {index < items.length - 1 && ` ${separator}`}
       </span>{" "}
-    </>
+    </Fragment>
   ));
 }
