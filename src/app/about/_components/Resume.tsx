@@ -84,7 +84,7 @@ const Resume: React.FC<{
     <div className="qualifications">
       {!skipFirstLine && (
         <>
-          <H2>{startCase(qualifications.title)}</H2>
+          <ResumeH2>{startCase(qualifications.title)}</ResumeH2>
           <Markdown content={qualifications.body[0]} />
         </>
       )}

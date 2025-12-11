@@ -11,6 +11,7 @@ export default async function WorkGroup({ page = 1 }: { page?: number }) {
   // client work with pagination:
   const { posts, total, totalPages } = await getPaginatedPosts({
     page,
+    limit: 15,
   });
 
   return (
@@ -19,13 +20,13 @@ export default async function WorkGroup({ page = 1 }: { page?: number }) {
         page={page}
         total={total}
         totalPages={totalPages}
-        className="mb-8"
+        className="mb-8 block sm:hidden"
       />
 
       <Grid className="mb-4">
         {posts.map(({ slug, data: { title, date, thumbnail } }) => (
           <div key={`work-post-${slug}`} className="square">
-            <Link href={`/work/${slug}`} className="content relative">
+            <Link href={`/work/post/${slug}`} className="content relative">
               <Thumbnail
                 alt="Preview Thumbnail"
                 image={thumbnail}

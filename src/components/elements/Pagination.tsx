@@ -1,6 +1,7 @@
 import classNames from "classnames";
 
 import ArrowLink from "./ArrowLink";
+import Separator from "./Separator";
 
 export default function Pagination({
   page,
@@ -25,8 +26,9 @@ export default function Pagination({
       )}
     >
       <ArrowLink
-        href={`/work${page !== 2 ? `?page=${page - 1}` : ""}`}
-        className="text-gray-500 group-hover:text-teal-300"
+        href={page === 2 ? `/work` : `/work/all/${page - 1}`}
+        arrowClassName="text-gray-500 group-hover:text-teal-300 "
+        disabledClassName="opacity-20"
         isBack
         isDisabled={page <= 1}
       >
@@ -34,12 +36,15 @@ export default function Pagination({
       </ArrowLink>
 
       <span className="text-gray-600 font-mono text-xs">
-        Page {page} of {totalPages} ({total} items)
+        {page} <Separator char="/" /> {totalPages}
+        {/* Page {page} of {totalPages} */}
+        {/* ({total} items) */}
       </span>
 
       <ArrowLink
-        href={`/work?page=${page + 1}`}
-        className="text-gray-500 group-hover:text-teal-300"
+        href={`/work/all/${page + 1}`}
+        arrowClassName="text-gray-500 group-hover:text-teal-300"
+        disabledClassName="opacity-20"
         isBehind
         isDisabled={page >= totalPages}
       >

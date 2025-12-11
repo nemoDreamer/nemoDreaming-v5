@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "./bin/generate-posts-cache.ts",
     "build": "next build",
     "dev": "next dev",
+    "generate:posts-cache": "./bin/generate-posts-cache.ts",
     "lint": "eslint",
     "lint:js": "eslint --cache --fix",
     "lint:js:all": "npm run lint:js .",

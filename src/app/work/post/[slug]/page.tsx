@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import Main from "@/components/Layout/Main";
 import ArrowLink from "@/components/elements/ArrowLink";
 
-import WorkContent from "../_components/Work/WorkContent";
+import WorkContent from "../../_components/Work/WorkContent";
 import {
   loadAllWorkPostSlugs,
   loadAndProcessWorkPost,
-} from "../_data/work-post";
+} from "../../_data/work-post";
 
 const PageSubHeader = () => (
   <ArrowLink href="/work" isBack>

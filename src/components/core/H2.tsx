@@ -2,11 +2,11 @@ import classNames from "classnames";
 
 const H2 = ({
   children,
-  className,
+  className = "mt-8",
   ...props
 }: React.HtmlHTMLAttributes<HTMLHeadingElement>) => (
   <h2
-    className={classNames(className, "relative font-bold text-xl mt-8")}
+    className={classNames(className, "relative font-bold text-xl")}
     {...props}
   >
     <span className="absolute -left-[1.5em] text-gray-300 print:hidden">
