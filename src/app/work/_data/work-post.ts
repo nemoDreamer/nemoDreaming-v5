@@ -9,9 +9,7 @@ import {
   loadAllPostSlugs,
   loadAndProcessAllPosts,
   loadAndProcessPost,
-  loadPost,
   makeFileNameFromSlug,
-  processPost,
 } from "@/utils/post";
 
 export type WorkPostFrontmatter = Frontmatter & {

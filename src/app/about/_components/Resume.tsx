@@ -6,7 +6,6 @@ import Markdown from "@/components/Markdown";
 import H1 from "@/components/core/H1";
 import H2 from "@/components/core/H2";
 import H3 from "@/components/core/H3";
-import Separator from "@/components/elements/Separator";
 
 const Label = ({ children, className }: React.ComponentProps<"span">) => (
   <span
