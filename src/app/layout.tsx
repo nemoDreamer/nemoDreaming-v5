@@ -34,6 +34,7 @@ const font_ascii = Fira_Code({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nemodreaming.com"),
   title: {
     template: "%s | nemoDreaming",
     default: "nemoDreaming | Philip Blyth",
