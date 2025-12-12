@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 
+import startCase from "lodash.startcase";
+
 import {
   type Frontmatter,
   type Post,
@@ -42,6 +44,7 @@ export type ProcessedWorkPost = ProcessedPost<WorkPostFrontmatter>;
 type CachedWorkPost = Awaited<ReturnType<typeof loadWorkPostsForCache>>[0];
 
 // --------------------------------------------------
+
 export const POSTS_DIR = path.resolve(
   process.cwd(),
   "./src/app/work/_data/posts",
@@ -56,29 +59,129 @@ export const loadAllWorkPostFileNames = () => loadAllPostFileNames(POSTS_DIR);
 
 export const loadAllWorkPostSlugs = () => loadAllPostSlugs(POSTS_DIR);
 
+export const loadAndProcessWorkPost = ({
+  slug,
+  isShallow = false,
+}: {
+  slug: string;
+  isShallow?: boolean;
+}) =>
+  loadAndProcessPost<WorkPostFrontmatter>({
+    directory: POSTS_DIR,
+    fileName: makeFileNameFromSlug(slug),
+    isShallow,
+  });
+
+// --------------------------------------------------
+
+export const ALL_CATEGORY = "all";
+export const ALL_CATEGORY_LABEL = "All";
+
 export const getPaginatedPosts = async ({
   page = 1,
   limit = 20,
+  category = ALL_CATEGORY,
 }: {
   page?: number;
   limit?: number;
+  category?: string;
 } = {}) => {
   // get posts (loaded from cache file)
   const POSTS = await getCachedPosts();
 
+  // optionally filter by category (matches main category or additional ones)
+  const list =
+    category !== ALL_CATEGORY
+      ? POSTS.filter((post) => {
+          const targetLabel = startCase(category);
+          const mainCategory = post.data.category;
+          const additionalCategories = post.data.categories || [];
+
+          return (
+            mainCategory === targetLabel ||
+            additionalCategories.includes(targetLabel)
+          );
+        })
+      : POSTS;
+
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
-  const pagePosts = POSTS.slice(startIndex, endIndex);
+  const pagePosts = list.slice(startIndex, endIndex);
 
   return {
     posts: pagePosts,
-    total: POSTS.length,
-    totalPages: Math.ceil(POSTS.length / limit),
+    total: list.length,
+    totalPages: Math.ceil(list.length / limit),
   };
 };
 
+let CATEGORIES_CACHE: string[] | null = null;
+
 /**
- * @returns array of shallowly processed posts
+ * @returns sorted array of in-use unique categories (with "All" at the start)
+ */
+export const getAllCategories = async (): Promise<string[]> => {
+  if (CATEGORIES_CACHE) {
+    return CATEGORIES_CACHE;
+  }
+
+  const POSTS = await getCachedPosts();
+  const categories = new Set<string>(); // <- ignores duplicates
+
+  POSTS.forEach((post) => {
+    categories.add(post.data.category);
+    (post.data.categories || []).forEach((category) =>
+      categories.add(category),
+    );
+  });
+
+  CATEGORIES_CACHE = [ALL_CATEGORY_LABEL, ...Array.from(categories).sort()];
+
+  return CATEGORIES_CACHE;
+};
+
+// CACHING
+// --------------------------------------------------
+
+let POSTS_CACHE: CachedWorkPost[] | null = null;
+
+/**
+ * gets cached, shallowly processed posts, either from in-memory cache,
+ * build-time cache file, or by generating at runtime.
+ */
+const getCachedPosts = async () => {
+  // in-memory?
+  if (POSTS_CACHE) {
+    return POSTS_CACHE;
+  }
+
+  // build-time cache file?
+  if (fs.existsSync(POSTS_CACHE_PATH)) {
+    const cacheData = fs.readFileSync(POSTS_CACHE_PATH, "utf8");
+
+    POSTS_CACHE = (
+      JSON.parse(cacheData) as (Omit<CachedWorkPost, "data"> & {
+        data: Omit<CachedWorkPost["data"], "date"> & { date: string };
+      })[]
+    ).map((post) => ({
+      ...post,
+      data: {
+        ...post.data,
+        date: new Date(post.data.date),
+      },
+    }));
+
+    return POSTS_CACHE;
+  }
+
+  // fallback: generate at runtime (for development)
+  POSTS_CACHE = await loadWorkPostsForCache();
+
+  return POSTS_CACHE;
+};
+
+/**
+ * loads and shallowly processed posts
  */
 export const loadWorkPostsForCache = () =>
   loadAndProcessAllPosts<WorkPostFrontmatter>({
@@ -101,50 +204,3 @@ export const loadWorkPostsForCache = () =>
       },
     ),
   );
-
-export const loadAndProcessWorkPost = ({
-  slug,
-  isShallow = false,
-}: {
-  slug: string;
-  isShallow?: boolean;
-}) =>
-  loadAndProcessPost<WorkPostFrontmatter>({
-    directory: POSTS_DIR,
-    fileName: makeFileNameFromSlug(slug),
-    isShallow,
-  });
-
-// CACHING
-// --------------------------------------------------
-
-/** Cached, shallowly processed posts (loaded from build-time cache file). */
-let POSTS_CACHE: CachedWorkPost[] | null = null;
-
-const getCachedPosts = async () => {
-  if (POSTS_CACHE) {
-    return POSTS_CACHE;
-  }
-
-  // try to load from cache file (generated at build time)
-  if (fs.existsSync(POSTS_CACHE_PATH)) {
-    const cacheData = fs.readFileSync(POSTS_CACHE_PATH, "utf8");
-    POSTS_CACHE = (
-      JSON.parse(cacheData) as (Omit<CachedWorkPost, "data"> & {
-        data: Omit<CachedWorkPost["data"], "date"> & { date: string };
-      })[]
-    ).map((post) => ({
-      ...post,
-      data: {
-        ...post.data,
-        date: new Date(post.data.date),
-      },
-    }));
-    return POSTS_CACHE;
-  }
-
-  // fallback: generate at runtime (for development)
-  POSTS_CACHE = await loadWorkPostsForCache();
-
-  return POSTS_CACHE;
-};

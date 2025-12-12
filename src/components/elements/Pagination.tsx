@@ -1,18 +1,22 @@
 import classNames from "classnames";
 
+import { ALL_CATEGORY } from "@/app/work/_data/work-post";
+
 import ArrowLink from "./ArrowLink";
 import Separator from "./Separator";
 
 export default function Pagination({
   page,
-  total,
+  // total,
   totalPages,
   className,
+  category = ALL_CATEGORY,
 }: {
   page: number;
   total: number;
   totalPages: number;
   className?: string;
+  category?: string;
 }) {
   if (totalPages <= 1) {
     return null;
@@ -26,7 +30,7 @@ export default function Pagination({
       )}
     >
       <ArrowLink
-        href={page === 2 ? `/work` : `/work/all/${page - 1}`}
+        href={`/work/${category}/${page - 1}`}
         arrowClassName="text-gray-500 group-hover:text-teal-300 "
         disabledClassName="opacity-20"
         isBack
@@ -42,7 +46,7 @@ export default function Pagination({
       </span>
 
       <ArrowLink
-        href={`/work/all/${page + 1}`}
+        href={`/work/${category}/${page + 1}`}
         arrowClassName="text-gray-500 group-hover:text-teal-300"
         disabledClassName="opacity-20"
         isBehind

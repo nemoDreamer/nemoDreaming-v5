@@ -42,6 +42,7 @@ const eslintConfig = defineConfig([
       },
     },
     rules: {
+      "@typescript-eslint/no-unused-vars": "error",
       "sort-imports": [
         "error",
         {

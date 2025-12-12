@@ -9,7 +9,6 @@ categories:
   - Identity
   - Illustration
   - Interactive
-  - Uncategorized
 tags:
   - Adobe DreamWeaver
   - Adobe Flash
