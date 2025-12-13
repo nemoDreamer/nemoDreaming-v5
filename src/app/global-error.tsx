@@ -1,13 +1,16 @@
+"use client";
+
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import classNames from "classnames";
 import { LazyMotion, domAnimation } from "motion/react";
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { useEffect } from "react";
 
 import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
+import Main from "@/components/Layout/Main";
+import Prompt from "@/components/Terminal/Prompt";
 import {
   font_ascii,
   font_mono_override,
@@ -16,23 +19,18 @@ import {
 
 import "./globals.scss";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://nemodreaming.com"),
-  title: {
-    template: "%s | nemoDreaming",
-    default: "nemoDreaming | Philip Blyth",
-  },
-  description:
-    "Interactive Media Design & Development Portfolio of Philip Blyth. Projects spanning Web, Print, Graphic, Motion, Photography & Illustration.",
-};
+export default function Error({
+  error,
+  // reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.error(error);
+  }, [error]);
 
-export default function RootLayout({
-  children,
-  prompt,
-}: Readonly<{
-  children: React.ReactNode;
-  prompt: ReactNode;
-}>) {
   return (
     <html lang="en">
       <body
@@ -45,9 +43,17 @@ export default function RootLayout({
         )}
       >
         <LazyMotion features={domAnimation}>
-          <Header prompt={prompt} />
+          <Header prompt={<Prompt branch="bad" filePath="booboo.tsx" />} />
 
-          {children}
+          <Main title="Oops!">
+            <p>Something went wrong:</p>
+            {error.message && (
+              <pre className="text-red-300 bg-red-900 p-4 rounded">
+                {error.message}
+              </pre>
+            )}
+            {/* <button onClick={() => reset()}>Try again</button> */}
+          </Main>
 
           <Footer />
         </LazyMotion>

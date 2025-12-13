@@ -22,7 +22,13 @@ export const getImageData = async (
   folder?: string,
 ): Promise<ImageData> => {
   const src = getImageSrc(image, folder);
-  const file = fs.readFileSync(path.join("./public", src));
+  const filePath = path.join("./public", src);
+
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Image file '${filePath}' not found!`);
+  }
+
+  const file = fs.readFileSync(filePath);
   const {
     base64,
     color: { hex },

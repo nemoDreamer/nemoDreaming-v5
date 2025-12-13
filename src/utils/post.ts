@@ -65,8 +65,14 @@ export const loadPost = <T extends Frontmatter>({
   directory: string;
   fileName: string;
 }): Post<T> => {
+  const postPath = path.join(directory, fileName);
+
+  if (!fs.existsSync(postPath)) {
+    throw new Error(`Post '${makeSlugFromFileName(fileName)}' not found!'`);
+  }
+
   const { content, data } = matter(
-    fs.readFileSync(path.join(directory, fileName), "utf8"),
+    fs.readFileSync(postPath, "utf8"),
   ) as GrayMatterFile<string> & {
     data: T;
   };

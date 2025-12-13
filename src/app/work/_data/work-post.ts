@@ -89,6 +89,10 @@ export const getPaginatedPosts = async ({
   // get posts (loaded from cache file)
   const POSTS = await getCachedPosts();
 
+  if (!(await getAllCategories()).includes(startCase(category))) {
+    throw new Error(`Category '${category}' does not exist.`);
+  }
+
   // optionally filter by category (matches main category or additional ones)
   const list =
     category !== ALL_CATEGORY

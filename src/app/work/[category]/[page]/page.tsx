@@ -1,3 +1,4 @@
+import startCase from "lodash.startcase";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
@@ -14,7 +15,11 @@ import {
   getPullRequests,
   getTopRepositories,
 } from "../../_data/github/endpoints";
-import { ALL_CATEGORY, getAllCategories } from "../../_data/work-post";
+import {
+  ALL_CATEGORY,
+  getAllCategories,
+  getPaginatedPosts,
+} from "../../_data/work-post";
 
 const _getTopRepositories = () =>
   getTopRepositories({
@@ -34,9 +39,7 @@ export async function generateMetadata({
   const { category, page } = await params;
   const pageNum = parseInt(page, 10);
   const categoryName =
-    category === ALL_CATEGORY
-      ? "All Work"
-      : category.charAt(0).toUpperCase() + category.slice(1);
+    category === ALL_CATEGORY ? "All Work" : startCase(category);
 
   return {
     title: pageNum === 1 ? categoryName : `${categoryName} - Page ${pageNum}`,
@@ -48,16 +51,15 @@ export async function generateStaticParams() {
 
   const params = [];
 
-  for (const label of categories) {
-    const category = label.toLowerCase();
-    const { getPaginatedPosts } = await import("../../_data/work-post");
-    const paginationResult = await getPaginatedPosts({ category });
+  for (const category of categories) {
+    const catSlug = category.toLowerCase();
+    const paginationResult = await getPaginatedPosts({ category: catSlug });
 
     const { totalPages } = paginationResult;
 
     for (let i = 1; i <= totalPages; i++) {
       params.push({
-        category: category,
+        category: catSlug,
         page: String(i),
       });
     }
