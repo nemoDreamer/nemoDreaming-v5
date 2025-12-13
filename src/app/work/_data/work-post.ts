@@ -77,15 +77,7 @@ export const loadAndProcessWorkPost = ({
 export const ALL_CATEGORY = "all";
 export const ALL_CATEGORY_LABEL = "All";
 
-export const getPaginatedPosts = async ({
-  page = 1,
-  limit = 20,
-  category = ALL_CATEGORY,
-}: {
-  page?: number;
-  limit?: number;
-  category?: string;
-} = {}) => {
+export const getCategoryWorkPosts = async (category = ALL_CATEGORY) => {
   // get posts (loaded from cache file)
   const POSTS = await getCachedPosts();
 
@@ -94,26 +86,36 @@ export const getPaginatedPosts = async ({
   }
 
   // optionally filter by category (matches main category or additional ones)
-  const list =
-    category !== ALL_CATEGORY
-      ? POSTS.filter((post) => {
-          const targetLabel = startCase(category);
-          const mainCategory = post.data.category;
-          const additionalCategories = post.data.categories || [];
+  return category !== ALL_CATEGORY
+    ? POSTS.filter((post) => {
+        const targetLabel = startCase(category);
+        const mainCategory = post.data.category;
+        const additionalCategories = post.data.categories || [];
 
-          return (
-            mainCategory === targetLabel ||
-            additionalCategories.includes(targetLabel)
-          );
-        })
-      : POSTS;
+        return (
+          mainCategory === targetLabel ||
+          additionalCategories.includes(targetLabel)
+        );
+      })
+    : POSTS;
+};
+
+export const getPaginatedWorkPosts = async ({
+  page = 1,
+  limit = 20,
+  category = ALL_CATEGORY,
+}: {
+  page?: number;
+  limit?: number;
+  category?: string;
+} = {}) => {
+  const list = await getCategoryWorkPosts(category);
 
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
-  const pagePosts = list.slice(startIndex, endIndex);
 
   return {
-    posts: pagePosts,
+    posts: list.slice(startIndex, endIndex),
     total: list.length,
     totalPages: Math.ceil(list.length / limit),
   };

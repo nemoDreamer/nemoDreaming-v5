@@ -18,7 +18,7 @@ import {
 import {
   ALL_CATEGORY,
   getAllCategories,
-  getPaginatedPosts,
+  getPaginatedWorkPosts,
 } from "../../_data/work-post";
 
 const _getTopRepositories = () =>
@@ -53,7 +53,7 @@ export async function generateStaticParams() {
 
   for (const category of categories) {
     const catSlug = category.toLowerCase();
-    const paginationResult = await getPaginatedPosts({ category: catSlug });
+    const paginationResult = await getPaginatedWorkPosts({ category: catSlug });
 
     const { totalPages } = paginationResult;
 

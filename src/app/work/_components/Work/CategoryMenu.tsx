@@ -10,7 +10,7 @@ export default async function CategoryMenu({ category = "all" }) {
   const allCategories = await getAllCategories();
 
   return (
-    <nav className="flex flex-wrap items-center gap-1 text-teal-300">
+    <nav className="flex flex-wrap justify-center items-center gap-1 text-teal-300">
       {allCategories.map((label, i) => {
         const catSlug = label.toLowerCase();
         const isActive = catSlug === category;

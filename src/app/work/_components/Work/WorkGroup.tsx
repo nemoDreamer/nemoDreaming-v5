@@ -5,7 +5,7 @@ import Pagination from "@/components/elements/Pagination";
 import Thumbnail from "@/components/elements/Thumbnail";
 // import { formatDate } from "@/utils/utils";
 
-import { ALL_CATEGORY, getPaginatedPosts } from "../../_data/work-post";
+import { ALL_CATEGORY, getPaginatedWorkPosts } from "../../_data/work-post";
 
 export default async function WorkGroup({
   page = 1,
@@ -17,7 +17,7 @@ export default async function WorkGroup({
   category?: string;
 }) {
   // get paginated posts (filtered by category)
-  const paginationResult = await getPaginatedPosts({
+  const paginationResult = await getPaginatedWorkPosts({
     page,
     limit,
     category,
@@ -46,7 +46,10 @@ export default async function WorkGroup({
             },
           }) => (
             <div key={`work-post-${slug}`} className="square">
-              <Link href={`/work/post/${slug}`} className="content relative">
+              <Link
+                href={`/work/post/${slug}?category=${category}`}
+                className="content relative"
+              >
                 <Thumbnail
                   alt="Preview Thumbnail"
                   image={thumbnail}
