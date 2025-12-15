@@ -30,8 +30,8 @@ export type WorkPostFrontmatter = Frontmatter & {
   title: string;
   url?: string;
   // ---
-  category: string;
-  categories: string[];
+  category: CategoryLabel;
+  categories: CategoryLabels;
   tags: string[];
   // ---
   excerpt: string;
@@ -41,7 +41,13 @@ export type WorkPost = Post<WorkPostFrontmatter>;
 
 export type ProcessedWorkPost = ProcessedPost<WorkPostFrontmatter>;
 
-type CachedWorkPost = Awaited<ReturnType<typeof loadWorkPostsForCache>>[0];
+export type CachedWorkPost = Awaited<
+  ReturnType<typeof loadWorkPostsForCache>
+>[0];
+
+export type CategoryLabel = string;
+export type CategoryLabels = CategoryLabel[];
+export type CategoryWorkPostSlugs = Record<CategoryLabels[number], string[]>;
 
 // --------------------------------------------------
 
@@ -77,39 +83,55 @@ export const loadAndProcessWorkPost = ({
 export const ALL_CATEGORY = "all";
 export const ALL_CATEGORY_LABEL = "All";
 
-export const getCategoryWorkPosts = async (category = ALL_CATEGORY) => {
-  // get posts (loaded from cache file)
-  const POSTS = await getCachedPosts();
-
-  if (!(await getAllCategories()).includes(startCase(category))) {
-    throw new Error(`Category '${category}' does not exist.`);
-  }
-
+const filterPostsByCategory = (posts: CachedWorkPost[], categorySlug: string) =>
   // optionally filter by category (matches main category or additional ones)
-  return category !== ALL_CATEGORY
-    ? POSTS.filter((post) => {
-        const targetLabel = startCase(category);
+  categorySlug !== ALL_CATEGORY
+    ? posts.filter((post) => {
+        const targetLabel = startCase(categorySlug);
         const mainCategory = post.data.category;
-        const additionalCategories = post.data.categories || [];
+        const additionalCategories = post.data.categories;
 
         return (
           mainCategory === targetLabel ||
           additionalCategories.includes(targetLabel)
         );
       })
-    : POSTS;
+    : posts;
+
+export const getCategoryWorkPosts = async (categorySlug = ALL_CATEGORY) => {
+  // get posts (loaded from cache file)
+  const POSTS = await getCachedPosts();
+
+  if (!(await getAllCategoryLabels()).includes(startCase(categorySlug))) {
+    throw new Error(`Category '${categorySlug}' does not exist.`);
+  }
+
+  return filterPostsByCategory(POSTS, categorySlug);
+};
+
+export const getAllCategoryWorkPostSlugs = async () => {
+  const POSTS = await getCachedPosts();
+  const categoryLabels = await getAllCategoryLabels();
+
+  return categoryLabels.reduce((acc: CategoryWorkPostSlugs, categoryLabel) => {
+    const categorySlug = categoryLabel.toLowerCase();
+    acc[categorySlug] = filterPostsByCategory(POSTS, categorySlug).map(
+      (post) => post.slug,
+    );
+    return acc;
+  }, {});
 };
 
 export const getPaginatedWorkPosts = async ({
   page = 1,
   limit = 20,
-  category = ALL_CATEGORY,
+  category: categorySlug = ALL_CATEGORY,
 }: {
   page?: number;
   limit?: number;
   category?: string;
 } = {}) => {
-  const list = await getCategoryWorkPosts(category);
+  const list = await getCategoryWorkPosts(categorySlug);
 
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
@@ -121,14 +143,17 @@ export const getPaginatedWorkPosts = async ({
   };
 };
 
-let CATEGORIES_CACHE: string[] | null = null;
+// CACHING
+// --------------------------------------------------
+
+let CATEGORY_LABELS_CACHE: string[] | null = null;
 
 /**
  * @returns sorted array of in-use unique categories (with "All" at the start)
  */
-export const getAllCategories = async (): Promise<string[]> => {
-  if (CATEGORIES_CACHE) {
-    return CATEGORIES_CACHE;
+export const getAllCategoryLabels = async (): Promise<string[]> => {
+  if (CATEGORY_LABELS_CACHE) {
+    return CATEGORY_LABELS_CACHE;
   }
 
   const POSTS = await getCachedPosts();
@@ -141,13 +166,13 @@ export const getAllCategories = async (): Promise<string[]> => {
     );
   });
 
-  CATEGORIES_CACHE = [ALL_CATEGORY_LABEL, ...Array.from(categories).sort()];
+  CATEGORY_LABELS_CACHE = [
+    ALL_CATEGORY_LABEL,
+    ...Array.from(categories).sort(),
+  ];
 
-  return CATEGORIES_CACHE;
+  return CATEGORY_LABELS_CACHE;
 };
-
-// CACHING
-// --------------------------------------------------
 
 let POSTS_CACHE: CachedWorkPost[] | null = null;
 

@@ -17,7 +17,7 @@ import {
 } from "../../_data/github/endpoints";
 import {
   ALL_CATEGORY,
-  getAllCategories,
+  getAllCategoryLabels,
   getPaginatedWorkPosts,
 } from "../../_data/work-post";
 
@@ -47,7 +47,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const categories = await getAllCategories(); // <- ["All", ...start-cased]
+  const categories = await getAllCategoryLabels(); // <- ["All", ...start-cased]
 
   const params = [];
 
@@ -87,12 +87,14 @@ export default async function WorkPage({ params }: { params: PageParams }) {
   const { category, page } = await params;
   const pageNum = parseInt(page, 10);
 
+  const categoryLabels = await getAllCategoryLabels();
+
   const isAll = category === ALL_CATEGORY;
 
   const subHeader = (
     <div className="flex flex-row justify-start items-start gap-8">
       <H1 className="mb-0 whitespace-nowrap">Work</H1>
-      <CategoryMenu category={category} />
+      <CategoryMenu category={category} categoryLabels={categoryLabels} />
     </div>
   );
 

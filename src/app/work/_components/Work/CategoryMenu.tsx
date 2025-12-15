@@ -4,21 +4,26 @@ import { Fragment } from "react/jsx-runtime";
 
 import Separator from "@/components/elements/Separator";
 
-import { getAllCategories } from "../../_data/work-post";
+import type { CategoryLabels } from "../../_data/work-post";
 
-export default async function CategoryMenu({ category = "all" }) {
-  const allCategories = await getAllCategories();
-
+export default async function CategoryMenu({
+  category = "all",
+  // accepting this as prop, as we want to avoid fetching in client-side:
+  categoryLabels,
+}: {
+  category?: string;
+  categoryLabels: CategoryLabels;
+}) {
   return (
     <nav className="flex flex-wrap justify-center items-center gap-1 text-teal-300">
-      {allCategories.map((label, i) => {
-        const catSlug = label.toLowerCase();
-        const isActive = catSlug === category;
+      {categoryLabels.map((label, i) => {
+        const slug = label.toLowerCase();
+        const isActive = slug === category;
 
         return (
-          <Fragment key={catSlug}>
+          <Fragment key={slug}>
             <Link
-              href={`/work/${catSlug}/1`}
+              href={`/work/${slug}/1`}
               className={classNames(
                 "text-xs transition-colors",
                 isActive
@@ -28,7 +33,7 @@ export default async function CategoryMenu({ category = "all" }) {
             >
               {label}
             </Link>
-            {i < allCategories.length - 1 && <Separator />}
+            {i < categoryLabels.length - 1 && <Separator />}
           </Fragment>
         );
       })}

@@ -1,22 +1,19 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import Main from "@/components/Layout/Main";
-import ArrowLink from "@/components/elements/ArrowLink";
 
-import CategoryMenu from "../../_components/Work/CategoryMenu";
 import WorkContent from "../../_components/Work/WorkContent";
+import WorkPostSubHeader from "../../_components/Work/WorkPostSubHeader";
 import {
-  getCategoryWorkPosts,
+  getAllCategoryLabels,
+  getAllCategoryWorkPostSlugs,
   loadAllWorkPostSlugs,
   loadAndProcessWorkPost,
 } from "../../_data/work-post";
 
 type PageParams = Promise<{
   slug: string;
-}>;
-
-type SearchParams = Promise<{
-  category: string;
 }>;
 
 const getWorkPostFromParams = async (params: PageParams, isShallow = false) =>
@@ -38,53 +35,20 @@ export const generateMetadata = async ({
 
 export const generateStaticParams = () => loadAllWorkPostSlugs();
 
-export default async function WorkPostPage({
-  params,
-  searchParams,
-}: {
-  params: PageParams;
-  searchParams: SearchParams;
-}) {
+export default async function WorkPostPage({ params }: { params: PageParams }) {
   const workPost = await getWorkPostFromParams(params);
-  const { category } = await searchParams;
 
-  // find previous and next posts in category:
-  // TODO: cache this lookup?
-  const categoryPosts = await getCategoryWorkPosts(category);
-  const currentIndex = categoryPosts.findIndex(
-    (post) => post.slug === workPost.slug,
-  );
-  const olderPost =
-    currentIndex < categoryPosts.length - 1
-      ? categoryPosts[currentIndex + 1]
-      : null;
-  const newerPost = currentIndex > 0 ? categoryPosts[currentIndex - 1] : null;
+  const categoryLabels = await getAllCategoryLabels();
+  const categoryWorkPostSlugs = await getAllCategoryWorkPostSlugs();
 
   const subHeader = (
-    <div className="flex flex-row justify-between items-center gap-8">
-      <div className="w-32 -ml-24">
-        {olderPost && (
-          <ArrowLink
-            className="justify-end"
-            href={`/work/post/${olderPost.slug}?category=${category}`}
-            isBack
-          >
-            Older
-          </ArrowLink>
-        )}
-      </div>
-      <CategoryMenu category={category} />
-      <div className="w-32 -mr-24">
-        {newerPost && (
-          <ArrowLink
-            href={`/work/post/${newerPost.slug}?category=${category}`}
-            isBehind
-          >
-            Newer
-          </ArrowLink>
-        )}
-      </div>
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <WorkPostSubHeader
+        workPost={workPost}
+        categoryLabels={categoryLabels}
+        categoryWorkPostSlugs={categoryWorkPostSlugs}
+      />
+    </Suspense>
   );
 
   return (
