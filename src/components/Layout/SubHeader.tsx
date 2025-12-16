@@ -1,4 +1,7 @@
+"use client";
+
 import classNames from "classnames";
+import { usePathname } from "next/navigation";
 
 import CoreH1 from "../core/H1";
 
@@ -35,16 +38,22 @@ export default function SubHeader({
   bgClassName,
   children,
 }: React.PropsWithChildren<{ bgClassName?: string }>) {
+  const pathName = usePathname();
+  const isSticky = pathName.includes("work") ? true : false;
+
   return (
     <section
       className={classNames(
+        isSticky && "sticky top-0 w-full z-20 print:static",
         bgClassName || "bg-teal-500",
         "text-teal-200 print:text-black",
         "shadow-xl print:shadow-none",
         "font-mono print:font-sans",
       )}
     >
-      <Container className="py-4 px-4 print:py-0">{children}</Container>
+      <div className="sticky top-0 w-full z-20 print:static">
+        <Container className="py-4 px-4 print:py-0">{children}</Container>
+      </div>
     </section>
   );
 }
