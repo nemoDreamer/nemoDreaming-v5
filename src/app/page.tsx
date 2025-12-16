@@ -35,6 +35,7 @@ export default function HomePage() {
 `}
       </pre> */}
       <Comments
+        className="mt-16"
         lines={[
           <span key="todo">
             <span className="rounded-xs bg-yellow-200 text-yellow-900">
@@ -45,7 +46,7 @@ export default function HomePage() {
           "- [x] add résumé",
           "- [ ] pull in `featured` from `work`",
           "- [x] add GitHub repos",
-          "- [ ] transfer items from old portfolio...!",
+          "- [x] transfer items from old portfolio...!",
           "- [ ] generate `sitemap.xml`, `robots.txt`, rss, og",
           "- [ ] add social links",
         ]}

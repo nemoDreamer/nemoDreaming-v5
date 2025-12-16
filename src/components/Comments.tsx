@@ -1,5 +1,6 @@
 "use client";
 
+import classNames from "classnames";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -24,11 +25,22 @@ const formatLine = (line: Comment): Comment => {
   return line;
 };
 
-export default function Comments({ lines }: { lines: Comment[] }) {
+export default function Comments({
+  lines,
+  className,
+}: {
+  lines: Comment[];
+  className?: string;
+}) {
   const [shouldShow, setShouldShow] = useState(true);
 
   return shouldShow ? (
-    <div className="relative font-mono text-xs text-gray-500 mb-4">
+    <div
+      className={classNames(
+        "relative font-mono text-xs text-gray-500 mb-4",
+        className,
+      )}
+    >
       <Link
         href="#"
         onClick={() => setShouldShow(false)}
