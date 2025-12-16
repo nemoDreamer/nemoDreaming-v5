@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Main from "@/components/Layout/Main";
 import { Code, H1, Strong } from "@/components/Layout/SubHeader";
 import Markdown from "@/components/Markdown";
-import ArrowLink from "@/components/elements/ArrowLink";
+// import ArrowLink from "@/components/elements/ArrowLink";
 
 import Resume from "./_components/Resume";
 import resume from "./_data/resume.yaml";
@@ -24,11 +24,11 @@ const AboutSubHeader = () => {
 
   return (
     <>
-      <p className="print:hidden">
+      {/* <p className="print:hidden">
         <ArrowLink href="/" isBack>
           Back
         </ArrowLink>
-      </p>
+      </p> */}
 
       <H1 className="">{resume.header.name}</H1>
 

@@ -6,7 +6,11 @@ const H2 = ({
   ...props
 }: React.HtmlHTMLAttributes<HTMLHeadingElement>) => (
   <h2
-    className={classNames(className, "relative font-bold text-xl")}
+    className={classNames(
+      className,
+      "relative font-bold text-xl",
+      "no-break-inside no-break-after",
+    )}
     {...props}
   >
     <span className="absolute -left-[1.5em] text-gray-300 print:hidden">

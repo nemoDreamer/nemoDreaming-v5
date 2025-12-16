@@ -20,7 +20,7 @@ const ResumeH2 = ({
   className,
   ...props
 }: React.ComponentProps<typeof H2>) => (
-  <H2 className={classNames(className, "mt-16")} {...props}>
+  <H2 className={classNames(className, "mt-16 print:mt-8")} {...props}>
     {children}
   </H2>
 );
@@ -38,7 +38,8 @@ const ResumeH3 = ({
   <H3
     className={classNames(
       className,
-      "mt-16 mb-0 flex-wrap md:flex-nowrap flex flex-row no-break-inside no-break-after",
+      "mt-16 print:mt-0 mb-0",
+      "flex-wrap md:flex-nowrap flex flex-row",
     )}
     {...props}
   >
@@ -118,7 +119,7 @@ const Resume: React.FC<{
           { employer, location, date, position, additional, achievements },
           i,
         ) => (
-          <div key={`job-${i}`} className="mb-12">
+          <div key={`job-${i}`} className="mb-12 print:mb-6">
             <ResumeH3 location={location} date={date}>
               {employer}
             </ResumeH3>
@@ -152,7 +153,7 @@ const Resume: React.FC<{
     <div className="education">
       <ResumeH2>{startCase(education.title)}</ResumeH2>
       {education.degrees.map(({ school, location, date, degree, major }, i) => (
-        <div className="no-break-inside mb-12" key={`job-${i}`}>
+        <div key={`job-${i}`} className="no-break-inside mb-12 print:mb-6">
           <ResumeH3 location={location} date={date}>
             {school}
           </ResumeH3>

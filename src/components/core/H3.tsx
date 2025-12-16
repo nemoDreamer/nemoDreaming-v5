@@ -9,6 +9,7 @@ const H3 = ({
     className={classNames(
       className,
       "relative text-lg border-b border-gray-400 border-solid",
+      "no-break-inside no-break-after",
     )}
     {...props}
   >
