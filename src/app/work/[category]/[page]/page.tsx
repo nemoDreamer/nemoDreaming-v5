@@ -71,12 +71,23 @@ export async function generateStaticParams() {
 /*
 TODO:
 - [ ] Missing projects:
-  - Suburban Icons
-  - Slow Night
-  - Winter's Fire
-  - Between the Times
-  - Design Libraries?
-  - Kerosene / Day You Left
+  - [ ] HughFeatherstone.com v4
+  - [ ] Suburban Icons
+  - [ ] Slow Night
+  - [ ] Winter's Fire
+  - [ ] Between the Times
+  - [ ] Design Libraries?
+  - [ ] Kerosene / Day You Left
+- [ ] Personal projects:
+  - [ ] Cardboard Masks
+  - [ ] Maze Mages
+  - [ ] nD Schemes
+  - [ ] Seashell VS Code Theme
+  - [ ] Lil' Wizards
+  - [ ] Pilgrimage of the Sun Guard illustration
+  - [ ] Clay map
+  - [ ] Inktober illustrations
+  - [ ] ...
 - [ ] add larger 'featured' to top
 - [x] pagination
 - [x] pre-render static pages
