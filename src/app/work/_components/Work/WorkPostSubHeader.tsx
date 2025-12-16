@@ -37,7 +37,7 @@ export default function WorkPostSubHeader({
 
   return (
     <div className="flex flex-row justify-between items-center gap-8">
-      <div className="w-32 -ml-24">
+      <div className="w-32 md:-ml-24">
         {olderPostSlug && (
           <ArrowLink
             className="justify-end"
@@ -49,7 +49,7 @@ export default function WorkPostSubHeader({
         )}
       </div>
       <CategoryMenu category={category} categoryLabels={categoryLabels} />
-      <div className="w-32 -mr-24">
+      <div className="w-32 md:-mr-24">
         {newerPostSlug && (
           <ArrowLink
             href={`/work/post/${newerPostSlug}?category=${category}`}

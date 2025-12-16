@@ -66,26 +66,26 @@ export default function WorkContent({
     <>
       <H2>{title}</H2>
 
-      <div className="mb-4 text-sm text-gray-500 flex flex-row items-baseline space-x-4">
-        <span className="date whitespace-nowrap">{formatDate(date)}</span>
-        <Separator />
-        <span className="category rounded-sm bg-yellow-300 text-yellow-900 px-1.5 py-0.5">
-          {category}
-        </span>
-        {categories.length > 1 ? (
-          <>
-            <Separator char="+" />
-            <span className="categories">
-              <NoWrapList
-                items={categories.filter((cat) => cat !== category).sort()}
-              />
-            </span>
-            <div className="border-l border-gray-400 opacity-50 h-vh w-0 self-stretch" />
-          </>
-        ) : (
+      <div className="mb-4 text-sm text-gray-500 flex flex-row flex-wrap sm:flex-nowrap items-baseline space-x-4 divide-x-0 sm:divide-x divide-gray-400/50">
+        <div className="flex flex-row items-baseline space-x-4">
+          <span className="date whitespace-nowrap">{formatDate(date)}</span>
           <Separator />
-        )}
-        <span className="tags">
+          <span className="category rounded-sm bg-yellow-300 text-yellow-900 px-1.5 py-0.5">
+            {category}
+          </span>
+          {categories.length > 1 && (
+            <>
+              <Separator char="+" />
+              <span className="categories">
+                <NoWrapList
+                  items={categories.filter((cat) => cat !== category).sort()}
+                />
+              </span>
+            </>
+          )}
+          <div className="w-4 hidden sm:block" /> {/* <- spacer */}
+        </div>
+        <span className="tags font-mono text-2xs mt-4 sm:mt-0">
           <NoWrapList items={tags.sort()} />
         </span>
       </div>

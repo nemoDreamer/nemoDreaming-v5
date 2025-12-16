@@ -1,12 +1,11 @@
 import classNames from "classnames";
 import Link from "next/link";
-import { Fragment } from "react/jsx-runtime";
 
 import Separator from "@/components/elements/Separator";
 
 import type { CategoryLabels } from "../../_data/work-post";
 
-export default async function CategoryMenu({
+export default function CategoryMenu({
   category = "all",
   // accepting this as prop, as we want to avoid fetching in client-side:
   categoryLabels,
@@ -21,7 +20,7 @@ export default async function CategoryMenu({
         const isActive = slug === category;
 
         return (
-          <Fragment key={slug}>
+          <span key={slug} className="whitespace-nowrap">
             <Link
               href={`/work/${slug}/1`}
               className={classNames(
@@ -33,8 +32,10 @@ export default async function CategoryMenu({
             >
               {label}
             </Link>
-            {i < categoryLabels.length - 1 && <Separator />}
-          </Fragment>
+            {i < categoryLabels.length - 1 && (
+              <Separator char="|" className="ml-1" />
+            )}
+          </span>
         );
       })}
     </nav>

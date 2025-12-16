@@ -44,6 +44,10 @@
   --color-palette-10: oklch(0.4451017315616309 0.055374329663708755 113.90519739008187);
   --color-palette-11: oklch(0.18020673156163092 0.030748659327417504 113.90519739008187);
 
+
+  /* Add tiny font: */
+  --text-2xs: 0.625rem; 
+
   /* Add `xs` breakpoint: */
   --breakpoint-xs: 480px;
   /* --breakpoint-sm: 640px;
