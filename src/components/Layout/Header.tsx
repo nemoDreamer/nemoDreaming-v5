@@ -1,5 +1,6 @@
 "use client";
 
+import classNames from "classnames";
 import * as motion from "motion/react-m";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -7,6 +8,7 @@ import { ReactNode } from "react";
 
 import Container from "./Container";
 import Menu from "./Menu";
+import { getColorsForPath } from "./menu-items";
 
 const baseFontSize = 16;
 
@@ -37,10 +39,15 @@ const Header: React.FC<{
     height: `${isExpanded ? headerHeight.max : headerHeight.min}px`,
   };
 
+  const colorClassNames = getColorsForPath(pathName);
+
   return (
     <motion.header
       id="header"
-      className="bg-teal-500 shadow-xl cursor-default flex z-20 print:hidden"
+      className={classNames(
+        colorClassNames.bg,
+        "transition-colors duration-500 shadow-xl cursor-default flex z-20 print:hidden",
+      )}
       transition={transition}
       // - used on initial document load only:
       initial={animate}
@@ -65,7 +72,7 @@ const Header: React.FC<{
           />
         </div>
         <div className="z-10">
-          <Menu />
+          <Menu className={colorClassNames.fg} />
           {prompt}
         </div>
       </Container>

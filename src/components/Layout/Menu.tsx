@@ -1,44 +1,40 @@
+import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
 
 import Separator from "../elements/Separator";
 
-const MENU_ITEMS = [
-  { route: "/", label: "Home" },
-  { route: "/work", label: "Work" },
-  { route: "/about", label: "About" },
-];
+import { MENU_ITEMS, isUnderRoute } from "./menu-items";
 
-const Menu: React.FC = () => {
-  const pathname = usePathname();
+export default function Menu({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+  const pathName = usePathname();
 
   return (
-    <div className="font-mono mb-3">
+    <div className={classNames("font-mono mb-3", className)} {...props}>
       {MENU_ITEMS.map(({ route, label }, index) => {
         const isLast = index === MENU_ITEMS.length - 1;
-        const isCurrent =
-          route === pathname ||
-          (route !== MENU_ITEMS[0].route && pathname.startsWith(route));
+        const isCurrent = isUnderRoute(pathName, route);
 
         return (
           <Fragment key={`item-${label}`}>
             {isCurrent ? (
-              <span className="text-teal-100">
-                $(<span className="text-teal-200">{label}</span>)
+              <span>
+                $(<span className="opacity-60">{label}</span>)
               </span>
             ) : (
-              <Link href={route} className="underline text-teal-100">
+              <Link href={route} className="underline">
                 {label}
               </Link>
             )}
 
-            {!isLast && <Separator className="text-teal-200" char=" / " />}
+            {!isLast && <Separator char=" / " />}
           </Fragment>
         );
       })}
     </div>
   );
-};
-
-export default Menu;
+}

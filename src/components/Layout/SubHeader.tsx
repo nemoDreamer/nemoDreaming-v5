@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import CoreH1 from "../core/H1";
 
 import Container from "./Container";
+import { getColorsForPath } from "./menu-items";
 
 export const H1 = ({
   children,
@@ -24,29 +25,44 @@ export const H1 = ({
   </CoreH1>
 );
 
-export const Code = ({ children }: React.ComponentProps<"code">) => (
-  <code className="text-white bg-teal-600">{children}</code>
-);
+export const Code = ({ children }: React.ComponentProps<"code">) => {
+  const pathName = usePathname();
+  const { capsule } = getColorsForPath(pathName);
 
-export const Strong = ({ children }: React.ComponentProps<"strong">) => (
-  <strong className="text-sm leading-none px-2 pt-0.5 pb-1 rounded-xs text-white bg-teal-600 print:text-base print:p-0 print:text-black print:bg-transparent">
-    {children}
-  </strong>
-);
+  return <code className={capsule}>{children}</code>;
+};
 
-export default function SubHeader({
-  bgClassName,
-  children,
-}: React.PropsWithChildren<{ bgClassName?: string }>) {
+export const Strong = ({ children }: React.ComponentProps<"strong">) => {
+  const pathName = usePathname();
+  const { capsule } = getColorsForPath(pathName);
+
+  return (
+    <strong
+      className={classNames(
+        capsule,
+        "text-sm leading-none px-2 pt-0.5 pb-1 rounded-xs",
+        "print:text-base print:p-0 print:text-black print:bg-transparent",
+      )}
+    >
+      {children}
+    </strong>
+  );
+};
+
+export default function SubHeader({ children }: React.PropsWithChildren) {
   const pathName = usePathname();
   const isSticky = pathName.includes("work") ? true : false;
+
+  const colorClassNames = getColorsForPath(pathName);
 
   return (
     <section
       className={classNames(
         isSticky && "sticky top-0 w-full z-20 print:static",
-        bgClassName || "bg-teal-500",
-        "text-teal-200 print:text-black",
+        "transition-colors duration-500",
+        colorClassNames.bg,
+        colorClassNames.fg,
+        "print:text-black",
         "shadow-xl print:shadow-none",
         "font-mono print:font-sans",
       )}

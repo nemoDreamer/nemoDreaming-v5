@@ -2,7 +2,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import classNames from "classnames";
-import { LazyMotion, domAnimation } from "motion/react";
+import { LazyMotion, domMin } from "motion/react";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
@@ -44,7 +44,7 @@ export default function RootLayout({
           "flex flex-col min-h-screen",
         )}
       >
-        <LazyMotion features={domAnimation}>
+        <LazyMotion features={domMin}>
           <Header prompt={prompt} />
 
           {children}
