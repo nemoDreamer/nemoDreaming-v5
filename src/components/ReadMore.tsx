@@ -52,6 +52,7 @@ export default function ReadMore({
   children,
 }: React.HTMLAttributes<HTMLDivElement>) {
   const ref = useRef<HTMLDivElement>(null);
+  const lastWidthRef = useRef<number>(0);
 
   const [
     {
@@ -84,13 +85,21 @@ export default function ReadMore({
 
     // detect when content is loaded and measure it
     const resizeObserver = new ResizeObserver(() => {
+      const currentWidth = element.clientWidth;
       const scrollHeight = element.scrollHeight;
 
-      dispatch({
-        type: "measure",
-        collapsedHeight: Math.min(scrollHeight, 288), // 18rem = 288px
-        expandedHeight: scrollHeight,
-      });
+      // Only measure once initially, or when width changes (responsive resize)
+      if (
+        (collapsedHeight === null && scrollHeight > 0) ||
+        (lastWidthRef.current > 0 && currentWidth !== lastWidthRef.current)
+      ) {
+        lastWidthRef.current = currentWidth;
+        dispatch({
+          type: "measure",
+          collapsedHeight: Math.min(scrollHeight, 288), // 18rem = 288px
+          expandedHeight: scrollHeight,
+        });
+      }
     });
 
     resizeObserver.observe(element);
