@@ -92,8 +92,8 @@ export default async function WorkPage({ params }: { params: PageParams }) {
   const isAll = category === ALL_CATEGORY;
 
   const subHeader = (
-    <div className="flex flex-row justify-start items-start gap-8">
-      <H1 className="mb-0 whitespace-nowrap">Work</H1>
+    <div className="flex flex-row justify-center items-start gap-8">
+      <H1 className="mb-0 whitespace-nowrap hidden">Work</H1>
       <CategoryMenu category={category} categoryLabels={categoryLabels} />
     </div>
   );

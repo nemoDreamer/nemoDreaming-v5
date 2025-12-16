@@ -36,11 +36,11 @@ export default function WorkPostSubHeader({
     currentIndex > 0 ? workPostSlugs[currentIndex - 1] : null;
 
   return (
-    <div className="flex flex-row justify-between items-center gap-8">
+    <div className="flex flex-row justify-between items-center gap-8 text-teal-100">
       <div className="w-32 md:-ml-24">
         {olderPostSlug && (
           <ArrowLink
-            className="justify-end"
+            className="justify-end -my-1"
             href={`/work/post/${olderPostSlug}?category=${category}`}
             isBack
           >
@@ -48,10 +48,13 @@ export default function WorkPostSubHeader({
           </ArrowLink>
         )}
       </div>
+
       <CategoryMenu category={category} categoryLabels={categoryLabels} />
+
       <div className="w-32 md:-mr-24">
         {newerPostSlug && (
           <ArrowLink
+            className="-my-1"
             href={`/work/post/${newerPostSlug}?category=${category}`}
             isBehind
           >
