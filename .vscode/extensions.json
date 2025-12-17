@@ -1,5 +1,14 @@
 {
     "recommendations": [
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "prettier.prettier-vscode",
+        "graphql.vscode-graphql",
+        "graphql.vscode-graphql-execution",
+        "graphql.vscode-graphql-syntax",
+        "redhat.vscode-yaml",
+        "bierner.markdown-yaml-preamble",
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-emoji",
+        "stylelint.vscode-stylelint"
     ]
 }
