@@ -1,9 +1,8 @@
-[![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white&style=flat)](https://nextjs.org)
-[![TypeScript](https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=white&style=flat)](https://www.typescriptlang.org)
-[![ESLint](https://img.shields.io/badge/ESLint-3A33D1?logo=eslint&logoColor=white&style=flat)](https://eslint.org)
-[![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=white&style=flat)](https://prettier.io)
-
-<!-- style=for-the-badge& -->
+[![Next.js](https://img.shields.io/badge/framework-Next.js-000000?logo=nextdotjs&logoColor=white&style=flat)](https://nextjs.org)
+[![TypeScript](https://shields.io/badge/safety-TypeScript-3178C6?logo=TypeScript&logoColor=white&style=flat)](https://www.typescriptlang.org)
+[![ESLint](https://img.shields.io/badge/validation-ESLint-3A33D1?logo=eslint&logoColor=white&style=flat)](https://eslint.org)
+[![Prettier](https://img.shields.io/badge/formatting-Prettier-F7B93E?logo=prettier&logoColor=white&style=flat)](https://prettier.io)
+[![Vercel](https://img.shields.io/badge/deployment-Vercel-000000?logo=vercel&logoColor=white&style=flat)](https://vercel.com)
 
 # nemoDreaming v5
 
