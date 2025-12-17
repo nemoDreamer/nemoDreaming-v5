@@ -1,187 +1,144 @@
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white&style=flat)](https://nextjs.org)
+[![TypeScript](https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=white&style=flat)](https://www.typescriptlang.org)
+[![ESLint](https://img.shields.io/badge/ESLint-3A33D1?logo=eslint&logoColor=white&style=flat)](https://eslint.org)
+[![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=white&style=flat)](https://prettier.io)
 
-This is a hand-coded [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<!-- style=for-the-badge& -->
+
+# nemoDreaming v5
+
+A Next.js 15 portfolio site that blends modern web standards with distinctive design choices — built on the App Router, React 19, TypeScript, Tailwind CSS 4, and SCSS. This codebase demonstrates a file-based CMS approach, advanced Next.js routing patterns, and a retro-terminal aesthetic :computer: that sets it apart from typical portfolio implementations.
 
 ---
 
-## Project Overview
+## What Makes This Codebase Unique :sparkles:
 
-This is a Next.js 16 portfolio site using the App Router, React 19, TypeScript, Tailwind CSS 4, and SCSS. The site showcases design/development work and integrates with the GitHub GraphQL API to display open-source contributions.
+### :memo: Markdown-as-CMS with Enhanced Image Processing
 
-## Architecture & Data Flow
+Rather than relying on a headless CMS or database, this site treats **Markdown files with YAML frontmatter** as the single source of truth. Portfolio work items live in `src/app/work/_data/posts/*.md`, where frontmatter defines metadata and Markdown provides the content body. What makes this approach distinctive:
 
-### Content Management Pattern
+- **Image pipeline:** uses `plaiceholder` to generate blur placeholders and extract dominant colors from every image at build time, creating a polished loading experience without runtime overhead
+- **Structured metadata:** frontmatter includes categories, tags, folder paths, and image arrays — all typed and validated by the processing pipeline in `utils/post.ts`
+- **Co-location:** content, images, and code live side-by-side in the file system, making the relationship between data and UI immediately visible
 
-Portfolio work items are stored as **Markdown files with YAML frontmatter** in `src/app/work/_data/posts/*.md`. The pattern:
+Resume data follows a similar philosophy with pure YAML (`src/app/about/_data/resume.yaml`) that's validated against a JSON schema.
 
-1. **Frontmatter** defines metadata (title, date, categories, tags, folder path, thumbnail, images array)
-2. **Content** uses Markdown for the description
-3. **Images** are referenced by filename in frontmatter and resolved to `/public/work/{folder}/` paths
-4. **Processing** happens via `utils/post.ts` which uses `gray-matter` to parse frontmatter and `plaiceholder` to generate blur placeholders and dominant colors for images
+### :satellite: Terminal-Style UI via Parallel Routes
 
-See example in `src/app/work/_data/posts/songness-com.md`.
+The site's most visually distinctive feature is its **terminal prompt header**, which updates contextually as users navigate. This is implemented using Next.js parallel routes (`@prompt` slot), allowing each route to define its own prompt customization:
 
-Resume data follows similar pattern but uses pure YAML (`src/app/about/_data/resume.yaml`) with a JSON schema for validation.
+- **Segment architecture:** the prompt is composed of `<Segment>` components that render with overlapping SVG carets, creating the illusion of a shell prompt with stacked color transitions
+- **Per-route customization:** each page can override the prompt via `@prompt/{route}/page.tsx`, showing different branches, file paths, or version numbers
+- **Pure CSS artistry:** segment rendering uses z-index stacking, negative margins, and inline SVG to achieve the terminal aesthetic without canvas or complex animations
 
-### Next.js Specific Patterns
+This demonstrates practical use of parallel routes for something beyond loading states — treating them as a layout composition tool.
 
-- **Parallel Routes**: Uses `@prompt` slot in root layout for the terminal-style header prompt
-- **Static Generation**: Work posts use `generateStaticParams()` for build-time rendering
-- **Metadata API**: Uses `generateMetadata()` for dynamic SEO tags per page
-- **Turbopack Config**: Custom loaders for `.graphql` files (`graphql-tag/loader`) and `.yaml` files (`yaml-loader`)
-- **Path Aliases**: `@/*` maps to `src/*` (configured in `tsconfig.json`)
+### :octocat: GraphQL-First GitHub Integration
 
-### GitHub Integration
+Portfolio open-source contributions are pulled live from GitHub using typed GraphQL queries, not the REST API:
 
-GitHub data fetching via **Octokit GraphQL** client (`@octokit/graphql`):
+- **Query files as modules:** `.graphql` files in `src/app/work/_data/github/queries/` are imported directly thanks to Turbopack's custom loader configuration
+- **Octokit wrapper:** `octokitGraphQL.ts` provides a thin, typed layer over `@octokit/graphql` that transforms raw responses into domain models
+- **Build-time fetching:** queries execute during static generation, eliminating client-side API calls and rate limit concerns
 
-- Queries defined in `src/app/work/_data/github/queries/*.graphql`
-- Wrapper utility at `src/app/work/_data/github/utils/octokitGraphQL.ts`
-- Requires `GITHUB_ACCESS_TOKEN` environment variable
-- Endpoints in `src/app/work/_data/github/endpoints.ts` return typed, transformed data
+This showcases TypeScript integration with GraphQL in a way that avoids heavyweight code generation tools while maintaining type safety.
 
-## Development Workflows
+### :card_index_dividers: Opinionated Import Sorting
 
-### Running the Dev Server
-
-```bash
-pnpm dev
-```
-
-### Build & Type Checking
-
-```bash
-pnpm build      # Next.js production build
-pnpm type-check # TypeScript compiler check (no emit)
-```
-
-### Linting & Formatting
-
-- **ESLint**: Configured with flat config in `eslint.config.mjs`
-- **Prettier**: Minimal config in `prettier.config.ts`
-- **Husky + lint-staged**: Pre-commit hooks run type-check, ESLint, Prettier, and `sort-package-json`
-
-Run linting manually:
-
-```bash
-pnpm lint:js .          # Fix all JS/TS files
-pnpm lint:md **/*.md    # Format all Markdown
-```
-
-## Code Conventions
-
-### Import Organization (Enforced by ESLint)
-
-Imports are auto-sorted with **alphabetical ordering within groups** and **blank lines between groups**:
+The ESLint configuration enforces **alphabetical ordering within strict import groups**, with automatic fixes that eliminate bikeshedding:
 
 1. Node builtins (`fs`, `path`)
 2. External packages (`react`, `next/image`)
 3. Internal aliases (`@/components/*`)
-4. Parent imports (`../utils`)
+4. Parent imports (`../utils`, with immediate parents separated from ancestors)
 5. Sibling imports (`./Header`)
 6. Index imports
 
-Immediate parent imports (`../{file}`) separated from ancestor imports (`../../`).
+Blank lines between groups are enforced, creating visual rhythm that makes module dependencies scannable at a glance. This level of import pedantry is rare outside enterprise codebases but dramatically improves navigability in a large file tree. :sweat_smile:
 
-### Component Patterns
+### :ocean: Tailwind 4 with Custom Design Tokens
 
-- **Server Components by default**: Only add `"use client"` when needed (state, effects, event handlers, browser APIs)
-- **TypeScript everywhere**: No PropTypes, strict mode enabled
-- **Styling**: Tailwind utilities via `classNames()` helper, with SCSS for global styles
-- **Images**: Always use `next/image` with blur placeholders from `plaiceholder`
+This codebase adopts **Tailwind CSS 4** with its new `@theme` directives in SCSS:
 
-Example client component pattern:
+- **Extended color palette:** a custom teal system (teal-100 through teal-900) supplements the default palette
+- **Custom breakpoint:** an `xs` breakpoint at 480px fills the gap between mobile-first and `sm`
+- **Font variables:** three custom font stacks (`--font-sans-override`, `--font-mono-override`, `--font-ascii`) allow granular typography control across terminal and prose contexts
 
-```tsx
-"use client";
+The combination of Tailwind utilities with SCSS global styles demonstrates a pragmatic middle ground — utility classes for component styling, SCSS for theme-level concerns.
 
-import { useState } from "react";
+### :shield: Strict TypeScript Throughout
 
-export default function MyComponent() {
-  const [state, setState] = useState(false);
-  // ...
-}
-```
+TypeScript is configured with all strict checks enabled, and the codebase leverages advanced patterns:
 
-### Styling Patterns
+- **Generic utilities:** `processPost<T>()` returns intersection types, merging frontmatter with processed content
+- **Typed image handling:** `ImageData` type in `utils/image.ts` ensures consistent blur placeholder and color handling across all components
+- **No PropTypes:** everything is typed via interfaces, with no runtime validation overhead
 
-- **Tailwind v4**: Uses `@theme inline` and `@theme` directives in `globals.scss`
-- **Custom breakpoint**: `xs` at 480px added to default Tailwind breakpoints
-- **Custom teal palette**: Extended color system with teal-100 through teal-900
-- **Font stacks**: Three custom font variables: `--font-sans-override`, `--font-mono-override`, `--font-ascii`
-- **Grid component**: `Grid.SIZES` constant provides responsive image sizes string
+This demonstrates modern TypeScript practices where the type system serves as living documentation.
 
-### Type Safety
+### :house_with_garden: Route-Scoped Component Architecture
 
-- **Strict TypeScript**: All optional checks enabled
-- **Typed utilities**: `processPost<T>()` is generic and returns intersection types
-- **Image types**: `ImageData` type in `utils/image.ts` for consistent image handling
+The file structure uses Next.js conventions to enforce clear boundaries:
 
-## Common Gotchas
+- **`_components/`:** private components scoped to a specific route segment, never imported elsewhere
+- **`_data/`:** data files (Markdown, YAML, GraphQL queries) co-located with the routes that consume them
+- **`@prompt/`:** a parallel route slot, not a regular route — showcasing advanced App Router patterns
 
-1. **No console.log**: ESLint enforces `no-console: error` - remove before committing
-2. **React 19 key warnings**: Ensure all mapped elements have unique `key` prop
-3. **GraphQL files**: Imported as modules via Turbopack config - use `print()` from `graphql` to convert to string
-4. **YAML frontmatter**: Must match expected schema - see existing posts for reference
-5. **Module resolution error**: If seeing "Cannot use import statement outside a module" in dev server, typically indicates a build cache issue - delete `.next` and restart
+Shared components live in `src/components/` with semantic subdivisions (`core/`, `elements/`, `Layout/`, `Terminal/`), but the majority of components are route-specific. This reduces coupling and makes dependency graphs obvious.
 
-## File Structure Conventions
+### :amphora: WordPress Migration Archaeology
 
-- **`_components/`**: Private components scoped to that route segment
-- **`_data/`**: Data files (Markdown, YAML, GraphQL queries) scoped to route
-- **`@prompt/`**: Parallel route slot (not a regular route)
-- **`src/components/`**: Shared components across entire app
-  - `core/`: Base HTML element wrappers (H1, H2, H3)
-  - `elements/`: Reusable UI components
-  - `Layout/`: Layout components (Header, Footer, Grid, etc.)
-  - `Terminal/`: Terminal-style prompt components
+Two one-time migration scripts in `/bin` demonstrate data transformation workflows:
 
-## Terminal/Prompt Component Styling
+- **`wp-dump-to-pages.js`:** converts MySQL JSON dumps to Markdown, including `php-unserialize` for serialized PHP metadata
+- **`wp-xml-to-pages.cjs`:** parses WordPress XML exports with `xml2js` and `turndown` for HTML-to-Markdown conversion
 
-The site features a **terminal-style header prompt** implemented via parallel routes (`@prompt` slot):
+These scripts aren't part of the runtime app but document the site's content evolution from WordPress to static Markdown — useful context for understanding the frontmatter schema's origins.
 
-- **Segment-based design**: Prompt is composed of `<Segment>` components that render with SVG carets for a terminal aesthetic
-- **Parallel route per page**: Each route can customize the prompt via `@prompt/{route}/page.tsx`
-- **Configuration**: `segmentConfigs` array in `Prompt.tsx` defines fg/bg colors and fonts for each segment
-- **Dynamic values**: Segments show version, user, branch, and filePath - customizable per route
+### :white_check_mark: Pre-Commit Quality Gates
 
-Example parallel route prompt:
+Husky and lint-staged enforce quality checks before every commit:
 
-```tsx
-// src/app/@prompt/work/page.tsx
-import Prompt from "@/components/Terminal/Prompt";
+- TypeScript type checking (no-emit mode)
+- ESLint auto-fix with import sorting
+- Prettier formatting
+- `sort-package-json` to keep dependencies alphabetized
 
-export default function PagePrompt() {
-  return <Prompt branch="dev" filePath="work/index.tsx" />;
-}
-```
+Combined with ESLint's `no-console: error` rule, this creates a low-friction workflow where code quality is automatic, not aspirational.
 
-Segment rendering uses inline styles with z-index stacking and negative margins to create overlapping caret effect. The `Caret` component is a pure SVG triangle that matches the background color of its segment.
+---
 
-## WordPress Migration Scripts
+## Technical Stack :gear:
 
-Two Node.js scripts in `/bin` for migrating legacy WordPress content:
+- **Next.js 15:** with App Router and Turbopack
+- **React 19:** (server components by default)
+- **TypeScript:** (strict mode)
+- **Tailwind CSS 4:** with custom theme
+- **SCSS:** for global styles
+- **pnpm:** for package management
+- **Husky + lint-staged:** for pre-commit hooks
 
-1. **`wp-dump-to-pages.js`**: Converts MySQL JSON dump to Markdown files
-   - Reads `_dumps/wp_posts.json` (from custom SQL query joining posts + postmeta)
-   - Uses `turndown` to convert HTML to Markdown
-   - Parses serialized PHP meta values with `php-unserialize`
-   - Outputs to `_dumps/pages/*.md` with YAML frontmatter
+---
 
-2. **`wp-xml-to-pages.cjs`**: Converts WordPress XML export to Markdown
-   - Parses WordPress XML export format with `xml2js`
-   - Similar Markdown conversion and frontmatter generation
-   - Useful for standard WXR (WordPress eXtended RSS) exports
+## Architecture Highlights :building_construction:
 
-These are **one-time migration tools** - not part of the runtime application. Both scripts use `turndown` for HTML→Markdown conversion and generate the same frontmatter structure used by `src/utils/post.ts`.
+### :key: Key Files
 
-## Key Files to Reference
+- [`src/utils/post.ts`](src/utils/post.ts): content processing pipeline with gray-matter and plaiceholder integration
+- [`src/utils/image.ts`](src/utils/image.ts): image optimization with blur placeholders and dominant color extraction
+- [`src/app/work/_data/posts.ts`](src/app/work/_data/posts.ts): work portfolio data layer
+- [`eslint.config.mjs`](eslint.config.mjs): flat config with import sorting rules
+- [`next.config.ts`](next.config.ts): Turbopack loaders for `.graphql` and `.yaml` files
+- [`src/app/layout.tsx`](src/app/layout.tsx): root layout demonstrating parallel routes
+- [`src/components/Terminal/Prompt.tsx`](src/components/Terminal/Prompt.tsx): terminal prompt with segment configs
+- [`src/app/@prompt/`](src/app/@prompt/): parallel route slot for per-page prompt customization
 
-- `src/utils/post.ts`: Content processing pipeline
-- `src/utils/image.ts`: Image optimization with blur placeholders
-- `src/app/work/_data/posts.ts`: Work portfolio data layer
-- `eslint.config.mjs`: Import sorting and code quality rules
-- `next.config.ts`: Turbopack custom loaders and redirects
-- `src/app/layout.tsx`: Root layout with parallel routes example
-- `src/components/Terminal/Prompt.tsx`: Terminal prompt component with segment configs
-- `src/app/@prompt/`: Parallel route slot for per-page prompt customization
+### :thought_balloon: Design Philosophy
+
+This codebase values:
+
+- **Explicitness over magic:** custom loaders and processing pipelines are visible and auditable
+- **Co-location:** content, queries, and components live near each other in the file tree
+- **Type safety:** TypeScript catches errors at build time, not runtime
+- **Visual distinctiveness:** the terminal UI aesthetic differentiates this portfolio from template-based sites
+- **Static-first:** everything that can be pre-rendered is pre-rendered
