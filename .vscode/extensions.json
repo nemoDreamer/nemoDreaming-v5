@@ -9,6 +9,7 @@
         "bierner.markdown-yaml-preamble",
         "yzhang.markdown-all-in-one",
         "bierner.markdown-emoji",
-        "stylelint.vscode-stylelint"
+        "stylelint.vscode-stylelint",
+        "henrynguyen5-vsc.vsc-nvm"
     ]
 }
