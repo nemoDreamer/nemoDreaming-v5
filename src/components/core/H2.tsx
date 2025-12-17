@@ -19,7 +19,7 @@ const H2 = ({
 
     {children}
 
-    <span className="block h-[.5em] -mx-[2em] shadow-lg border-b border-solid border-gray-200" />
+    <span className="block h-[.5em] -mx-4 md:-mx-[2em] shadow-lg border-b border-solid border-gray-200" />
   </h2>
 );
 

@@ -1,11 +1,10 @@
-import Masonry from "@mui/lab/Masonry";
 import Link from "next/link";
 
 import H3 from "@/components/core/H3";
 
 import type { Repository } from "../../_data/github/endpoints";
 
-import Repo from "./Repo";
+import RepoGrid from "./RepoGrid";
 
 export default async function RepoGroup({
   title,
@@ -41,15 +40,7 @@ export default async function RepoGroup({
           </Link>
         </span>
       </H3>
-      <Masonry columns={2} spacing={2}>
-        {truncatedRepos.map((repo, index) => (
-          <Repo
-            key={`${repo.name}+${index}`}
-            {...repo}
-            hideDetails={hideDetails}
-          />
-        ))}
-      </Masonry>
+      <RepoGrid repos={truncatedRepos} hideDetails={hideDetails} />
     </div>
   );
 }

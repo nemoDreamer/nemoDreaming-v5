@@ -120,7 +120,7 @@ export default async function WorkPage({ params }: { params: PageParams }) {
           />
         </Suspense>
       </div>
-      {isAll && (
+      {isAll && pageNum === 1 && (
         <div>
           <H2>Open-Source</H2>
           <Suspense fallback={<RepoGroupSkeleton title="Top Repositories" />}>
