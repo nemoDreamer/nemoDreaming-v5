@@ -16,6 +16,24 @@ export type PromptProps = {
   filePath?: string;
 };
 
+// const middleTruncate = (str: string, maxLength = 32) => {
+//   if (str.length <= maxLength) return str;
+
+//   const ellipsis = "...";
+//   const lastSlashIndex = str.lastIndexOf("/");
+//   const amountToKeep = maxLength - ellipsis.length;
+
+//   const beforeSlash = str.substring(0, lastSlashIndex + 1);
+//   const afterSlash = str.substring(lastSlashIndex + 1);
+
+//   const index = Math.floor(amountToKeep / 2);
+
+//   const truncatedAfterSlash = afterSlash.substring(0, index);
+//   const endAfterSlash = afterSlash.substring(afterSlash.length - index);
+
+//   return beforeSlash + truncatedAfterSlash + ellipsis + endAfterSlash;
+// };
+
 const Prompt: React.FC<PromptProps> = ({
   version = "v5.0.1",
   user = "philip.blyth",
@@ -26,7 +44,7 @@ const Prompt: React.FC<PromptProps> = ({
   const length = segments.length;
 
   return (
-    <div className="flex flex-row items-center justify-start flex-wrap">
+    <div className="flex flex-row items-center justify-start">
       {segments.map((label, index) => {
         const { fg, bg, font } = segmentConfigs[index];
 
@@ -34,6 +52,7 @@ const Prompt: React.FC<PromptProps> = ({
           <Segment
             className={font}
             key={`segment-${index}`}
+            // label={index === 4 ? middleTruncate(label) : label}
             label={label}
             fg={fg}
             bg={bg}

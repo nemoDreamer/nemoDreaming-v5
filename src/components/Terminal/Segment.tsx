@@ -18,7 +18,11 @@ const Segment: React.FC<{
 
   return (
     <span
-      className={classNames(className, "flex flex-row items-center")}
+      className={classNames(
+        className,
+        "flex flex-row items-center",
+        isLast && "grow overflow-hidden",
+      )}
       style={{
         zIndex: length - index,
         marginLeft: -height / 2,
@@ -26,7 +30,7 @@ const Segment: React.FC<{
     >
       {(isFirst || label) && (
         <span
-          className="font-mono whitespace-nowrap"
+          className={classNames("font-mono", isLast && "truncate")}
           style={{
             height,
             bottom: -1,
