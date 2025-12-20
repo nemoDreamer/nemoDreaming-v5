@@ -15,9 +15,13 @@ tags:
   - Packaging
   - Sleeve
 folder: /work/hugh-featherstone/live-at-the-chapel
-thumbnail: DSC_1334_clean.jpg
+thumbnail: cover.jpg
 images:
+  - cover.jpg
   - DSC_1334_clean.jpg
+  # - sleeve-print.jpg
+  - booklet-print-01.jpg
+  - booklet-print-02.jpg
 excerpt: Sleeve~ & surface-design for Hugh Featherstone album.
 ---
 
