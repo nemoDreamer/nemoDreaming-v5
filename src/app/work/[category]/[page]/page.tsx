@@ -68,31 +68,40 @@ export async function generateStaticParams() {
   return params;
 }
 
-/*
-TODO:
-- [ ] Missing projects:
-  - [ ] HughFeatherstone.com v4
-  - [ ] Suburban Icons
-  - [ ] Slow Night
-  - [ ] Winter's Fire
-  - [ ] Between the Times
-  - [ ] Design Libraries?
-  - [ ] Kerosene / Day You Left
-- [ ] Personal projects:
-  - [ ] Cardboard Masks
-  - [ ] Maze Mages
-  - [ ] nD Schemes
-  - [ ] Seashell VS Code Theme
-  - [ ] Lil' Wizards
-  - [ ] Pilgrimage of the Sun Guard illustration
-  - [ ] Clay map
-  - [ ] Inktober illustrations
-  - [ ] ...
-- [ ] add larger 'featured' to top
-- [x] pagination
-- [x] pre-render static pages
-- [x] add filtering by category / technology
-*/
+// TODO:
+// - [ ] Missing projects:
+//   - HughFeatherstone.com v4
+//   - Suburban Icons
+//   - Slow Night
+//     - Lately
+//     - Winter's Fire
+//     - Between the Times
+//   - Design Libraries?
+//   - Kerosene / Day You Left
+//   - Paul Ernst Baumpflege
+//   - Openlucht Theater
+//   - Minerva
+//   - Neocrats
+//   - Hotel Welcome
+//   - Midlands World Trade Forum (mwtf)
+//   - o2i christmas card
+//   - nD Modules
+//   - GlobalImage
+//   - nemoDreaming v3
+// - [ ] Personal projects:
+//   - Cardboard Masks
+//   - Maze Mages
+//   - nD Schemes
+//   - Seashell VS Code Theme
+//   - Lil' Wizards
+//   - Pilgrimage of the Sun Guard illustration
+//   - Clay map
+//   - Inktober illustrations
+//   - ...
+// - [ ] add larger 'featured' to top
+// - [x] pagination
+// - [x] pre-render static pages
+// - [x] add filtering by category / technology
 
 export default async function WorkPage({ params }: { params: PageParams }) {
   const { category, page } = await params;
