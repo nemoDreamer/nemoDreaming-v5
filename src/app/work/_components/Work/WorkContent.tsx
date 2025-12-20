@@ -154,8 +154,12 @@ export default function WorkContent({
             quality={85}
             className="transition-[height]"
             style={{
+              aspectRatio: currentImage.width / currentImage.height,
+              maxWidth: "calc(100dvw - 4rem)",
+              maxHeight: "calc(100dvh - 4rem)",
               objectFit: "contain",
-              backgroundColor: currentImage.color,
+              // backgroundColor: currentImage.color,
+              backgroundColor: "#ccc",
             }}
             priority
           />

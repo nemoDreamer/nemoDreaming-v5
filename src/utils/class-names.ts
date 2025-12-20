@@ -6,20 +6,24 @@ const ROTATIONS = {
     "rotate-1",
     "rotate-2",
     "rotate-3",
+    "rotate-[4deg]",
     // "rotate-6",
     "-rotate-1",
     "-rotate-2",
     "-rotate-3",
+    "-rotate-[4deg]",
     // "-rotate-6",
   ],
   hover: [
     "hover:rotate-1", // group-hover:rotate-1
     "hover:rotate-2", // group-hover:rotate-2
     "hover:rotate-3", // group-hover:rotate-3
+    "hover:rotate-[4deg]", // group-hover:rotate-[4deg]
     // "hover:rotate-6", // group-hover:rotate-6
     "hover:-rotate-1", // group-hover:-rotate-1
     "hover:-rotate-2", // group-hover:-rotate-2
     "hover:-rotate-3", // group-hover:-rotate-3
+    "hover:-rotate-[4deg]", // group-hover:-rotate-[4deg]
     // "hover:-rotate-6", // group-hover:-rotate-6
   ],
 } as const;
