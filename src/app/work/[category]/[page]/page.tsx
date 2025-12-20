@@ -72,10 +72,6 @@ export async function generateStaticParams() {
 // - [ ] Missing projects:
 //   - HughFeatherstone.com v4
 //   - Suburban Icons
-//   - Slow Night
-//     - Lately
-//     - Winter's Fire
-//     - Between the Times
 //   - Design Libraries?
 //   - Kerosene / Day You Left
 //   - Paul Ernst Baumpflege
