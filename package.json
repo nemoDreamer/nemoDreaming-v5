@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "clear:posts-cache": "./bin/posts-cache-clear.ts",
     "dev": "next dev",
-    "generate:posts-cache": "./bin/generate-posts-cache.ts",
+    "generate:posts-cache": "./bin/posts-cache-generate.ts",
     "lint": "eslint",
     "lint:js": "eslint --cache --fix",
     "lint:js:all": "pnpm lint:js .",

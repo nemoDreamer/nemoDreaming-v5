@@ -7,7 +7,7 @@ import path from "path";
 import {
   POSTS_CACHE_PATH,
   loadWorkPostsForCache,
-} from "../src/app/work/_data/work-post";
+} from "@/app/work/_data/work-post";
 
 async function generatePostsCache() {
   console.log(`🔍 Finding posts...`);

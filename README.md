@@ -10,7 +10,25 @@ A Next.js 15 portfolio site that blends modern web standards with distinctive de
 
 ---
 
-## What Makes This Codebase Unique :sparkles:
+- [What Makes This Codebase Unique? :sparkles:](#what-makes-this-codebase-unique-sparkles)
+  - [:memo: Markdown-as-CMS with Enhanced Image Processing](#memo-markdown-as-cms-with-enhanced-image-processing)
+  - [:satellite: Terminal-Style UI via Parallel Routes](#satellite-terminal-style-ui-via-parallel-routes)
+  - [:octocat: GraphQL-First GitHub Integration](#octocat-graphql-first-github-integration)
+  - [:floppy_disk: Layered Caching for Markdown Content](#floppy_disk-layered-caching-for-markdown-content)
+  - [:card_index_dividers: Opinionated Import Sorting](#card_index_dividers-opinionated-import-sorting)
+  - [:ocean: Tailwind 4 with Custom Design Tokens](#ocean-tailwind-4-with-custom-design-tokens)
+  - [:shield: Strict TypeScript Throughout](#shield-strict-typescript-throughout)
+  - [:house_with_garden: Route-Scoped Component Architecture](#house_with_garden-route-scoped-component-architecture)
+  - [:amphora: WordPress Migration Archaeology](#amphora-wordpress-migration-archaeology)
+  - [:white_check_mark: Pre-Commit Quality Gates](#white_check_mark-pre-commit-quality-gates)
+- [Technical Stack :gear:](#technical-stack-gear)
+- [Architecture Highlights :building_construction:](#architecture-highlights-building_construction)
+  - [:key: Key Files](#key-key-files)
+  - [:thought_balloon: Design Philosophy](#thought_balloon-design-philosophy)
+
+---
+
+## What Makes This Codebase Unique? :sparkles:
 
 ### :memo: Markdown-as-CMS with Enhanced Image Processing
 
@@ -41,6 +59,16 @@ Portfolio open-source contributions are pulled live from GitHub using typed Grap
 - **Build-time fetching:** queries execute during static generation, eliminating client-side API calls and rate limit concerns
 
 This showcases TypeScript integration with GraphQL in a way that avoids heavyweight code generation tools while maintaining type safety.
+
+### :floppy_disk: Layered Caching for Markdown Content
+
+The work pages lean on a three-tier cache to keep builds and navigation fast:
+
+- **In-memory reuse:** `getCachedPosts()` memoizes the shallow post list during a process lifetime, so repeated calls never hit disk after first load
+- **Build-time JSON cache:** `loadWorkPostsForCache()` writes a trimmed payload (no Markdown body, no image metadata) to `public/posts-cache.json`, letting the runtime skip Markdown parsing entirely in production
+- **Scripts for control:** `bin/posts-cache-generate.ts` regenerates the cache after content edits, while `bin/posts-cache-clear.ts` removes it when you want a fresh read from source
+
+In development, if the cache file is missing the loader quietly regenerates it on the fly, so you can iterate without manual steps.
 
 ### :card_index_dividers: Opinionated Import Sorting
 
