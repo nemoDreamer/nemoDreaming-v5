@@ -73,7 +73,6 @@ export async function generateStaticParams() {
 //   - HughFeatherstone.com v4
 //   - Suburban Icons
 //   - Design Libraries?
-//   - Kerosene / Day You Left
 //   - Paul Ernst Baumpflege
 //   - Openlucht Theater
 //   - Minerva
