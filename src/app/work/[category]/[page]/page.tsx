@@ -71,7 +71,6 @@ export async function generateStaticParams() {
 // TODO:
 // - [ ] Missing projects:
 //   - HughFeatherstone.com v4
-//   - Suburban Icons
 //   - Design Libraries?
 //   - Paul Ernst Baumpflege
 //   - Openlucht Theater
