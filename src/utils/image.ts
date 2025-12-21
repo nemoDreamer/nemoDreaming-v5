@@ -7,6 +7,7 @@ export type ImageData = {
   src: string;
   width: number;
   height: number;
+  aspectRatio: number;
   blurDataURL: string;
   color: string;
 };
@@ -50,5 +51,12 @@ export const getImageData = async (
     height = Math.round(height * scalingFactor);
   }
 
-  return { src, width, height, blurDataURL: base64, color: hex };
+  return {
+    src,
+    width,
+    height,
+    blurDataURL: base64,
+    color: hex,
+    aspectRatio: width / height,
+  };
 };

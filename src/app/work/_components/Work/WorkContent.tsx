@@ -166,11 +166,10 @@ export default function WorkContent({
             alt={`Preview #${imageIndex + 1}`}
             {...currentImage}
             placeholder="blur"
-            sizes="100vw"
+            sizes={currentImage.aspectRatio < 1 ? "100vh" : "100vw"}
             quality={85}
             className="transition-[height]"
             style={{
-              aspectRatio: currentImage.width / currentImage.height,
               maxWidth: "calc(100dvw - 4rem)",
               maxHeight: "calc(100dvh - 4rem)",
               objectFit: "contain",

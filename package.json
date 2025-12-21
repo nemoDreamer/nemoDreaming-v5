@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "pnpm generate:posts-cache",
     "build": "next build",
     "clear:posts-cache": "./bin/posts-cache-clear.ts",
     "dev": "next dev",
