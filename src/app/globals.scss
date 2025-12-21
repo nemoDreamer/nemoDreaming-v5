@@ -115,6 +115,10 @@ body {
     @apply font-ascii leading-[1.18];
   }
 
+  blockquote {
+    @apply border-l-2 border-gray-300 ml-5 pl-4 italic text-gray-600;
+  }
+
   ul {
     @apply pl-4 list-disc list-outside;
 

@@ -70,13 +70,12 @@ export async function generateStaticParams() {
 
 // TODO:
 // - [ ] Missing projects:
-//   - HughFeatherstone.com v4
-//   - Ribs of Memory (Mon, Jul 4, 2005, 12:06 PM)
 //   - Design Libraries?
+//   - Neocrats
+//   - HughFeatherstone.com v4
 //   - Paul Ernst Baumpflege
 //   - Openlucht Theater
 //   - Minerva
-//   - Neocrats
 //   - Hotel Welcome
 //   - Midlands World Trade Forum (mwtf)
 //   - o2i christmas card
@@ -84,13 +83,8 @@ export async function generateStaticParams() {
 //   - GlobalImage
 //   - nemoDreaming v3
 // - [ ] Personal projects:
-//   - Cardboard Masks
-//   - Maze Mages
 //   - nD Schemes
-//   - Seashell VS Code Theme
-//   - Pilgrimage of the Sun Guard illustration
 //   - Clay map
-//   - Inktober illustrations
 //   - ...
 // - [ ] add larger 'featured' to top
 // - [x] pagination

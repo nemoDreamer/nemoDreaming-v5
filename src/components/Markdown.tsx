@@ -1,6 +1,7 @@
 import { createElement } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
 
+import A from "./core/A";
 import H1 from "./core/H1";
 import H2 from "./core/H2";
 import H3 from "./core/H3";
@@ -15,6 +16,7 @@ const DEFAULT_COMPONENTS: Components = {
   h1: H1,
   h2: H2,
   h3: H3,
+  a: A,
 };
 
 const SINGLE_LINE_COMPONENT: Components = {

@@ -38,7 +38,7 @@ files.forEach((file) => {
 
       console.log(`   - ✅ fixed '${file.name}' to '${fixedDate}'`);
     } else {
-      console.info(`   - skipped '${file.name}'`);
+      // console.info(`   - skipped '${file.name}'`);
     }
   }
 });
