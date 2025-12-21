@@ -1,6 +1,6 @@
 ---
 title: Snufkin Returns
-date: 12/17/2009, 9:44:27 PM
+date: 3/2/2009, 9:44:27 PM
 category: Illustration
 categories:
   - Illustration

@@ -1,6 +1,6 @@
 ---
 title: The Day You Left
-date: 2/9/2010, 5:50 AM
+date: 2/9/2010, 5:50:00 AM
 category: Print
 categories:
   - Design

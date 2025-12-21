@@ -1,6 +1,6 @@
 ---
 title: "The Game: Encounter"
-date: 12/17/2009, 9:08:46 PM
+date: 6/15/2003, 9:08:46 PM
 category: Design
 categories:
   - Design

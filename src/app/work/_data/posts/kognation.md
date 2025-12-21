@@ -1,6 +1,6 @@
 ---
 title: kogNation
-date: 12/17/2009, 10:43:08 PM
+date: 08/17/2003, 10:43:08 PM
 url: http://bit.ly/kognation
 category: Development
 categories:

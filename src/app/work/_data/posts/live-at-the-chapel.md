@@ -1,6 +1,6 @@
 ---
 title: Live at The Chapel
-date: 12/7/2005, 6:02 AM
+date: 12/7/2005, 6:02:00 AM
 category: Print
 categories:
   - Design

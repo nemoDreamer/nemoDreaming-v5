@@ -1,6 +1,6 @@
 ---
 title: Between the Times
-date: 11/9/2012, 5:34 PM
+date: 11/9/2012, 5:34:00 PM
 category: Print
 categories:
   - Design

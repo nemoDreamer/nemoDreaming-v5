@@ -1,6 +1,6 @@
 ---
 title: MIT Biomolecular Materials Group
-date: 12/9/2009, 12:29:58 PM
+date: 4/13/2009, 11:54:00 AM
 category: Design
 categories:
   - Design

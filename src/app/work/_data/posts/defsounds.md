@@ -1,6 +1,6 @@
 ---
 title: DefSounds
-date: 11/23/2009, 9:00:33 PM
+date: 5/29/2008, 5:32:00 PM
 url: http://www.defsounds.com
 category: Design
 categories:
@@ -20,10 +20,10 @@ tags:
 folder: /work/defsounds
 thumbnail: logo.png
 images:
-  - home.jpg
-  - videos.jpg
-  - video-player.jpg
   - logo.png
+  # - home.jpg
+  # - videos.jpg
+  - video-player.jpg
 excerpt: Fast-growing Hip-Hop news, blogging, music & video site.
 ---
 

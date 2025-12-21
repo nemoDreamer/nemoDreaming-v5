@@ -1,6 +1,6 @@
 ---
 title: nemoDreaming v2
-date: 09/15/2006, 5:58:08 PM
+date: 9/15/2006, 5:58:08 PM
 url: http://v2.nemodreaming.com
 category: Interactive
 categories:

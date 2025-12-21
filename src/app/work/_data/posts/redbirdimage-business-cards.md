@@ -1,6 +1,6 @@
 ---
 title: Redbird Image (business cards)
-date: 11/24/2009, 4:59:34 PM
+date: 7/4/2009, 12:34:00 PM
 category: Illustration
 categories:
   - Design

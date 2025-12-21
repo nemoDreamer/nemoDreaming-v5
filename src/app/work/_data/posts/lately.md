@@ -1,10 +1,9 @@
 ---
 title: Lately
-date: 11/14/2006, 5:16 PM
+date: 11/14/2006, 5:16:00 PM
 category: Print
 categories:
   - Design
-  - Illustration
   - Print
 tags:
   - Adobe InDesign

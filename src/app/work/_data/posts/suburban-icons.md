@@ -1,6 +1,6 @@
 ---
 title: Suburban Icons
-date: 11/27/2025, 10:34 AM
+date: 11/27/2025, 10:34:00 AM
 category: Print
 categories:
   - Design

@@ -1,6 +1,7 @@
 ---
 title: Secret Wednesday
-date: 12/14/2009, 12:30:19 PM
+date: 9/15/2006, 4:58:08 PM
+# date: 8/14/2001, 12:30:19 PM
 url: http://www.secretwednesday.com
 category: Interactive
 categories:

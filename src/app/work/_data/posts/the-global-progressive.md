@@ -1,6 +1,6 @@
 ---
 title: The Global Progressive
-date: 12/9/2009, 2:51:18 PM
+date: 9/9/2008, 12:57:00 AM
 category: Identity
 categories:
   - Design

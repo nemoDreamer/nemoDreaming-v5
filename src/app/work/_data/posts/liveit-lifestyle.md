@@ -1,6 +1,6 @@
 ---
 title: LiveIt! Lifestyle
-date: 11/24/2009, 7:20:11 PM
+date: 12/12/2008, 3:17:00 PM
 url: http://www.liveitlifestyle.com
 category: Development
 categories:

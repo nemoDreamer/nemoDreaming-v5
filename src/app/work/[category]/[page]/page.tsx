@@ -71,6 +71,8 @@ export async function generateStaticParams() {
 // TODO:
 // - [ ] Missing projects:
 //   - HughFeatherstone.com v4
+//   - Me & Miss Wray
+//   - Ribs of Memory (Mon, Jul 4, 2005, 12:06 PM)
 //   - Design Libraries?
 //   - Paul Ernst Baumpflege
 //   - Openlucht Theater
