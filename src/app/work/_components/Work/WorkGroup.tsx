@@ -37,15 +37,24 @@ export default async function WorkGroup({
 
       <Grid className="mb-4">
         {posts.map(
-          ({
-            slug,
-            data: {
-              // title,
-              // date,
-              thumbnail,
+          (
+            {
+              slug,
+              data: {
+                // title,
+                date,
+                thumbnail,
+              },
             },
-          }) => (
-            <div key={`work-post-${slug}`} className="square">
+            index,
+          ) => (
+            <div key={`work-post-${slug}`} className="square group">
+              {date.getFullYear() !==
+                posts[index - 1]?.data.date.getFullYear() && (
+                <div className="absolute top-4 group-hover:top-2 -left-2 z-10 bg-black group-hover:opacity-10 px-1 py-0.5 text-2xs text-white transition-all">
+                  {date.getFullYear()}
+                </div>
+              )}
               <Link
                 href={`/work/post/${slug}?category=${category}`}
                 className="content relative"
@@ -59,13 +68,13 @@ export default async function WorkGroup({
 
                 {/* FIXME: */}
                 {/* <div className="hidden">
-                <span className="underline group-hover:no-underline">
-                  {title}
-                </span>
-                <span className="ml-2 text-xs italic text-gray-500 group-hover:text-gray-300">
-                  {formatDate(date)}
-                </span>
-              </div> */}
+                  <span className="underline group-hover:no-underline">
+                    {title}
+                  </span>
+                  <span className="ml-2 text-xs italic text-gray-500 group-hover:text-gray-300">
+                    {formatDate(date)}
+                  </span>
+                </div> */}
               </Link>
             </div>
           ),
