@@ -91,10 +91,12 @@ export default function Dialog({
   getFloatingProps,
   headingId,
   descriptionId,
+  onKeyDown,
   children,
 }: React.PropsWithChildren<
   Omit<ReturnType<typeof useDialog>, "isOpen" | "getReferenceProps">
->) {
+> &
+  Pick<React.HTMLAttributes<HTMLDivElement>, "onKeyDown">) {
   const { isMounted, styles } = useTransitionStyles(context, {
     duration: 250,
     initial: {
@@ -112,6 +114,7 @@ export default function Dialog({
       {isMounted && (
         <FloatingOverlay
           lockScroll
+          onKeyDown={onKeyDown}
           className="z-50 grid place-items-center bg-teal-300/50"
           style={{
             opacity: styles.opacity,

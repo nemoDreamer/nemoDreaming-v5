@@ -2,7 +2,7 @@
 
 import classNames from "classnames";
 import Image from "next/image";
-import { useCallback, useMemo, useState } from "react";
+import { KeyboardEvent, useCallback, useMemo, useState } from "react";
 
 import Grid from "@/components/Layout/Grid";
 import Markdown from "@/components/Markdown";
@@ -61,6 +61,21 @@ export default function WorkContent({
   const onNextImage = useCallback(() => {
     setImageIndex((imageIndex + 1) % images.length);
   }, [imageIndex, images.length]);
+
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      switch (event.key) {
+        case "ArrowLeft":
+          onPrevImage();
+          break;
+        case "ArrowRight":
+          onNextImage();
+          break;
+      }
+    },
+    [onPrevImage, onNextImage],
+  );
 
   return (
     <>
@@ -142,6 +157,7 @@ export default function WorkContent({
         getFloatingProps={getFloatingProps}
         headingId={headingId}
         descriptionId={descriptionId}
+        onKeyDown={handleKeyDown}
       >
         <div className="relative ring-1 ring-gray-100 shadow-md">
           <Image
