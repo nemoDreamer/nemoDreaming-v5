@@ -5,8 +5,11 @@ import Separator from "@/components/elements/Separator";
 
 import type { CategoryLabels } from "../../_data/work-post";
 
+// NOTE: can't import from work-post un client-side
+const ALL_CATEGORY = "all";
+
 export default function CategoryMenu({
-  category = "all",
+  category = ALL_CATEGORY,
   // accepting this as prop, as we want to avoid fetching in client-side:
   categoryLabels,
 }: {

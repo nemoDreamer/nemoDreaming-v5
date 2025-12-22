@@ -3,6 +3,7 @@
 import classNames from "classnames";
 import * as motion from "motion/react-m";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
@@ -62,14 +63,16 @@ const Header: React.FC<{
           }
         >
           {/* TODO: make b&w logo for print styles */}
-          <Image
-            alt="nemoDreaming Logo"
-            src="/logo.png"
-            width={640}
-            height={199}
-            className="flex items-center justify-center"
-            priority
-          />
+          <Link href="/">
+            <Image
+              alt="nemoDreaming Logo"
+              src="/logo.png"
+              width={640}
+              height={199}
+              className="flex items-center justify-center"
+              priority
+            />
+          </Link>
         </div>
         <div className="z-10">
           <Menu className={colorClassNames.fg} />

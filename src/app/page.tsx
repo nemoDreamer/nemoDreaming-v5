@@ -1,4 +1,3 @@
-import Comments from "@/components/Comments";
 import Main from "@/components/Layout/Main";
 import Cursor from "@/components/Terminal/Cursor";
 
@@ -34,7 +33,7 @@ export default function HomePage() {
  | \\| |=== |\\/| [__] |__> |--< |=== |--| |\\/| | | \\| |__,
 `}
       </pre> */}
-      <Comments
+      {/* <Comments
         className="mt-16"
         lines={[
           <span key="todo">
@@ -50,7 +49,7 @@ export default function HomePage() {
           "- [ ] generate `sitemap.xml`, `robots.txt`, rss, og",
           "- [ ] add social links",
         ]}
-      />
+      /> */}
     </Main>
   );
 }

@@ -12,6 +12,9 @@ import type {
 
 import CategoryMenu from "./CategoryMenu";
 
+// NOTE: can't import from work-post un client-side
+const ALL_CATEGORY = "all";
+
 export default function WorkPostSubHeader({
   workPost,
   categoryLabels,
@@ -21,7 +24,9 @@ export default function WorkPostSubHeader({
   categoryLabels: CategoryLabels;
   categoryWorkPostSlugs: CategoryWorkPostSlugs;
 }) {
-  const category = useSearchParams().get("category") || "all";
+  const category = useSearchParams().get("category") || ALL_CATEGORY;
+
+  const searchParam = category !== ALL_CATEGORY ? `?category=${category}` : "";
 
   // find previous and next posts in category:
   const workPostSlugs = categoryWorkPostSlugs[category];
@@ -41,7 +46,7 @@ export default function WorkPostSubHeader({
         {olderPostSlug && (
           <ArrowLink
             className="justify-end -my-1"
-            href={`/work/post/${olderPostSlug}?category=${category}`}
+            href={`/work/post/${olderPostSlug}${searchParam}`}
             isBack
           >
             Older
@@ -55,7 +60,7 @@ export default function WorkPostSubHeader({
         {newerPostSlug && (
           <ArrowLink
             className="-my-1"
-            href={`/work/post/${newerPostSlug}?category=${category}`}
+            href={`/work/post/${newerPostSlug}${searchParam}`}
             isBehind
           >
             Newer

@@ -2,7 +2,7 @@
 title: VS Code Theme SeaShells
 date: 8/25/2023, 12:28:28 PM
 url: https://marketplace.visualstudio.com/items?itemName=nemoDreaming.vscode-theme-seashells
-category: Illustration
+category: Development
 categories:
   - Design
   - Development

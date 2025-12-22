@@ -16,6 +16,8 @@ export default async function WorkGroup({
   limit?: number;
   category?: string;
 }) {
+  const searchParam = category !== ALL_CATEGORY ? `?category=${category}` : "";
+
   // get paginated posts (filtered by category)
   const paginationResult = await getPaginatedWorkPosts({
     page,
@@ -56,7 +58,7 @@ export default async function WorkGroup({
                 </div>
               )}
               <Link
-                href={`/work/post/${slug}?category=${category}`}
+                href={`/work/post/${slug}${searchParam}`}
                 className="content relative"
               >
                 <Thumbnail

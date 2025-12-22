@@ -5,7 +5,6 @@ category: Design
 categories:
   - Design
   - Development
-  - Identity
   - Illustration
   - Interactive
 tags:
