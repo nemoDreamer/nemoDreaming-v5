@@ -4,7 +4,10 @@ const H2 = ({
   children,
   className = "mt-8 first:mt-0",
   ...props
-}: React.HtmlHTMLAttributes<HTMLHeadingElement>) => (
+}: React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLHeadingElement>,
+  HTMLHeadingElement
+>) => (
   <h2
     className={classNames(
       className,

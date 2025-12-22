@@ -4,7 +4,10 @@ const H3 = ({
   children,
   className,
   ...props
-}: React.HtmlHTMLAttributes<HTMLHeadingElement>) => (
+}: React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLHeadingElement>,
+  HTMLHeadingElement
+>) => (
   <h3
     className={classNames(
       className,

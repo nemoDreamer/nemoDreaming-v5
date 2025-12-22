@@ -4,7 +4,10 @@ const H1 = ({
   children,
   className,
   ...props
-}: React.HtmlHTMLAttributes<HTMLHeadingElement>) => (
+}: React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLHeadingElement>,
+  HTMLHeadingElement
+>) => (
   <h1 className={classNames(className, "font-bold text-2xl")} {...props}>
     {children}
   </h1>
