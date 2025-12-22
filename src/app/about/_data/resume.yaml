@@ -59,13 +59,13 @@ experience:
       position: Senior Software Engineer
       additional: C3
       achievements:
-        - Vue.js & React
-        - Design System / Component Library
-        - Storybook / Testing Library
-        - TypeScript
-        - Annotation Panel
-        - Toolbars, responsive
-        - Management site, increased sales
+        - Built features in Vue.js and later ported them to modular React packages for use in Unity’s main codebase.
+        - Led development of Design System and Component Library to promote visual consistency and accelerate development speed.
+        - Set up Storybook and Testing Library, achieving 100% test and visual regression coverage.
+        - Championed TypeScript adoption across the Design System and all new features.
+        - Built the Annotation Panel, a threaded asynchronous comments system for collaborative reviews, later adapted for Unity's Asset Manager and the Unity Editor.
+        - Created responsive, touch-friendly draggable toolbars with fine-grained interaction tolerances.
+        - Developed dynamic marketing site supporting multiple promotional campaigns, contributing to significant sales growth.
 
     - employer: Autodesk – Shotgun / ShotGrid
       location: Remote
