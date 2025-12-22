@@ -17,5 +17,6 @@ folder: /work/slow-night/lately
 thumbnail: cover.jpg
 images:
   - cover.jpg
+  - slownight_lately_big.jpg
 excerpt: Sleeve~ & surface-design for Slow Night album.
 ---

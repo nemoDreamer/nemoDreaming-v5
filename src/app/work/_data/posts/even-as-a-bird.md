@@ -8,7 +8,7 @@ tags:
   - Graphite
   - Charcoal
 folder: /work/even-as-the-bird
-thumbnail: even-as-the-bird_wip.jpg
+thumbnail: thumbnail.jpeg
 images:
   - even-as-the-bird_wip.jpg
 excerpt: Charcoal drawing for themed art exhibit.
