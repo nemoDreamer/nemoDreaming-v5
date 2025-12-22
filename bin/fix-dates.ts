@@ -1,4 +1,3 @@
-#!/usr/bin/env npx tsx
 /* eslint-disable no-console */
 
 import * as fs from "fs";
