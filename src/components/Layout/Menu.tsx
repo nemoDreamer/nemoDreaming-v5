@@ -10,7 +10,10 @@ import { MENU_ITEMS, isUnderRoute } from "./menu-items";
 export default function Menu({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+}: React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>) {
   const pathName = usePathname();
 
   return (

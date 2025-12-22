@@ -9,6 +9,7 @@ import { ReactNode } from "react";
 
 import Container from "./Container";
 import Menu from "./Menu";
+import Socials from "./Socials";
 import { getColorsForPath } from "./menu-items";
 
 const baseFontSize = 16;
@@ -66,7 +67,7 @@ const Header: React.FC<{
           <Link href="/">
             <Image
               alt="nemoDreaming Logo"
-              src="/logo.png"
+              src="/header.png"
               width={640}
               height={199}
               className="flex items-center justify-center"
@@ -75,7 +76,15 @@ const Header: React.FC<{
           </Link>
         </div>
         <div className="z-10">
-          <Menu className={colorClassNames.fg} />
+          <div
+            className={classNames(
+              "flex flex-col justify-end items-start xs:flex-row xs:justify-between xs:items-baseline gap-4",
+              colorClassNames.fg,
+            )}
+          >
+            <Menu />
+            <Socials className="-order-1 self-end xs:order-1 xs:self-start xs:-mt-1 sm:self-baseline sm:mt-0" />
+          </div>
           {prompt}
         </div>
       </Container>

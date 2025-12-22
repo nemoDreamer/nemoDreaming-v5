@@ -30,8 +30,8 @@ export default function Footer() {
       >
         Powered by Next.js &amp;{" "}
         <Image
-          src="/vercel.svg"
-          alt="Vercel Logo"
+          src="/logos/vercel.svg"
+          alt="Vercel logo"
           width={10}
           height={10}
           className="inline-block ml-1 mr-1"

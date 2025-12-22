@@ -47,7 +47,7 @@ export default function HomePage() {
           "- [x] add GitHub repos",
           "- [x] transfer items from old portfolio...!",
           "- [ ] generate `sitemap.xml`, `robots.txt`, rss, og",
-          "- [ ] add social links",
+          "- [x] add social links",
         ]}
       /> */}
     </Main>
