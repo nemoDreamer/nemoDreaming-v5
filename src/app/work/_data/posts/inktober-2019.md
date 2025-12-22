@@ -14,5 +14,9 @@ images:
   - E7BF249E-8F41-4847-BE2F-9AFC7BD38EF7.jpg
   - IMG_0762.jpg
 
-excerpt: Ink drawing for the #inktober hash-tag.
+excerpt: Ink drawings for the \#inktober hash-tag.
 ---
+
+- \#1 “Ring”
+- \#2 “Mindless”
+- \#3 “Bait”

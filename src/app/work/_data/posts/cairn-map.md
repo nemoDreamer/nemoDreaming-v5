@@ -15,5 +15,7 @@ images:
   - IMG_1075.jpeg
   - IMG_4467.jpeg
 
-excerpt: Ink drawing for the #inktober hash-tag.
+excerpt: Map drawn using the Cairn TTRPG's system.
 ---
+
+This map was "generated" using [Cairn's "Setting Seeds"](https://cairnrpg.com/second-edition/wardens-guide/setting-seeds/), a fun exercise in random creative constraints.
