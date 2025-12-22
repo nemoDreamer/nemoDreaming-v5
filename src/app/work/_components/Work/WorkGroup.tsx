@@ -53,7 +53,7 @@ export default async function WorkGroup({
             <div key={`work-post-${slug}`} className="square group">
               {date.getFullYear() !==
                 posts[index - 1]?.data.date.getFullYear() && (
-                <div className="absolute top-4 group-hover:top-2 -left-2 z-10 bg-black group-hover:opacity-10 px-1 py-0.5 text-2xs text-white transition-all">
+                <div className="absolute top-4 group-hover:top-2 -left-2 z-10 bg-black shadow-md group-hover:opacity-10 px-1 py-0.5 text-2xs text-white transition-all">
                   {date.getFullYear()}
                 </div>
               )}
