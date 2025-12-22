@@ -70,7 +70,6 @@ export async function generateStaticParams() {
 
 // TODO:
 // - [ ] Missing projects:
-//   - Design Libraries?
 //   - HughFeatherstone.com v4
 //   - Paul Ernst Baumpflege
 //   - Openlucht Theater
@@ -84,6 +83,7 @@ export async function generateStaticParams() {
 // - [ ] Personal projects:
 //   - nD Schemes
 //   - Clay map
+//   - Bicentenary Invitations
 //   - ...
 // - [ ] add larger 'featured' to top
 // - [x] pagination
