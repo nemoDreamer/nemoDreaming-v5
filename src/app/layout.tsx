@@ -52,7 +52,10 @@ export default function RootLayout({
           <Footer />
         </LazyMotion>
 
-        <GoogleAnalytics gaId={process.env.GA_TRACKING_ID as string} />
+        <GoogleAnalytics
+          gaId={process.env.GA_TRACKING_ID as string}
+          debugMode={process.env.NODE_ENV !== "production"}
+        />
         <Analytics />
         <SpeedInsights />
       </body>
