@@ -71,7 +71,6 @@ export async function generateStaticParams() {
 // TODO:
 // - [ ] Missing projects:
 //   - Design Libraries?
-//   - Neocrats
 //   - HughFeatherstone.com v4
 //   - Paul Ernst Baumpflege
 //   - Openlucht Theater
