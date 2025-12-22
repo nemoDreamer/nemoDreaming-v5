@@ -10,7 +10,7 @@ tags:
 folder: /work/even-as-the-bird
 thumbnail: thumbnail.jpeg
 images:
-  - even-as-the-bird_wip.jpg
+  - IMG_4360.jpg
 excerpt: Charcoal drawing for themed art exhibit.
 ---
 
