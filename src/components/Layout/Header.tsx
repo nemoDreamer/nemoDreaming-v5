@@ -17,18 +17,38 @@ const baseFontSize = 16;
 const toRem = (px: number) => px / baseFontSize;
 const toPx = (rem: number) => rem * baseFontSize;
 
-const logoHeight = Math.round(518 / (1666 / 640));
-const extraLines = 4.5;
-const negativeMargins = 6;
-const headerHeight = {
-  min: toPx(toRem(logoHeight) + extraLines - negativeMargins),
-  max: toPx(toRem(logoHeight) + extraLines),
-};
-
-const transition = {
+const TRANSITION = {
   type: "spring" as const,
   bounce: 0,
   duration: 0.5,
+};
+
+const LOGOS = [
+  {
+    src: "/header.png",
+    className: "print:hidden",
+    priority: true,
+    width: 1748,
+    height: 348,
+  },
+  {
+    src: "/header-bnw.png",
+    className: "hidden print:block",
+    priority: false,
+  },
+] as const;
+
+/** Scaled logo width */
+const LOGO_WIDTH = 550;
+/** Adjusted logo height based on scaled width, maintaining aspect ratio */
+const LOGO_HEIGHT = Math.round(LOGOS[0].height / (LOGOS[0].width / LOGO_WIDTH));
+
+const extraLines = 11; // <- extra space for text lines in rem
+const negativeMargins = 4 + 2.5; // <- sum of negative top and bottom margins in rem
+
+const HEADER_HEIGHT = {
+  min: toPx(toRem(LOGO_HEIGHT) + extraLines - negativeMargins),
+  max: toPx(toRem(LOGO_HEIGHT) + extraLines),
 };
 
 const Header: React.FC<{
@@ -38,7 +58,7 @@ const Header: React.FC<{
   const isExpanded = pathName === "/";
 
   const animate = {
-    height: `${isExpanded ? headerHeight.max : headerHeight.min}px`,
+    height: `${isExpanded ? HEADER_HEIGHT.max : HEADER_HEIGHT.min}px`,
   };
 
   const colorClassNames = getColorsForPath(pathName);
@@ -48,9 +68,9 @@ const Header: React.FC<{
       id="header"
       className={classNames(
         colorClassNames.bg,
-        "transition-colors duration-500 shadow-xl cursor-default flex z-20 print:hidden",
+        "transition-colors duration-500 shadow-xl cursor-default flex z-20 print:bg-transparent print:shadow-none",
       )}
-      transition={transition}
+      transition={TRANSITION}
       // - used on initial document load only:
       initial={animate}
       // on re-renders:
@@ -58,24 +78,26 @@ const Header: React.FC<{
     >
       <Container className="py-2 px-4">
         <div
-          // NOTE: negative margins to not make the image's shaddow "count"
+          // NOTE: negative margins to not make the image's shadow "count"
           className={
-            "flex flex-1 items-center justify-center -mt-14 -mb-10 z-0"
+            "flex flex-1 items-center justify-center -mt-16 -mb-10 z-0"
           }
         >
-          {/* TODO: make b&w logo for print styles */}
           <Link href="/">
-            <Image
-              alt="nemoDreaming Logo"
-              src="/header.png"
-              width={640}
-              height={199}
-              className="flex items-center justify-center"
-              priority
-            />
+            {LOGOS.map(({ src, className, priority }) => (
+              <Image
+                key={src}
+                src={src}
+                className={className}
+                alt="nemoDreaming Logo"
+                width={LOGO_WIDTH}
+                height={LOGO_HEIGHT}
+                priority={!!priority}
+              />
+            ))}
           </Link>
         </div>
-        <div className="z-10">
+        <div className="z-10 print:hidden">
           <div
             className={classNames(
               "flex flex-col justify-end items-start xs:flex-row xs:justify-between xs:items-baseline gap-4",
